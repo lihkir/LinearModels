@@ -1,0 +1,1281 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Variable Indicadoras &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'indicator_variables';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Multicolinealidad" href="multicollinearity.html" />
+    <link rel="prev" title="5. Diagnóstico de Apalancamiento e Influencia" href="diagnostic_leverage_influence.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostic_leverage_influence.html">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Variable Indicadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multicollinearity.html">7. Multicolinealidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/indicator_variables.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Variable Indicadoras</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-general-de-variables-indicadoras">6.1. Concepto General de Variables Indicadoras</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-vida-util-de-una-herramienta-de-corte">6.1.1. Ejemplo: Vida útil de una herramienta de corte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-a-mas-de-dos-niveles">6.1.2. Generalización a más de dos niveles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-vida-util-de-herramientas">6.1.3. Ejemplo: Datos de Vida Útil de Herramientas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-diferencias-en-pendiente-e-intercepto">6.1.4. Modelado con Diferencias en Pendiente e Intercepto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastes-de-hipotesis-con-variables-indicadoras">6.1.5. Contrastes de hipótesis con variables indicadoras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-8-2-datos-de-vida-util-de-herramientas">6.1.6. Ejemplo 8.2: Datos de Vida Útil de Herramientas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-de-hipotesis-son-iguales-las-dos-rectas">6.1.7. Contraste de hipótesis: ¿Son iguales las dos rectas?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-de-hipotesis-pendientes-iguales">6.1.8. Contraste de hipótesis: ¿Pendientes iguales?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-analisis-resumido-del-modelo-de-vida-util-ejemplo-8-2">6.1.9. Tabla: Análisis Resumido del Modelo de Vida Útil (Ejemplo 8.2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-variable-indicadora-con-mas-de-dos-niveles">6.1.10. Ejemplo: Variable Indicadora con Más de Dos Niveles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion">6.1.10.1. Modelo con interacción</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-mas-de-una-variable-indicadora">6.1.11. Ejemplo: Más de Una Variable Indicadora</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion-entre-factores-y-la-variable-cuantitativa">6.1.11.1. Modelo con interacción entre factores y la variable cuantitativa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion-cruzada-entre-indicadores">6.1.11.2. Modelo con interacción cruzada entre indicadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nota-metodologica">6.1.11.3. Nota metodológica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-comparacion-de-modelos-de-regresion">6.1.12. Ejemplo: Comparación de Modelos de Regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-rectas-paralelas">6.1.12.1. a) Rectas Paralelas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-rectas-concurrentes">6.1.12.2. b) Rectas Concurrentes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-rectas-coincidentes">6.1.12.3. c) Rectas Coincidentes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-sobre-el-uso-de-variables-indicadoras">6.1.13. Comentarios sobre el Uso de Variables Indicadoras</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-indicadoras-vs-codigos-asignados">6.1.13.1. Variables Indicadoras vs. Códigos Asignados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-indicadoras-como-sustituto-de-regresores-cuantitativos">6.1.13.2. Variables Indicadoras como Sustituto de Regresores Cuantitativos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-de-regresion-para-el-analisis-de-varianza">6.1.14. Enfoque de Regresión para el Análisis de Varianza</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-del-anova-de-un-solo-factor">6.1.14.1. Modelo del ANOVA de un solo factor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-anova-de-un-factor">6.1.14.2. Tabla de ANOVA de un factor</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-de-anova-como-modelo-de-regresion">6.1.15. Formulación de ANOVA como modelo de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-numerico-tres-tratamientos-con-tres-observaciones-cada-uno">6.1.16. Ejemplo numérico: tres tratamientos con tres observaciones cada uno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-de-suma-de-cuadrados">6.1.17. Descomposición de suma de cuadrados</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="variable-indicadoras">
+<h1><span class="section-number">6. </span>Variable Indicadoras<a class="headerlink" href="#variable-indicadoras" title="Link to this heading">#</a></h1>
+<section id="concepto-general-de-variables-indicadoras">
+<h2><span class="section-number">6.1. </span>Concepto General de Variables Indicadoras<a class="headerlink" href="#concepto-general-de-variables-indicadoras" title="Link to this heading">#</a></h2>
+<p><strong>Las variables utilizadas en regresión son usualmente cuantitativas</strong>, es decir, poseen una escala de medición bien definida (por ejemplo, temperatura, distancia, presión o ingreso). Sin embargo, <strong>en muchas situaciones es necesario utilizar variables cualitativas o categóricas</strong> como predictores. Ejemplos comunes incluyen el tipo de operador, estado laboral (empleado o desempleado), turno (diurno, nocturno), o sexo (masculino, femenino). <strong>Estas variables no tienen una escala natural de medición.</strong> Para incorporar estos factores cualitativos en un modelo de regresión, se utilizan <strong>variables indicadoras</strong> (también conocidas como variables “dummy”).</p>
+<section id="ejemplo-vida-util-de-una-herramienta-de-corte">
+<h3><span class="section-number">6.1.1. </span>Ejemplo: Vida útil de una herramienta de corte<a class="headerlink" href="#ejemplo-vida-util-de-una-herramienta-de-corte" title="Link to this heading">#</a></h3>
+<p>Un ingeniero mecánico desea modelar la vida útil de una herramienta (<span class="math notranslate nohighlight">\(y\)</span>) en función de la velocidad del torno en revoluciones por minuto (<span class="math notranslate nohighlight">\(x_1\)</span>) y el <strong>tipo de herramienta</strong> utilizado. Este segundo predictor es cualitativo y presenta dos niveles: herramientas tipo A y tipo B.</p>
+<p>Se introduce una variable indicadora <span class="math notranslate nohighlight">\(x_2\)</span> para codificar el tipo de herramienta como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_2 =
+\begin{cases}
+0, &amp; \text{si la observación es de tipo A} \\
+1, &amp; \text{si la observación es de tipo B}
+\end{cases}
+\end{split}\]</div>
+<p>El modelo de regresión lineal de primer orden es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-indicador-modelo1">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-indicador-modelo1" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>Para interpretar los parámetros, consideremos:</p>
+<ul class="simple">
+<li><p><strong>Tipo A</strong> (<span class="math notranslate nohighlight">\(x_2 = 0\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-tipoa-linea">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-tipoa-linea" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2(0) + \varepsilon = \beta_0 + \beta_1 x_1 + \varepsilon
+\]</div>
+<ul class="simple">
+<li><p><strong>Tipo B</strong> (<span class="math notranslate nohighlight">\(x_2 = 1\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-tipob-linea">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-eq-tipob-linea" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2(1) + \varepsilon = (\beta_0 + \beta_2) + \beta_1 x_1 + \varepsilon
+\]</div>
+<p><strong>Ambas funciones respuesta son líneas rectas paralelas</strong>, con pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span> común y diferentes interceptos. El parámetro <span class="math notranslate nohighlight">\(\beta_2\)</span> mide <strong>la diferencia en promedio de vida útil</strong> entre los tipos A y B.</p>
+</section>
+<section id="generalizacion-a-mas-de-dos-niveles">
+<h3><span class="section-number">6.1.2. </span>Generalización a más de dos niveles<a class="headerlink" href="#generalizacion-a-mas-de-dos-niveles" title="Link to this heading">#</a></h3>
+<p>Si el factor cualitativo tiene tres niveles (por ejemplo, herramientas tipo A, B y C), se necesitan dos variables indicadoras, por ejemplo <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_3\)</span>:</p>
+<ul class="simple">
+<li><p>Tipo A: <span class="math notranslate nohighlight">\(x_2 = 0\)</span>, <span class="math notranslate nohighlight">\(x_3 = 0\)</span></p></li>
+<li><p>Tipo B: <span class="math notranslate nohighlight">\(x_2 = 1\)</span>, <span class="math notranslate nohighlight">\(x_3 = 0\)</span></p></li>
+<li><p>Tipo C: <span class="math notranslate nohighlight">\(x_2 = 0\)</span>, <span class="math notranslate nohighlight">\(x_3 = 1\)</span></p></li>
+</ul>
+<p>El modelo resultante es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-indicador-tresniveles">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-indicador-tresniveles" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
+\]</div>
+<p><strong>En general, una variable cualitativa con <span class="math notranslate nohighlight">\(a\)</span> niveles se representa con <span class="math notranslate nohighlight">\(a - 1\)</span> variables indicadoras</strong>, cada una con valores 0 y 1.</p>
+</section>
+<section id="ejemplo-datos-de-vida-util-de-herramientas">
+<h3><span class="section-number">6.1.3. </span>Ejemplo: Datos de Vida Útil de Herramientas<a class="headerlink" href="#ejemplo-datos-de-vida-util-de-herramientas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Se observan 20 pares <span class="math notranslate nohighlight">\((y_i, x_{1i})\)</span> con tipo de herramienta (A o B).</p></li>
+<li><p>Se ajusta el modelo:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-tool">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-modelo-tool" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(x_2 = 1\)</span> si el tipo es B, y <span class="math notranslate nohighlight">\(x_2 = 0\)</span> si es A.</p>
+<p>El ajuste por mínimos cuadrados da como resultado:</p>
+<div class="math notranslate nohighlight" id="equation-eq-tool-fit">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-tool-fit" title="Link to this equation">#</a></span>\[
+\hat{y} = 36.986 - 0.027 x_1 + 15.004 x_2
+\]</div>
+<p>Con base en la Tabla 8.2:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R^2 = 0.9003\)</span> indica un buen ajuste.</p></li>
+<li><p>Ambos predictores son <strong>estadísticamente significativos</strong>, con <span class="math notranslate nohighlight">\(P\)</span>-valores pequeños.</p></li>
+<li><p>El parámetro <span class="math notranslate nohighlight">\(\beta_2\)</span> estima el <strong>incremento promedio</strong> en la vida útil al cambiar de herramienta A a B.</p></li>
+</ul>
+<p>El intervalo de confianza del 95% para <span class="math notranslate nohighlight">\(\beta_2\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[
+15.004 \pm 2.110 \cdot 1.360 \Rightarrow 12.135 \leq \beta_2 \leq 17.873
+\]</div>
+</section>
+<section id="modelado-con-diferencias-en-pendiente-e-intercepto">
+<h3><span class="section-number">6.1.4. </span>Modelado con Diferencias en Pendiente e Intercepto<a class="headerlink" href="#modelado-con-diferencias-en-pendiente-e-intercepto" title="Link to this heading">#</a></h3>
+<p>Ahora supongamos que <strong>la relación entre vida útil y velocidad del torno difiere en pendiente e intercepto</strong> para cada tipo. El modelo adecuado es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-interaccion">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-interaccion" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + \varepsilon
+\]</div>
+<ul class="simple">
+<li><p>Para tipo A (<span class="math notranslate nohighlight">\(x_2 = 0\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \varepsilon
+\]</div>
+<ul class="simple">
+<li><p>Para tipo B (<span class="math notranslate nohighlight">\(x_2 = 1\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y = (\beta_0 + \beta_2) + (\beta_1 + \beta_3)x_1 + \varepsilon
+\]</div>
+<p>Así, <span class="math notranslate nohighlight">\(\beta_2\)</span> representa el cambio en el intercepto y <span class="math notranslate nohighlight">\(\beta_3\)</span> el cambio en la pendiente al pasar de tipo A a B.</p>
+</section>
+<section id="contrastes-de-hipotesis-con-variables-indicadoras">
+<h3><span class="section-number">6.1.5. </span>Contrastes de hipótesis con variables indicadoras<a class="headerlink" href="#contrastes-de-hipotesis-con-variables-indicadoras" title="Link to this heading">#</a></h3>
+<p>Usando el modelo con interacción, pueden plantearse las siguientes pruebas:</p>
+<ul class="simple">
+<li><p><strong>¿Los modelos son idénticos?</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+H_0: \beta_2 = \beta_3 = 0 \quad \text{vs} \quad H_1: \beta_2 \neq 0 \text{ y/o } \beta_3 \neq 0
+\]</div>
+<ul class="simple">
+<li><p><strong>¿Las pendientes son iguales pero los interceptos diferentes?</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+H_0: \beta_3 = 0 \quad \text{vs} \quad H_1: \beta_3 \neq 0
+\]</div>
+<p>Estas pruebas se realizan fácilmente usando la metodología de suma de cuadrados extra. La ventaja del enfoque con variables indicadoras es que <strong>se ajusta un solo modelo y se evalúan múltiples hipótesis sin requerir modelos separados.</strong></p>
+<p><strong>Las variables indicadoras constituyen una herramienta poderosa</strong> para incorporar factores cualitativos en regresión. En las siguientes secciones, se presentarán tres aplicaciones adicionales típicas de este enfoque.</p>
+</section>
+<section id="ejemplo-8-2-datos-de-vida-util-de-herramientas">
+<h3><span class="section-number">6.1.6. </span>Ejemplo 8.2: Datos de Vida Útil de Herramientas<a class="headerlink" href="#ejemplo-8-2-datos-de-vida-util-de-herramientas" title="Link to this heading">#</a></h3>
+<p>Ahora ajustamos el modelo de regresión que incluye <strong>interacción</strong> entre la velocidad del torno y el tipo de herramienta:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-interaccion">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-modelo-interaccion" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2 + \varepsilon
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1\)</span> es la velocidad del torno (rpm),</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_2\)</span> es la variable indicadora: 0 para herramienta tipo A y 1 para tipo B,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1 x_2\)</span> representa la interacción entre velocidad y tipo de herramienta.</p></li>
+</ul>
+<p>El modelo ajustado por mínimos cuadrados es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ajuste-ejemplo8-2">
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-eq-ajuste-ejemplo8-2" title="Link to this equation">#</a></span>\[
+\hat{y} = 32.775 - 0.021x_1 + 23.971x_2 - 0.012x_1 x_2
+\]</div>
+</section>
+<section id="contraste-de-hipotesis-son-iguales-las-dos-rectas">
+<h3><span class="section-number">6.1.7. </span>Contraste de hipótesis: ¿Son iguales las dos rectas?<a class="headerlink" href="#contraste-de-hipotesis-son-iguales-las-dos-rectas" title="Link to this heading">#</a></h3>
+<p>Queremos probar si las dos líneas de regresión (para tipo A y tipo B) son <strong>idénticas</strong>, lo que se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[
+H_0: \beta_2 = \beta_3 = 0 \quad \text{vs.} \quad H_1: \beta_2 \neq 0 \text{ o } \beta_3 \neq 0
+\]</div>
+<p>Para ello se usa el <strong>método de suma de cuadrados extra</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+F_0 = \frac{SSR(\beta_2, \beta_3 \mid \beta_1, \beta_0)}{2 \cdot MS_{\text{Res}}}
+= \frac{1141.107}{2 \cdot 8.811}
+= 64.75
+\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[
+SSR(\beta_2, \beta_3 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2, \beta_3 \mid \beta_0) - SSR(\beta_1 \mid \beta_0)
+= 1434.112 - 293.005 = 1141.107
+\]</div>
+<p>Dado que el valor-p para este estadístico es <strong><span class="math notranslate nohighlight">\(2.14 \times 10^{-8}\)</span></strong>, <strong>rechazamos</strong> la hipótesis nula y concluimos que <strong>las dos rectas no son idénticas</strong>.</p>
+</section>
+<section id="contraste-de-hipotesis-pendientes-iguales">
+<h3><span class="section-number">6.1.8. </span>Contraste de hipótesis: ¿Pendientes iguales?<a class="headerlink" href="#contraste-de-hipotesis-pendientes-iguales" title="Link to this heading">#</a></h3>
+<p>Ahora evaluamos si las rectas tienen pendientes iguales pero diferentes interceptos:</p>
+<div class="math notranslate nohighlight">
+\[
+H_0: \beta_3 = 0 \quad \text{vs.} \quad H_1: \beta_3 \neq 0
+\]</div>
+<p>Usamos:</p>
+<div class="math notranslate nohighlight">
+\[
+F_0 = \frac{SSR(\beta_3 \mid \beta_2, \beta_1, \beta_0)}{1 \cdot MS_{\text{Res}}}
+= \frac{16.078}{8.811}
+= 1.82
+\]</div>
+<p>Como el valor-p es 0.20, <strong>no rechazamos</strong> <span class="math notranslate nohighlight">\(H_0\)</span> y <strong>concluimos que las pendientes son iguales</strong>.</p>
+<p>Esta misma conclusión puede obtenerse observando el valor <span class="math notranslate nohighlight">\(t_0\)</span> para <span class="math notranslate nohighlight">\(\beta_3\)</span> en la Tabla 8.3.</p>
+</section>
+<section id="tabla-analisis-resumido-del-modelo-de-vida-util-ejemplo-8-2">
+<h3><span class="section-number">6.1.9. </span>Tabla: Análisis Resumido del Modelo de Vida Útil (Ejemplo 8.2)<a class="headerlink" href="#tabla-analisis-resumido-del-modelo-de-vida-util-ejemplo-8-2" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table-bordered table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fuente</p></th>
+<th class="head"><p>Suma de Cuadrados</p></th>
+<th class="head"><p>Grados de Libertad</p></th>
+<th class="head"><p>Cuadrado Medio</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(F_0\)</span></p></th>
+<th class="head"><p>Valor-P</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Regresión</p></td>
+<td><p>1434.112</p></td>
+<td><p>3</p></td>
+<td><p>478.037</p></td>
+<td><p>54.25</p></td>
+<td><p><span class="math notranslate nohighlight">\(1.32 \times 10^{-9}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Error</p></td>
+<td><p>140.976</p></td>
+<td><p>16</p></td>
+<td><p>8.811</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p>1575.088</p></td>
+<td><p>19</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ejemplo-variable-indicadora-con-mas-de-dos-niveles">
+<h3><span class="section-number">6.1.10. </span>Ejemplo: Variable Indicadora con Más de Dos Niveles<a class="headerlink" href="#ejemplo-variable-indicadora-con-mas-de-dos-niveles" title="Link to this heading">#</a></h3>
+<p>Una empresa eléctrica está investigando el efecto del <strong>tamaño de una vivienda unifamiliar</strong> y el <strong>tipo de sistema de aire acondicionado</strong> sobre el consumo total de electricidad durante los meses cálidos. Definimos:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span>: consumo total de electricidad (en kilovatios-hora) de junio a septiembre,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1\)</span>: tamaño de la vivienda (pies cuadrados de superficie habitable).</p></li>
+</ul>
+<p>Existen cuatro niveles para el sistema de aire acondicionado:</p>
+<ol class="arabic simple">
+<li><p>Sin aire acondicionado,</p></li>
+<li><p>Unidades de ventana,</p></li>
+<li><p>Bomba de calor,</p></li>
+<li><p>Aire acondicionado central.</p></li>
+</ol>
+<p>Se representan mediante tres <strong>variables indicadoras</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de aire acondicionado</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_4\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sin aire acondicionado</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unidades de ventana</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Bomba de calor</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aire acondicionado central</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El modelo de regresión es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-ac-1">
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-eq-modelo-ac-1" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4 + \varepsilon
+\]</div>
+<p>Este modelo asume que la pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span> es común a todos los tipos de aire acondicionado, y que las diferencias entre ellos se reflejan únicamente en el intercepto:</p>
+<ul class="simple">
+<li><p><strong>Sin aire acondicionado</strong>:
+$<span class="math notranslate nohighlight">\(
+y = \beta_0 + \beta_1 x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Unidades de ventana</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_2) + \beta_1 x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Bomba de calor</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_3) + \beta_1 x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Aire acondicionado central</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_4) + \beta_1 x_1 + \varepsilon
+\)</span>$</p></li>
+</ul>
+<p>Así, los coeficientes <span class="math notranslate nohighlight">\(\beta_2\)</span>, <span class="math notranslate nohighlight">\(\beta_3\)</span> y <span class="math notranslate nohighlight">\(\beta_4\)</span> <strong>miden el cambio en el intercepto</strong> respecto al caso de referencia (sin aire acondicionado). Por ejemplo, <span class="math notranslate nohighlight">\(\beta_3 - \beta_4\)</span> refleja la <strong>eficiencia relativa entre bomba de calor y aire central</strong>.</p>
+<section id="modelo-con-interaccion">
+<h4><span class="section-number">6.1.10.1. </span>Modelo con interacción<a class="headerlink" href="#modelo-con-interaccion" title="Link to this heading">#</a></h4>
+<p>Es razonable suponer que <strong>la pendiente varía según el sistema de aire acondicionado</strong>, ya que algunos sistemas, como el aire central, podrían ser más eficientes en casas grandes.</p>
+<p>Se incluye entonces interacción entre <span class="math notranslate nohighlight">\(x_1\)</span> y las variables indicadoras:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-ac-2">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-eq-modelo-ac-2" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4 + \beta_5 x_1 x_2 + \beta_6 x_1 x_3 + \beta_7 x_1 x_4 + \varepsilon
+\]</div>
+<p>Los modelos por tipo de sistema son:</p>
+<ul class="simple">
+<li><p><strong>Sin aire acondicionado</strong>:
+$<span class="math notranslate nohighlight">\(
+y = \beta_0 + \beta_1 x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Unidades de ventana</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_2) + (\beta_1 + \beta_5) x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Bomba de calor</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_3) + (\beta_1 + \beta_6) x_1 + \varepsilon
+\)</span>$</p></li>
+<li><p><strong>Aire acondicionado central</strong>:
+$<span class="math notranslate nohighlight">\(
+y = (\beta_0 + \beta_4) + (\beta_1 + \beta_7) x_1 + \varepsilon
+\)</span>$</p></li>
+</ul>
+<p><strong>Cada tipo de sistema tiene su propia recta de regresión con pendiente e intercepto distintos.</strong></p>
+</section>
+</section>
+<section id="ejemplo-mas-de-una-variable-indicadora">
+<h3><span class="section-number">6.1.11. </span>Ejemplo: Más de Una Variable Indicadora<a class="headerlink" href="#ejemplo-mas-de-una-variable-indicadora" title="Link to this heading">#</a></h3>
+<p>Frecuentemente se presentan <strong>múltiples factores cualitativos</strong>. Supongamos que en el Ejemplo 8.1 se desea incluir también el efecto del <strong>tipo de aceite de corte</strong> (dos niveles: baja y media viscosidad).</p>
+<p>Definimos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_3 = 
+\begin{cases}
+0 &amp; \text{si se usa aceite de baja viscosidad} \\
+1 &amp; \text{si se usa aceite de media viscosidad}
+\end{cases}
+\end{split}\]</div>
+<p>El modelo lineal con efectos aditivos es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-dos-factores">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-eq-modelo-dos-factores" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(x_2\)</span> representa el tipo de herramienta y <span class="math notranslate nohighlight">\(x_3\)</span> el tipo de aceite.</p>
+<section id="modelo-con-interaccion-entre-factores-y-la-variable-cuantitativa">
+<h4><span class="section-number">6.1.11.1. </span>Modelo con interacción entre factores y la variable cuantitativa<a class="headerlink" href="#modelo-con-interaccion-entre-factores-y-la-variable-cuantitativa" title="Link to this heading">#</a></h4>
+<p>Si se espera que la velocidad de corte (<span class="math notranslate nohighlight">\(x_1\)</span>) interactúe con los factores cualitativos, se incluye:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-interacciones">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-eq-modelo-interacciones" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_1 x_2 + \beta_5 x_1 x_3 + \varepsilon
+\]</div>
+<p>Este modelo genera las siguientes combinaciones:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de herramienta</p></th>
+<th class="head"><p>Tipo de aceite</p></th>
+<th class="head"><p>Modelo de regresión</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>Baja viscosidad</p></td>
+<td><p><span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \varepsilon\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>Baja viscosidad</p></td>
+<td><p><span class="math notranslate nohighlight">\(y = (\beta_0 + \beta_2) + (\beta_1 + \beta_4) x_1 + \varepsilon\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>Media viscosidad</p></td>
+<td><p><span class="math notranslate nohighlight">\(y = (\beta_0 + \beta_3) + (\beta_1 + \beta_5) x_1 + \varepsilon\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>Media viscosidad</p></td>
+<td><p><span class="math notranslate nohighlight">\(y = (\beta_0 + \beta_2 + \beta_3) + (\beta_1 + \beta_4 + \beta_5) x_1 + \varepsilon\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="modelo-con-interaccion-cruzada-entre-indicadores">
+<h4><span class="section-number">6.1.11.2. </span>Modelo con interacción cruzada entre indicadores<a class="headerlink" href="#modelo-con-interaccion-cruzada-entre-indicadores" title="Link to this heading">#</a></h4>
+<p>Si se cree que el <strong>efecto del tipo de aceite depende del tipo de herramienta</strong>, se puede añadir el producto cruzado <span class="math notranslate nohighlight">\(x_2 x_3\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-interacciones-cruzadas">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-eq-modelo-interacciones-cruzadas" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_1 x_2 + \beta_5 x_1 x_3 + \beta_6 x_2 x_3 + \varepsilon
+\]</div>
+<p>Esto permite que el cambio de aceite tenga un efecto distinto en la herramienta tipo A que en la tipo B:</p>
+<ul class="simple">
+<li><p>Para herramienta A, el cambio en el intercepto es <span class="math notranslate nohighlight">\(\beta_3\)</span>,</p></li>
+<li><p>Para herramienta B, el cambio es <span class="math notranslate nohighlight">\(\beta_3 + \beta_6\)</span>.</p></li>
+</ul>
+</section>
+<section id="nota-metodologica">
+<h4><span class="section-number">6.1.11.3. </span>Nota metodológica<a class="headerlink" href="#nota-metodologica" title="Link to this heading">#</a></h4>
+<p>Se puede extender aún más este modelo añadiendo una interacción de tres vías: <span class="math notranslate nohighlight">\(x_1 x_2 x_3\)</span>, permitiendo que el cambio en <strong>pendiente e intercepto dependa de ambas variables cualitativas</strong>.</p>
+<p>En la práctica, la <strong>forma final del modelo debe guiarse por la evidencia empírica</strong>, mediante contrastes de hipótesis, como:</p>
+<div class="math notranslate nohighlight">
+\[
+H_0: \beta_6 = 0 \quad \text{(sin interacción entre tipo de herramienta y tipo de aceite)}
+\]</div>
+<p>utilizando pruebas <strong>F parciales</strong> para comparar modelos anidados.</p>
+</section>
+</section>
+<section id="ejemplo-comparacion-de-modelos-de-regresion">
+<h3><span class="section-number">6.1.12. </span>Ejemplo: Comparación de Modelos de Regresión<a class="headerlink" href="#ejemplo-comparacion-de-modelos-de-regresion" title="Link to this heading">#</a></h3>
+<p>Consideremos un caso de regresión lineal simple en el que las <span class="math notranslate nohighlight">\(n\)</span> observaciones se agrupan en <span class="math notranslate nohighlight">\(M\)</span> grupos, cada uno con <span class="math notranslate nohighlight">\(n_m\)</span> observaciones. El modelo más general consiste en <strong><span class="math notranslate nohighlight">\(M\)</span> ecuaciones de regresión independientes</strong>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-general-m-grupos">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-eq-modelo-general-m-grupos" title="Link to this equation">#</a></span>\[
+y = \beta_{0m} + \beta_{1m}x + \varepsilon,\quad m = 1, 2, \dots, M
+\]</div>
+<p>Es común comparar este modelo general con formas más restringidas, y para ello se utilizan <strong>variables indicadoras</strong>. A continuación se describen tres casos:</p>
+<section id="a-rectas-paralelas">
+<h4><span class="section-number">6.1.12.1. </span>a) Rectas Paralelas<a class="headerlink" href="#a-rectas-paralelas" title="Link to this heading">#</a></h4>
+<p>Se supone que todas las pendientes son iguales: <span class="math notranslate nohighlight">\(\beta_{11} = \beta_{12} = \dots = \beta_{1M}\)</span>, aunque los interceptos pueden diferir. Este caso corresponde a una <strong>estructura aditiva con pendiente común</strong>, como en el Ejemplo 8.1.</p>
+<p>Para contrastar esta hipótesis se emplea una <strong>prueba F de suma de cuadrados extra</strong>, mediante:</p>
+<div class="math notranslate nohighlight" id="equation-eq-f-test-paralelas">
+<span class="eqno">(6.16)<a class="headerlink" href="#equation-eq-f-test-paralelas" title="Link to this equation">#</a></span>\[
+F_0 = \frac{\text{SSRes(RM)} - \text{SSRes(FM)}}{\text{df}_{\text{RM}} - \text{df}_{\text{FM}}} \Big/ \frac{\text{SSRes(FM)}}{\text{df}_{\text{FM}}}
+\]</div>
+<ul class="simple">
+<li><p><strong>FM</strong> (modelo completo): se ajustan <span class="math notranslate nohighlight">\(M\)</span> regresiones independientes;<br />
+$<span class="math notranslate nohighlight">\(\text{df}_{\text{FM}} = \sum_{m=1}^{M}(n_m - 2) = n - 2M\)</span>$</p></li>
+<li><p><strong>RM</strong> (modelo reducido):<br />
+$<span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1x + \beta_2D_1 + \beta_3D_2 + \cdots + \beta_M D_{M-1} + \varepsilon\)</span><span class="math notranslate nohighlight">\(  
+con \)</span><span class="math notranslate nohighlight">\(\text{df}_{\text{RM}} = n - (M + 1)\)</span>$</p></li>
+</ul>
+<p>Si <span class="math notranslate nohighlight">\(F_0\)</span> es <strong>grande</strong>, se rechaza la hipótesis de pendientes iguales. En caso contrario, se puede utilizar <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> del modelo reducido como estimación común de la pendiente (<strong>modelo aditivo</strong>).</p>
+</section>
+<section id="b-rectas-concurrentes">
+<h4><span class="section-number">6.1.12.2. </span>b) Rectas Concurrentes<a class="headerlink" href="#b-rectas-concurrentes" title="Link to this heading">#</a></h4>
+<p>Se supone que todos los interceptos son iguales: <span class="math notranslate nohighlight">\(\beta_{01} = \beta_{02} = \dots = \beta_{0M}\)</span>, pero las pendientes pueden variar. El modelo reducido es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-concurrencia">
+<span class="eqno">(6.17)<a class="headerlink" href="#equation-eq-modelo-concurrencia" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1x + \beta_2Z_1 + \beta_3Z_2 + \dots + \beta_M Z_{M-1} + \varepsilon
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(Z_k = xD_k\)</span> representa la interacción de la pendiente con cada grupo. Se asume concurrencia en el origen (para concurrencia en otro punto, véase Graybill [1976] o Seber [1977]).</p>
+</section>
+<section id="c-rectas-coincidentes">
+<h4><span class="section-number">6.1.12.3. </span>c) Rectas Coincidentes<a class="headerlink" href="#c-rectas-coincidentes" title="Link to this heading">#</a></h4>
+<p>Todos los interceptos y pendientes son iguales: <span class="math notranslate nohighlight">\(\beta_{01} = \beta_{02} = \dots = \beta_{0M}\)</span> y <span class="math notranslate nohighlight">\(\beta_{11} = \beta_{12} = \dots = \beta_{1M}\)</span>.</p>
+<p>El modelo reducido es simplemente:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-coincidente">
+<span class="eqno">(6.18)<a class="headerlink" href="#equation-eq-modelo-coincidente" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1x + \varepsilon
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(\text{df}_{\text{RM}} = n - 2\)</span>. Este es el modelo más restrictivo y <strong>no requiere variables indicadoras</strong> para ser evaluado.</p>
+</section>
+</section>
+<section id="comentarios-sobre-el-uso-de-variables-indicadoras">
+<h3><span class="section-number">6.1.13. </span>Comentarios sobre el Uso de Variables Indicadoras<a class="headerlink" href="#comentarios-sobre-el-uso-de-variables-indicadoras" title="Link to this heading">#</a></h3>
+<section id="variables-indicadoras-vs-codigos-asignados">
+<h4><span class="section-number">6.1.13.1. </span>Variables Indicadoras vs. Códigos Asignados<a class="headerlink" href="#variables-indicadoras-vs-codigos-asignados" title="Link to this heading">#</a></h4>
+<p>Una alternativa a las variables indicadoras para representar factores cualitativos es utilizar <strong>códigos asignados</strong>. Por ejemplo, en el Ejemplo 8.3, se podría codificar el tipo de aire acondicionado como:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de aire acondicionado</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sin aire acondicionado</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unidades de ventana</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Bomba de calor</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aire acondicionado central</p></td>
+<td><p>4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>y ajustar el modelo:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-codificado">
+<span class="eqno">(6.19)<a class="headerlink" href="#equation-eq-modelo-codificado" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>Este modelo implica una relación <strong>lineal artificial</strong> entre los niveles del factor:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+E(y \mid x_1,\text{sin A/C}) &amp;= \beta_0 + \beta_1 x_1 + \beta_2 \\
+E(y \mid x_1,\text{ventana}) &amp;= \beta_0 + \beta_1 x_1 + 2\beta_2 \\
+E(y \mid x_1,\text{bomba}) &amp;= \beta_0 + \beta_1 x_1 + 3\beta_2 \\
+E(y \mid x_1,\text{central}) &amp;= \beta_0 + \beta_1 x_1 + 4\beta_2
+\end{aligned}
+\end{split}\]</div>
+<p>Por tanto:</p>
+<div class="math notranslate nohighlight">
+\[
+E(y \mid \text{central}) - E(y \mid \text{bomba}) = E(y \mid \text{bomba}) - E(y \mid \text{ventana}) = \beta_2
+\]</div>
+<p><strong>Este supuesto puede ser poco realista</strong>, pues impone una métrica arbitraria entre niveles cualitativos. Además, <strong>diferentes codificaciones</strong> llevan a diferentes interpretaciones.</p>
+<p>En contraste, las <strong>variables indicadoras</strong>:</p>
+<ul class="simple">
+<li><p>No imponen una escala numérica entre niveles,</p></li>
+<li><p>Permiten mayor flexibilidad,</p></li>
+<li><p>Generalmente producen un mayor <span class="math notranslate nohighlight">\(R^2\)</span> (véase Searle y Udell [1970]).</p></li>
+</ul>
+</section>
+<section id="variables-indicadoras-como-sustituto-de-regresores-cuantitativos">
+<h4><span class="section-number">6.1.13.2. </span>Variables Indicadoras como Sustituto de Regresores Cuantitativos<a class="headerlink" href="#variables-indicadoras-como-sustituto-de-regresores-cuantitativos" title="Link to this heading">#</a></h4>
+<p>También puede ser necesario representar variables cuantitativas como <strong>indicadoras agrupadas</strong> si los datos no están disponibles con precisión. Por ejemplo, si se incluye <strong>ingreso del hogar</strong> en el estudio del Ejemplo 8.3, puede agruparse en:</p>
+<ul class="simple">
+<li><p>$0–19,999</p></li>
+<li><p>$20,000–39,999</p></li>
+<li><p>$40,000–59,999</p></li>
+<li><p>$60,000–79,999</p></li>
+<li><p>$80,000 o más</p></li>
+</ul>
+<p>Esto genera <strong>4 variables indicadoras</strong> para representar el ingreso como factor cualitativo.</p>
+<p><strong>Ventajas</strong>:</p>
+<ul class="simple">
+<li><p>No requiere especificar una forma funcional del efecto del ingreso.</p></li>
+</ul>
+<p><strong>Desventajas</strong>:</p>
+<ul class="simple">
+<li><p>Aumenta el número de parámetros (de 1 a <span class="math notranslate nohighlight">\(a-1\)</span> si hay <span class="math notranslate nohighlight">\(a\)</span> clases),</p></li>
+<li><p>Reduce los grados de libertad para el error,</p></li>
+<li><p>Aumenta la complejidad del modelo.</p></li>
+</ul>
+<p>Sin embargo, con suficientes datos, la pérdida de grados de libertad no suele ser crítica, y el enfoque es útil cuando <strong>no se conoce la forma funcional del efecto</strong>.</p>
+</section>
+</section>
+<section id="enfoque-de-regresion-para-el-analisis-de-varianza">
+<h3><span class="section-number">6.1.14. </span>Enfoque de Regresión para el Análisis de Varianza<a class="headerlink" href="#enfoque-de-regresion-para-el-analisis-de-varianza" title="Link to this heading">#</a></h3>
+<p>El <strong>análisis de varianza</strong> (ANOVA) es una técnica comúnmente utilizada en experimentos planificados o diseñados. Aunque existen procedimientos computacionales específicos y eficientes para realizar ANOVA, <strong>todo problema de análisis de varianza puede ser formulado como un modelo de regresión lineal</strong>, donde los regresores son <strong>variables indicadoras</strong>.</p>
+<p>Este enfoque puede ser particularmente útil cuando se presentan <strong>desequilibrios en el diseño</strong> (número desigual de observaciones por tratamiento). A continuación, se ilustra esta equivalencia mediante el caso de clasificación simple o ANOVA de un solo factor.</p>
+<section id="modelo-del-anova-de-un-solo-factor">
+<h4><span class="section-number">6.1.14.1. </span>Modelo del ANOVA de un solo factor<a class="headerlink" href="#modelo-del-anova-de-un-solo-factor" title="Link to this heading">#</a></h4>
+<p>El modelo clásico para ANOVA de un solo factor es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-anova-un-factor">
+<span class="eqno">(6.20)<a class="headerlink" href="#equation-eq-anova-un-factor" title="Link to this equation">#</a></span>\[
+y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad i = 1, 2, \dots, k;\quad j = 1, 2, \dots, n
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_{ij}\)</span> es la observación <span class="math notranslate nohighlight">\(j\)</span> en el tratamiento <span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> es la <strong>media general (grand mean)</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau_i\)</span> representa el <strong>efecto del tratamiento</strong> <span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_{ij} \sim \text{NID}(0, \sigma^2)\)</span>.</p></li>
+</ul>
+<p>En el caso <strong>balanceado</strong> (mismo número de observaciones por tratamiento), se impone la restricción:</p>
+<div class="math notranslate nohighlight" id="equation-eq-restriccion-tau">
+<span class="eqno">(6.21)<a class="headerlink" href="#equation-eq-restriccion-tau" title="Link to this equation">#</a></span>\[
+\sum_{i=1}^k \tau_i = 0
+\]</div>
+<p>Las medias poblacionales por tratamiento son entonces <span class="math notranslate nohighlight">\(\mu_i = \mu + \tau_i\)</span>.</p>
+<p>La hipótesis nula en ANOVA es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-anova-hipotesis">
+<span class="eqno">(6.22)<a class="headerlink" href="#equation-eq-anova-hipotesis" title="Link to this equation">#</a></span>\[
+H_0: \tau_1 = \tau_2 = \dots = \tau_k = 0 \quad \text{vs.} \quad H_1: \tau_i \neq 0 \text{ para algún } i
+\]</div>
+</section>
+<section id="tabla-de-anova-de-un-factor">
+<h4><span class="section-number">6.1.14.2. </span>Tabla de ANOVA de un factor<a class="headerlink" href="#tabla-de-anova-de-un-factor" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fuente de variación</p></th>
+<th class="head"><p>Suma de cuadrados</p></th>
+<th class="head"><p>Grados de libertad</p></th>
+<th class="head"><p>Cuadrado medio</p></th>
+<th class="head"><p>Estadístico F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tratamientos</p></td>
+<td><p><span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^k ( \bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(k - 1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{\text{SSTrat}}{k - 1}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(F_0 = \dfrac{\text{SSTrat}/(k-1)}{\text{SSError}/(k(n-1))}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Error</p></td>
+<td><p><span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^k \sum_{j=1}^n (y_{ij} - \bar{y}_{i\cdot})^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(k(n - 1)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\dfrac{\text{SSError}}{k(n - 1)}\)</span></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td><p><span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^k \sum_{j=1}^n (y_{ij} - \bar{y}_{\cdot\cdot})^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(kn - 1\)</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{y}_{i\cdot}\)</span> es el promedio de las observaciones del tratamiento <span class="math notranslate nohighlight">\(i\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{y}_{\cdot\cdot}\)</span> es el promedio general de todas las observaciones.</p></li>
+</ul>
+</section>
+</section>
+<section id="formulacion-de-anova-como-modelo-de-regresion">
+<h3><span class="section-number">6.1.15. </span>Formulación de ANOVA como modelo de regresión<a class="headerlink" href="#formulacion-de-anova-como-modelo-de-regresion" title="Link to this heading">#</a></h3>
+<p>Consideremos el caso con <span class="math notranslate nohighlight">\(k = 3\)</span> tratamientos. Se pueden definir dos variables indicadoras como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-indicadores-tratamientos">
+<span class="eqno">(6.23)<a class="headerlink" href="#equation-eq-indicadores-tratamientos" title="Link to this equation">#</a></span>\[\begin{split}
+x_{1j} =
+\begin{cases}
+1 &amp; \text{si la observación pertenece al tratamiento 1} \\
+0 &amp; \text{en otro caso}
+\end{cases}, \quad
+x_{2j} =
+\begin{cases}
+1 &amp; \text{si la observación pertenece al tratamiento 2} \\
+0 &amp; \text{en otro caso}
+\end{cases}
+\end{split}\]</div>
+<p>El modelo de regresión equivalente es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-regresion-anova">
+<span class="eqno">(6.24)<a class="headerlink" href="#equation-eq-regresion-anova" title="Link to this equation">#</a></span>\[
+y_{ij} = \beta_0 + \beta_1 x_{1j} + \beta_2 x_{2j} + \varepsilon_{ij}
+\]</div>
+<p>Las relaciones entre los coeficientes de ambos modelos son:</p>
+<div class="math notranslate nohighlight" id="equation-eq-betas-vs-mu">
+<span class="eqno">(6.25)<a class="headerlink" href="#equation-eq-betas-vs-mu" title="Link to this equation">#</a></span>\[
+\beta_0 = \mu_3, \quad
+\beta_1 = \mu_1 - \mu_3, \quad
+\beta_2 = \mu_2 - \mu_3
+\]</div>
+<p>Generalizando a <span class="math notranslate nohighlight">\(k\)</span> tratamientos:</p>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-regresion-k-tratamientos">
+<span class="eqno">(6.26)<a class="headerlink" href="#equation-eq-modelo-regresion-k-tratamientos" title="Link to this equation">#</a></span>\[
+y_{ij} = \beta_0 + \sum_{r=1}^{k-1} \beta_r x_{rj} + \varepsilon_{ij}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\beta_0\)</span> estima la media del tratamiento de referencia (el <span class="math notranslate nohighlight">\(k\)</span>-ésimo) y cada <span class="math notranslate nohighlight">\(\beta_r\)</span> estima la diferencia entre el tratamiento <span class="math notranslate nohighlight">\(r\)</span> y el tratamiento de referencia.</p>
+</section>
+<section id="ejemplo-numerico-tres-tratamientos-con-tres-observaciones-cada-uno">
+<h3><span class="section-number">6.1.16. </span>Ejemplo numérico: tres tratamientos con tres observaciones cada uno<a class="headerlink" href="#ejemplo-numerico-tres-tratamientos-con-tres-observaciones-cada-uno" title="Link to this heading">#</a></h3>
+<p>Matriz de diseño <span class="math notranslate nohighlight">\(X\)</span> y vector de respuesta <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ejemplo-x-y">
+<span class="eqno">(6.27)<a class="headerlink" href="#equation-eq-ejemplo-x-y" title="Link to this equation">#</a></span>\[\begin{split}
+X = \begin{bmatrix}
+1 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0
+\end{bmatrix}, \quad
+y = \begin{bmatrix}
+y_{11} \\ y_{12} \\ y_{13} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{31} \\ y_{32} \\ y_{33}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Las ecuaciones normales para los mínimos cuadrados son:</p>
+<div class="math notranslate nohighlight" id="equation-eq-normal-eqs">
+<span class="eqno">(6.28)<a class="headerlink" href="#equation-eq-normal-eqs" title="Link to this equation">#</a></span>\[
+(X'X)\hat{\beta} = X'y
+\]</div>
+<p>Resolviendo, se obtiene:</p>
+<div class="math notranslate nohighlight" id="equation-eq-estimadores-regresion">
+<span class="eqno">(6.29)<a class="headerlink" href="#equation-eq-estimadores-regresion" title="Link to this equation">#</a></span>\[
+\hat{\beta}_0 = \bar{y}_{3\cdot}, \quad
+\hat{\beta}_1 = \bar{y}_{1\cdot} - \bar{y}_{3\cdot}, \quad
+\hat{\beta}_2 = \bar{y}_{2\cdot} - \bar{y}_{3\cdot}
+\]</div>
+</section>
+<section id="descomposicion-de-suma-de-cuadrados">
+<h3><span class="section-number">6.1.17. </span>Descomposición de suma de cuadrados<a class="headerlink" href="#descomposicion-de-suma-de-cuadrados" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Modelo completo (con efectos de tratamientos):</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ssr-completo">
+<span class="eqno">(6.30)<a class="headerlink" href="#equation-eq-ssr-completo" title="Link to this equation">#</a></span>\[
+\text{SSR}(\beta_0, \beta_1, \beta_2) = \sum_{i=1}^{3} n \bar{y}_{i\cdot}^2
+\]</div>
+<ul class="simple">
+<li><p>Error del modelo completo:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ssres-completo">
+<span class="eqno">(6.31)<a class="headerlink" href="#equation-eq-ssres-completo" title="Link to this equation">#</a></span>\[
+\text{SSRes} = \sum_{i=1}^{3} \sum_{j=1}^{3} (y_{ij} - \bar{y}_{i\cdot})^2
+\]</div>
+<ul class="simple">
+<li><p>Modelo reducido (sin efectos de tratamientos):</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-reducido">
+<span class="eqno">(6.32)<a class="headerlink" href="#equation-eq-modelo-reducido" title="Link to this equation">#</a></span>\[
+y_{ij} = \beta_0 + \varepsilon_{ij}, \quad \hat{\beta}_0 = \bar{y}_{\cdot\cdot}
+\]</div>
+<ul class="simple">
+<li><p>SSR del modelo reducido:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ssr-reducido">
+<span class="eqno">(6.33)<a class="headerlink" href="#equation-eq-ssr-reducido" title="Link to this equation">#</a></span>\[
+\text{SSR}(\beta_0) = n k \bar{y}_{\cdot\cdot}^2
+\]</div>
+<ul class="simple">
+<li><p>Suma de cuadrados para comparar modelos:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ssr-tratamientos">
+<span class="eqno">(6.34)<a class="headerlink" href="#equation-eq-ssr-tratamientos" title="Link to this equation">#</a></span>\[
+\text{SSR}(\beta_1, \beta_2 \mid \beta_0) = \sum_{i=1}^3 n (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2
+\]</div>
+<ul class="simple">
+<li><p>Estadístico de prueba <span class="math notranslate nohighlight">\(F\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-f-regresion-anova">
+<span class="eqno">(6.35)<a class="headerlink" href="#equation-eq-f-regresion-anova" title="Link to this equation">#</a></span>\[
+F_0 = \frac{
+\sum_{i=1}^3 n (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2 / (k - 1)
+}{
+\sum_{i=1}^{3} \sum_{j=1}^{3} (y_{ij} - \bar{y}_{i\cdot})^2 / (k(n - 1))
+}
+\]</div>
+<p><strong>Conclusión</strong>: El enfoque de regresión con variables indicadoras para ANOVA <strong>reproduce exactamente los resultados del análisis de varianza tradicional</strong>, incluyendo las particiones de suma de cuadrados, grados de libertad y el estadístico <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p>Este enfoque es particularmente útil en diseños <strong>no balanceados</strong> o cuando se desea <strong>integrar factores cuantitativos y cualitativos</strong> en un solo modelo de regresión lineal general.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="diagnostic_leverage_influence.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Diagnóstico de Apalancamiento e Influencia</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="multicollinearity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Multicolinealidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-general-de-variables-indicadoras">6.1. Concepto General de Variables Indicadoras</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-vida-util-de-una-herramienta-de-corte">6.1.1. Ejemplo: Vida útil de una herramienta de corte</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalizacion-a-mas-de-dos-niveles">6.1.2. Generalización a más de dos niveles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-vida-util-de-herramientas">6.1.3. Ejemplo: Datos de Vida Útil de Herramientas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelado-con-diferencias-en-pendiente-e-intercepto">6.1.4. Modelado con Diferencias en Pendiente e Intercepto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrastes-de-hipotesis-con-variables-indicadoras">6.1.5. Contrastes de hipótesis con variables indicadoras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-8-2-datos-de-vida-util-de-herramientas">6.1.6. Ejemplo 8.2: Datos de Vida Útil de Herramientas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-de-hipotesis-son-iguales-las-dos-rectas">6.1.7. Contraste de hipótesis: ¿Son iguales las dos rectas?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contraste-de-hipotesis-pendientes-iguales">6.1.8. Contraste de hipótesis: ¿Pendientes iguales?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-analisis-resumido-del-modelo-de-vida-util-ejemplo-8-2">6.1.9. Tabla: Análisis Resumido del Modelo de Vida Útil (Ejemplo 8.2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-variable-indicadora-con-mas-de-dos-niveles">6.1.10. Ejemplo: Variable Indicadora con Más de Dos Niveles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion">6.1.10.1. Modelo con interacción</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-mas-de-una-variable-indicadora">6.1.11. Ejemplo: Más de Una Variable Indicadora</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion-entre-factores-y-la-variable-cuantitativa">6.1.11.1. Modelo con interacción entre factores y la variable cuantitativa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-con-interaccion-cruzada-entre-indicadores">6.1.11.2. Modelo con interacción cruzada entre indicadores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nota-metodologica">6.1.11.3. Nota metodológica</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-comparacion-de-modelos-de-regresion">6.1.12. Ejemplo: Comparación de Modelos de Regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-rectas-paralelas">6.1.12.1. a) Rectas Paralelas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-rectas-concurrentes">6.1.12.2. b) Rectas Concurrentes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-rectas-coincidentes">6.1.12.3. c) Rectas Coincidentes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-sobre-el-uso-de-variables-indicadoras">6.1.13. Comentarios sobre el Uso de Variables Indicadoras</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-indicadoras-vs-codigos-asignados">6.1.13.1. Variables Indicadoras vs. Códigos Asignados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-indicadoras-como-sustituto-de-regresores-cuantitativos">6.1.13.2. Variables Indicadoras como Sustituto de Regresores Cuantitativos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enfoque-de-regresion-para-el-analisis-de-varianza">6.1.14. Enfoque de Regresión para el Análisis de Varianza</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-del-anova-de-un-solo-factor">6.1.14.1. Modelo del ANOVA de un solo factor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-anova-de-un-factor">6.1.14.2. Tabla de ANOVA de un factor</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion-de-anova-como-modelo-de-regresion">6.1.15. Formulación de ANOVA como modelo de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-numerico-tres-tratamientos-con-tres-observaciones-cada-uno">6.1.16. Ejemplo numérico: tres tratamientos con tres observaciones cada uno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-de-suma-de-cuadrados">6.1.17. Descomposición de suma de cuadrados</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

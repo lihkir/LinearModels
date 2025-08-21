@@ -1,0 +1,2072 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Multicolinealidad &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'multicollinearity';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Selección de variables y construcción de modelos" href="variable_selection_model_building.html" />
+    <link rel="prev" title="6. Variable Indicadoras" href="indicator_variables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostic_leverage_influence.html">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indicator_variables.html">6. Variable Indicadoras</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Multicolinealidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/multicollinearity.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multicolinealidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">7.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-de-multicolinealidad">7.2. Fuentes de multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-fuentes-de-multicolinealidad">7.2.1. Principales fuentes de multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-la-multicolinealidad">7.3. Efectos de la multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tendencia-a-estimadores-excesivamente-grandes">7.3.1. Tendencia a estimadores excesivamente grandes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-en-la-prediccion">7.3.2. Impacto en la predicción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-acetileno">7.3.3. Ejemplo: Datos de acetileno</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-cuadratico-completo-propuesto">7.3.3.1. Modelo cuadrático completo propuesto:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-minimos-cuadrados">7.3.3.2. Estimación por mínimos cuadrados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-modelo">7.3.3.3. Evaluación del modelo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolacion-y-multicolinealidad">7.3.3.4. Extrapolación y multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examen-de-la-matriz-de-correlacion">7.3.4. Examen de la matriz de correlación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-analisis-par-a-par">7.3.4.1. Limitaciones del análisis par a par</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-sistema-de-autovalores-de-x-x">7.4. Análisis del Sistema de Autovalores de <span class="math notranslate nohighlight">\(X'X\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.4.1. Ejemplo: Datos de Acetileno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-autovectores">7.4.2. Interpretación de los Autovectores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-en-valores-singulares-svd">7.4.3. Descomposición en Valores Singulares (SVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proporciones-de-descomposicion-de-varianza">7.4.4. Proporciones de Descomposición de Varianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-proporciones-de-descomposicion-de-varianza">7.4.5. Tabla: Proporciones de Descomposición de Varianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-9-7-proporciones-de-descomposicion-de-varianza-para-los-datos-de-webster-gunst-y-mason">7.4.6. Tabla 9.7. Proporciones de descomposición de varianza para los datos de Webster, Gunst y Mason</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-diagnosticos">7.4.7. Otros diagnósticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-generar-diagnosticos-de-multicolinealidad">7.4.8. Código en Python para generar diagnósticos de multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-abordar-la-multicolinealidad">7.5. Métodos para abordar la multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recoleccion-de-datos-adicionales">7.5.1. Recolección de datos adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reespecificacion-del-modelo">7.5.2. Reespecificación del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">7.5.3. Regresión Ridge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-de-acetileno">7.6. Ejemplo: Los datos de acetileno</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-9-8-estimaciones-ridge-de-los-coeficientes-para-varios-valores-de-k">7.6.1. Tabla 9.8: Estimaciones ridge de los coeficientes para varios valores de <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algunas-otras-propiedades-de-la-regresion-ridge">7.6.2. 9.5.4 Algunas otras propiedades de la regresión ridge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-otros-estimadores">7.6.3. Relación con otros estimadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-la-eleccion-del-parametro-k">7.7. Métodos para la elección del parámetro <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-componentes-principales-pcr">7.8. Regresión por Componentes Principales (PCR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimador-por-componentes-principales">7.9. Estimador por Componentes Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-regresion-por-componentes-principales-para-los-datos-de-acetileno">7.9.1. Ejemplo: Regresión por Componentes Principales para los datos de acetileno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-y-evaluacion-de-estimadores-sesgados">7.9.2. 9.5.5 Comparación y evaluación de estimadores sesgados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-python-para-regresion-ridge-y-regresion-por-componentes-principales">7.10. Aplicación de Python para regresión Ridge y regresión por componentes principales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="multicolinealidad">
+<h1><span class="section-number">7. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2><span class="section-number">7.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>El uso e interpretación de un modelo de <strong>regresión múltiple</strong> depende, explícita o implícitamente, de las estimaciones de los coeficientes individuales. Entre las inferencias más frecuentes se encuentran:</p>
+<ol class="arabic simple">
+<li><p>La identificación del efecto relativo de cada regresor.</p></li>
+<li><p>La predicción y/o estimación.</p></li>
+<li><p>La selección de un conjunto adecuado de variables para el modelo.</p></li>
+</ol>
+<p>Cuando los regresores no presentan relación lineal entre sí, se dice que son <strong>ortogonales</strong>. En tales casos, las inferencias anteriores pueden realizarse de manera relativamente sencilla. Sin embargo, <strong>en la mayoría de las aplicaciones prácticas los regresores no son ortogonales</strong>.</p>
+<p>A veces, la falta de ortogonalidad no genera consecuencias importantes. No obstante, cuando los regresores presentan <strong>relaciones lineales casi exactas</strong>, las inferencias derivadas del modelo pueden ser <strong>engañosas o incorrectas</strong>. En estos casos se dice que existe un problema de <strong>multicolinealidad</strong>.</p>
+<p>Este capítulo amplía la discusión preliminar sobre multicolinealidad introducida en el Capítulo 3. Se abordarán:</p>
+<ul class="simple">
+<li><p>Las causas de la multicolinealidad,</p></li>
+<li><p>Sus efectos sobre la inferencia estadística,</p></li>
+<li><p>Métodos para detectarla, y</p></li>
+<li><p>Técnicas para mitigar el problema.</p></li>
+</ul>
+</section>
+<section id="fuentes-de-multicolinealidad">
+<h2><span class="section-number">7.2. </span>Fuentes de multicolinealidad<a class="headerlink" href="#fuentes-de-multicolinealidad" title="Link to this heading">#</a></h2>
+<p>El modelo de regresión múltiple puede escribirse como:</p>
+<div class="math notranslate nohighlight" id="equation-modelo-lineal-general">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-modelo-lineal-general" title="Link to this equation">#</a></span>\[
+\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de respuestas,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> es una matriz <span class="math notranslate nohighlight">\(n \times p\)</span> de regresores,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> es un vector <span class="math notranslate nohighlight">\(p \times 1\)</span> de coeficientes desconocidos,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de errores aleatorios, con <span class="math notranslate nohighlight">\(\varepsilon_i \sim \text{NID}(0, \sigma^2)\)</span>.</p></li>
+</ul>
+<p>Se asume que <strong>todas las variables han sido centradas y escaladas a longitud unitaria</strong>, como en la Sección 3.9. En consecuencia, la matriz <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> es una matriz <span class="math notranslate nohighlight">\(p \times p\)</span> de <strong>correlaciones entre los regresores</strong>, y <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{y}\)</span> es un vector de correlaciones entre los regresores y la respuesta.</p>
+<p>Sea <span class="math notranslate nohighlight">\(\mathbf{X}_j\)</span> la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, es decir, <span class="math notranslate nohighlight">\(\mathbf{X} = [\mathbf{X}_1, \mathbf{X}_2, \dots, \mathbf{X}_p]\)</span>. Los vectores <span class="math notranslate nohighlight">\(\mathbf{X}_1, \dots, \mathbf{X}_p\)</span> son <strong>linealmente dependientes</strong> si existe un conjunto de constantes <span class="math notranslate nohighlight">\(t_1, t_2, \dots, t_p\)</span>, no todas cero, tal que:</p>
+<div class="math notranslate nohighlight" id="equation-dependencia-lineal">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-dependencia-lineal" title="Link to this equation">#</a></span>\[
+\sum_{j=1}^{p} t_j \mathbf{X}_j = \mathbf{0}
+\]</div>
+<p>Si la ecuación anterior se cumple <strong>exactamente</strong>, entonces el rango de <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> es menor que <span class="math notranslate nohighlight">\(p\)</span> y <strong>la matriz no es invertible</strong>. Si la relación es <strong>aproximada</strong>, entonces <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> está <strong>casi degenerada</strong>, y se dice que existe <strong>multicolinealidad</strong>.</p>
+<p>La multicolinealidad es, por tanto, una forma de <strong>condicionamiento deficiente</strong> (<em>ill-conditioning</em>) en <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span>. Este problema tiene un carácter <strong>gradual</strong>: cualquier conjunto de datos lo padece en algún grado, salvo que las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> sean ortogonales, lo cual ocurre usualmente solo en experimentos diseñados.</p>
+<p>La multicolinealidad puede hacer que el análisis clásico de mínimos cuadrados sea <strong>dramáticamente inadecuado</strong>.</p>
+<section id="principales-fuentes-de-multicolinealidad">
+<h3><span class="section-number">7.2.1. </span>Principales fuentes de multicolinealidad<a class="headerlink" href="#principales-fuentes-de-multicolinealidad" title="Link to this heading">#</a></h3>
+<p>Se identifican <strong>cuatro fuentes principales</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Método de recolección de datos</strong><br />
+Puede generar multicolinealidad si el muestreo se realiza sobre un subespacio limitado de los regresores.<br />
+Por ejemplo, si se recolectan datos sobre “número de cajas” y “distancia” de entrega (como en el Ejemplo 3.1), pero todos los pares observados <span class="math notranslate nohighlight">\((\text{cajas}, \text{distancia})\)</span> están altamente correlacionados, esto sugiere una dependencia lineal entre regresores.<br />
+Este tipo de multicolinealidad <strong>no es inherente al modelo o la población</strong>, y podría evitarse seleccionando observaciones en regiones más diversas del espacio muestral.</p></li>
+<li><p><strong>Restricciones del modelo o de la población</strong><br />
+En algunos casos, la estructura misma de la población genera relaciones lineales entre regresores.<br />
+Por ejemplo, si se estudia el consumo eléctrico en función del ingreso familiar (<span class="math notranslate nohighlight">\(x_1\)</span>) y el tamaño de la vivienda (<span class="math notranslate nohighlight">\(x_2\)</span>), es probable que estos regresores estén correlacionados, ya que <strong>ingresos altos suelen asociarse con casas más grandes</strong>.<br />
+En contextos industriales o químicos, también es común que los regresores (componentes del producto) sumen una constante, induciendo multicolinealidad.</p></li>
+<li><p><strong>Especificación del modelo</strong><br />
+Incluir términos polinómicos o transformaciones en el modelo puede inducir multicolinealidad.<br />
+Por ejemplo, añadir <span class="math notranslate nohighlight">\(x^2\)</span> a un modelo con <span class="math notranslate nohighlight">\(x\)</span> en un rango pequeño puede causar fuerte correlación entre regresores.<br />
+En estos casos, eliminar algunas variables puede reducir la multicolinealidad.</p></li>
+<li><p><strong>Modelo sobredefinido</strong><br />
+Ocurre cuando hay <strong>más regresores que observaciones</strong> (<span class="math notranslate nohighlight">\(p &gt; n\)</span>), lo cual impide estimar el modelo por mínimos cuadrados ordinarios.<br />
+Este problema aparece con frecuencia en estudios médicos o psicológicos, donde el número de sujetos es pequeño pero se mide una gran cantidad de variables.<br />
+Mason, Gunst y Webster (1975) recomiendan:</p>
+<ul class="simple">
+<li><p>Redefinir el modelo con un subconjunto más pequeño de regresores.</p></li>
+<li><p>Realizar estudios preliminares con subconjuntos de variables.</p></li>
+<li><p>Utilizar métodos basados en <strong>componentes principales</strong> para seleccionar regresores.</p></li>
+</ul>
+<p>Las dos primeras estrategias ignoran las relaciones internas entre regresores y pueden ser ineficientes. La regresión por componentes principales se analiza en la Sección 9.5.4.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="efectos-de-la-multicolinealidad">
+<h2><span class="section-number">7.3. </span>Efectos de la multicolinealidad<a class="headerlink" href="#efectos-de-la-multicolinealidad" title="Link to this heading">#</a></h2>
+<p>La presencia de <strong>multicolinealidad</strong> tiene varios efectos potencialmente graves sobre los <strong>estimadores de mínimos cuadrados</strong> de los coeficientes de regresión. Algunos de estos efectos pueden ilustrarse fácilmente.</p>
+<p>Supóngase que hay solo <strong>dos variables regresoras</strong>, <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>, y que tanto <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> como <span class="math notranslate nohighlight">\(y\)</span> han sido <strong>centrados y escalados a longitud unitaria</strong>. El modelo se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>Las ecuaciones normales de mínimos cuadrados son:</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbf{X}'\mathbf{X}) \hat{\boldsymbol{\beta}} = \mathbf{X}'\mathbf{y}
+\]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X}'\mathbf{X} = 
+\begin{bmatrix}
+1 &amp; r_{12} \\
+r_{12} &amp; 1
+\end{bmatrix}, \quad
+\hat{\boldsymbol{\beta}} =
+\begin{bmatrix}
+\hat{\beta}_1 \\
+\hat{\beta}_2
+\end{bmatrix}, \quad
+\mathbf{X}'\mathbf{y} =
+\begin{bmatrix}
+r_{1y} \\
+r_{2y}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Aquí, <span class="math notranslate nohighlight">\(r_{12}\)</span> es la <strong>correlación simple</strong> entre <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>, y <span class="math notranslate nohighlight">\(r_{jy}\)</span> es la correlación entre <span class="math notranslate nohighlight">\(x_j\)</span> y <span class="math notranslate nohighlight">\(y\)</span> para <span class="math notranslate nohighlight">\(j = 1, 2\)</span>.</p>
+<p>La <strong>inversa de <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span></strong> es:</p>
+<div class="math notranslate nohighlight" id="equation-inv-xpx-dos-regresores">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-inv-xpx-dos-regresores" title="Link to this equation">#</a></span>\[\begin{split}
+(\mathbf{X}'\mathbf{X})^{-1} = 
+\frac{1}{1 - r_{12}^2}
+\begin{bmatrix}
+1 &amp; -r_{12} \\
+-r_{12} &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<p>Por lo tanto, los estimadores de mínimos cuadrados son:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_1 = \frac{r_{1y} - r_{12} r_{2y}}{1 - r_{12}^2}, \quad
+\hat{\beta}_2 = \frac{r_{2y} - r_{12} r_{1y}}{1 - r_{12}^2}
+\]</div>
+<p>Si existe <strong>fuerte multicolinealidad</strong> entre <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>, entonces <span class="math notranslate nohighlight">\(|r_{12}|\)</span> será cercano a 1. De la Ecuación <a class="reference internal" href="#equation-inv-xpx-dos-regresores">(7.3)</a> se deduce que, cuando <span class="math notranslate nohighlight">\(|r_{12}| \to 1\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\beta}_j) = C_{jj} \sigma^2 \to \infty, \quad
+\operatorname{Cov}(\hat{\beta}_1, \hat{\beta}_2) = C_{12} \sigma^2 \to \pm \infty
+\]</div>
+<p>dependiendo de si <span class="math notranslate nohighlight">\(r_{12} \to +1\)</span> o <span class="math notranslate nohighlight">\(r_{12} \to -1\)</span>.</p>
+<p><strong>Esto implica que la multicolinealidad genera varianzas y covarianzas grandes en los estimadores de mínimos cuadrados</strong>, lo que provoca que diferentes muestras tomadas en los mismos niveles de <span class="math notranslate nohighlight">\(x\)</span> conduzcan a <strong>estimaciones muy distintas</strong> de los parámetros.</p>
+<p>Cuando hay más de dos regresores, los efectos son similares. Se puede demostrar que los elementos diagonales de <span class="math notranslate nohighlight">\(\mathbf{C} = (\mathbf{X}'\mathbf{X})^{-1}\)</span> están dados por:</p>
+<div class="math notranslate nohighlight" id="equation-diag-inversa-xpx">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-diag-inversa-xpx" title="Link to this equation">#</a></span>\[
+C_{jj} = \frac{1}{1 - R_j^2}, \quad j = 1, 2, \dots, p
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(R_j^2\)</span> es el <strong>coeficiente de determinación</strong> de la regresión de <span class="math notranslate nohighlight">\(x_j\)</span> sobre las demás <span class="math notranslate nohighlight">\(p - 1\)</span> variables regresoras. Si <span class="math notranslate nohighlight">\(x_j\)</span> presenta alta multicolinealidad con algún subconjunto de las demás variables, entonces <span class="math notranslate nohighlight">\(R_j^2 \to 1\)</span>.</p>
+<p>Dado que:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\beta}_j) = C_{jj} \sigma^2 = \frac{\sigma^2}{1 - R_j^2}
+\]</div>
+<p>la <strong>varianza del estimador</strong> <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> será muy grande. Además, <strong>la covarianza entre estimadores también puede ser elevada</strong> si las variables involucradas están correlacionadas linealmente.</p>
+<section id="tendencia-a-estimadores-excesivamente-grandes">
+<h3><span class="section-number">7.3.1. </span>Tendencia a estimadores excesivamente grandes<a class="headerlink" href="#tendencia-a-estimadores-excesivamente-grandes" title="Link to this heading">#</a></h3>
+<p>La multicolinealidad también tiende a generar <strong>estimaciones demasiado grandes en valor absoluto</strong> para los coeficientes <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>. Para ilustrarlo, se considera la distancia cuadrada entre <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+L_1^2 = (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})'(\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})
+\]</div>
+<p>El valor esperado de esta distancia es:</p>
+<div class="math notranslate nohighlight" id="equation-esperanza-distancia">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-esperanza-distancia" title="Link to this equation">#</a></span>\[
+\mathbb{E}(L_1^2) = \sum_{j=1}^{p} \mathbb{E}[(\hat{\beta}_j - \beta_j)^2] = \sum_{j=1}^{p} \operatorname{Var}(\hat{\beta}_j) = \sigma^2 \operatorname{Tr}[(\mathbf{X}'\mathbf{X})^{-1}]
+\]</div>
+<p>La traza <span class="math notranslate nohighlight">\(\operatorname{Tr}(\cdot)\)</span> es la suma de los elementos diagonales. También puede expresarse en términos de los <strong>autovalores <span class="math notranslate nohighlight">\(\lambda_j\)</span></strong> de <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-esperanza-autovalores">
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-esperanza-autovalores" title="Link to this equation">#</a></span>\[
+\mathbb{E}(L_1^2) = \sigma^2 \sum_{j=1}^{p} \frac{1}{\lambda_j}
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> está mal condicionada por multicolinealidad, entonces algunos <span class="math notranslate nohighlight">\(\lambda_j\)</span> serán <strong>muy pequeños</strong>, lo que implica que la distancia entre <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> puede ser <strong>grande</strong>.</p>
+<p>Alternativamente, se puede demostrar que:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(\hat{\boldsymbol{\beta}}' \hat{\boldsymbol{\beta}}) = \boldsymbol{\beta}' \boldsymbol{\beta} + \sigma^2 \operatorname{Tr}[(\mathbf{X}'\mathbf{X})^{-1}]
+\]</div>
+<p>lo cual indica que el vector estimado <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> <strong>tiende a ser más largo</strong> que el verdadero <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>, es decir, <strong>los coeficientes estimados suelen ser demasiado grandes en valor absoluto</strong>.</p>
+</section>
+<section id="impacto-en-la-prediccion">
+<h3><span class="section-number">7.3.2. </span>Impacto en la predicción<a class="headerlink" href="#impacto-en-la-prediccion" title="Link to this heading">#</a></h3>
+<p>Aunque la multicolinealidad suele deteriorar las estimaciones individuales de los parámetros, <strong>esto no implica necesariamente que el modelo ajustado sea un mal predictor</strong>.</p>
+<p>Si las predicciones se realizan <strong>en regiones del espacio de regresores donde la multicolinealidad también está presente</strong>, el modelo ajustado puede proporcionar buenas predicciones. Esto ocurre porque la combinación lineal:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=1}^{p} \beta_j x_{ij}
+\]</div>
+<p>puede estar <strong>bien estimada</strong>, incluso si los coeficientes individuales <span class="math notranslate nohighlight">\(\beta_j\)</span> no lo están. Es decir, si los datos originales y los futuros están <strong>cercanos al hiperplano definido por la dependencia lineal</strong> (ver <a class="reference internal" href="#equation-dependencia-lineal">(7.2)</a>), las predicciones pueden ser <strong>precisas</strong>, a pesar de los errores en la estimación individual de parámetros.</p>
+</section>
+<section id="ejemplo-datos-de-acetileno">
+<h3><span class="section-number">7.3.3. </span>Ejemplo: Datos de acetileno<a class="headerlink" href="#ejemplo-datos-de-acetileno" title="Link to this heading">#</a></h3>
+<p>La <strong>Tabla 9.1</strong> presenta datos sobre el <strong>porcentaje de conversión de n-heptano a acetileno</strong>, junto con tres variables explicativas, tomados de Himmelblau (1970), Kunugi, Tamura y Naito (1961), y Marquardt y Snee (1975). Este tipo de datos de procesos químicos suele modelarse mediante una <strong>superficie de respuesta cuadrática completa</strong> en los tres regresores.</p>
+<p>Un gráfico de <strong>tiempo de contacto vs. temperatura del reactor</strong> (ver Figura 9.2 en el texto original) muestra que estas dos variables están <strong>altamente correlacionadas</strong>, lo cual indica la posible presencia de <strong>multicolinealidad</strong>.</p>
+<section id="modelo-cuadratico-completo-propuesto">
+<h4><span class="section-number">7.3.3.1. </span>Modelo cuadrático completo propuesto:<a class="headerlink" href="#modelo-cuadratico-completo-propuesto" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+P = \gamma_0 + \gamma_1 T + \gamma_2 H + \gamma_3 C + \gamma_{12} TH + \gamma_{13} TC + \gamma_{23} HC + \gamma_{11} T^2 + \gamma_{22} H^2 + \gamma_{33} C^2 + \varepsilon
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P\)</span> = porcentaje de conversión,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> = temperatura centrada y escalada,</p></li>
+<li><p><span class="math notranslate nohighlight">\(H\)</span> = proporción molar de <span class="math notranslate nohighlight">\(\text{H}_2\)</span>/n-heptano centrada y escalada,</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> = tiempo de contacto centrado y escalado.</p></li>
+</ul>
+<p>Las variables fueron transformadas mediante <strong>escalamiento unitario normal</strong> (ver Sección 3.9), de la siguiente forma:</p>
+<div class="math notranslate nohighlight">
+\[
+T = \frac{\text{temperatura} - 1212.50}{80.623}, \quad
+H = \frac{\text{proporción molar de H}_2 - 12.44}{5.662}, \quad
+C = \frac{\text{tiempo de contacto} - 0.0403}{0.03164}
+\]</div>
+<p>Los términos cuadráticos y de interacción se generaron a partir de los regresores escalados.</p>
+<blockquote>
+<div><p><strong>El centrado de las variables ayuda a reducir el mal condicionamiento numérico al ajustar modelos polinomiales.</strong></p>
+</div></blockquote>
+</section>
+<section id="estimacion-por-minimos-cuadrados">
+<h4><span class="section-number">7.3.3.2. </span>Estimación por mínimos cuadrados<a class="headerlink" href="#estimacion-por-minimos-cuadrados" title="Link to this heading">#</a></h4>
+<p>El modelo ajustado mediante mínimos cuadrados es:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{P} = 35.897 + 4.019 T + 2.781 H - 8.031 C - 6.457 TH - 26.982 TC - 3.768 HC - 12.54 T^2 - 0.973 H^2 - 11.594 C^2
+\]</div>
+<blockquote>
+<div><p><strong>Los coeficientes de regresión se reportan tanto en función de los regresores centrados como de los estandarizados.</strong></p>
+</div></blockquote>
+</section>
+<section id="evaluacion-del-modelo">
+<h4><span class="section-number">7.3.3.3. </span>Evaluación del modelo<a class="headerlink" href="#evaluacion-del-modelo" title="Link to this heading">#</a></h4>
+<p>En la <strong>Figura 9.3</strong>, se muestran los <strong>valores ajustados y observados</strong> de <span class="math notranslate nohighlight">\(P\)</span> para seis puntos (A, B, E, F, I, y J) que definen el <strong>borde del espacio de las variables regresoras</strong> (tiempo de contacto y temperatura del reactor). La concordancia entre valores predichos y observados es muy alta, lo cual sugiere que:</p>
+<blockquote>
+<div><p><strong>El modelo es adecuado para interpolar dentro del rango de los datos originales.</strong></p>
+</div></blockquote>
+</section>
+<section id="extrapolacion-y-multicolinealidad">
+<h4><span class="section-number">7.3.3.4. </span>Extrapolación y multicolinealidad<a class="headerlink" href="#extrapolacion-y-multicolinealidad" title="Link to this heading">#</a></h4>
+<p>La misma figura incluye predicciones en los <strong>cuatro vértices del rango original</strong> (puntos C, D, G y H). Aunque estas predicciones constituyen solo una <strong>extrapolación leve</strong>, tres de las cuatro predicciones son <strong>negativas</strong>, lo cual es físicamente imposible.</p>
+<blockquote>
+<div><p><strong>Esto sugiere que, a pesar del buen ajuste interno, el modelo extrapola de forma deficiente.</strong></p>
+</div></blockquote>
+<p>Una causa probable de este mal comportamiento es la <strong>fuerte correlación entre el tiempo de contacto y la temperatura</strong>, es decir, <strong>multicolinealidad</strong>.</p>
+<blockquote>
+<div><p><strong>Para que un modelo extrapole bien, se requieren buenas estimaciones individuales de los coeficientes.</strong></p>
+</div></blockquote>
+<p>Sin embargo, cuando hay multicolinealidad:</p>
+<ul class="simple">
+<li><p>Los <strong>estimadores de mínimos cuadrados pueden ser muy pobres</strong>.</p></li>
+<li><p>Esto <strong>limita severamente la utilidad del modelo</strong> para inferencia y predicción fuera del rango muestral.</p></li>
+</ul>
+</section>
+</section>
+<section id="examen-de-la-matriz-de-correlacion">
+<h3><span class="section-number">7.3.4. </span>Examen de la matriz de correlación<a class="headerlink" href="#examen-de-la-matriz-de-correlacion" title="Link to this heading">#</a></h3>
+<p>Una forma simple de <strong>detectar multicolinealidad</strong> es examinar los elementos fuera de la diagonal en la matriz de correlaciones <span class="math notranslate nohighlight">\(r_{ij}\)</span> correspondiente a <span class="math notranslate nohighlight">\(X'X\)</span>. Si dos regresores <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span> son <strong>casi linealmente dependientes</strong>, entonces se espera que <span class="math notranslate nohighlight">\(|r_{ij}|\)</span> esté <strong>cerca de la unidad</strong>.</p>
+<p>Para ilustrar este procedimiento, retomamos los <strong>datos de acetileno</strong> del <strong>Ejemplo 9.1</strong>. La <strong>Tabla 9.3</strong> muestra las nueve variables regresoras y la respuesta estandarizadas, es decir, <strong>centradas</strong> (se resta la media) y <strong>escaladas</strong> (división por la raíz cuadrada de la suma de cuadrados corregida).</p>
+<p>La matriz <span class="math notranslate nohighlight">\(X'X\)</span> en forma de correlación para los datos de acetileno es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X'X =
+\begin{bmatrix}
+1.000 &amp; 0.224 &amp; -0.958 &amp; -0.132 &amp; 0.443 &amp; 0.205 &amp; -0.271 &amp; 0.031 &amp; -0.577 \\
+       &amp; 1.000 &amp; -0.240 &amp; 0.039  &amp; 0.192 &amp; -0.023 &amp; -0.148 &amp; 0.498 &amp; -0.224 \\
+       &amp;       &amp; 1.000  &amp; 0.194  &amp; -0.661 &amp; -0.274 &amp; 0.501 &amp; -0.018 &amp; 0.765 \\
+       &amp;       &amp;        &amp; 1.000  &amp; -0.265 &amp; -0.975 &amp; 0.246 &amp; 0.398 &amp; 0.274 \\
+       &amp;       &amp;        &amp;        &amp; 1.000  &amp; 0.323 &amp; -0.972 &amp; 0.126 &amp; -0.972 \\
+       &amp;       &amp;        &amp;        &amp;        &amp; 1.000 &amp; -0.279 &amp; -0.374 &amp; 0.358 \\
+       &amp;       &amp;        &amp;        &amp;        &amp;        &amp; 1.000 &amp; -0.124 &amp; 0.874 \\
+       &amp;       &amp;        &amp;        &amp;        &amp;        &amp;        &amp; 1.000 &amp; -0.158 \\
+       &amp;       &amp;        &amp;        &amp;        &amp;        &amp;        &amp;        &amp; 1.000
+\end{bmatrix}
+\end{split}\]</div>
+<blockquote>
+<div><p><strong>Nota:</strong> La matriz es simétrica, por lo tanto se muestran solo los elementos superiores.</p>
+</div></blockquote>
+<p>Esta matriz confirma la <strong>alta correlación negativa entre la temperatura del reactor (<span class="math notranslate nohighlight">\(x_1\)</span>) y el tiempo de contacto (<span class="math notranslate nohighlight">\(x_3\)</span>), con <span class="math notranslate nohighlight">\(r_{13} = -0.958\)</span></strong>. Además, existen otras correlaciones altas entre:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1x_2\)</span> y <span class="math notranslate nohighlight">\(x_2x_3\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1x_3\)</span> y <span class="math notranslate nohighlight">\(x_1^2\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_1^2\)</span> y <span class="math notranslate nohighlight">\(x_3^2\)</span>,</p></li>
+</ul>
+<p>lo cual <strong>no sorprende</strong>, ya que estos términos se generan a partir de los regresores lineales y combinaciones entre ellos.</p>
+<blockquote>
+<div><p><strong>La inspección de la matriz de correlación indica la existencia de múltiples dependencias lineales cercanas entre regresores en los datos de acetileno.</strong></p>
+</div></blockquote>
+<section id="limitaciones-del-analisis-par-a-par">
+<h4><span class="section-number">7.3.4.1. </span>Limitaciones del análisis par a par<a class="headerlink" href="#limitaciones-del-analisis-par-a-par" title="Link to this heading">#</a></h4>
+<p>El análisis de los coeficientes de correlación <span class="math notranslate nohighlight">\(r_{ij}\)</span> entre pares de regresores es útil para detectar <strong>dependencias lineales entre pares individuales</strong>, pero <strong>no es suficiente</strong> cuando la dependencia lineal involucra más de dos regresores.</p>
+<p>Como ilustración, se consideran los datos artificiales presentados por <strong>Webster, Gunst y Mason (1974)</strong>. Para las observaciones <span class="math notranslate nohighlight">\(i = 2\)</span> a <span class="math notranslate nohighlight">\(12\)</span>, se impuso la restricción:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=1}^4 x_{ij} = 10
+\]</div>
+<p>y para la primera observación:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=1}^4 x_{1j} = 11
+\]</div>
+<p>Los regresores 5 y 6 fueron generados aleatoriamente como valores normales. La variable de respuesta <span class="math notranslate nohighlight">\(y_i\)</span> se generó según:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = 10 + 2.0\,x_{i1} + 1.0\,x_{i2} + 0.2\,x_{i3} - 2.0\,x_{i4} + 3.0\,x_{i5} + 10.0\,x_{i6} + \varepsilon_i
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\varepsilon_i \sim \mathcal{N}(0,1)\)</span>.</p>
+<p>La matriz de correlación <span class="math notranslate nohighlight">\(X'X\)</span> para estos datos es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X'X =
+\begin{bmatrix}
+1.000 &amp; 0.052 &amp; -0.343 &amp; -0.498 &amp; 0.417 &amp; -0.192 \\
+       &amp; 1.000 &amp; -0.432 &amp; -0.371 &amp; 0.485 &amp; -0.317 \\
+       &amp;       &amp; 1.000 &amp; -0.355 &amp; -0.505 &amp; 0.494 \\
+       &amp;       &amp;       &amp; 1.000 &amp; -0.215 &amp; -0.087 \\
+       &amp;       &amp;       &amp;       &amp; 1.000 &amp; -0.123 \\
+       &amp;       &amp;       &amp;       &amp;       &amp; 1.000
+\end{bmatrix}
+\end{split}\]</div>
+<p>A pesar de que los regresores <span class="math notranslate nohighlight">\(x_1\)</span> a <span class="math notranslate nohighlight">\(x_4\)</span> están linealmente relacionados, <strong>ninguna de las correlaciones entre pares es sospechosamente alta</strong>, lo cual <strong>oculta la dependencia lineal múltiple</strong>.</p>
+<blockquote>
+<div><p><strong>En general, la inspección de los <span class="math notranslate nohighlight">\(r_{ij}\)</span> no permite detectar multicolinealidad más compleja que la que ocurre entre pares de regresores.</strong></p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="analisis-del-sistema-de-autovalores-de-x-x">
+<h2><span class="section-number">7.4. </span>Análisis del Sistema de Autovalores de <span class="math notranslate nohighlight">\(X'X\)</span><a class="headerlink" href="#analisis-del-sistema-de-autovalores-de-x-x" title="Link to this heading">#</a></h2>
+<p><strong>Las raíces características o autovalores de la matriz <span class="math notranslate nohighlight">\(X'X\)</span>, denotados por <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \dots, \lambda_p\)</span>, permiten cuantificar el grado de multicolinealidad en los datos.</strong></p>
+<ul class="simple">
+<li><p>Si existen dependencias lineales aproximadas entre los regresores, al menos uno de los autovalores será pequeño.</p></li>
+<li><p><strong>La presencia de autovalores pequeños implica relaciones casi lineales entre algunas columnas de <span class="math notranslate nohighlight">\(X\)</span>.</strong></p></li>
+<li><p>Una forma común de evaluar la gravedad de estas dependencias es mediante el número de condición de <span class="math notranslate nohighlight">\(X'X\)</span>, definido como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-cond-number">
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-cond-number" title="Link to this equation">#</a></span>\[
+\kappa = \frac{\lambda_{\max}}{\lambda_{\min}}
+\]</div>
+<ul class="simple">
+<li><p>Este valor indica la dispersión en el espectro de autovalores de <span class="math notranslate nohighlight">\(X'X\)</span>:</p>
+<ul>
+<li><p>Si <span class="math notranslate nohighlight">\(\kappa &lt; 100\)</span>, no hay indicios graves de multicolinealidad.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(100 \leq \kappa &lt; 1000\)</span>, la multicolinealidad es moderada o fuerte.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\kappa \geq 1000\)</span>, la multicolinealidad es severa.</p></li>
+</ul>
+</li>
+<li><p>También pueden calcularse los <strong>índices de condición</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-cond-indices">
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-cond-indices" title="Link to this equation">#</a></span>\[
+\kappa_j = \frac{\lambda_{\max}}{\lambda_j}, \quad j = 1, 2, \dots, p
+\]</div>
+<ul class="simple">
+<li><p><strong>El mayor índice de condición corresponde al número de condición <span class="math notranslate nohighlight">\(\kappa\)</span> definido en la ecuación</strong> <a class="reference internal" href="#equation-cond-number">(7.7)</a>.</p></li>
+<li><p><strong>El número de índices que superan cierto umbral (por ejemplo, <span class="math notranslate nohighlight">\(\kappa_j \geq 1000\)</span>) permite estimar cuántas relaciones lineales aproximadas existen.</strong></p></li>
+</ul>
+<section id="id1">
+<h3><span class="section-number">7.4.1. </span>Ejemplo: Datos de Acetileno<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Los autovalores de <span class="math notranslate nohighlight">\(X'X\)</span> son:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_1 = 4.2048,\ \lambda_2 = 2.1626,\ \lambda_3 = 1.1384,\ \lambda_4 = 1.0413,\ \lambda_5 = 0.3845,\ \lambda_6 = 0.0495,\ \lambda_7 = 0.0136,\ \lambda_8 = 0.0051,\ \lambda_9 = 0.0001
+\]</div>
+<ul class="simple">
+<li><p>Se observan <strong>cuatro autovalores muy pequeños</strong>, lo que indica <strong>una matriz mal condicionada</strong>.</p></li>
+<li><p>El número de condición es:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\kappa = \frac{4.2048}{0.0001} = 42,\!048
+\]</div>
+<ul class="simple">
+<li><p><strong>Este valor sugiere multicolinealidad severa</strong>.</p></li>
+<li><p>Los índices de condición correspondientes son:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\kappa_1 = 1,\ \kappa_2 = 1.94,\ \kappa_3 = 3.69,\ \kappa_4 = 4.04,\ \kappa_5 = 10.94,\ \kappa_6 = 84,\ \kappa_7 = 309.18,\ \kappa_8 = 824.47,\ \kappa_9 = 42,\!048
+\]</div>
+<ul class="simple">
+<li><p><strong>Dado que uno de los índices supera 1000 y otros dos superan 100, se confirma la existencia de múltiples dependencias lineales.</strong></p></li>
+</ul>
+</section>
+<section id="interpretacion-de-los-autovectores">
+<h3><span class="section-number">7.4.2. </span>Interpretación de los Autovectores<a class="headerlink" href="#interpretacion-de-los-autovectores" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>La matriz <span class="math notranslate nohighlight">\(X'X\)</span> puede descomponerse como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+X'X = T \Lambda T'
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Lambda\)</span> es diagonal con los autovalores <span class="math notranslate nohighlight">\(\lambda_j\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> es ortogonal y contiene los autovectores <span class="math notranslate nohighlight">\(t_j\)</span> como columnas.</p></li>
+<li><p><strong>Cuando un <span class="math notranslate nohighlight">\(\lambda_j\)</span> es cercano a cero, su vector propio <span class="math notranslate nohighlight">\(t_j\)</span> describe la combinación lineal casi exacta entre regresores.</strong></p></li>
+<li><p>Por ejemplo, si <span class="math notranslate nohighlight">\(\lambda_6 = 0.0011\)</span> y <span class="math notranslate nohighlight">\(t_6\)</span> es el autovector asociado, se tiene:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+-0.44768\, x_1 - 0.42114\, x_2 - 0.54169\, x_3 - 0.57337\, x_4 - 0.00605\, x_5 - 0.00217\, x_6 \approx 0
+\]</div>
+<p>Ignorando los coeficientes pequeños:</p>
+<div class="math notranslate nohighlight">
+\[
+x_1 \approx -0.941\, x_2 - 1.120\, x_3 - 1.281\, x_4
+\]</div>
+<p><strong>Esto indica que los primeros cuatro regresores están relacionados casi linealmente.</strong></p>
+</section>
+<section id="descomposicion-en-valores-singulares-svd">
+<h3><span class="section-number">7.4.3. </span>Descomposición en Valores Singulares (SVD)<a class="headerlink" href="#descomposicion-en-valores-singulares-svd" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Belsley, Kuh y Welsch proponen usar la <strong>descomposición en valores singulares</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+X = U D T'
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U\)</span> es ortogonal de tamaño <span class="math notranslate nohighlight">\(n \times p\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(D\)</span> es diagonal con los valores singulares <span class="math notranslate nohighlight">\(\mu_j \geq 0\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> es ortogonal <span class="math notranslate nohighlight">\(p \times p\)</span>.</p></li>
+<li><p>Como <span class="math notranslate nohighlight">\(X'X = T D^2 T'\)</span>, los valores singulares están relacionados directamente con los autovalores:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\lambda_j = \mu_j^2
+\]</div>
+<ul class="simple">
+<li><p>Se define el <strong>índice de condición de <span class="math notranslate nohighlight">\(X\)</span></strong> como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-svd-cond-index">
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-svd-cond-index" title="Link to this equation">#</a></span>\[
+\eta_j = \frac{\mu_{\max}}{\mu_j}, \quad j = 1, 2, \dots, p
+\]</div>
+<ul class="simple">
+<li><p><strong>Una <span class="math notranslate nohighlight">\(\mu_j\)</span> pequeña indica dependencia lineal</strong>, y el índice de condición correspondiente será grande.</p></li>
+<li><p>La matriz de covarianzas de <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> puede escribirse como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\boldsymbol{\beta}}) = \sigma^2 (X'X)^{-1} = \sigma^2 T \Lambda^{-1} T'
+\]</div>
+<ul class="simple">
+<li><p>La varianza del coeficiente <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> es entonces:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\beta}_j) = \sigma^2 \sum_{i=1}^p \frac{t_{ji}^2}{\lambda_i}
+\]</div>
+<ul class="simple">
+<li><p>De aquí se deduce que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{VIF}_j = \sum_{i=1}^p \frac{t_{ji}^2}{\lambda_i}
+\]</div>
+<ul class="simple">
+<li><p><strong>Autovalores pequeños pueden inflar sustancialmente la varianza de los coeficientes.</strong></p></li>
+</ul>
+</section>
+<section id="proporciones-de-descomposicion-de-varianza">
+<h3><span class="section-number">7.4.4. </span>Proporciones de Descomposición de Varianza<a class="headerlink" href="#proporciones-de-descomposicion-de-varianza" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Se definen como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\pi_{ij} = \frac{t_{ji}^2 \mu_i^2}{\text{VIF}_j}
+\]</div>
+<ul class="simple">
+<li><p><strong>Estas proporciones indican qué tanto contribuye cada valor singular <span class="math notranslate nohighlight">\(\mu_i\)</span> a la varianza de cada <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</strong></p></li>
+<li><p>Si varios <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> comparten una proporción grande en un mismo valor singular pequeño, existe multicolinealidad.</p></li>
+</ul>
+<p><strong>Criterios recomendados:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\eta_j &gt; 30\)</span> (ver <a class="reference internal" href="#equation-svd-cond-index">(7.9)</a>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_{ij} &gt; 0.5\)</span></p></li>
+</ul>
+</section>
+<section id="tabla-proporciones-de-descomposicion-de-varianza">
+<h3><span class="section-number">7.4.5. </span>Tabla: Proporciones de Descomposición de Varianza<a class="headerlink" href="#tabla-proporciones-de-descomposicion-de-varianza" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>En el Panel A, los regresores están centrados (<span class="math notranslate nohighlight">\(x_{ij} - \bar{x}_j\)</span>).</p></li>
+<li><p><strong>El índice de condición más grande es <span class="math notranslate nohighlight">\(\eta_6 = 46.86\)</span>, lo que indica una dependencia lineal.</strong></p></li>
+<li><p>Las proporciones <span class="math notranslate nohighlight">\(\pi_{61}, \pi_{62}, \pi_{63}, \pi_{64} &gt; 0.5\)</span> muestran que los regresores <span class="math notranslate nohighlight">\(x_1\)</span> a <span class="math notranslate nohighlight">\(x_4\)</span> están implicados.</p></li>
+<li><p>En el Panel B, los regresores <strong>no están centrados</strong>.</p></li>
+<li><p>Esto <strong>aumenta la dispersión de los autovalores y los índices de condición</strong>, revelando la influencia del intercepto.</p></li>
+</ul>
+<p><strong>Existen diferentes posturas respecto a si los regresores deben centrarse para diagnosticar multicolinealidad.</strong></p>
+<ul class="simple">
+<li><p>Si el intercepto <strong>no tiene interpretación física</strong>, centrar elimina una fuente de mala condición no esencial.</p></li>
+<li><p>Si el intercepto <strong>es interpretable</strong>, entonces centrar puede no ser recomendable.</p></li>
+<li><p>Para una discusión detallada, véase Apéndice C.3 en <span id="id2">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>.</p></li>
+</ul>
+</section>
+<section id="tabla-9-7-proporciones-de-descomposicion-de-varianza-para-los-datos-de-webster-gunst-y-mason">
+<h3><span class="section-number">7.4.6. </span>Tabla 9.7. Proporciones de descomposición de varianza para los datos de Webster, Gunst y Mason<a class="headerlink" href="#tabla-9-7-proporciones-de-descomposicion-de-varianza-para-los-datos-de-webster-gunst-y-mason" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Índice</p></th>
+<th class="head"><p>Autovalor</p></th>
+<th class="head"><p>Índice de condición</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_5\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_6\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A. Regresores centrados</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2.42879</p></td>
+<td><p>1.00000</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0531</p></td>
+<td><p>0.0350</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>1.54615</p></td>
+<td><p>1.25334</p></td>
+<td><p>0.0004</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0012</p></td>
+<td><p>0.0032</p></td>
+<td><p>0.0559</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.92208</p></td>
+<td><p>1.62297</p></td>
+<td><p>0.0028</p></td>
+<td><p>0.0033</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0018</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.79398</p></td>
+<td><p>1.74900</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.2083</p></td>
+<td><p>0.0485</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>0.30789</p></td>
+<td><p>2.80864</p></td>
+<td><p>0.0011</p></td>
+<td><p>0.0024</p></td>
+<td><p>0.0025</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.7175</p></td>
+<td><p>0.4199</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>0.00111</p></td>
+<td><p>46.86052</p></td>
+<td><p><strong>0.9953</strong></p></td>
+<td><p><strong>0.9937</strong></p></td>
+<td><p><strong>0.9964</strong></p></td>
+<td><p><strong>0.9984</strong></p></td>
+<td><p>0.0172</p></td>
+<td><p>0.0029</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B. Regresores no centrados</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2.63287</p></td>
+<td><p>1.00000</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0217</p></td>
+<td><p>0.0043</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>1.82065</p></td>
+<td><p>1.20255</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0523</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>1.03335</p></td>
+<td><p>1.59622</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0013</p></td>
+<td><p>0.0356</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.65826</p></td>
+<td><p>1.99994</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.1906</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.60573</p></td>
+<td><p>2.08485</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0025</p></td>
+<td><p>0.0035</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0011</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>0.24884</p></td>
+<td><p>3.25280</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.0012</p></td>
+<td><p>0.0023</p></td>
+<td><p>0.0028</p></td>
+<td><p>0.0000</p></td>
+<td><p>0.6909</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>0.00031</p></td>
+<td><p>92.25341</p></td>
+<td><p><strong>0.9999</strong></p></td>
+<td><p><strong>0.9953</strong></p></td>
+<td><p><strong>0.9936</strong></p></td>
+<td><p><strong>0.9959</strong></p></td>
+<td><p>0.9983</p></td>
+<td><p>0.0178</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="otros-diagnosticos">
+<h3><span class="section-number">7.4.7. </span>Otros diagnósticos<a class="headerlink" href="#otros-diagnosticos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Existen diversas técnicas adicionales que pueden resultar útiles para diagnosticar la multicolinealidad.</strong> Una de ellas es el uso del determinante de la matriz <span class="math notranslate nohighlight">\(X'X\)</span> como un índice del problema. Cuando <span class="math notranslate nohighlight">\(X'X\)</span> se encuentra en forma de correlación, su determinante satisface:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+0 \leq |X'X| \leq 1
+\]</div>
+<ul class="simple">
+<li><p><strong>Si <span class="math notranslate nohighlight">\(|X'X| = 1\)</span>, los regresores son ortogonales, y si <span class="math notranslate nohighlight">\(|X'X| = 0\)</span>, existe una dependencia lineal exacta entre ellos.</strong> La multicolinealidad se agrava conforme <span class="math notranslate nohighlight">\(|X'X|\)</span> se aproxima a cero. Aunque esta medida es sencilla, <strong>no proporciona información específica sobre el origen de la multicolinealidad.</strong></p></li>
+<li><p>Willan y Watts [1978] ofrecen una interpretación alternativa. La región de confianza conjunta al nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para el vector <span class="math notranslate nohighlight">\(\beta\)</span> basada en los datos observados es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-joint-conf-obs">
+<span class="eqno">(7.10)<a class="headerlink" href="#equation-joint-conf-obs" title="Link to this equation">#</a></span>\[
+(\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})' X'X (\boldsymbol{\beta} - \hat{\boldsymbol{\beta}}) \leq p \hat{\sigma}^2 F_{\alpha, p, n - p - 1}
+\]</div>
+<ul class="simple">
+<li><p>La región de confianza correspondiente bajo un diseño ortogonal es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-joint-conf-ort">
+<span class="eqno">(7.11)<a class="headerlink" href="#equation-joint-conf-ort" title="Link to this equation">#</a></span>\[
+(\boldsymbol{\beta} - \hat{\boldsymbol{\beta}})'(\boldsymbol{\beta} - \hat{\boldsymbol{\beta}}) \leq p \hat{\sigma}^2 F_{\alpha, p, n - p - 1}
+\]</div>
+<ul class="simple">
+<li><p><strong>La razón entre los volúmenes de ambas regiones es <span class="math notranslate nohighlight">\(\sqrt{|X'X|}\)</span></strong>, lo cual cuantifica la pérdida de precisión debido a la multicolinealidad. La expresión:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+100 \left( \frac{1}{\sqrt{|X'X|}} - 1 \right)
+\]</div>
+<p>indica el <strong>porcentaje de aumento en el volumen de la región de confianza conjunta</strong> por efecto de dependencias lineales aproximadas en <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<ul class="simple">
+<li><p>Por ejemplo, si <span class="math notranslate nohighlight">\(|X'X| = 0.25\)</span>, entonces el volumen de la región conjunta se incrementa en un <span class="math notranslate nohighlight">\(100\%\)</span> con respecto al caso ortogonal.</p></li>
+<li><p><strong>Una discrepancia entre el valor significativo del estadístico <span class="math notranslate nohighlight">\(F\)</span> global y valores no significativos de los estadísticos <span class="math notranslate nohighlight">\(t\)</span> individuales puede sugerir multicolinealidad.</strong> Sin embargo, este fenómeno no siempre se presenta, incluso ante presencia de colinealidad severa.</p></li>
+<li><p><strong>Los signos y magnitudes de los coeficientes también pueden ofrecer señales.</strong> Cambios bruscos en los coeficientes al añadir o eliminar regresores, o al suprimir observaciones, son indicios del problema. Asimismo, <strong>coeficientes contrarios a expectativas teóricas</strong> pueden señalar multicolinealidad.</p></li>
+<li><p>Por ejemplo, en los datos de acetileno, los coeficientes estandarizados correspondientes a las interacciones <span class="math notranslate nohighlight">\(x_1x_3\)</span> y los términos cuadráticos <span class="math notranslate nohighlight">\(x_1^2\)</span> y <span class="math notranslate nohighlight">\(x_3^2\)</span> resultan grandes. Este comportamiento es <strong>inusual en modelos cuadráticos</strong> y puede deberse a colinealidad.</p></li>
+<li><p><strong>No obstante, se debe tener cautela al interpretar los signos y magnitudes como diagnóstico, ya que muchos conjuntos con severa multicolinealidad no exhiben comportamientos anómalos evidentes.</strong></p></li>
+<li><p><strong>Consideramos que los VIFs y el análisis basado en los autovalores de <span class="math notranslate nohighlight">\(X'X\)</span> son las herramientas más eficaces actualmente para diagnosticar la multicolinealidad.</strong> Son computacionalmente accesibles, fáciles de interpretar y permiten estudiar la estructura específica del problema.</p></li>
+</ul>
+</section>
+<section id="codigo-en-python-para-generar-diagnosticos-de-multicolinealidad">
+<h3><span class="section-number">7.4.8. </span>Código en Python para generar diagnósticos de multicolinealidad<a class="headerlink" href="#codigo-en-python-para-generar-diagnosticos-de-multicolinealidad" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>La generación de diagnósticos de multicolinealidad puede realizarse eficientemente en Python utilizando bibliotecas como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> y <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</strong></p></li>
+<li><p><strong>Entre las métricas disponibles se encuentran:</strong> los factores de inflación de la varianza (VIF), los valores singulares, los números de condición, y las proporciones de descomposición de varianza.</p></li>
+<li><p>A continuación, se presenta un ejemplo de código en Python para analizar multicolinealidad en un modelo de regresión lineal:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">variance_inflation_factor</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+
+<span class="c1"># Supongamos que &#39;df&#39; contiene las variables predictoras</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;t2&#39;</span><span class="p">,</span> <span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="s1">&#39;c2&#39;</span><span class="p">,</span> <span class="s1">&#39;th&#39;</span><span class="p">,</span> <span class="s1">&#39;tc&#39;</span><span class="p">,</span> <span class="s1">&#39;hc&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Cálculo de VIFs</span>
+<span class="n">vif_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">vif_df</span><span class="p">[</span><span class="s2">&quot;Variable&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">vif_df</span><span class="p">[</span><span class="s2">&quot;VIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vif_df</span><span class="p">)</span>
+
+<span class="c1"># Análisis del número de condición y descomposición en valores singulares</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">condition_numbers</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">s</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Números de condición:&quot;</span><span class="p">,</span> <span class="n">condition_numbers</span><span class="p">)</span>
+
+<span class="c1"># Cálculo de las proporciones de descomposición de varianza</span>
+<span class="n">eigvals</span> <span class="o">=</span> <span class="n">s</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">eigval_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eigvals</span><span class="p">)</span>
+<span class="n">projection_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Vt</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">eigval_matrix</span><span class="p">),</span> <span class="n">Vt</span><span class="p">))</span>
+<span class="n">var_decomp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">projection_matrix</span><span class="p">)</span>
+<span class="n">var_decomp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">var_decomp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proporciones de descomposición de varianza:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">var_decomp_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="metodos-para-abordar-la-multicolinealidad">
+<h2><span class="section-number">7.5. </span>Métodos para abordar la multicolinealidad<a class="headerlink" href="#metodos-para-abordar-la-multicolinealidad" title="Link to this heading">#</a></h2>
+<p><strong>Se han propuesto diversas estrategias para mitigar los efectos provocados por la multicolinealidad.</strong> Los enfoques generales incluyen:</p>
+<ul class="simple">
+<li><p>La recolección de datos adicionales.</p></li>
+<li><p>La reespecificación del modelo.</p></li>
+<li><p>La adopción de métodos de estimación distintos al de mínimos cuadrados, diseñados específicamente para contrarrestar los problemas inducidos por la multicolinealidad.</p></li>
+</ul>
+<section id="recoleccion-de-datos-adicionales">
+<h3><span class="section-number">7.5.1. </span>Recolección de datos adicionales<a class="headerlink" href="#recoleccion-de-datos-adicionales" title="Link to this heading">#</a></h3>
+<p><strong>La recolección de información adicional ha sido considerada como una de las mejores soluciones para enfrentar la multicolinealidad</strong> (véanse <span id="id3">[<a class="reference internal" href="biblio.html#id3" title="Donald E Farrar and Robert R Glauber. Multicollinearity in regression analysis: the problem revisited. The Review of Economics and Statistics, 49(1):92–107, 1967.">Farrar and Glauber, 1967</a>]</span> y <span id="id4">[<a class="reference internal" href="biblio.html#id4" title="Samuel D. Silvey. Multicollinearity and imprecise estimation. Journal of the Royal Statistical Society. Series B (Methodological), 31(2):539–552, 1969.">Silvey, 1969</a>]</span>). <strong>Dichos datos deben ser obtenidos de forma que reduzcan o eliminen la multicolinealidad presente.</strong></p>
+<p>Por ejemplo, en los datos de tiempo de entrega introducidos en el <em>Ejemplo 3.1</em>, el gráfico de dispersión mostrado en la Figura 3.4 revela una asociación entre el número de casos (<span class="math notranslate nohighlight">\(x_1\)</span>) y la distancia (<span class="math notranslate nohighlight">\(x_2\)</span>). Como se ha mencionado previamente, la mayoría de las observaciones se concentran en una línea que va de valores bajos de casos y distancia a valores altos de ambos, lo cual podría generar problemas de multicolinealidad.</p>
+<p><strong>Una forma de evitarlo sería recopilar observaciones adicionales en regiones del espacio muestral donde los casos sean bajos pero la distancia alta, y viceversa.</strong></p>
+<p>Sin embargo:</p>
+<ul class="simple">
+<li><p>Recolectar datos adicionales no siempre es factible debido a limitaciones económicas o a la inaccesibilidad del proceso bajo estudio.</p></li>
+<li><p>Incluso si se dispone de datos nuevos, estos podrían no ser apropiados si amplían el rango de las variables regresoras más allá de la región de interés analítico.</p></li>
+<li><p>Asimismo, si los nuevos puntos son atípicos o inusuales respecto al comportamiento del proceso, podrían influir fuertemente en el modelo ajustado.</p></li>
+</ul>
+<p><strong>Debe notarse que esta estrategia no es útil si la multicolinealidad proviene de restricciones estructurales del modelo o de la población.</strong></p>
+<p>Por ejemplo, en la Figura 9.1 se representa la relación entre ingreso familiar (<span class="math notranslate nohighlight">\(x_1\)</span>) y tamaño de la vivienda (<span class="math notranslate nohighlight">\(x_2\)</span>). <strong>Dado que esta relación refleja una característica estructural de la población, la recolección adicional de datos tendría poco impacto, ya que el comportamiento se replicaría en toda la población.</strong></p>
+</section>
+<section id="reespecificacion-del-modelo">
+<h3><span class="section-number">7.5.2. </span>Reespecificación del modelo<a class="headerlink" href="#reespecificacion-del-modelo" title="Link to this heading">#</a></h3>
+<p><strong>En muchos casos, la multicolinealidad es consecuencia directa de la forma en que se ha formulado el modelo.</strong> Esto ocurre, por ejemplo, cuando se incluyen regresores altamente correlacionados.</p>
+<p><strong>Una solución consiste en redefinir las variables explicativas para reducir la dependencia lineal.</strong> Por ejemplo, si <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_3\)</span> presentan casi colinealidad perfecta, podría construirse una función combinada, como <span class="math notranslate nohighlight">\(x = (x_1 + x_2)/x_3\)</span> o <span class="math notranslate nohighlight">\(x = x_1 x_2 x_3\)</span>, que conserve la información relevante del modelo original, pero reduzca la mala condición del sistema.</p>
+<p><strong>Otra estrategia común es la eliminación de variables.</strong> Si <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_3\)</span> son casi linealmente dependientes, podría eliminarse una de ellas (por ejemplo, <span class="math notranslate nohighlight">\(x_3\)</span>) para mitigar la multicolinealidad.</p>
+<p>Este método suele ser bastante eficaz. No obstante, presenta las siguientes limitaciones:</p>
+<ul class="simple">
+<li><p>Podría no ser una solución adecuada si las variables eliminadas poseen poder explicativo significativo respecto a la variable respuesta <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Suprimir variables para reducir la multicolinealidad podría debilitar la capacidad predictiva del modelo.</p></li>
+<li><p><strong>La selección de variables debe realizarse cuidadosamente</strong>, ya que muchos procedimientos de selección están distorsionados por la multicolinealidad, y no existe garantía de que el modelo resultante esté libre de dicha condición.</p></li>
+</ul>
+<p><strong>Técnicas adecuadas de selección de variables se abordan en el Capítulo 10.</strong></p>
+</section>
+<section id="regresion-ridge">
+<h3><span class="section-number">7.5.3. </span>Regresión Ridge<a class="headerlink" href="#regresion-ridge" title="Link to this heading">#</a></h3>
+<p><strong>Cuando se aplica el método de mínimos cuadrados a datos no ortogonales, pueden obtenerse estimaciones muy deficientes de los coeficientes de regresión.</strong> Como se indicó en la sección 9.3, la varianza de los estimadores de mínimos cuadrados puede aumentar considerablemente, y la longitud del vector de parámetros estimados suele ser excesiva en promedio. Esto implica que los valores absolutos de los estimadores de mínimos cuadrados son demasiado grandes y altamente inestables; es decir, sus signos y magnitudes pueden cambiar significativamente ante diferentes muestras.</p>
+<p><strong>El principal problema del método de mínimos cuadrados es la exigencia de que <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> sea un estimador insesgado de <span class="math notranslate nohighlight">\(\beta\)</span>.</strong> La propiedad de Gauss-Markov (ver sección 3.2.3) asegura que <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> tiene mínima varianza dentro de la clase de estimadores lineales insesgados, pero no garantiza que dicha varianza sea pequeña.</p>
+<p>La Figura 9.4a ilustra esta situación, donde se muestra la distribución muestral de <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>. Una varianza elevada implica intervalos de confianza amplios y una estimación puntual inestable.</p>
+<p><strong>Una forma de aliviar este problema consiste en abandonar el requisito de insesgadez.</strong> Supóngase que se puede encontrar un estimador sesgado de <span class="math notranslate nohighlight">\(\beta\)</span>, denotado <span class="math notranslate nohighlight">\(\hat{\beta}^*\)</span>, cuya varianza sea menor que la de <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>. El error cuadrático medio (MSE) del estimador <span class="math notranslate nohighlight">\(\hat{\beta}^*\)</span> se define como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mse-biased">
+<span class="eqno">(7.12)<a class="headerlink" href="#equation-eq-mse-biased" title="Link to this equation">#</a></span>\[
+\text{MSE}(\hat{\beta}^*) = \mathbb{E}[(\hat{\beta}^* - \beta)^2] = \operatorname{Var}(\hat{\beta}^*) + [\mathbb{E}(\hat{\beta}^*) - \beta]^2
+\]</div>
+<p><strong>El MSE representa la distancia cuadrática esperada entre <span class="math notranslate nohighlight">\(\hat{\beta}^*\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span></strong> [ver <a class="reference internal" href="#equation-eq-mse-biased">(7.12)</a>]. Si se permite un pequeño sesgo, es posible reducir la varianza de tal forma que el MSE de <span class="math notranslate nohighlight">\(\hat{\beta}^*\)</span> sea menor que la varianza del estimador insesgado. La Figura 9.4b muestra un caso en el que la varianza del estimador sesgado es mucho menor que la del insesgado. En consecuencia, los intervalos de confianza son más estrechos y <span class="math notranslate nohighlight">\(\hat{\beta}^*\)</span> resulta más estable.</p>
+<p><strong>Una técnica ampliamente utilizada para obtener estimadores sesgados es la regresión ridge</strong>, propuesta por Hoerl y Kennard [1970a, b]. El estimador ridge se obtiene resolviendo una versión modificada de las ecuaciones normales. Específicamente, se define el estimador ridge <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> como la solución de:</p>
+<div class="math notranslate nohighlight">
+\[
+(X'X + kI)\hat{\beta}_R = X'y
+\]</div>
+<p>lo que implica:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ridge-estimator">
+<span class="eqno">(7.13)<a class="headerlink" href="#equation-eq-ridge-estimator" title="Link to this equation">#</a></span>\[
+\hat{\beta}_R = (X'X + kI)^{-1}X'y
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(k \geq 0\)</span> es un parámetro elegido por el analista. Esta técnica se denomina <strong>regresión ridge</strong> porque su base matemática es similar al análisis de crestas usado por Hoerl [1959] en superficies de respuesta de segundo orden. Cuando <span class="math notranslate nohighlight">\(k = 0\)</span>, <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> coincide con el estimador de mínimos cuadrados.</p>
+<p><strong>El estimador ridge es una transformación lineal del estimador de mínimos cuadrados</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_R = (X'X + kI)^{-1}X'y = (X'X + kI)^{-1}(X'X)\hat{\beta} = Z_k\hat{\beta}
+\]</div>
+<p>Por tanto, dado que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{\beta}_R) = Z_k\beta\)</span>, <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> es un estimador sesgado. El parámetro <span class="math notranslate nohighlight">\(k\)</span> se conoce como <strong>parámetro de sesgo</strong>. La matriz de covarianzas de <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\beta}_R) = \sigma^2 (X'X + kI)^{-1}X'X(X'X + kI)^{-1}
+\]</div>
+<p>El error cuadrático medio del estimador ridge es:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE}(\hat{\beta}_R) = \operatorname{Var}(\hat{\beta}_R) + \left[\mathbb{E}(\hat{\beta}_R) - \beta\right]^2
+\]</div>
+<p>o también:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ridge-mse">
+<span class="eqno">(7.14)<a class="headerlink" href="#equation-eq-ridge-mse" title="Link to this equation">#</a></span>\[
+\text{MSE}(\hat{\beta}_R) = \sigma^2 \operatorname{Tr}\left[(X'X + kI)^{-1}X'X(X'X + kI)^{-1}\right] + k^2 \beta'(X'X + kI)^{-2}\beta
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \dots, \lambda_p\)</span> son los valores propios de <span class="math notranslate nohighlight">\(X'X\)</span>, la expresión anterior puede escribirse como:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE}(\hat{\beta}_R) = \sigma^2 \sum_{j=1}^{p} \left(\frac{\lambda_j}{\lambda_j + k}\right)^2 + k^2 \beta'(X'X + kI)^{-2}\beta
+\]</div>
+<p><strong>Si <span class="math notranslate nohighlight">\(k &gt; 0\)</span>, el sesgo en <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> crece con <span class="math notranslate nohighlight">\(k\)</span>, pero la varianza disminuye.</strong> Por tanto, se busca un valor de <span class="math notranslate nohighlight">\(k\)</span> tal que la reducción de varianza supere el aumento en el sesgo cuadrado. Hoerl y Kennard demostraron que <strong>existe un valor <span class="math notranslate nohighlight">\(k &gt; 0\)</span> para el cual el MSE de <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> es menor que la varianza del estimador por mínimos cuadrados, siempre que <span class="math notranslate nohighlight">\(\beta'\beta\)</span> esté acotado.</strong></p>
+<p>La suma de cuadrados de los residuos es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ridge-scres">
+<span class="eqno">(7.15)<a class="headerlink" href="#equation-eq-ridge-scres" title="Link to this equation">#</a></span>\[
+\text{SS}_{\text{Res}} = (y - X\hat{\beta}_R)'(y - X\hat{\beta}_R) = (y - X\hat{\beta})'(y - X\hat{\beta}) + (\hat{\beta}_R - \hat{\beta})'X'X(\hat{\beta}_R - \hat{\beta})
+\]</div>
+<p>El primer término del lado derecho de <a class="reference internal" href="#equation-eq-ridge-scres">(7.15)</a> corresponde a la suma de cuadrados residual del modelo por mínimos cuadrados. A medida que <span class="math notranslate nohighlight">\(k\)</span> aumenta, también lo hace <span class="math notranslate nohighlight">\(\text{SC}_{\text{Res}}\)</span>. Como la suma total de cuadrados permanece constante, <strong><span class="math notranslate nohighlight">\(R^2\)</span> decrece al incrementarse <span class="math notranslate nohighlight">\(k\)</span></strong>. Por tanto, la regresión ridge no necesariamente mejora el ajuste del modelo, pero esto <strong>no debería preocuparnos si nuestro objetivo es obtener estimaciones estables</strong>.</p>
+<p><strong>Las estimaciones ridge pueden generar un modelo más eficaz para predecir observaciones futuras que el método de mínimos cuadrados, aunque esto no está garantizado.</strong></p>
+<p>Hoerl y Kennard sugieren seleccionar <span class="math notranslate nohighlight">\(k\)</span> inspeccionando el <strong>rastro ridge</strong>, que es un gráfico de los elementos de <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> en función de <span class="math notranslate nohighlight">\(k\)</span>, con valores de <span class="math notranslate nohighlight">\(k\)</span> típicamente entre 0 y 1. Marquardt y Snee [1975] recomiendan utilizar hasta 25 valores de <span class="math notranslate nohighlight">\(k\)</span>, distribuidos logarítmicamente en <span class="math notranslate nohighlight">\([0, 1]\)</span>. Si la multicolinealidad es severa, la inestabilidad de los coeficientes será evidente. A medida que <span class="math notranslate nohighlight">\(k\)</span> aumenta, algunos estimadores ridge cambiarán drásticamente. El objetivo es seleccionar un valor pequeño de <span class="math notranslate nohighlight">\(k\)</span> en el que los coeficientes ridge se estabilicen y se obtenga un estimador con menor MSE que el de mínimos cuadrados.</p>
+</section>
+</section>
+<section id="ejemplo-los-datos-de-acetileno">
+<h2><span class="section-number">7.6. </span>Ejemplo: Los datos de acetileno<a class="headerlink" href="#ejemplo-los-datos-de-acetileno" title="Link to this heading">#</a></h2>
+<p><strong>Para obtener la solución ridge para los datos de acetileno, se deben resolver las ecuaciones</strong>
+$<span class="math notranslate nohighlight">\(
+(X'X + kI)\hat{\beta}_R = X'y
+\)</span><span class="math notranslate nohighlight">\(
+**para varios valores en el rango \)</span>0 \leq k \leq 1<span class="math notranslate nohighlight">\(, utilizando \)</span>X’X<span class="math notranslate nohighlight">\( y \)</span>X’y$ en forma de matriz de correlaciones.**</p>
+<p><strong>La traza ridge se muestra en la Figura 9.5 y los coeficientes ridge para diversos valores de <span class="math notranslate nohighlight">\(k\)</span> se presentan en la Tabla 9.8. Esta tabla también incluye el cuadrado medio residual (MSRes) y <span class="math notranslate nohighlight">\(R^2\)</span> para cada modelo ridge.</strong></p>
+<p><strong>A medida que <span class="math notranslate nohighlight">\(k\)</span> aumenta, MSRes también aumenta y <span class="math notranslate nohighlight">\(R^2\)</span> disminuye. La traza ridge ilustra la inestabilidad de la solución de mínimos cuadrados, ya que los coeficientes presentan grandes variaciones para valores pequeños de <span class="math notranslate nohighlight">\(k\)</span>. Sin embargo, los coeficientes se estabilizan rápidamente con valores crecientes de <span class="math notranslate nohighlight">\(k\)</span>.</strong></p>
+<p><strong>Seleccionar un valor apropiado de <span class="math notranslate nohighlight">\(k\)</span> requiere juicio profesional. Se debe elegir un valor suficientemente grande para obtener coeficientes estables, pero no tan grande como para introducir un sesgo excesivo y aumentar MSRes.</strong></p>
+<p><strong>De la Figura 9.5 se observa que los coeficientes se estabilizan en la región <span class="math notranslate nohighlight">\(0.008 &lt; k &lt; 0.064\)</span>, sin incremento severo de MSRes ni pérdida importante de <span class="math notranslate nohighlight">\(R^2\)</span>. Si se elige <span class="math notranslate nohighlight">\(k = 0.032\)</span>, el modelo ridge es:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y} = 0.5392x_1 + 0.2117x_2 - 0.3735x_3 - 0.2329x_1x_2 - 0.0675x_1x_3 + 0.0123x_2x_3 + 0.1249x_1^2 - 0.0481x_2^2 - 0.0267x_3^2
+\]</div>
+<p><strong>Nótese que los estimadores <span class="math notranslate nohighlight">\(\beta_{13}\)</span>, <span class="math notranslate nohighlight">\(\beta_{11}\)</span> y <span class="math notranslate nohighlight">\(\beta_{23}\)</span> son considerablemente menores que en mínimos cuadrados, y los signos originales negativos de <span class="math notranslate nohighlight">\(\beta_{23}\)</span> y <span class="math notranslate nohighlight">\(\beta_{11}\)</span> se vuelven positivos. El modelo ridge en términos de los regresores originales es:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\hat{P} = 0.7598 + 0.1392T + 0.0547H - 0.0965C - 0.0680TH - 0.0194TC + 0.0039CH + 0.0407T^2 - 0.0112H^2 - 0.0067C^2
+\]</div>
+<p><strong>La Figura 9.6 ilustra el desempeño del modelo ridge en predicción tanto para interpolación (puntos A, B, E, F, I y J) como para extrapolación (puntos C, D, G y H). En comparación con la Figura 9.3, el modelo ridge predice igual de bien dentro del dominio observado, y genera predicciones más realistas en extrapolación.</strong></p>
+<p><strong>Concluimos que la regresión ridge ha generado un modelo superior al ajuste original por mínimos cuadrados.</strong></p>
+<p><strong>La estimación ridge puede implementarse en Python mediante regresión ordinaria sobre datos aumentados:</strong></p>
+<ul class="simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(X_A\)</span> la matriz aumentada:
+$<span class="math notranslate nohighlight">\(
+X_A = 
+\begin{bmatrix}
+X \\
+\sqrt{k}I_p
+\end{bmatrix}
+\)</span>$</p></li>
+<li><p>Sea <span class="math notranslate nohighlight">\(y_A\)</span> el vector aumentado:
+$<span class="math notranslate nohighlight">\(
+y_A = 
+\begin{bmatrix}
+y \\
+\mathbf{0}_p
+\end{bmatrix}
+\)</span>$</p></li>
+</ul>
+<p><strong>donde <span class="math notranslate nohighlight">\(I_p\)</span> es la matriz identidad de dimensión <span class="math notranslate nohighlight">\(p \times p\)</span> y <span class="math notranslate nohighlight">\(\mathbf{0}_p\)</span> es un vector columna de ceros de dimensión <span class="math notranslate nohighlight">\(p\)</span>. Las estimaciones ridge se obtienen como:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_R = (X_A'X_A)^{-1}X_A'y_A = (X'X + kI)^{-1}X'y
+\]</div>
+<section id="tabla-9-8-estimaciones-ridge-de-los-coeficientes-para-varios-valores-de-k">
+<h3><span class="section-number">7.6.1. </span>Tabla 9.8: Estimaciones ridge de los coeficientes para varios valores de <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#tabla-9-8-estimaciones-ridge-de-los-coeficientes-para-varios-valores-de-k" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table" id="tab-ridge-coefs">
+<caption><span class="caption-number">Table 7.1 </span><span class="caption-text">Estimaciones ridge de los coeficientes</span><a class="headerlink" href="#tab-ridge-coefs" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(k\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{12}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{13}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{23}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{11}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{22}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\beta_{33}\)</span></p></th>
+<th class="head"><p>MSRes</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(R^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.000</p></td>
+<td><p>0.5392</p></td>
+<td><p>0.2117</p></td>
+<td><p>-0.3735</p></td>
+<td><p>-0.2329</p></td>
+<td><p>-0.0675</p></td>
+<td><p>0.0123</p></td>
+<td><p>0.1249</p></td>
+<td><p>-0.0481</p></td>
+<td><p>-0.0267</p></td>
+<td><p>0.0084</p></td>
+<td><p>0.9999</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.016</p></td>
+<td><p>0.5060</p></td>
+<td><p>0.1792</p></td>
+<td><p>-0.3554</p></td>
+<td><p>-0.2178</p></td>
+<td><p>-0.0600</p></td>
+<td><p>0.0105</p></td>
+<td><p>0.1138</p></td>
+<td><p>-0.0435</p></td>
+<td><p>-0.0238</p></td>
+<td><p>0.0091</p></td>
+<td><p>0.9998</p></td>
+</tr>
+<tr class="row-even"><td><p>0.032</p></td>
+<td><p>0.4877</p></td>
+<td><p>0.1588</p></td>
+<td><p>-0.3398</p></td>
+<td><p>-0.2029</p></td>
+<td><p>-0.0527</p></td>
+<td><p>0.0081</p></td>
+<td><p>0.1033</p></td>
+<td><p>-0.0390</p></td>
+<td><p>-0.0215</p></td>
+<td><p>0.0097</p></td>
+<td><p>0.9997</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.064</p></td>
+<td><p>0.4419</p></td>
+<td><p>0.1172</p></td>
+<td><p>-0.3122</p></td>
+<td><p>-0.1785</p></td>
+<td><p>-0.0413</p></td>
+<td><p>0.0047</p></td>
+<td><p>0.0874</p></td>
+<td><p>-0.0313</p></td>
+<td><p>-0.0171</p></td>
+<td><p>0.0110</p></td>
+<td><p>0.9996</p></td>
+</tr>
+<tr class="row-even"><td><p>0.128</p></td>
+<td><p>0.3814</p></td>
+<td><p>0.0709</p></td>
+<td><p>-0.2780</p></td>
+<td><p>-0.1474</p></td>
+<td><p>-0.0284</p></td>
+<td><p>0.0012</p></td>
+<td><p>0.0685</p></td>
+<td><p>-0.0232</p></td>
+<td><p>-0.0126</p></td>
+<td><p>0.0130</p></td>
+<td><p>0.9993</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="algunas-otras-propiedades-de-la-regresion-ridge">
+<h3><span class="section-number">7.6.2. </span>9.5.4 Algunas otras propiedades de la regresión ridge<a class="headerlink" href="#algunas-otras-propiedades-de-la-regresion-ridge" title="Link to this heading">#</a></h3>
+<p><strong>La Figura 9.7 ilustra la geometría de la regresión ridge en un problema con dos regresores.</strong> El punto <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> en el centro de las elipses representa la solución por mínimos cuadrados, en la que la suma de cuadrados de los residuos alcanza su valor mínimo.</p>
+<p><strong>La elipse pequeña muestra el conjunto de puntos en el plano <span class="math notranslate nohighlight">\(\beta_1\)</span>–<span class="math notranslate nohighlight">\(\beta_2\)</span> donde la suma de cuadrados residuales es constante, pero mayor que el mínimo.</strong> La estimación ridge <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> es el vector más corto desde el origen que genera una suma de cuadrados residuales igual al valor representado por dicha elipse. Es decir, <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> minimiza la norma de los coeficientes sujeta a un incremento controlado en el error cuadrático.</p>
+<p><strong>Esto muestra que el estimador ridge contrae (shrink) la solución de mínimos cuadrados hacia el origen</strong>, por lo que se les conoce como <strong>estimadores con contracción</strong>. Hocking (1976) observó que el estimador ridge <strong>reduce <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> respecto a las contornos definidos por <span class="math notranslate nohighlight">\(X'X\)</span></strong>. En este contexto, <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> puede verse como la solución al siguiente problema:</p>
+<div class="math notranslate nohighlight" id="equation-ridge-geometry">
+<span class="eqno">(7.16)<a class="headerlink" href="#equation-ridge-geometry" title="Link to this equation">#</a></span>\[
+\text{Minimizar } (\beta - \hat{\beta})' X'X (\beta - \hat{\beta}) \quad \text{sujeto a} \quad \beta'\beta \leq d^2
+\]</div>
+<p>donde el radio <span class="math notranslate nohighlight">\(d\)</span> depende de <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Muchas propiedades del estimador ridge asumen que el valor de <span class="math notranslate nohighlight">\(k\)</span> es fijo.</strong></p></li>
+<li><p>Sin embargo, <strong>en la práctica <span class="math notranslate nohighlight">\(k\)</span> se estima a partir de los datos, por lo que es una variable aleatoria</strong>.</p></li>
+</ul>
+<p><strong>Varios autores han mostrado mediante simulaciones que la regresión ridge mejora el error cuadrático medio comparado con mínimos cuadrados, incluso cuando <span class="math notranslate nohighlight">\(k\)</span> es estocástico.</strong> Theobald (1974) generalizó las condiciones bajo las cuales ridge conduce a menor MSE que mínimos cuadrados.</p>
+<ul class="simple">
+<li><p><strong>La mejora esperada depende de la orientación del vector <span class="math notranslate nohighlight">\(\beta\)</span> respecto a los eigenvectores de <span class="math notranslate nohighlight">\(X'X\)</span>.</strong></p></li>
+<li><p><strong>La mayor ganancia se logra cuando <span class="math notranslate nohighlight">\(\beta\)</span> coincide con el eigenvector asociado al mayor eigenvalor de <span class="math notranslate nohighlight">\(X'X\)</span>.</strong></p></li>
+</ul>
+<p><strong>Otros resultados importantes se encuentran en Lowerre (1974) y Mayer &amp; Willke (1973).</strong></p>
+<p>Obenchain (1977) demostró que <strong>los estimadores ridge no estocásticos producen los mismos estadísticos <span class="math notranslate nohighlight">\(t\)</span> y <span class="math notranslate nohighlight">\(F\)</span> que mínimos cuadrados para pruebas de hipótesis</strong>. Por tanto, <strong>aunque <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> es sesgado, generalmente no se requiere una teoría de distribución alternativa</strong>.</p>
+<ul class="simple">
+<li><p><strong>Sin embargo, no se conoce completamente la distribución de <span class="math notranslate nohighlight">\(\hat{\beta}_R\)</span> cuando <span class="math notranslate nohighlight">\(k\)</span> es estocástico.</strong></p></li>
+<li><p>Cuando <span class="math notranslate nohighlight">\(k\)</span> es pequeño, <strong>se asume que la inferencia basada en la teoría normal es razonablemente válida</strong>.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="tabla-matriz-ridge">
+<caption><span class="caption-number">Table 7.2 </span><span class="caption-text">Matriz aumentada <span class="math notranslate nohighlight">\(X_A\)</span> y vector <span class="math notranslate nohighlight">\(y_A\)</span> para <span class="math notranslate nohighlight">\(k = 0.032\)</span></span><a class="headerlink" href="#tabla-matriz-ridge" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Observación</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_A\)</span> (filas de diseño aumentadas)</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_A\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.9144, 0.9234, 0.4456, …, 0, 0, 0</p></td>
+<td><p>0.9144</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.9392, 0.9432, 0.4545, …, 0, 0, 0</p></td>
+<td><p>0.9392</p></td>
+</tr>
+<tr class="row-even"><td><p>⋮</p></td>
+<td><p>⋮</p></td>
+<td><p>⋮</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n\)</span></p></td>
+<td><p>(datos estandarizados)</p></td>
+<td><p>(valores originales)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n+1\)</span></p></td>
+<td><p>0, 0, 0, …, <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>, 0, 0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n+2\)</span></p></td>
+<td><p>0, 0, 0, …, 0, <span class="math notranslate nohighlight">\(\sqrt{k}\)</span>, 0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>⋮</p></td>
+<td><p>⋮</p></td>
+<td><p>⋮</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n+p\)</span></p></td>
+<td><p>0, 0, 0, …, 0, 0, <span class="math notranslate nohighlight">\(\sqrt{k}\)</span></p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="relacion-con-otros-estimadores">
+<h3><span class="section-number">7.6.3. </span>Relación con otros estimadores<a class="headerlink" href="#relacion-con-otros-estimadores" title="Link to this heading">#</a></h3>
+<p><strong>La regresión ridge está estrechamente relacionada con la estimación Bayesiana.</strong> Si se tiene información previa sobre <span class="math notranslate nohighlight">\(\beta\)</span> que puede modelarse como una distribución normal multivariada con media <span class="math notranslate nohighlight">\(\beta_0\)</span> y matriz de covarianzas <span class="math notranslate nohighlight">\(V_0\)</span>, el estimador Bayesiano de <span class="math notranslate nohighlight">\(\beta\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-bayes-ridge">
+<span class="eqno">(7.17)<a class="headerlink" href="#equation-bayes-ridge" title="Link to this equation">#</a></span>\[
+\hat{\beta}_B = \left( \frac{1}{\sigma^2}X'X + V_0^{-1} \right)^{-1} \left( \frac{1}{\sigma^2}X'y + V_0^{-1} \beta_0 \right)
+\]</div>
+<p><strong>Si se elige <span class="math notranslate nohighlight">\(\beta_0 = 0\)</span> y <span class="math notranslate nohighlight">\(V_0 = \sigma_0^2 I\)</span>, el estimador bayesiano se reduce al estimador ridge usual</strong>, pues:</p>
+<div class="math notranslate nohighlight" id="equation-ridge-from-bayes">
+<span class="eqno">(7.18)<a class="headerlink" href="#equation-ridge-from-bayes" title="Link to this equation">#</a></span>\[
+\hat{\beta}_R = (X'X + kI)^{-1} X'y, \quad \text{con} \quad k = \frac{\sigma^2}{\sigma_0^2}
+\]</div>
+<p><strong>En efecto, el método de mínimos cuadrados puede verse como un estimador bayesiano con una distribución previa uniforme no acotada para <span class="math notranslate nohighlight">\(\beta\)</span>.</strong> La regresión ridge surge cuando <strong>la distribución previa impone una condición de acotamiento débil sobre <span class="math notranslate nohighlight">\(\beta\)</span>.</strong></p>
+<p>También puede consultarse Leamer (1973, 1978), Zellner (1971), y Lindley &amp; Smith (1972) para mayor discusión sobre este enfoque.</p>
+</section>
+</section>
+<section id="metodos-para-la-eleccion-del-parametro-k">
+<h2><span class="section-number">7.7. </span>Métodos para la elección del parámetro <span class="math notranslate nohighlight">\(k\)</span><a class="headerlink" href="#metodos-para-la-eleccion-del-parametro-k" title="Link to this heading">#</a></h2>
+<p><strong>Buena parte del debate en torno a la regresión ridge se centra en la selección del parámetro de sesgo <span class="math notranslate nohighlight">\(k\)</span>.</strong> Escoger <span class="math notranslate nohighlight">\(k\)</span> mediante inspección visual de la <em>traza ridge</em> es un procedimiento subjetivo que requiere criterio por parte del analista.</p>
+<ul class="simple">
+<li><p>Diversos autores han propuesto procedimientos más analíticos. Hoerl, Kennard y Baldwin <span id="id5">[<a class="reference internal" href="biblio.html#id5" title="Arthur E. Hoerl, Robert W. Kennard, and Kenneth F. Baldwin. Ridge regression: some simulations. Communications in Statistics, 4(2):105–123, 1975.">Hoerl <em>et al.</em>, 1975</a>]</span> sugirieron que un valor apropiado para <span class="math notranslate nohighlight">\(k\)</span> es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-ridge-k-hkb">
+<span class="eqno">(7.19)<a class="headerlink" href="#equation-ridge-k-hkb" title="Link to this equation">#</a></span>\[
+k = \frac{p \hat{\sigma}^2}{\hat{\boldsymbol{\beta}}' \hat{\boldsymbol{\beta}}}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> y <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> provienen del ajuste por mínimos cuadrados.</p>
+<ul class="simple">
+<li><p><strong>Este valor de <span class="math notranslate nohighlight">\(k\)</span> mostró, mediante simulaciones, una mejora considerable en el error cuadrático medio respecto a mínimos cuadrados.</strong></p></li>
+<li><p>Posteriormente, Hoerl y Kennard <span id="id6">[<a class="reference internal" href="biblio.html#id6" title="Arthur E. Hoerl and Robert W. Kennard. Ridge regression: applications to nonorthogonal problems. Technometrics, 18(1):27–51, 1976.">Hoerl and Kennard, 1976</a>]</span> propusieron un procedimiento iterativo basado en la ecuación <a class="reference internal" href="#equation-ridge-k-hkb">(7.19)</a>.</p></li>
+<li><p>McDonald y Galarneau <span id="id7">[<a class="reference internal" href="biblio.html#id7" title="G. C. McDonald and D. I. Galarneau. A monte carlo evaluation of some ridge-type estimators. Journal of the American Statistical Association, 70(350):407–416, 1975.">McDonald and Galarneau, 1975</a>]</span> propusieron seleccionar <span class="math notranslate nohighlight">\(k\)</span> de forma que:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ridge-k-mcdonald">
+<span class="eqno">(7.20)<a class="headerlink" href="#equation-eq-ridge-k-mcdonald" title="Link to this equation">#</a></span>\[
+\hat{\boldsymbol{\beta}}_R' \hat{\boldsymbol{\beta}}_R = \hat{\boldsymbol{\beta}}' \hat{\boldsymbol{\beta}} - \sigma^2 \sum_{j=1}^{p} \frac{1}{\lambda_j}
+\]</div>
+<p><strong>Una desventaja de este procedimiento es que puede producir valores negativos de <span class="math notranslate nohighlight">\(k\)</span>.</strong></p>
+<ul class="simple">
+<li><p>Mallows <span id="id8">[<a class="reference internal" href="biblio.html#id8" title="C. L. Mallows. Some comments on cp. Technometrics, 15(4):661–675, 1973.">Mallows, 1973</a>]</span> sugirió un enfoque gráfico para seleccionar <span class="math notranslate nohighlight">\(k\)</span> basado en una modificación del estadístico <span class="math notranslate nohighlight">\(C_p\)</span>.</p></li>
+<li><p>Otra estrategia consiste en elegir <span class="math notranslate nohighlight">\(k\)</span> minimizando una variante del estadístico PRESS. Wahba, Golub y Heath <span id="id9">[<a class="reference internal" href="biblio.html#id9" title="Grace Wahba, Gene H. Golub, and Michael Heath. Generalized cross-validation as a method for choosing a good ridge parameter. Technometrics, 21(2):215–223, 1979.">Wahba <em>et al.</em>, 1979</a>]</span> propusieron minimizar un estadístico de validación cruzada.</p></li>
+<li><p>Marquardt <span id="id10">[<a class="reference internal" href="biblio.html#id10" title="Donald W. Marquardt. Generalized inverses, ridge regression, biased linear estimation, and nonlinear estimation. Technometrics, 12(3):591–612, 1970.">Marquardt, 1970</a>]</span> recomendó usar un valor de <span class="math notranslate nohighlight">\(k\)</span> tal que el índice de inflación de la varianza (VIF) máximo esté entre 1 y 10, preferiblemente cercano a 1.</p></li>
+<li><p><strong>Otros métodos para determinar <span class="math notranslate nohighlight">\(k\)</span> han sido propuestos por Dempster, Schatzoff y Wermuth <span id="id11">[<a class="reference internal" href="biblio.html#id11" title="A. P. Dempster, M. Schatzoff, and N. Wermuth. An alternative approach to the estimation and testing problem in linear models. Annals of Mathematical Statistics, 42(2):946–957, 1971.">Dempster <em>et al.</em>, 1971</a>]</span>, Goldstein y Smith <span id="id12">[<a class="reference internal" href="biblio.html#id12" title="Michael Goldstein and A. F. M. Smith. Ridge-type estimators for regression analysis. Journal of the Royal Statistical Society. Series B (Methodological), 36(2):284–291, 1974.">Goldstein and Smith, 1974</a>]</span>, Lawless y Wang <span id="id13">[<a class="reference internal" href="biblio.html#id13" title="Jerald F. Lawless and Paul C. Wang. A simulation study of ridge and other regression estimators. Communications in Statistics - Simulation and Computation, 5(4):307–323, 1976.">Lawless and Wang, 1976</a>]</span>, Lindley y Smith <span id="id14">[<a class="reference internal" href="biblio.html#id14" title="Dennis V. Lindley and Adrian F. M. Smith. Bayes estimates for the linear model. Journal of the Royal Statistical Society. Series B (Methodological), 34(1):1–41, 1972.">Lindley and Smith, 1972</a>]</span> y Obenchain <span id="id15">[<a class="reference internal" href="biblio.html#id15" title="Robert L. Obenchain. Ridge analysis following a preliminary test of the ols estimates. Technometrics, 17(3):431–441, 1975.">Obenchain, 1975</a>]</span>.</strong></p></li>
+<li><p>Hoerl y Kennard <span id="id16">[<a class="reference internal" href="biblio.html#id16" title="Arthur E. Hoerl and Robert W. Kennard. Ridge regression: biased estimation for nonorthogonal problems. Technometrics, 12(1):55–67, 1970.">Hoerl and Kennard, 1970</a>]</span> también propusieron una extensión de la regresión ridge que permite valores distintos de <span class="math notranslate nohighlight">\(k\)</span> para cada regresor, conocida como <em>regresión ridge generalizada</em>.</p></li>
+</ul>
+<p><strong>Sin embargo, no se garantiza que estos métodos sean superiores a la inspección directa de la traza ridge.</strong></p>
+</section>
+<section id="regresion-por-componentes-principales-pcr">
+<h2><span class="section-number">7.8. </span>Regresión por Componentes Principales (PCR)<a class="headerlink" href="#regresion-por-componentes-principales-pcr" title="Link to this heading">#</a></h2>
+<p><strong>Los estimadores sesgados también pueden obtenerse mediante un procedimiento llamado regresión por componentes principales.</strong></p>
+<ul class="simple">
+<li><p>Considere el modelo canónico:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-modelo-canonico">
+<span class="eqno">(7.21)<a class="headerlink" href="#equation-eq-modelo-canonico" title="Link to this equation">#</a></span>\[
+\mathbf{y} = \mathbf{Z} \boldsymbol{\alpha} + \boldsymbol{\varepsilon}
+\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mathbf{T}\)</span>, con <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> una matriz ortogonal cuyas columnas son los autovectores de <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\alpha} = \mathbf{T}' \boldsymbol{\beta}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{T}' \mathbf{X}' \mathbf{X} \mathbf{T} = \boldsymbol{\Lambda}\)</span>, siendo <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_p)\)</span></p></li>
+</ul>
+<p><strong>Las columnas de <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> definen un nuevo conjunto de regresores ortogonales, llamados componentes principales.</strong></p>
+<ul class="simple">
+<li><p>El estimador por mínimos cuadrados de <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span> es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-estimador-a-hat">
+<span class="eqno">(7.22)<a class="headerlink" href="#equation-eq-estimador-a-hat" title="Link to this equation">#</a></span>\[
+\hat{\boldsymbol{\alpha}} = (\mathbf{Z}'\mathbf{Z})^{-1} \mathbf{Z}' \mathbf{y} = \boldsymbol{\Lambda}^{-1} \mathbf{Z}' \mathbf{y}
+\]</div>
+<ul class="simple">
+<li><p>La matriz de varianza de <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\alpha}}\)</span> es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-var-a-hat">
+<span class="eqno">(7.23)<a class="headerlink" href="#equation-eq-var-a-hat" title="Link to this equation">#</a></span>\[
+\text{Var}(\hat{\boldsymbol{\alpha}}) = \sigma^2 (\mathbf{Z}'\mathbf{Z})^{-1} = \sigma^2 \boldsymbol{\Lambda}^{-1}
+\]</div>
+<p><strong>Un autovalor pequeño de <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> implica una varianza grande del correspondiente coeficiente ortogonal.</strong></p>
+<ul class="simple">
+<li><p>Dado que:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-ztz">
+<span class="eqno">(7.24)<a class="headerlink" href="#equation-eq-ztz" title="Link to this equation">#</a></span>\[
+\mathbf{Z}'\mathbf{Z} = \sum_{i=1}^{p} \sum_{j=1}^{p} \mathbf{Z}_i' \mathbf{Z}_j = \boldsymbol{\Lambda}
+\]</div>
+<p>entonces el autovalor <span class="math notranslate nohighlight">\(\lambda_j\)</span> puede interpretarse como la varianza del <span class="math notranslate nohighlight">\(j\)</span>-ésimo componente principal.</p>
+<ul class="simple">
+<li><p>Si los <span class="math notranslate nohighlight">\(\lambda_j\)</span> son iguales a uno, los regresores originales son ortogonales. Si alguno es exactamente cero, hay una relación lineal exacta entre los regresores.</p></li>
+</ul>
+<p><strong>La presencia de autovalores cercanos a cero indica multicolinealidad.</strong></p>
+<ul class="simple">
+<li><p>La matriz de varianza de los coeficientes estandarizados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-var-b-hat">
+<span class="eqno">(7.25)<a class="headerlink" href="#equation-eq-var-b-hat" title="Link to this equation">#</a></span>\[
+\text{Var}(\hat{\boldsymbol{\beta}}) = \text{Var}(\mathbf{T} \hat{\boldsymbol{\alpha}}) = \mathbf{T} \boldsymbol{\Lambda}^{-1} \mathbf{T}' \sigma^2
+\]</div>
+<p>lo que implica que:</p>
+<div class="math notranslate nohighlight" id="equation-eq-var-bj">
+<span class="eqno">(7.26)<a class="headerlink" href="#equation-eq-var-bj" title="Link to this equation">#</a></span>\[
+\text{Var}(\hat{\beta}_j) = \sigma^2 \sum_{i=1}^{p} \frac{t_{ji}^2}{\lambda_i}
+\]</div>
+<p><strong>Por tanto, la varianza de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> es una combinación lineal de los recíprocos de los autovalores.</strong></p>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} \mathbf{T}\)</span>, se tiene que:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-zi-lineal-combination">
+<span class="eqno">(7.27)<a class="headerlink" href="#equation-eq-zi-lineal-combination" title="Link to this equation">#</a></span>\[
+\mathbf{Z}_i = \sum_{j=1}^{p} t_{ji} \mathbf{X}_j
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{X}_j\)</span> es la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
+<p><strong>Un autovalor pequeño implica que <span class="math notranslate nohighlight">\(\mathbf{Z}_i\)</span> es casi constante, lo que indica una combinación lineal entre los regresores originales.</strong></p>
+</section>
+<section id="estimador-por-componentes-principales">
+<h2><span class="section-number">7.9. </span>Estimador por Componentes Principales<a class="headerlink" href="#estimador-por-componentes-principales" title="Link to this heading">#</a></h2>
+<p><strong>La regresión por componentes principales combate la multicolinealidad usando sólo los componentes con autovalores no cercanos a cero.</strong></p>
+<ul class="simple">
+<li><p>Suponga que los autovalores están ordenados como <span class="math notranslate nohighlight">\(\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_p &gt; 0\)</span> y que los últimos <span class="math notranslate nohighlight">\(s\)</span> son casi cero.</p></li>
+<li><p>En este caso, se elimina del modelo a los componentes principales asociados a autovalores pequeños y se aplica mínimos cuadrados sobre los restantes.</p></li>
+<li><p>Defina <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}_{PC} = \boldsymbol{\beta} \hat{\boldsymbol{\alpha}}\)</span> con:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-b-pc">
+<span class="eqno">(7.28)<a class="headerlink" href="#equation-eq-b-pc" title="Link to this equation">#</a></span>\[
+\boldsymbol{\beta} = \text{diag}(1, 1, \ldots, 1, 0, 0, \ldots, 0)
+\]</div>
+<p>donde los <span class="math notranslate nohighlight">\(p-s\)</span> primeros elementos son 1 y los <span class="math notranslate nohighlight">\(s\)</span> restantes son 0.</p>
+<ul class="simple">
+<li><p>El estimador de <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> basado en PCR es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-b-hat-pc">
+<span class="eqno">(7.29)<a class="headerlink" href="#equation-eq-b-hat-pc" title="Link to this equation">#</a></span>\[
+\hat{\boldsymbol{\beta}}_{PC} = \mathbf{T} \hat{\boldsymbol{\alpha}}_{PC} = \sum_{j=1}^{p-s} \lambda_j^{-1} \mathbf{t}_j \mathbf{t}_j' \mathbf{X}' \mathbf{y}
+\]</div>
+<p><strong>Gunst y Mason <span id="id17">[<a class="reference internal" href="biblio.html#id17" title="Richard F. Gunst and Robert L. Mason. Advantages of principal components regression. Technometrics, 19(4):383–386, 1977.">Gunst and Mason, 1977</a>]</span> demostraron mediante simulaciones que la regresión por componentes principales ofrece una mejora considerable cuando los datos presentan mal condicionamiento.</strong></p>
+<p><strong>Además, este enfoque permite aplicar teoría de distribuciones exacta y procedimientos de selección de variables, como discuten Mansfield, Webster y Gunst <span id="id18">[<a class="reference internal" href="biblio.html#id18" title="E. H. Mansfield, J. T. Webster, and R. F. Gunst. Variable selection in principal components regression. Technometrics, 19(4):381–383, 1977.">Mansfield <em>et al.</em>, 1977</a>]</span>.</strong></p>
+<p><strong>Algunos paquetes computacionales en Python permiten implementar regresión por componentes principales mediante <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition.PCA</span></code>.</strong></p>
+<section id="ejemplo-regresion-por-componentes-principales-para-los-datos-de-acetileno">
+<h3><span class="section-number">7.9.1. </span>Ejemplo: Regresión por Componentes Principales para los datos de acetileno<a class="headerlink" href="#ejemplo-regresion-por-componentes-principales-para-los-datos-de-acetileno" title="Link to this heading">#</a></h3>
+<p><strong>Ilustraremos el uso de la regresión por componentes principales utilizando los datos de acetileno.</strong></p>
+<p><strong>Comenzamos con la transformación lineal <span class="math notranslate nohighlight">\(Z = XT\)</span>, la cual convierte los regresores estandarizados originales en un conjunto ortogonal de variables (los componentes principales).</strong></p>
+<p>Los valores propios <span class="math notranslate nohighlight">\(\lambda_j\)</span> y la matriz <span class="math notranslate nohighlight">\(T\)</span> correspondiente a los datos de acetileno se muestran en la Tabla 9.10 en <span id="id19">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>.</p>
+<p>Esta matriz revela que la relación entre el primer componente principal <span class="math notranslate nohighlight">\(z_1\)</span> y los regresores estandarizados es:</p>
+<div class="math notranslate nohighlight" id="equation-z1-component">
+<span class="eqno">(7.30)<a class="headerlink" href="#equation-z1-component" title="Link to this equation">#</a></span>\[
+z_1 = 0.3387\,x_1 + 0.1324\,x_2 - 0.4137\,x_3 - 0.2191\,x_1x_2 + 0.4493\,x_1x_3 + 0.2524\,x_2x_3 - 0.4056\,x_1^2 + 0.0258\,x_2^2 - 0.4667\,x_3^2
+\]</div>
+<p><strong>Las relaciones entre los componentes principales restantes <span class="math notranslate nohighlight">\(z_2, z_3, \dots, z_9\)</span> y los regresores estandarizados se determinan de manera análoga.</strong></p>
+<p>La Tabla 9.11 en <span id="id20">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> presenta los elementos de la matriz <span class="math notranslate nohighlight">\(Z\)</span> (también conocida como puntuaciones de componentes principales).</p>
+<p><strong>El estimador por componentes principales atenúa los efectos de la multicolinealidad al emplear un subconjunto de los componentes principales en el modelo.</strong></p>
+<p>Dado que existen cuatro valores propios pequeños en los datos de acetileno, esto sugiere eliminar cuatro componentes principales. Por tanto, excluiremos <span class="math notranslate nohighlight">\(z_6\)</span>, <span class="math notranslate nohighlight">\(z_7\)</span>, <span class="math notranslate nohighlight">\(z_8\)</span> y <span class="math notranslate nohighlight">\(z_9\)</span>, considerando únicamente modelos de regresión que incluyan los primeros cinco componentes principales.</p>
+<p><strong>Supongamos que consideramos un modelo de regresión que solo incorpora el primer componente principal, es decir:</strong></p>
+<div class="math notranslate nohighlight" id="equation-pc-model1">
+<span class="eqno">(7.31)<a class="headerlink" href="#equation-pc-model1" title="Link to this equation">#</a></span>\[
+y = \alpha_1 z_1 + \varepsilon
+\]</div>
+<p>El modelo ajustado es:</p>
+<div class="math notranslate nohighlight" id="equation-pc-model-fit1">
+<span class="eqno">(7.32)<a class="headerlink" href="#equation-pc-model-fit1" title="Link to this equation">#</a></span>\[
+\hat{y} = -0.35225\,z_1
+\]</div>
+<p>Esto implica que el vector estimado de coeficientes en el espacio de los componentes principales es:</p>
+<div class="math notranslate nohighlight" id="equation-pc-alpha-hat">
+<span class="eqno">(7.33)<a class="headerlink" href="#equation-pc-alpha-hat" title="Link to this equation">#</a></span>\[
+\hat{\alpha}_{PC}' = [-0.35225,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0]
+\]</div>
+<p>Los coeficientes en términos de los regresores estandarizados se obtienen mediante:</p>
+<div class="math notranslate nohighlight" id="equation-pc-beta-hat">
+<span class="eqno">(7.34)<a class="headerlink" href="#equation-pc-beta-hat" title="Link to this equation">#</a></span>\[
+\hat{\beta}_{PC} = T\hat{\alpha}_{PC}
+\]</div>
+<p><strong>Tabla 9.10: Matriz <span class="math notranslate nohighlight">\(T\)</span> de autovectores y valores propios <span class="math notranslate nohighlight">\(\lambda_j\)</span> para los datos de acetileno</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_5\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_6\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_7\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_8\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(PC_9\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td><p>0.3387</p></td>
+<td><p>0.1057</p></td>
+<td><p>0.6495</p></td>
+<td><p>0.0073</p></td>
+<td><p>0.1428</p></td>
+<td><p>-0.2488</p></td>
+<td><p>-0.2077</p></td>
+<td><p>-0.5436</p></td>
+<td><p>0.1768</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td><p>0.1324</p></td>
+<td><p>0.3391</p></td>
+<td><p>-0.0068</p></td>
+<td><p>-0.7243</p></td>
+<td><p>-0.5843</p></td>
+<td><p>0.0205</p></td>
+<td><p>-0.0102</p></td>
+<td><p>-0.0295</p></td>
+<td><p>-0.0035</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_3\)</span></p></td>
+<td><p>-0.4137</p></td>
+<td><p>-0.0978</p></td>
+<td><p>-0.4696</p></td>
+<td><p>-0.0718</p></td>
+<td><p>-0.0182</p></td>
+<td><p>0.0160</p></td>
+<td><p>-0.1468</p></td>
+<td><p>-0.7172</p></td>
+<td><p>0.2390</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_1 x_2\)</span></p></td>
+<td><p>-0.2191</p></td>
+<td><p>0.5403</p></td>
+<td><p>0.0897</p></td>
+<td><p>0.3612</p></td>
+<td><p>-0.1661</p></td>
+<td><p>0.3733</p></td>
+<td><p>-0.5885</p></td>
+<td><p>0.0909</p></td>
+<td><p>0.0003</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_1 x_3\)</span></p></td>
+<td><p>0.4493</p></td>
+<td><p>0.0860</p></td>
+<td><p>-0.2863</p></td>
+<td><p>0.1912</p></td>
+<td><p>-0.0943</p></td>
+<td><p>0.0333</p></td>
+<td><p>0.0575</p></td>
+<td><p>0.1543</p></td>
+<td><p>0.7969</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2 x_3\)</span></p></td>
+<td><p>0.2524</p></td>
+<td><p>-0.5172</p></td>
+<td><p>-0.0570</p></td>
+<td><p>-0.3447</p></td>
+<td><p>0.2007</p></td>
+<td><p>0.3232</p></td>
+<td><p>-0.6209</p></td>
+<td><p>0.1280</p></td>
+<td><p>0.0061</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_1^2\)</span></p></td>
+<td><p>-0.4056</p></td>
+<td><p>-0.0742</p></td>
+<td><p>0.4404</p></td>
+<td><p>-0.2230</p></td>
+<td><p>0.1443</p></td>
+<td><p>0.5393</p></td>
+<td><p>0.3233</p></td>
+<td><p>0.0565</p></td>
+<td><p>0.4087</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2^2\)</span></p></td>
+<td><p>0.0258</p></td>
+<td><p>0.5316</p></td>
+<td><p>-0.2240</p></td>
+<td><p>-0.3417</p></td>
+<td><p>0.7342</p></td>
+<td><p>-0.0705</p></td>
+<td><p>-0.0057</p></td>
+<td><p>0.0761</p></td>
+<td><p>0.0050</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_3^2\)</span></p></td>
+<td><p>-0.4667</p></td>
+<td><p>-0.0969</p></td>
+<td><p>0.1421</p></td>
+<td><p>-0.1337</p></td>
+<td><p>-0.0350</p></td>
+<td><p>-0.6299</p></td>
+<td><p>-0.3089</p></td>
+<td><p>0.3631</p></td>
+<td><p>0.3309</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\lambda_j\)</span></p></td>
+<td><p>4.20480</p></td>
+<td><p>2.16261</p></td>
+<td><p>1.13839</p></td>
+<td><p>1.04130</p></td>
+<td><p>0.38453</p></td>
+<td><p>0.04951</p></td>
+<td><p>0.01363</p></td>
+<td><p>0.00513</p></td>
+<td><p>0.00010</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>El Panel A de la Tabla 9.11 en <span id="id21">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> muestra los coeficientes de regresión estandarizados resultantes, así como los correspondientes a los regresores centrados originales.</strong></p>
+<p><strong>Obsérvese que, aunque solo se incluye un componente principal, el modelo genera estimaciones para los nueve coeficientes estandarizados.</strong></p>
+<ul class="simple">
+<li><p>Los resultados de agregar sucesivamente los componentes <span class="math notranslate nohighlight">\(z_2\)</span>, <span class="math notranslate nohighlight">\(z_3\)</span>, <span class="math notranslate nohighlight">\(z_4\)</span> y <span class="math notranslate nohighlight">\(z_5\)</span> al modelo se presentan en los paneles B, C, D y E de la Tabla 9.12 en <span id="id22">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>.</p></li>
+<li><p><strong>Se observa que utilizar diferentes cantidades de componentes principales produce estimaciones sustancialmente distintas de los coeficientes de regresión.</strong></p></li>
+<li><p>Además, <strong>las estimaciones por componentes principales difieren significativamente de aquellas obtenidas por mínimos cuadrados ordinarios</strong> (véase Tabla 9.8 en <span id="id23">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>).</p></li>
+<li><p><strong>Sin embargo, el procedimiento de componentes principales con cuatro o cinco componentes incluidas produce estimaciones de los coeficientes que no difieren drásticamente de las obtenidas mediante otros métodos de estimación sesgada</strong> (ver la regresión ridge ordinaria en la Tabla 9.9 en <span id="id24">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>).</p></li>
+<li><p><strong>El análisis por componentes principales reduce las grandes estimaciones por mínimos cuadrados de <span class="math notranslate nohighlight">\(\beta_{13}\)</span> y <span class="math notranslate nohighlight">\(\beta_{33}\)</span>, además de cambiar el signo de la estimación negativa original de <span class="math notranslate nohighlight">\(\beta_{11}\)</span>.</strong></p></li>
+<li><p>El modelo con cinco componentes no degrada significativamente el ajuste a los datos originales, ya que se observa poca pérdida en el valor de <span class="math notranslate nohighlight">\(R^2\)</span> respecto al modelo de mínimos cuadrados ordinarios.</p></li>
+</ul>
+<p><strong>Concluimos que la relación basada en los primeros cinco componentes principales proporciona un modelo más plausible para los datos de acetileno que el obtenido mediante mínimos cuadrados ordinarios.</strong></p>
+<p><strong>Marquardt [1970] propuso una generalización de la regresión por componentes principales.</strong></p>
+<ul class="simple">
+<li><p>Argumentó que asumir un rango entero para la matriz <span class="math notranslate nohighlight">\(X\)</span> es demasiado restrictivo y propuso un estimador de “rango fraccional” que permite que el rango sea una función continua por tramos.</p></li>
+</ul>
+<p><strong>Hawkins [1973] y Webster et al. [1974] desarrollaron procedimientos de raíces latentes basados en una filosofía similar a la de los componentes principales.</strong></p>
+<ul class="simple">
+<li><p>Gunst, Webster y Mason [1976], así como Gunst y Masou [1977], indican que la regresión por raíces latentes puede ofrecer una mejora sustancial en el error cuadrático medio respecto a los mínimos cuadrados.</p></li>
+<li><p>Gunst [1979] señala que la regresión por raíces latentes puede producir coeficientes muy similares a los generados por componentes principales, especialmente cuando existen una o dos multicolinealidades fuertes en <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p>Diversas propiedades en muestras grandes de esta técnica se encuentran en White y Gunst [1979].</p></li>
+</ul>
+</section>
+<section id="comparacion-y-evaluacion-de-estimadores-sesgados">
+<h3><span class="section-number">7.9.2. </span>9.5.5 Comparación y evaluación de estimadores sesgados<a class="headerlink" href="#comparacion-y-evaluacion-de-estimadores-sesgados" title="Link to this heading">#</a></h3>
+<p>Diversos estudios de simulación Monte Carlo han evaluado la <strong>eficacia de los estimadores sesgados</strong>, buscando determinar qué procedimientos presentan el mejor desempeño. Entre ellos destacan los trabajos de McDonald y Galarneau (1975), Hoerl y Kennard (1976), Hoerl, Kennard y Baldwin (1975) —quienes comparan mínimos cuadrados y regresión ridge—, Gunst et al. (1976) —comparando regresión de raíces latentes frente a mínimos cuadrados—, y Lawless (1978), entre otros. Dempster et al. (1977) realizaron un estudio comparando <strong>57 estimadores en 160 configuraciones distintas de modelos</strong>.</p>
+<p>Aunque <strong>ningún estimador sesgado emerge como superior en todos los contextos</strong>, existe <strong>evidencia sólida a favor del uso de estimación sesgada</strong> frente a mínimos cuadrados en presencia de multicolinealidad. En la práctica, los autores prefieren la <strong>regresión ridge ordinaria</strong>, seleccionando el parámetro <span class="math notranslate nohighlight">\(k\)</span> mediante inspección visual de la <strong>traza ridge</strong>. Este enfoque es simple, puede implementarse fácilmente sobre rutinas estándar de mínimos cuadrados, y el analista puede aprender a interpretar la traza ridge con rapidez.</p>
+<p>También puede resultar útil encontrar el valor “óptimo” de <span class="math notranslate nohighlight">\(k\)</span> propuesto por Hoerl, Kennard y Baldwin (1975), así como la estimación iterativa de <span class="math notranslate nohighlight">\(k\)</span> sugerida por Hoerl y Kennard (1976), comparando los modelos obtenidos con los derivados de la traza ridge.</p>
+<blockquote>
+<div><p><strong>El uso de estimadores sesgados ha sido objeto de críticas.</strong> Conniffe y Stone (1973, 1975) cuestionan la selección de <span class="math notranslate nohighlight">\(k\)</span> mediante la traza ridge, argumentando que <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_R\)</span> se estabiliza gradualmente incluso si los regresores son ortogonales. Según ellos, si los datos no permiten una estimación por mínimos cuadrados confiable, entonces es improbable que la regresión ridge proporcione resultados sensatos.</p>
+</div></blockquote>
+<p>Otros autores, como Marquardt y Snee (1975) o Smith y Goldstein (1975), <strong>defienden el valor práctico de los estimadores sesgados</strong> en presencia de datos mal condicionados. Además, <strong>se ha demostrado teóricamente</strong> que existe un valor de <span class="math notranslate nohighlight">\(k\)</span> tal que el <strong>error cuadrático medio (ECM)</strong> del estimador ridge es menor que el del estimador por mínimos cuadrados; sin embargo, <strong>no hay garantía de que la traza ridge u otro método estocástico produzca ese valor óptimo</strong>.</p>
+<p>Draper y Van Nostrand (1977a, 1977b, 1979) también han sido críticos, <strong>señalando sesgos metodológicos</strong> en estudios de simulación que favorecen a los estimadores sesgados. Sostienen que la regresión ridge sólo es adecuada cuando se añade <strong>información externa</strong> al problema de mínimos cuadrados, ya sea bajo un enfoque bayesiano o como un problema de mínimos cuadrados restringidos.</p>
+<p>Smith y Campbell (1980) proponen resolver la multicolinealidad mediante análisis bayesiano explícito o <strong>estimación mixta</strong>, rechazando los métodos ridge por considerarlos débiles e imprecisos en su incorporación de conocimiento previo. Cuando se dispone de información previa clara, debe utilizarse el enfoque bayesiano. No obstante, cuando la información previa es vaga o difícil de formalizar, los métodos ridge ofrecen una <strong>alternativa práctica y aproximada</strong>.</p>
+<p>También ha existido <strong>controversia sobre la necesidad de centrar y escalar las variables</strong> para que <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> y <span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{y}\)</span> estén en forma de correlación, lo cual elimina el intercepto del modelo. Bajo este enfoque, el intercepto se estima por <span class="math notranslate nohighlight">\(\bar{y}\)</span>. Hoerl y Kennard (1970a, 1970b), Marquardt y Snee (1975), entre otros, recomiendan centrar, ya que <strong>reduce el mal condicionamiento no esencial</strong>, especialmente en modelos polinomiales. Por el contrario, Brown (1977) argumenta que centrar solo afecta el intercepto y no las pendientes, por lo que no debería hacerse.</p>
+<p>Belsley, Kuh y Welsch (1980) <strong>sugieren no centrar</strong> para permitir la evaluación del papel del intercepto en posibles dependencias lineales. Aun así, centrar y escalar permite interpretar los coeficientes como <strong>estimadores estandarizados</strong>, lo cual es intuitivamente útil y reduce la inflación de varianza.</p>
+<blockquote>
+<div><p><strong>Recomendamos centrar y escalar los datos antes de aplicar métodos sesgados.</strong></p>
+</div></blockquote>
+<p>A pesar de las objeciones, los métodos de estimación sesgada son <strong>herramientas útiles y efectivas para enfrentar la multicolinealidad</strong>. Comparan favorablemente con estrategias como la eliminación de variables, que implica usar toda la información en algunas variables y descartar el resto. La eliminación de variables puede entenderse también como una forma de estimación sesgada, ya que induce sesgo al vector de coeficientes.</p>
+<p>En resumen, <strong>no debe aplicarse la regresión ridge de manera mecánica o automática</strong>, sino como resultado de un análisis cuidadoso del modelo y los datos. <strong>Cuando se emplean adecuadamente, los métodos sesgados enriquecen el arsenal metodológico del analista.</strong></p>
+</section>
+</section>
+<section id="aplicacion-de-python-para-regresion-ridge-y-regresion-por-componentes-principales">
+<h2><span class="section-number">7.10. </span>Aplicación de Python para regresión Ridge y regresión por componentes principales<a class="headerlink" href="#aplicacion-de-python-para-regresion-ridge-y-regresion-por-componentes-principales" title="Link to this heading">#</a></h2>
+<p>En esta sección se muestra cómo implementar la <strong>regresión Ridge</strong> y la <strong>regresión por componentes principales (PCR)</strong> utilizando <strong>Python</strong>, tomando como base los datos del experimento con acetileno.</p>
+<p>Primero, los datos se centran y escalan manualmente, tal como se indica en el texto original, y luego se construyen los términos de interacción y los términos cuadráticos puros. El conjunto final de variables se utiliza tanto para Ridge como para PCR.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># Datos originales (respuesta: conversión)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;conv&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">49.0</span><span class="p">,</span> <span class="mf">50.2</span><span class="p">,</span> <span class="mf">50.5</span><span class="p">,</span> <span class="mf">48.5</span><span class="p">,</span> <span class="mf">47.5</span><span class="p">,</span> <span class="mf">44.5</span><span class="p">,</span> <span class="mf">28.0</span><span class="p">,</span> <span class="mf">31.5</span><span class="p">,</span> <span class="mf">34.5</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">,</span> <span class="mf">38.0</span><span class="p">,</span> <span class="mf">38.5</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">29.5</span><span class="p">],</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1300</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">1100</span><span class="p">],</span>
+    <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">,</span> <span class="mf">23.0</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">17.0</span><span class="p">],</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0120</span><span class="p">,</span> <span class="mf">0.0120</span><span class="p">,</span> <span class="mf">0.0115</span><span class="p">,</span> <span class="mf">0.0130</span><span class="p">,</span> <span class="mf">0.0135</span><span class="p">,</span> <span class="mf">0.0120</span><span class="p">,</span> <span class="mf">0.0400</span><span class="p">,</span> <span class="mf">0.0380</span><span class="p">,</span> <span class="mf">0.0320</span><span class="p">,</span> <span class="mf">0.0260</span><span class="p">,</span> <span class="mf">0.0340</span><span class="p">,</span> <span class="mf">0.0410</span><span class="p">,</span> <span class="mf">0.0840</span><span class="p">,</span> <span class="mf">0.0980</span><span class="p">,</span> <span class="mf">0.0920</span><span class="p">,</span> <span class="mf">0.0860</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Centrado y escalado según el texto original</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1212.5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">80.623</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">12.44</span><span class="p">)</span> <span class="o">/</span> <span class="mf">5.662</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.0403</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.03164</span>
+
+<span class="c1"># Generación de términos cuadráticos y de interacción</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;th&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;tc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;hc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;t2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;h2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;c2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># Separación de variables explicativas y respuesta</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;conv&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;conv&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Regresión Ridge</strong></p>
+<p>La regresión Ridge permite reducir la varianza en los coeficientes cuando hay multicolinealidad. A continuación se muestra la implementación para distintos valores de <span class="math notranslate nohighlight">\(k\)</span>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Valores de penalización k (alpha en sklearn)</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.042</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">)</span>
+<span class="n">coefs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Entrenamiento del modelo Ridge para cada valor de k</span>
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">coefs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ridge</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="n">coefs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+
+<span class="c1"># Gráfico de la traza Ridge</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coefs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">coefs</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Coeficientes Ridge&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ridge Trace para los datos de acetileno&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">ridge_final</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.032</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ridge_final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ridge_final</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Regresión por Componentes Principales (PCR)</strong></p>
+<p>La regresión por componentes principales consiste en transformar los predictores a un conjunto ortogonal (componentes principales), y luego ajustar un modelo de regresión lineal sobre los primeros componentes seleccionados.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># Escalamiento estándar antes de aplicar PCA</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Análisis de componentes principales</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Gráfico de varianza explicada acumulada</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Número de componentes principales&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Varianza explicada acumulada&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Varianza explicada por los componentes principales&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Uso de los primeros cinco componentes</span>
+<span class="n">Z5</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Ajuste del modelo PCR</span>
+<span class="n">pcr_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pcr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z5</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Reconstrucción de los coeficientes originales</span>
+<span class="n">coef_pcr</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">pcr_model</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">coef_pcr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="indicator_variables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Variable Indicadoras</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="variable_selection_model_building.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Selección de variables y construcción de modelos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">7.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-de-multicolinealidad">7.2. Fuentes de multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-fuentes-de-multicolinealidad">7.2.1. Principales fuentes de multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efectos-de-la-multicolinealidad">7.3. Efectos de la multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tendencia-a-estimadores-excesivamente-grandes">7.3.1. Tendencia a estimadores excesivamente grandes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impacto-en-la-prediccion">7.3.2. Impacto en la predicción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-acetileno">7.3.3. Ejemplo: Datos de acetileno</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-cuadratico-completo-propuesto">7.3.3.1. Modelo cuadrático completo propuesto:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-minimos-cuadrados">7.3.3.2. Estimación por mínimos cuadrados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-modelo">7.3.3.3. Evaluación del modelo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolacion-y-multicolinealidad">7.3.3.4. Extrapolación y multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examen-de-la-matriz-de-correlacion">7.3.4. Examen de la matriz de correlación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-analisis-par-a-par">7.3.4.1. Limitaciones del análisis par a par</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-sistema-de-autovalores-de-x-x">7.4. Análisis del Sistema de Autovalores de <span class="math notranslate nohighlight">\(X'X\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.4.1. Ejemplo: Datos de Acetileno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-autovectores">7.4.2. Interpretación de los Autovectores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion-en-valores-singulares-svd">7.4.3. Descomposición en Valores Singulares (SVD)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proporciones-de-descomposicion-de-varianza">7.4.4. Proporciones de Descomposición de Varianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-proporciones-de-descomposicion-de-varianza">7.4.5. Tabla: Proporciones de Descomposición de Varianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-9-7-proporciones-de-descomposicion-de-varianza-para-los-datos-de-webster-gunst-y-mason">7.4.6. Tabla 9.7. Proporciones de descomposición de varianza para los datos de Webster, Gunst y Mason</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-diagnosticos">7.4.7. Otros diagnósticos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-generar-diagnosticos-de-multicolinealidad">7.4.8. Código en Python para generar diagnósticos de multicolinealidad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-abordar-la-multicolinealidad">7.5. Métodos para abordar la multicolinealidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recoleccion-de-datos-adicionales">7.5.1. Recolección de datos adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reespecificacion-del-modelo">7.5.2. Reespecificación del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-ridge">7.5.3. Regresión Ridge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-de-acetileno">7.6. Ejemplo: Los datos de acetileno</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-9-8-estimaciones-ridge-de-los-coeficientes-para-varios-valores-de-k">7.6.1. Tabla 9.8: Estimaciones ridge de los coeficientes para varios valores de <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algunas-otras-propiedades-de-la-regresion-ridge">7.6.2. 9.5.4 Algunas otras propiedades de la regresión ridge</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-otros-estimadores">7.6.3. Relación con otros estimadores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-para-la-eleccion-del-parametro-k">7.7. Métodos para la elección del parámetro <span class="math notranslate nohighlight">\(k\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-componentes-principales-pcr">7.8. Regresión por Componentes Principales (PCR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimador-por-componentes-principales">7.9. Estimador por Componentes Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-regresion-por-componentes-principales-para-los-datos-de-acetileno">7.9.1. Ejemplo: Regresión por Componentes Principales para los datos de acetileno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-y-evaluacion-de-estimadores-sesgados">7.9.2. 9.5.5 Comparación y evaluación de estimadores sesgados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-python-para-regresion-ridge-y-regresion-por-componentes-principales">7.10. Aplicación de Python para regresión Ridge y regresión por componentes principales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

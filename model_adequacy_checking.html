@@ -1,0 +1,1032 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Comprobación de Adecuación del Modelo &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'model_adequacy_checking';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Diagnóstico de Apalancamiento e Influencia" href="diagnostic_leverage_influence.html" />
+    <link rel="prev" title="3. Regresión Lineal Múltiple" href="multiple_linear_regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostic_leverage_influence.html">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indicator_variables.html">6. Variable Indicadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multicollinearity.html">7. Multicolinealidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/model_adequacy_checking.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comprobación de Adecuación del Modelo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">4.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-residuos">4.2. Análisis de Residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-residuos">4.2.1. Definición de residuos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-escalamiento-de-residuos">4.2.2. Métodos de escalamiento de residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-estandarizados">4.2.2.1. Residuos estandarizados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-studentizados">4.2.2.2. Residuos studentizados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-de-regresion-lineal-simple">4.2.2.3. Caso de regresión lineal simple</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-press-y-r-student">4.3. Residuos PRESS y R-Student</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-student">4.3.1. R-Student</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">4.3.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-residuos">4.3.3. Gráficos de Residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-probabilidad-normal">4.3.3.1. Gráfico de Probabilidad Normal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.4. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-contra-valores-ajustados-hat-y-i">4.5. Gráfico de Residuos contra Valores Ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.6. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-contra-regresores">4.7. Gráfico de Residuos contra Regresores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.8. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-en-secuencia-temporal">4.9. Gráfico de Residuos en Secuencia Temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-regresion-parcial-y-residuos-parciales">4.10. Gráficos de Regresión Parcial y Residuos Parciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.11. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-sobre-los-graficos-de-regresion-parcial">4.12. Comentarios sobre los Gráficos de Regresión Parcial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-regresion-parcial-y-de-residuales-parciales">4.12.1. Gráficos de regresión parcial y de residuales parciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-residuales-parciales">4.12.2. Gráficos de residuales parciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-adicionales">4.12.3. Consideraciones adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-y-tratamiento-de-valores-atipicos">4.12.4. Detección y Tratamiento de Valores Atípicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohete">4.12.5. Ejemplo: Datos del Propulsor de Cohete</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="comprobacion-de-adecuacion-del-modelo">
+<h1><span class="section-number">4. </span>Comprobación de Adecuación del Modelo<a class="headerlink" href="#comprobacion-de-adecuacion-del-modelo" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2><span class="section-number">4.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p><strong>Los modelos de regresión se basan en un conjunto de supuestos fundamentales</strong>, que hasta ahora han sido los siguientes:</p>
+<ul class="simple">
+<li><p>La relación entre la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y los regresores es lineal, al menos de forma aproximada.</p></li>
+<li><p>El término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> tiene media cero.</p></li>
+<li><p>La varianza del error <span class="math notranslate nohighlight">\(\varepsilon\)</span> es constante e igual a <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
+<li><p>Los errores son no correlacionados.</p></li>
+<li><p>Los errores se distribuyen normalmente.</p></li>
+</ul>
+<p><strong>Los supuestos 4 y 5 implican que los errores son variables aleatorias independientes.</strong> El supuesto 5 es esencial para realizar pruebas de hipótesis e intervalos de confianza.</p>
+<p><strong>Siempre se debe poner en duda la validez de estos supuestos y realizar análisis para evaluar la adecuación del modelo asumido.</strong> Las violaciones importantes de estos supuestos pueden generar modelos inestables, en el sentido de que otra muestra puede producir conclusiones completamente diferentes.</p>
+<p><strong>Estas desviaciones no pueden detectarse a partir de estadísticas de resumen estándar como <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(F\)</span> o <span class="math notranslate nohighlight">\(R^2\)</span>, ya que son propiedades globales del modelo.</strong></p>
+<p><strong>Este capítulo introduce métodos para diagnosticar violaciones de los supuestos básicos, principalmente mediante el análisis de los residuos.</strong> El tratamiento de modelos inadecuados y diagnósticos adicionales más sofisticados se abordará en los Capítulos 5 y 6.</p>
+</section>
+<section id="analisis-de-residuos">
+<h2><span class="section-number">4.2. </span>Análisis de Residuos<a class="headerlink" href="#analisis-de-residuos" title="Link to this heading">#</a></h2>
+<section id="definicion-de-residuos">
+<h3><span class="section-number">4.2.1. </span>Definición de residuos<a class="headerlink" href="#definicion-de-residuos" title="Link to this heading">#</a></h3>
+<p>Los residuos se definen como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-def-residuo">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-def-residuo" title="Link to this equation">#</a></span>\[
+e_i = y_i - \hat{y}_i, \quad i = 1, 2, \dots, n
+\]</div>
+<p><strong>El residuo representa la diferencia entre el dato observado y el valor ajustado, es decir, la parte de la variabilidad no explicada por el modelo.</strong></p>
+<p>También se puede considerar al residuo como el valor observado del error del modelo. <strong>Por tanto, cualquier desviación de los supuestos sobre los errores debería manifestarse en los residuos.</strong></p>
+<p>Los residuos presentan varias propiedades importantes:</p>
+<ul class="simple">
+<li><p>Tienen media cero.</p></li>
+<li><p>Su varianza media aproximada se estima como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{MS}_{\text{Res}} = \frac{\sum_{i=1}^n e_i^2}{n - p}
+\]</div>
+<p><strong>Los residuos no son independientes, ya que poseen solo <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad. Sin embargo, esta dependencia tiene poco efecto si <span class="math notranslate nohighlight">\(n\)</span> es grande en comparación con <span class="math notranslate nohighlight">\(p\)</span>.</strong></p>
+</section>
+<section id="metodos-de-escalamiento-de-residuos">
+<h3><span class="section-number">4.2.2. </span>Métodos de escalamiento de residuos<a class="headerlink" href="#metodos-de-escalamiento-de-residuos" title="Link to this heading">#</a></h3>
+<p><strong>Para detectar observaciones atípicas, es útil trabajar con residuos escalados.</strong> Se presentan cuatro métodos populares de escalamiento.</p>
+<section id="residuos-estandarizados">
+<h4><span class="section-number">4.2.2.1. </span>Residuos estandarizados<a class="headerlink" href="#residuos-estandarizados" title="Link to this heading">#</a></h4>
+<p>Dado que la varianza media aproximada es <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span>, los residuos estandarizados se definen como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-residuo-estandarizado">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-residuo-estandarizado" title="Link to this equation">#</a></span>\[
+d_i = \frac{e_i}{\sqrt{\text{MS}_{\text{Res}}}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p><strong>Estos residuos tienen media cero y varianza aproximadamente igual a uno.</strong> Un valor <span class="math notranslate nohighlight">\(|d_i| &gt; 3\)</span> puede indicar una observación atípica.</p>
+</section>
+<section id="residuos-studentizados">
+<h4><span class="section-number">4.2.2.2. </span>Residuos studentizados<a class="headerlink" href="#residuos-studentizados" title="Link to this heading">#</a></h4>
+<p>El uso de <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span> para estimar la varianza de <span class="math notranslate nohighlight">\(e_i\)</span> es solo una aproximación. <strong>Una mejor estrategia consiste en dividir <span class="math notranslate nohighlight">\(e_i\)</span> por su desviación estándar exacta.</strong></p>
+<p>Recordando que el vector de residuos es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-vector-residuos">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-vector-residuos" title="Link to this equation">#</a></span>\[
+\mathbf{e} = (\mathbf{I} - \mathbf{H})\mathbf{y}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{H} = \mathbf{X}(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\)</span> es la matriz sombrero. Esta matriz es simétrica e idempotente, por lo que <span class="math notranslate nohighlight">\(\mathbf{I} - \mathbf{H}\)</span> también lo es.</p>
+<p>Sustituyendo <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\)</span> se obtiene:</p>
+<div class="math notranslate nohighlight" id="equation-eq-residuos-transformacion">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-residuos-transformacion" title="Link to this equation">#</a></span>\[
+\mathbf{e} = (\mathbf{I} - \mathbf{H}) (\mathbf{X}\mathbf{b} + \boldsymbol{\varepsilon}) = (\mathbf{I} - \mathbf{H}) \boldsymbol{\varepsilon}
+\]</div>
+<p>Así, los residuos son una transformación lineal de los errores. Su matriz de varianzas-covarianzas es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-varianza-residuos">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-eq-varianza-residuos" title="Link to this equation">#</a></span>\[
+\text{Var}(\mathbf{e}) = \sigma^2 (\mathbf{I} - \mathbf{H})
+\]</div>
+<p>La varianza del residuo <span class="math notranslate nohighlight">\(e_i\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-varianza-residuo-i">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-eq-varianza-residuo-i" title="Link to this equation">#</a></span>\[
+\text{Var}(e_i) = \sigma^2 (1 - h_{ii})
+\]</div>
+<p>y la covarianza entre residuos <span class="math notranslate nohighlight">\(e_i\)</span> y <span class="math notranslate nohighlight">\(e_j\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-eq-covarianza-residuos">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-eq-covarianza-residuos" title="Link to this equation">#</a></span>\[
+\text{Cov}(e_i, e_j) = -\sigma^2 h_{ij}
+\]</div>
+<p><strong>Como <span class="math notranslate nohighlight">\(0 \leq h_{ii} \leq 1\)</span>, usar <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span> sobrestima la varianza de <span class="math notranslate nohighlight">\(e_i\)</span>. Además, <span class="math notranslate nohighlight">\(h_{ii}\)</span> mide qué tan alejado está el punto <span class="math notranslate nohighlight">\(x_i\)</span> del centro de los regresores.</strong></p>
+<p>Una forma lógica de proceder es usar los <strong>residuos studentizados</strong>, definidos como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-residuo-studentizado">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-eq-residuo-studentizado" title="Link to this equation">#</a></span>\[
+r_i = \frac{e_i}{\sqrt{\text{MS}_{\text{Res}}(1 - h_{ii})}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p><strong>Estos residuos tienen varianza constante igual a 1, independientemente de la ubicación de <span class="math notranslate nohighlight">\(x_i\)</span>, siempre que el modelo sea correcto.</strong></p>
+</section>
+<section id="caso-de-regresion-lineal-simple">
+<h4><span class="section-number">4.2.2.3. </span>Caso de regresión lineal simple<a class="headerlink" href="#caso-de-regresion-lineal-simple" title="Link to this heading">#</a></h4>
+<p>En modelos con un solo regresor, los residuos studentizados se expresan como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-residuo-studentizado-simple">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-eq-residuo-studentizado-simple" title="Link to this equation">#</a></span>\[
+r_i = \frac{e_i}{\sqrt{\text{MS}_{\text{Res}} \left[1 - \left(\frac{1}{n} + \frac{(x_i - \bar{x})^2}{S_{xx}}\right)\right]}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p><strong>Los residuos tienden a ser pequeños en los extremos del dominio de <span class="math notranslate nohighlight">\(x\)</span> y más grandes cerca del centro.</strong></p>
+<p><strong>Para muestras grandes, la diferencia entre residuos estandarizados y studentizados es pequeña.</strong></p>
+</section>
+</section>
+</section>
+<section id="residuos-press-y-r-student">
+<h2><span class="section-number">4.3. </span>Residuos PRESS y R-Student<a class="headerlink" href="#residuos-press-y-r-student" title="Link to this heading">#</a></h2>
+<p><strong>Los residuos estandarizados y studentizados son herramientas eficaces para detectar valores atípicos.</strong> Otra estrategia consiste en analizar la cantidad <span class="math notranslate nohighlight">\(y_i - \hat{y}_{(i)}\)</span>, donde <span class="math notranslate nohighlight">\(\hat{y}_{(i)}\)</span> representa el valor ajustado para la <span class="math notranslate nohighlight">\(i\)</span>-‘esima observación, calculado excluyendo dicha observación del modelo.</p>
+<p><strong>La motivación central es que si la observación <span class="math notranslate nohighlight">\(i\)</span> es realmente atípica, su influencia en el modelo podría hacer que <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> se acerque demasiado a <span class="math notranslate nohighlight">\(y_i\)</span>, produciendo un residuo ordinario <span class="math notranslate nohighlight">\(e_i\)</span> pequeño, ocultando así el valor atípico.</strong> Sin embargo, al eliminar dicha observación, el valor ajustado <span class="math notranslate nohighlight">\(\hat{y}_{(i)}\)</span> no estará influenciado por <span class="math notranslate nohighlight">\(y_i\)</span>, haciendo que el residuo resultante revele mejor su carácter anómalo.</p>
+<p><strong>Al eliminar la observación <span class="math notranslate nohighlight">\(i\)</span> y ajustar el modelo con las <span class="math notranslate nohighlight">\(n-1\)</span> restantes, se calcula el residuo PRESS:</strong></p>
+<div class="math notranslate nohighlight" id="equation-press-residual">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-press-residual" title="Link to this equation">#</a></span>\[
+e_{(i)} = y_i - \hat{y}_{(i)}
+\]</div>
+<ul class="simple">
+<li><p>Este procedimiento se repite para <span class="math notranslate nohighlight">\(i = 1, 2, \dots, n\)</span>.</p></li>
+<li><p>A estos residuos se les denomina <em>residuos PRESS</em>, por su uso en el <em>error cuadrático de predicción</em> (ver Sección 4.3).</p></li>
+</ul>
+<p><strong>A pesar de que calcular <span class="math notranslate nohighlight">\(n\)</span> regresiones podría parecer necesario, los residuos PRESS pueden obtenerse a partir del ajuste completo a las <span class="math notranslate nohighlight">\(n\)</span> observaciones:</strong></p>
+<div class="math notranslate nohighlight" id="equation-press-formula">
+<span class="eqno">(4.11)<a class="headerlink" href="#equation-press-formula" title="Link to this equation">#</a></span>\[
+e_{(i)} = \frac{e_i}{1 - h_{ii}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e_i\)</span> es el residuo ordinario.</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{ii}\)</span> es el <span class="math notranslate nohighlight">\(i\)</span>-‘esimo elemento diagonal de la matriz sombrero <span class="math notranslate nohighlight">\(H\)</span>.</p></li>
+</ul>
+<p><strong>Los residuos PRESS se magnifican cuando <span class="math notranslate nohighlight">\(h_{ii}\)</span> es grande, lo que indica alta influencia.</strong> Una diferencia marcada entre <span class="math notranslate nohighlight">\(e_i\)</span> y <span class="math notranslate nohighlight">\(e_{(i)}\)</span> sugiere que la observación tiene gran impacto en la calidad de predicción.</p>
+<p><strong>La varianza del residuo PRESS se expresa como:</strong></p>
+<div class="math notranslate nohighlight" id="equation-press-variance">
+<span class="eqno">(4.12)<a class="headerlink" href="#equation-press-variance" title="Link to this equation">#</a></span>\[
+\operatorname{Var}(e_{(i)}) = \frac{\sigma^2}{1 - h_{ii}}
+\]</div>
+<p><strong>De esta forma, un residuo PRESS estandarizado es equivalente al residuo studentizado:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{e_{(i)}}{\sqrt{\operatorname{Var}(e_{(i)})}} = \frac{e_i / (1 - h_{ii})}{\sqrt{\sigma^2 / (1 - h_{ii})}} = \frac{e_i}{\sqrt{\sigma^2 (1 - h_{ii})}}
+\]</div>
+<p><strong>Cuando se estima <span class="math notranslate nohighlight">\(\sigma^2\)</span> con <span class="math notranslate nohighlight">\(\text{MSRes}\)</span>, esta expresión coincide con la del residuo studentizado.</strong></p>
+<section id="r-student">
+<h3><span class="section-number">4.3.1. </span>R-Student<a class="headerlink" href="#r-student" title="Link to this heading">#</a></h3>
+<p><strong>El residuo studentizado <span class="math notranslate nohighlight">\(r_i\)</span> se considera un indicador de valores atípicos.</strong> Normalmente se usa <span class="math notranslate nohighlight">\(\text{MSRes}\)</span> como estimador de <span class="math notranslate nohighlight">\(\sigma^2\)</span>, lo cual constituye un <em>escalamiento interno</em>.</p>
+<p><strong>Una alternativa es usar una estimación externa de <span class="math notranslate nohighlight">\(\sigma^2\)</span>, eliminando la <span class="math notranslate nohighlight">\(i\)</span>-‘esima observación.</strong> Sea <span class="math notranslate nohighlight">\(S^2_{(i)}\)</span> dicha estimación. Entonces (ver Apéndice C.8 en <span id="id1">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>):</p>
+<div class="math notranslate nohighlight" id="equation-s2-leaveoneout">
+<span class="eqno">(4.13)<a class="headerlink" href="#equation-s2-leaveoneout" title="Link to this equation">#</a></span>\[
+S^2_{(i)} = \frac{(n - p)\, \text{MSRes} - \dfrac{e_i^2}{1 - h_{ii}}}{n - p - 1}
+\]</div>
+<p><strong>El residuo studentizado externo, denominado <em>R-student</em>, es:</strong></p>
+<div class="math notranslate nohighlight" id="equation-r-student">
+<span class="eqno">(4.14)<a class="headerlink" href="#equation-r-student" title="Link to this equation">#</a></span>\[
+t_i = \frac{e_i}{\sqrt{S^2_{(i)} (1 - h_{ii})}}, \quad i = 1, 2, \dots, n
+\]</div>
+<ul class="simple">
+<li><p>En muchos casos, <span class="math notranslate nohighlight">\(t_i\)</span> se asemeja a <span class="math notranslate nohighlight">\(r_i\)</span>.</p></li>
+<li><p><strong>Si la observación <span class="math notranslate nohighlight">\(i\)</span> es influyente, <span class="math notranslate nohighlight">\(S^2_{(i)}\)</span> puede diferir sustancialmente de <span class="math notranslate nohighlight">\(\text{MSRes}\)</span>, haciendo que <span class="math notranslate nohighlight">\(t_i\)</span> sea más sensible.</strong></p></li>
+</ul>
+<p><strong>Bajo los supuestos del modelo lineal, <span class="math notranslate nohighlight">\(t_i\)</span> sigue una distribución <span class="math notranslate nohighlight">\(t_{n-p-1}\)</span>.</strong> El Apéndice C.9 en <span id="id2">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> presenta un procedimiento de prueba formal para identificar valores atípicos con <span class="math notranslate nohighlight">\(R\)</span>-student.</p>
+<ul class="simple">
+<li><p>Puede aplicarse un enfoque Bonferroni: comparar <span class="math notranslate nohighlight">\(|t_i|\)</span> con <span class="math notranslate nohighlight">\(t_{(\alpha/2n), n-p-1}\)</span>.</p></li>
+<li><p>Sin embargo, <strong>una visión diagnóstica cualitativa suele ser suficiente.</strong></p></li>
+</ul>
+<p><strong>La detección de valores atípicos debe complementarse con el análisis de observaciones influyentes (ver Capítulo 6).</strong></p>
+</section>
+<section id="ejemplo-datos-de-tiempo-de-entrega">
+<h3><span class="section-number">4.3.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#ejemplo-datos-de-tiempo-de-entrega" title="Link to this heading">#</a></h3>
+<p><strong>La Tabla 4.1 presenta los residuos escalados discutidos en esta sección, usando el modelo aplicado a los datos de entrega de bebidas gaseosas desarrollado en el Ejemplo 3.1.</strong></p>
+<ul class="simple">
+<li><p>Al examinar la columna 1 (residuos ordinarios), notamos que uno de ellos, <span class="math notranslate nohighlight">\(e_9 = 7.4197\)</span>, resulta sospechosamente alto.</p></li>
+<li><p>La columna 2 muestra que el residuo estandarizado correspondiente es <span class="math notranslate nohighlight">\(d_9 = e_9 / MSRes = 7.4197 / 10.6239 = 2.2763\)</span>. Todos los demás valores estandarizados están dentro del rango <span class="math notranslate nohighlight">\(\pm 2\)</span>.</p></li>
+<li><p>La columna 3 presenta los residuos studentizados. En el punto 9 se tiene:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-studentized-residual-example">
+<span class="eqno">(4.15)<a class="headerlink" href="#equation-studentized-residual-example" title="Link to this equation">#</a></span>\[
+r_9 = \frac{e_9}{\sqrt{MSRes(1 - h_{9,9})}} = \frac{7.4197}{\sqrt{10.6239(1 - 0.49829)}} = 3.2138
+\]</div>
+<p><strong>Este valor es significativamente mayor que su contraparte estandarizada.</strong></p>
+<ul class="simple">
+<li><p>Como se indicó en el Ejemplo 3.13, el punto 9 tiene los valores más altos para <span class="math notranslate nohighlight">\(x_1\)</span> (30 cajas) y <span class="math notranslate nohighlight">\(x_2\)</span> (1460 pies). Al considerar su ubicación extrema en el espacio de los regresores, concluimos que el modelo no ajusta bien este punto.</p></li>
+<li><p>La columna 4 contiene los elementos diagonales de la matriz sombrero, utilizados extensamente para escalar residuos.</p></li>
+<li><p>La columna 5 presenta los residuos PRESS. Los residuos para los puntos 9 y 22 son notablemente mayores que los residuos ordinarios, lo cual sugiere que el modelo se ajusta razonablemente a estos puntos, pero tiene bajo poder predictivo sin ellos.</p></li>
+<li><p>Finalmente, la columna 6 muestra los valores del R-student. Solo <span class="math notranslate nohighlight">\(t_9\)</span> es excepcionalmente alto.</p></li>
+</ul>
+<p><strong>El valor <span class="math notranslate nohighlight">\(t_9\)</span> supera a <span class="math notranslate nohighlight">\(r_9\)</span>, indicando que al excluir la observación 9, la varianza estimada <span class="math notranslate nohighlight">\(S^{(2)}_9\)</span> es menor que <span class="math notranslate nohighlight">\(MSRes\)</span>, revelando que esta corrida es influyente.</strong></p>
+<p>El valor <span class="math notranslate nohighlight">\(S^{(2)}_9\)</span> se calcula según:</p>
+<div class="math notranslate nohighlight" id="equation-example-s2-value">
+<span class="eqno">(4.16)<a class="headerlink" href="#equation-example-s2-value" title="Link to this equation">#</a></span>\[
+S^{(2)}_9 = \frac{(n - p) MSRes - \frac{e_9^2}{1 - h_{9,9}}}{n - p - 1} = \frac{(22)(10.6239) - \frac{(7.4197)^2}{1 - 0.49829}}{21} = 5.9046
+\]</div>
+</section>
+<section id="graficos-de-residuos">
+<h3><span class="section-number">4.3.3. </span>Gráficos de Residuos<a class="headerlink" href="#graficos-de-residuos" title="Link to this heading">#</a></h3>
+<p><strong>El análisis gráfico de los residuos es una técnica muy eficaz para evaluar la validez del modelo de regresión y verificar los supuestos del mismo.</strong></p>
+<ul class="simple">
+<li><p>Estos gráficos suelen generarse mediante herramientas de regresión en Python, y deben ser examinados de forma rutinaria en cualquier estudio de regresión.</p></li>
+<li><p>Se suele graficar el residuo studentizado externo debido a que presenta varianza constante.</p></li>
+</ul>
+<section id="grafico-de-probabilidad-normal">
+<h4><span class="section-number">4.3.3.1. </span>Gráfico de Probabilidad Normal<a class="headerlink" href="#grafico-de-probabilidad-normal" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Pequeñas desviaciones de la normalidad no afectan seriamente el modelo. Sin embargo, <strong>violaciones sustanciales pueden comprometer los resultados de pruebas <span class="math notranslate nohighlight">\(t\)</span> o <span class="math notranslate nohighlight">\(F\)</span> y los intervalos de confianza y predicción</strong>.</p></li>
+<li><p>Si los errores provienen de distribuciones con colas pesadas, el ajuste por mínimos cuadrados puede ser sensible a subconjuntos pequeños de datos.</p></li>
+<li><p>En tales casos, podrían considerarse métodos robustos de estimación (ver Sección 15.1).</p></li>
+</ul>
+<p><strong>Una forma simple de evaluar la normalidad es el gráfico de probabilidad normal de los residuos.</strong></p>
+<ul class="simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(t_{[1]} &lt; t_{[2]} &lt; \dots &lt; t_{[n]}\)</span> los residuos studentizados externos ordenados.</p></li>
+<li><p>Graficamos <span class="math notranslate nohighlight">\(t_{[i]}\)</span> contra la probabilidad acumulada <span class="math notranslate nohighlight">\(P_i = \frac{i - 0.5}{n}\)</span>.</p></li>
+<li><p>Los puntos deberían alinearse aproximadamente sobre una recta.</p></li>
+<li><p>La línea recta se determina visualmente, prestando atención a los valores centrales (probabilidades acumuladas 0.33 y 0.67).</p></li>
+<li><p>Desviaciones marcadas indican no normalidad.</p></li>
+</ul>
+<p><strong>Otra variante del gráfico consiste en representar <span class="math notranslate nohighlight">\(t_{[i]}\)</span> contra el valor normal esperado <span class="math notranslate nohighlight">\(\Phi^{-1}\left(\frac{i - 0.5}{n}\right)\)</span>, donde <span class="math notranslate nohighlight">\(\Phi\)</span> es la función de distribución acumulada estándar normal.</strong></p>
+<ul class="simple">
+<li><p>Esta idea se basa en que <span class="math notranslate nohighlight">\(\mathbb{E}(t_{[i]}) \approx \Phi^{-1}\left(\frac{i - 0.5}{n}\right)\)</span>.</p></li>
+<li><p>La Figura 4.3a ilustra un gráfico idealizado con puntos alineados.</p></li>
+<li><p>Paneles b y c muestran colas delgadas y pesadas, respectivamente.</p></li>
+<li><p>Paneles d y e reflejan sesgo positivo y negativo.</p></li>
+</ul>
+<p><strong>Para interpretar estos gráficos, se necesita experiencia.</strong></p>
+<ul class="simple">
+<li><p>Daniel y Wood (1980) ofrecen gráficos de probabilidad normal para tamaños muestrales de 8 a 384.</p></li>
+<li><p>Tamaños pequeños (<span class="math notranslate nohighlight">\(n \leq 16\)</span>) suelen producir gráficos no lineales.</p></li>
+<li><p>Con muestras más grandes (<span class="math notranslate nohighlight">\(n \geq 32\)</span>), los gráficos son más estables y confiables.</p></li>
+</ul>
+<p><strong>Andrews (1979) y Gnanadesikan (1977) advierten que los residuos, al ser combinaciones lineales de los errores, pueden enmascarar la no normalidad.</strong></p>
+<ul class="simple">
+<li><p>Ajustar los parámetros puede ocultar evidencia de no normalidad en los residuos.</p></li>
+<li><p>Un defecto común en estos gráficos es la aparición de uno o dos residuos grandes, lo cual puede indicar valores atípicos (ver Sección 4.4).</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.4. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>La Figura 4.4 presenta un gráfico de probabilidad normal de los residuos estudiantizados externamente correspondientes al modelo de regresión para los datos de tiempo de entrega del Ejemplo 3.1. Los residuos utilizados se muestran en las columnas 1 y 2 de la Tabla 4.1.</p>
+<p><strong>Los residuos no se alinean exactamente sobre una línea recta, lo que sugiere posibles problemas con la suposición de normalidad o la presencia de uno o más valores atípicos.</strong> Según el Ejemplo 4.1, el residuo estudiantizado de la observación 9 es moderadamente alto (<span class="math notranslate nohighlight">\(r_9 = 3.2138\)</span>), al igual que el residuo R-student (<span class="math notranslate nohighlight">\(t_9 = 4.3108\)</span>). Sin embargo, <strong>no se identifica un problema severo en los datos de tiempo de entrega.</strong></p>
+</section>
+<section id="grafico-de-residuos-contra-valores-ajustados-hat-y-i">
+<h2><span class="section-number">4.5. </span>Gráfico de Residuos contra Valores Ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span><a class="headerlink" href="#grafico-de-residuos-contra-valores-ajustados-hat-y-i" title="Link to this heading">#</a></h2>
+<p>Un gráfico de los residuos estudiantizados externamente <span class="math notranslate nohighlight">\(t_i\)</span> frente a los valores ajustados correspondientes <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> es útil para detectar diversos tipos comunes de inadecuaciones del modelo.</p>
+<ul class="simple">
+<li><p><strong>Si el patrón observado es una banda horizontal (como en la Figura 4.5a), se concluye que no hay deficiencias estructurales en el modelo.</strong></p></li>
+<li><p>Un patrón con forma de embudo (como en la Figura 4.5b) sugiere que la varianza del error no es constante. Este puede crecer o decrecer en función de <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>.</p></li>
+<li><p>El patrón de doble curva (Figura 4.5c) se observa comúnmente cuando <span class="math notranslate nohighlight">\(y\)</span> representa proporciones entre 0 y 1.</p></li>
+<li><p>Una forma curvilínea (Figura 4.5d) indica <strong>posible no linealidad</strong>, lo que podría requerir la inclusión de términos cuadráticos o transformaciones.</p></li>
+</ul>
+<p><strong>Generalmente, se prefiere transformar la variable respuesta para estabilizar la varianza.</strong> Además, residuos grandes en los extremos de <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> pueden indicar heterocedasticidad o falta de linealidad.</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.6. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>La Figura 4.6 muestra el gráfico de los residuos estudiantizados externamente frente a los valores ajustados del modelo. <strong>No se observa ningún patrón inusual significativo, aunque el residuo <span class="math notranslate nohighlight">\(t_9\)</span> aparece de forma destacada.</strong> Se identifica una leve tendencia del modelo a subestimar los tiempos cortos y sobreestimar los largos.</p>
+</section>
+<section id="grafico-de-residuos-contra-regresores">
+<h2><span class="section-number">4.7. </span>Gráfico de Residuos contra Regresores<a class="headerlink" href="#grafico-de-residuos-contra-regresores" title="Link to this heading">#</a></h2>
+<p>La representación gráfica de los residuos frente a los valores de los regresores individuales también resulta útil:</p>
+<ul class="simple">
+<li><p>La escala horizontal corresponde al regresor <span class="math notranslate nohighlight">\(x_{ij}\)</span>.</p></li>
+<li><p><strong>Una banda horizontal sin estructura definida sugiere un modelo bien especificado.</strong></p></li>
+<li><p>Patrones en forma de embudo o doble curva indican varianza no constante.</p></li>
+<li><p><strong>Una banda curva indica una relación no lineal entre <span class="math notranslate nohighlight">\(y\)</span> y el regresor <span class="math notranslate nohighlight">\(x_j\)</span></strong>, lo cual puede resolverse mediante términos de orden superior o transformaciones.</p></li>
+</ul>
+<p><strong>En regresión lineal simple, no es necesario graficar tanto contra <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> como contra <span class="math notranslate nohighlight">\(x_i\)</span>, ya que los valores ajustados son combinaciones lineales de los regresores.</strong></p>
+</section>
+<section id="id5">
+<h2><span class="section-number">4.8. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>La Figura 4.7 muestra los residuos estudiantizados <span class="math notranslate nohighlight">\(t_i\)</span> frente a los dos regresores del modelo. El panel (a) presenta residuos versus número de casos, mientras que el panel (b) los muestra frente a la distancia. <strong>No se detectan indicios claros de especificación incorrecta o varianza desigual</strong>, aunque el residuo asociado a la observación 9 sigue siendo notorio.</p>
+<p><strong>También resulta útil graficar residuos contra variables regresoras que aún no se han incluido en el modelo.</strong> Cualquier estructura identificable en dicho gráfico sugiere que incorporar esa variable podría mejorar el modelo.</p>
+</section>
+<section id="grafico-de-residuos-en-secuencia-temporal">
+<h2><span class="section-number">4.9. </span>Gráfico de Residuos en Secuencia Temporal<a class="headerlink" href="#grafico-de-residuos-en-secuencia-temporal" title="Link to this heading">#</a></h2>
+<p>Cuando se conoce el orden temporal de los datos, es recomendable graficar los residuos según la secuencia de recolección.</p>
+<ul class="simple">
+<li><p>Idealmente, este gráfico debe formar una banda horizontal similar a la Figura 4.5a.</p></li>
+<li><p>Si se observa un patrón como en las Figuras 4.5b–d, puede haber variaciones de varianza en el tiempo o efectos lineales o cuadráticos no modelados.</p></li>
+<li><p><strong>Una correlación entre errores de distintos tiempos se denomina autocorrelación.</strong> Esta puede detectarse mediante gráficos como los de las Figuras 4.8a (autocorrelación positiva) y 4.8b (negativa).</p></li>
+<li><p>La autocorrelación viola los supuestos fundamentales del modelo de regresión.</p></li>
+</ul>
+</section>
+<section id="graficos-de-regresion-parcial-y-residuos-parciales">
+<h2><span class="section-number">4.10. </span>Gráficos de Regresión Parcial y Residuos Parciales<a class="headerlink" href="#graficos-de-regresion-parcial-y-residuos-parciales" title="Link to this heading">#</a></h2>
+<p><strong>Los gráficos de regresión parcial son herramientas útiles para examinar el efecto marginal de un regresor dado que los demás regresores ya están en el modelo.</strong> También se les conoce como gráficos de variable añadida o ajustada.</p>
+<p>Supongamos el modelo de regresión lineal múltiple de primer orden:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>Para analizar el efecto marginal de <span class="math notranslate nohighlight">\(x_1\)</span>:</p>
+<ul class="simple">
+<li><p>Regresamos <span class="math notranslate nohighlight">\(y\)</span> sobre <span class="math notranslate nohighlight">\(x_2\)</span> y obtenemos los residuos:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-partial-residual-yx2">
+<span class="eqno">(4.17)<a class="headerlink" href="#equation-partial-residual-yx2" title="Link to this equation">#</a></span>\[
+\hat{y}_i(x_2) = \hat{\theta}_0 + \hat{\theta}_1 x_{i2}, \quad e_i(y|x_2) = y_i - \hat{y}_i(x_2)
+\]</div>
+<ul class="simple">
+<li><p>Luego, regresamos <span class="math notranslate nohighlight">\(x_1\)</span> sobre <span class="math notranslate nohighlight">\(x_2\)</span> y obtenemos:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-partial-residual-x1x2">
+<span class="eqno">(4.18)<a class="headerlink" href="#equation-partial-residual-x1x2" title="Link to this equation">#</a></span>\[
+\hat{x}_{i1}(x_2) = \hat{\alpha}_0 + \hat{\alpha}_1 x_{i2}, \quad e_i(x_1|x_2) = x_{i1} - \hat{x}_{i1}(x_2)
+\]</div>
+<p>El gráfico de regresión parcial de <span class="math notranslate nohighlight">\(x_1\)</span> se genera al graficar <span class="math notranslate nohighlight">\(e_i(y|x_2)\)</span> contra <span class="math notranslate nohighlight">\(e_i(x_1|x_2)\)</span>. <strong>Si <span class="math notranslate nohighlight">\(x_1\)</span> tiene un efecto lineal, estos puntos se alinearán en una recta con pendiente igual a <span class="math notranslate nohighlight">\(\beta_1\)</span>.</strong></p>
+</section>
+<section id="id6">
+<h2><span class="section-number">4.11. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>La Figura 4.9 presenta los gráficos de regresión parcial del problema de entrega. El panel (a) corresponde a <span class="math notranslate nohighlight">\(x_1\)</span> (casos) y el panel (b) a <span class="math notranslate nohighlight">\(x_2\)</span> (distancia). <strong>En ambos se observa una relación lineal clara</strong>, aunque el punto 9 se desvía ligeramente de la tendencia general.</p>
+</section>
+<section id="comentarios-sobre-los-graficos-de-regresion-parcial">
+<h2><span class="section-number">4.12. </span>Comentarios sobre los Gráficos de Regresión Parcial<a class="headerlink" href="#comentarios-sobre-los-graficos-de-regresion-parcial" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Estos gráficos deben usarse con precaución, ya que solo sugieren relaciones potenciales entre regresores y respuesta.</strong></p></li>
+<li><p><strong>No detectan interacciones entre regresores.</strong></p></li>
+<li><p><strong>La multicolinealidad puede distorsionar su interpretación.</strong></p></li>
+</ul>
+<p>En términos matriciales, el gráfico de regresión parcial se construye usando:</p>
+<div class="math notranslate nohighlight">
+\[
+y = X \beta + \varepsilon = X_{(j)} \beta + \beta_j x_j + \varepsilon
+\]</div>
+<p>Multiplicando por <span class="math notranslate nohighlight">\(I - H_{(j)}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+(I - H_{(j)}) y = \beta_j (I - H_{(j)}) x_j + (I - H_{(j)}) \varepsilon
+\]</div>
+<p>Definiendo los residuos:</p>
+<div class="math notranslate nohighlight">
+\[
+e[y|X_{(j)}] = \beta_j e[x_j|X_{(j)}] + \varepsilon^*
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\varepsilon^* = (I - H_{(j)}) \varepsilon\)</span>. Esto justifica que <strong>la pendiente del gráfico sea <span class="math notranslate nohighlight">\(\beta_j\)</span></strong>, siempre que <span class="math notranslate nohighlight">\(x_j\)</span> entre linealmente en el modelo.</p>
+<section id="graficos-de-regresion-parcial-y-de-residuales-parciales">
+<h3><span class="section-number">4.12.1. </span>Gráficos de regresión parcial y de residuales parciales<a class="headerlink" href="#graficos-de-regresion-parcial-y-de-residuales-parciales" title="Link to this heading">#</a></h3>
+<p><strong>Los gráficos de regresión parcial permiten evaluar si la relación entre una variable predictora y la respuesta, ajustando por los demás regresores del modelo, es apropiadamente especificada.</strong></p>
+<p>Supóngase un modelo de regresión lineal múltiple con dos regresores:</p>
+<div class="math notranslate nohighlight" id="equation-partial-model">
+<span class="eqno">(4.19)<a class="headerlink" href="#equation-partial-model" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
+\]</div>
+<p>Nos interesa analizar la relación marginal entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x_1\)</span>, ajustando por <span class="math notranslate nohighlight">\(x_2\)</span>. Para ello:</p>
+<ul class="simple">
+<li><p>Ajustamos un modelo auxiliar de <span class="math notranslate nohighlight">\(y\)</span> sobre <span class="math notranslate nohighlight">\(x_2\)</span>, obteniendo los valores ajustados <span class="math notranslate nohighlight">\(\hat{y}_i(x_2)\)</span> y los residuales:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-partial-residual-y">
+<span class="eqno">(4.20)<a class="headerlink" href="#equation-partial-residual-y" title="Link to this equation">#</a></span>\[
+e_i(y \mid x_2) = y_i - \hat{y}_i(x_2), \quad i = 1,2,\ldots,n
+\]</div>
+<ul class="simple">
+<li><p>Ajustamos <span class="math notranslate nohighlight">\(x_1\)</span> sobre <span class="math notranslate nohighlight">\(x_2\)</span>, calculando los residuales:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-partial-residual-x">
+<span class="eqno">(4.21)<a class="headerlink" href="#equation-partial-residual-x" title="Link to this equation">#</a></span>\[
+e_i(x_1 \mid x_2) = x_{i1} - \hat{x}_{i1}(x_2), \quad i = 1,2,\ldots,n
+\]</div>
+<ul class="simple">
+<li><p>El gráfico de regresión parcial se construye al graficar <span class="math notranslate nohighlight">\(e_i(y \mid x_2)\)</span> contra <span class="math notranslate nohighlight">\(e_i(x_1 \mid x_2)\)</span>. Si <span class="math notranslate nohighlight">\(x_1\)</span> está correctamente especificado en forma lineal, los puntos deberían alinearse aproximadamente en una línea recta de pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p></li>
+</ul>
+<p><strong>Este tipo de gráfico es útil tanto para evaluar la forma funcional de una variable incluida en el modelo como para explorar la utilidad de un nuevo regresor candidato.</strong></p>
+<p>En notación matricial, supóngase que el modelo general es:</p>
+<div class="math notranslate nohighlight" id="equation-partial-matrix-model">
+<span class="eqno">(4.22)<a class="headerlink" href="#equation-partial-matrix-model" title="Link to this equation">#</a></span>\[
+y = X\beta + \varepsilon = X^{(j)}\beta^{(j)} + \beta_j x_j + \varepsilon
+\]</div>
+<p>Premultiplicando ambos lados por <span class="math notranslate nohighlight">\(I - H^{(j)}\)</span>, donde <span class="math notranslate nohighlight">\(H^{(j)}\)</span> es la matriz sombrero sin la columna correspondiente a <span class="math notranslate nohighlight">\(x_j\)</span>, se tiene:</p>
+<div class="math notranslate nohighlight">
+\[
+(I - H^{(j)}) y = \beta_j (I - H^{(j)}) x_j + (I - H^{(j)})\varepsilon
+\]</div>
+<p>Lo que implica que:</p>
+<div class="math notranslate nohighlight" id="equation-partial-regression-form">
+<span class="eqno">(4.23)<a class="headerlink" href="#equation-partial-regression-form" title="Link to this equation">#</a></span>\[
+e[y \mid X^{(j)}] = \beta_j e[x_j \mid X^{(j)}] + \varepsilon^*
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\varepsilon^* = (I - H^{(j)})\varepsilon\)</span>. Por tanto, el gráfico de regresión parcial entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span> tiene pendiente <span class="math notranslate nohighlight">\(\beta_j\)</span>.</p>
+</section>
+<section id="graficos-de-residuales-parciales">
+<h3><span class="section-number">4.12.2. </span>Gráficos de residuales parciales<a class="headerlink" href="#graficos-de-residuales-parciales" title="Link to this heading">#</a></h3>
+<p><strong>El gráfico de residuales parciales también explora la relación entre la respuesta y un regresor, pero lo hace sumando al residual el componente lineal del regresor.</strong></p>
+<p>Sean <span class="math notranslate nohighlight">\(e_i\)</span> los residuales del modelo con todos los regresores. El residual parcial para <span class="math notranslate nohighlight">\(x_j\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-partial-residual-plot">
+<span class="eqno">(4.24)<a class="headerlink" href="#equation-partial-residual-plot" title="Link to this equation">#</a></span>\[
+e_i^*(y \mid x_j) = e_i + \hat{\beta}_j x_{ij}, \quad i = 1, 2, \ldots, n
+\]</div>
+<ul class="simple">
+<li><p>Al graficar <span class="math notranslate nohighlight">\(e_i^*(y \mid x_j)\)</span> frente a <span class="math notranslate nohighlight">\(x_{ij}\)</span> se obtiene una representación de la relación entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span> con pendiente <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</p></li>
+<li><p>Este gráfico es útil para identificar formas no lineales y efectos atípicos.</p></li>
+</ul>
+</section>
+<section id="consideraciones-adicionales">
+<h3><span class="section-number">4.12.3. </span>Consideraciones adicionales<a class="headerlink" href="#consideraciones-adicionales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Los gráficos de regresión parcial y de residuales parciales deben interpretarse con precaución</strong>, ya que errores en la especificación de otros regresores pueden afectar su validez.</p></li>
+<li><p>No detectan interacciones entre variables.</p></li>
+<li><p>La multicolinealidad puede distorsionar severamente la interpretación.</p></li>
+<li><p>En presencia de alta colinealidad entre regresores, el gráfico puede inducir a conclusiones erróneas.</p></li>
+</ul>
+<p>Para generar estos gráficos en Python con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.regressionplots</span> <span class="kn">import</span> <span class="n">plot_partregress</span><span class="p">,</span> <span class="n">plot_partregress_grid</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;delivery.csv&#39;</span><span class="p">)</span>  <span class="c1"># columnas: time, cases, distance</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;cases&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">]]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Gráficos de regresión parcial</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="deteccion-y-tratamiento-de-valores-atipicos">
+<h3><span class="section-number">4.12.4. </span>Detección y Tratamiento de Valores Atípicos<a class="headerlink" href="#deteccion-y-tratamiento-de-valores-atipicos" title="Link to this heading">#</a></h3>
+<p><strong>Un valor atípico es una observación extrema, considerablemente diferente del resto de los datos.</strong> Residuales que son marcadamente grandes en valor absoluto, por ejemplo, que exceden tres o cuatro desviaciones estándar, sugieren posibles valores atípicos en el espacio de respuesta <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Los valores atípicos pueden tener efectos de moderados a severos sobre el modelo de regresión, dependiendo de su ubicación en el espacio de predictores <span class="math notranslate nohighlight">\(x\)</span></strong> (ver Figuras 2.6 a 2.8).</p></li>
+<li><p>Los gráficos de residuos contra <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> y los gráficos de probabilidad normal ayudan a identificar dichos puntos.</p></li>
+<li><p>Residuales escalados, como los studentizados y los residuos R-student, son herramientas eficaces para detectar estos casos.</p></li>
+<li><p>Para una discusión más amplia, véase Barnett y Lewis (1994) y Myers (1990).</p></li>
+</ul>
+<p><strong>Los valores atípicos deben analizarse cuidadosamente para determinar si existe una causa que justifique su comportamiento inusual.</strong></p>
+<ul class="simple">
+<li><p>En ocasiones, son valores “defectuosos” causados por errores de medición, registro incorrecto, o fallos de instrumentos. De ser así, deberían corregirse o eliminarse del conjunto de datos.</p></li>
+<li><p>Es recomendable eliminar valores defectuosos cuando exista una fuerte evidencia no estadística que respalde su exclusión, ya que el método de mínimos cuadrados tiende a ajustar la recta para minimizar la suma de residuos al cuadrado, y los valores atípicos influyen fuertemente en este ajuste.</p></li>
+</ul>
+<p><strong>No obstante, algunos valores atípicos pueden ser observaciones válidas pero inusuales.</strong></p>
+<ul class="simple">
+<li><p>Eliminar estos datos únicamente para “mejorar el ajuste” del modelo puede resultar en una falsa sensación de precisión en la estimación o predicción.</p></li>
+<li><p>A veces, el valor atípico es más importante que el resto de los datos por su influencia en propiedades clave del modelo.</p></li>
+<li><p>También pueden revelar deficiencias en el modelo, como una mala representación del comportamiento en ciertas regiones del espacio <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Si el valor atípico está asociado a una respuesta deseable (por ejemplo, alto rendimiento o bajo costo), conocer sus valores de regresores podría ser de gran utilidad.</p></li>
+</ul>
+<p><strong>El análisis e interpretación de valores atípicos puede conducir a mejoras en el proceso o a nuevos descubrimientos.</strong></p>
+<ul class="simple">
+<li><p>Existen pruebas estadísticas para detectar y rechazar valores atípicos. Véase Barnett y Lewis (1994).</p></li>
+<li><p>Stefansky (1971, 1972) propuso una prueba basada en el residuo máximo normalizado <span class="math notranslate nohighlight">\(\displaystyle \frac{e_i}{\sqrt{\sum_{i=1}^n e_i^2}}\)</span>.</p></li>
+<li><p>Ejemplos de esta prueba y referencias adicionales pueden encontrarse en Cook y Prescott (1981), Daniel (1976) y Williams (1973). También consultar Apéndice C.9 en <span id="id7">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>.</p></li>
+</ul>
+<p><strong>No se debe asumir automáticamente que los puntos detectados mediante pruebas estadísticas deben ser eliminados.</strong> Podrían contener información valiosa sobre el sistema bajo estudio.</p>
+<p><strong>Una forma sencilla de evaluar la influencia de los valores atípicos es eliminarlos del análisis y ajustar nuevamente el modelo de regresión.</strong></p>
+<ul class="simple">
+<li><p>Se deben comparar coeficientes, estadísticas <span class="math notranslate nohighlight">\(t\)</span> y <span class="math notranslate nohighlight">\(F\)</span>, el coeficiente de determinación <span class="math notranslate nohighlight">\(R^2\)</span> y el cuadrado medio del residuo.</p></li>
+<li><p>Si estos valores cambian significativamente, la influencia del punto atípico es notable.</p></li>
+<li><p>Generalmente, se prefiere que el modelo de regresión no sea excesivamente sensible a un pequeño número de observaciones.</p></li>
+</ul>
+<p><strong>Deseamos que la relación de regresión represente a todo el conjunto de datos y no que esté dominada por unos pocos valores extremos.</strong></p>
+</section>
+<section id="ejemplo-datos-del-propulsor-de-cohete">
+<h3><span class="section-number">4.12.5. </span>Ejemplo: Datos del Propulsor de Cohete<a class="headerlink" href="#ejemplo-datos-del-propulsor-de-cohete" title="Link to this heading">#</a></h3>
+<p><strong>La Figura 4.13 presenta el gráfico de probabilidad normal de los residuos studentizados externamente y el gráfico de estos residuos frente a <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> para los datos del propulsor introducidos en el Ejemplo 2.1.</strong></p>
+<ul class="simple">
+<li><p>Se observan dos residuos negativos grandes que se apartan considerablemente del resto (observaciones 5 y 6 en la Tabla 2.1).</p></li>
+<li><p>Estas observaciones son valores atípicos potenciales.</p></li>
+<li><p>La gráfica de probabilidad normal sugiere asimetría en los datos debido a estos valores.</p></li>
+<li><p>La observación 5 corresponde a una edad baja (5.5 semanas), mientras que la 6 es de edad alta (19 semanas), por lo que están alejadas en el espacio <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ul>
+<p><strong>Para evaluar su influencia, se ajustó un nuevo modelo eliminando las observaciones 5 y 6.</strong></p>
+<ul class="simple">
+<li><p>La comparación de estadísticas resume los efectos de esta eliminación.</p></li>
+<li><p><strong>Los coeficientes de regresión apenas cambian</strong>, lo cual sugiere que estos puntos no son excesivamente influyentes.</p></li>
+<li><p>Sin embargo, el cuadrado medio del residuo se reduce notablemente, <span class="math notranslate nohighlight">\(R^2\)</span> aumenta moderadamente y el error estándar de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> disminuye en aproximadamente un tercio.</p></li>
+</ul>
+<p><strong>Aunque los parámetros del modelo no cambian significativamente, estos dos residuos representan alrededor del 56% de la suma de cuadrados residual.</strong></p>
+<ul class="simple">
+<li><p>Si se tratara de valores erróneos, su exclusión mejoraría la precisión de los estimadores y reduciría los intervalos de confianza y predicción.</p></li>
+</ul>
+<p><strong>La Figura 4.14 muestra los gráficos de residuos para el modelo ajustado sin las observaciones 5 y 6.</strong></p>
+<ul class="simple">
+<li><p>Estos gráficos no indican violaciones graves de supuestos.</p></li>
+</ul>
+<p><strong>A pesar de no encontrar una razón clara para los bajos valores de resistencia al corte del propulsor en las observaciones 5 y 6, no se recomienda eliminarlas.</strong></p>
+<ul class="simple">
+<li><p>No obstante, <strong>se concluye que su inclusión no compromete seriamente la utilidad del modelo.</strong></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multiple_linear_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Regresión Lineal Múltiple</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="diagnostic_leverage_influence.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Diagnóstico de Apalancamiento e Influencia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">4.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-residuos">4.2. Análisis de Residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-residuos">4.2.1. Definición de residuos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-escalamiento-de-residuos">4.2.2. Métodos de escalamiento de residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-estandarizados">4.2.2.1. Residuos estandarizados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-studentizados">4.2.2.2. Residuos studentizados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-de-regresion-lineal-simple">4.2.2.3. Caso de regresión lineal simple</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos-press-y-r-student">4.3. Residuos PRESS y R-Student</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-student">4.3.1. R-Student</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">4.3.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-residuos">4.3.3. Gráficos de Residuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-probabilidad-normal">4.3.3.1. Gráfico de Probabilidad Normal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4.4. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-contra-valores-ajustados-hat-y-i">4.5. Gráfico de Residuos contra Valores Ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4.6. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-contra-regresores">4.7. Gráfico de Residuos contra Regresores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4.8. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafico-de-residuos-en-secuencia-temporal">4.9. Gráfico de Residuos en Secuencia Temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-regresion-parcial-y-residuos-parciales">4.10. Gráficos de Regresión Parcial y Residuos Parciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.11. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-sobre-los-graficos-de-regresion-parcial">4.12. Comentarios sobre los Gráficos de Regresión Parcial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-regresion-parcial-y-de-residuales-parciales">4.12.1. Gráficos de regresión parcial y de residuales parciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-residuales-parciales">4.12.2. Gráficos de residuales parciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-adicionales">4.12.3. Consideraciones adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-y-tratamiento-de-valores-atipicos">4.12.4. Detección y Tratamiento de Valores Atípicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohete">4.12.5. Ejemplo: Datos del Propulsor de Cohete</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>11. Bibliografía &#8212; Modelos Lineales</title>
+    <title>1. Introducción &#8212; Modelos Lineales</title>
   
   
   
@@ -60,13 +60,16 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'biblio';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'introduction';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/custom.js?v=14184634"></script>
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="10. Regresión Logística" href="logistic_regression.html" />
+    <link rel="next" title="2. Regresión Lineal Simple" href="simple_linear_regression.html" />
+    <link rel="prev" title="Profesor: Dr. Lihki Rubio" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,7 +188,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
@@ -195,7 +198,7 @@
 <li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -250,7 +253,7 @@
       
       
       
-      <li><a href="_sources/biblio.ipynb" target="_blank"
+      <li><a href="_sources/introduction.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +324,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -332,11 +337,22 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Bibliografía</h1>
+    <h1>Introducción</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-y-construccion-de-modelos">1.1. Regresión y construcción de modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-del-modelo">1.1.1. Verificación del modelo</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -346,80 +362,68 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="bibliografia">
-<h1><span class="section-number">11. </span>Bibliografía<a class="headerlink" href="#bibliografia" title="Link to this heading">#</a></h1>
-<div class="docutils container" id="id1">
-<div role="list" class="citation-list">
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
-<p>A. P. Dempster, M. Schatzoff, and N. Wermuth. An alternative approach to the estimation and testing problem in linear models. <em>Annals of Mathematical Statistics</em>, 42(2):946–957, 1971.</p>
-</div>
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
-<p>Donald E Farrar and Robert R Glauber. Multicollinearity in regression analysis: the problem revisited. <em>The Review of Economics and Statistics</em>, 49(1):92–107, 1967.</p>
-</div>
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
-<p>Michael Goldstein and A. F. M. Smith. Ridge-type estimators for regression analysis. <em>Journal of the Royal Statistical Society. Series B (Methodological)</em>, 36(2):284–291, 1974.</p>
-</div>
-<div class="citation" id="id17" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
-<p>Richard F. Gunst and Robert L. Mason. Advantages of principal components regression. <em>Technometrics</em>, 19(4):383–386, 1977.</p>
-</div>
-<div class="citation" id="id16" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
-<p>Arthur E. Hoerl and Robert W. Kennard. Ridge regression: biased estimation for nonorthogonal problems. <em>Technometrics</em>, 12(1):55–67, 1970.</p>
-</div>
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
-<p>Arthur E. Hoerl and Robert W. Kennard. Ridge regression: applications to nonorthogonal problems. <em>Technometrics</em>, 18(1):27–51, 1976.</p>
-</div>
-<div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
-<p>Arthur E. Hoerl, Robert W. Kennard, and Kenneth F. Baldwin. Ridge regression: some simulations. <em>Communications in Statistics</em>, 4(2):105–123, 1975.</p>
-</div>
-<div class="citation" id="id13" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
-<p>Jerald F. Lawless and Paul C. Wang. A simulation study of ridge and other regression estimators. <em>Communications in Statistics - Simulation and Computation</em>, 5(4):307–323, 1976.</p>
-</div>
-<div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
-<p>Dennis V. Lindley and Adrian F. M. Smith. Bayes estimates for the linear model. <em>Journal of the Royal Statistical Society. Series B (Methodological)</em>, 34(1):1–41, 1972.</p>
-</div>
-<div class="citation" id="id8" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
-<p>C. L. Mallows. Some comments on cp. <em>Technometrics</em>, 15(4):661–675, 1973.</p>
-</div>
-<div class="citation" id="id18" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
-<p>E. H. Mansfield, J. T. Webster, and R. F. Gunst. Variable selection in principal components regression. <em>Technometrics</em>, 19(4):381–383, 1977.</p>
-</div>
-<div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
-<p>Donald W. Marquardt. Generalized inverses, ridge regression, biased linear estimation, and nonlinear estimation. <em>Technometrics</em>, 12(3):591–612, 1970.</p>
-</div>
-<div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
-<p>G. C. McDonald and D. I. Galarneau. A monte carlo evaluation of some ridge-type estimators. <em>Journal of the American Statistical Association</em>, 70(350):407–416, 1975.</p>
-</div>
-<div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
-<p>D.C. Montgomery, E.A. Peck, and G.G. Vining. <em>Introduction to Linear Regression Analysis</em>. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: <a class="reference external" href="https://books.google.com.co/books?id=lSyiRZh09oEC">https://books.google.com.co/books?id=lSyiRZh09oEC</a>.</p>
-</div>
-<div class="citation" id="id15" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
-<p>Robert L. Obenchain. Ridge analysis following a preliminary test of the ols estimates. <em>Technometrics</em>, 17(3):431–441, 1975.</p>
-</div>
-<div class="citation" id="id4" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
-<p>Samuel D. Silvey. Multicollinearity and imprecise estimation. <em>Journal of the Royal Statistical Society. Series B (Methodological)</em>, 31(2):539–552, 1969.</p>
-</div>
-<div class="citation" id="id9" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
-<p>Grace Wahba, Gene H. Golub, and Michael Heath. Generalized cross-validation as a method for choosing a good ridge parameter. <em>Technometrics</em>, 21(2):215–223, 1979.</p>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<h1><span class="section-number">1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h1>
+<section id="regresion-y-construccion-de-modelos">
+<h2><span class="section-number">1.1. </span>Regresión y construcción de modelos<a class="headerlink" href="#regresion-y-construccion-de-modelos" title="Link to this heading">#</a></h2>
+<p>El <strong>análisis de regresión</strong> es una técnica estadística utilizada para investigar y modelar la relación entre variables. Sus aplicaciones son amplias y abarcan campos como la ingeniería, ciencias físicas y químicas, economía, administración, ciencias biológicas y sociales. Es, posiblemente, <strong>una de las técnicas estadísticas más utilizadas</strong>.</p>
+<p>Por ejemplo, supóngase que un ingeniero industrial de una embotelladora de bebidas desea analizar el tiempo requerido para surtir máquinas expendedoras. Sospecha que el <strong>tiempo de entrega (<span class="math notranslate nohighlight">\(y\)</span>)</strong> está relacionado con el <strong>número de cajas entregadas (<span class="math notranslate nohighlight">\(x\)</span>)</strong>. Para estudiar esta relación, recolecta datos en 25 establecimientos seleccionados aleatoriamente, registrando el tiempo de entrega y el número de cajas en cada uno. Los datos se presentan en un diagrama de dispersión (Figura 1.1a), el cual sugiere que los puntos <strong>se alinean aproximadamente a lo largo de una recta</strong>. Esta relación rectilínea se ilustra en la Figura 1.1b.</p>
+<p>Si <span class="math notranslate nohighlight">\(y\)</span> representa el tiempo de entrega y <span class="math notranslate nohighlight">\(x\)</span> el volumen entregado, la ecuación de una recta es:</p>
+<div class="math notranslate nohighlight" id="equation-lineal-determinista">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-lineal-determinista" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\beta_0\)</span> es la <strong>ordenada al origen</strong> y <span class="math notranslate nohighlight">\(\beta_1\)</span> la <strong>pendiente</strong>. No obstante, como los datos no caen exactamente sobre una recta, se introduce un <strong>término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span></strong> que representa las desviaciones:</p>
+<div class="math notranslate nohighlight" id="equation-modelo-lineal">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-modelo-lineal" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x + \varepsilon
+\]</div>
+<p>Esta es una <strong>ecuación de regresión lineal</strong>. Tradicionalmente, <span class="math notranslate nohighlight">\(x\)</span> se denomina <strong>variable independiente</strong> y <span class="math notranslate nohighlight">\(y\)</span> <strong>variable dependiente</strong>, aunque estos términos pueden ser confusos. Por ello, preferimos referirnos a <span class="math notranslate nohighlight">\(x\)</span> como <strong>variable regresora</strong> o <strong>predictora</strong>, y a <span class="math notranslate nohighlight">\(y\)</span> como <strong>respuesta</strong>. Como el modelo involucra un solo predictor, se trata de un <strong>modelo de regresión lineal simple</strong>.</p>
+<p>Supongamos ahora que podemos fijar el valor de <span class="math notranslate nohighlight">\(x\)</span> y observar <span class="math notranslate nohighlight">\(y\)</span>. Si <span class="math notranslate nohighlight">\(\varepsilon\)</span> es una variable aleatoria con:</p>
+<ul class="simple">
+<li><p>esperanza <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon) = 0\)</span></p></li>
+<li><p>varianza <span class="math notranslate nohighlight">\(\mathbb{V}(\varepsilon) = \sigma^2\)</span></p></li>
+</ul>
+<p>entonces, el valor esperado de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-esperanza-condicional">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-esperanza-condicional" title="Link to this equation">#</a></span>\[
+\mathbb{E}(y \mid x) = \mathbb{E}(\beta_0 + \beta_1 x + \varepsilon) = \beta_0 + \beta_1 x
+\]</div>
+<p>y la varianza condicional es:</p>
+<div class="math notranslate nohighlight" id="equation-varianza-condicional">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-varianza-condicional" title="Link to this equation">#</a></span>\[
+\mathbb{V}(y \mid x) = \mathbb{V}(\beta_0 + \beta_1 x + \varepsilon) = \sigma^2
+\]</div>
+<p>Por tanto, la <strong>recta de regresión</strong> <span class="math notranslate nohighlight">\(\mu_{y|x} = \beta_0 + \beta_1 x\)</span> representa los <strong>valores esperados de <span class="math notranslate nohighlight">\(y\)</span> para cada <span class="math notranslate nohighlight">\(x\)</span></strong>, y <span class="math notranslate nohighlight">\(\beta_1\)</span> indica el <strong>cambio promedio en <span class="math notranslate nohighlight">\(y\)</span> por unidad de cambio en <span class="math notranslate nohighlight">\(x\)</span></strong>. La varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> cuantifica la <strong>dispersión de los valores de <span class="math notranslate nohighlight">\(y\)</span></strong> alrededor de la recta.</p>
+<p>Por ejemplo, si el modelo verdadero es:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{y|x} = 3.5 + 2x \quad \text{y} \quad \sigma^2 = 2
+\]</div>
+<p>entonces, cuando <span class="math notranslate nohighlight">\(x = 10\)</span>, <span class="math notranslate nohighlight">\(y\)</span> tiene distribución normal con media 23.5 y varianza 2. La Figura 1.2 muestra este caso.</p>
+<p>Cuando <span class="math notranslate nohighlight">\(\sigma^2\)</span> es pequeña, los valores observados de <span class="math notranslate nohighlight">\(y\)</span> estarán cerca de la recta. Si <span class="math notranslate nohighlight">\(\sigma^2\)</span> es grande, se observarán desviaciones importantes.</p>
+<p>En la mayoría de las aplicaciones, la regresión es una <strong>aproximación empírica</strong> a una relación funcional real, que podría ser de naturaleza física, química o científica. Tales relaciones basadas en teoría se conocen como <strong>modelos mecanísticos</strong>. Por contraste, los modelos de regresión son <strong>modelos empíricos</strong>. La Figura 1.3 muestra cómo una relación compleja puede aproximarse razonablemente con una recta; en otros casos, como en la Figura 1.4, se necesita una aproximación más compleja (por ejemplo, regresión lineal por tramos).</p>
+<p>Generalmente, la validez del modelo de regresión se restringe al <strong>rango observado de los datos</strong>. Por ejemplo, en la Figura 1.5 se observa que extrapolar el modelo fuera del rango <span class="math notranslate nohighlight">\(x_1 \le x \le x_2\)</span> puede conducir a errores importantes.</p>
+<p>En situaciones más generales, la variable de respuesta puede depender de <span class="math notranslate nohighlight">\(k\)</span> regresores, dando lugar al modelo de <strong>regresión lineal múltiple</strong>:</p>
+<div class="math notranslate nohighlight" id="equation-regresion-multiple">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-regresion-multiple" title="Link to this equation">#</a></span>\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + \varepsilon
+\]</div>
+<p>Se llama <strong>lineal</strong> porque es lineal en los parámetros <span class="math notranslate nohighlight">\(\beta_j\)</span>, no necesariamente en las variables <span class="math notranslate nohighlight">\(x_j\)</span>. Existen modelos no lineales en <span class="math notranslate nohighlight">\(x\)</span> que pueden tratarse con regresión lineal si son lineales en los coeficientes.</p>
+<p>Uno de los objetivos principales es <strong>estimar los parámetros</strong> del modelo. Este proceso se denomina <strong>ajuste del modelo</strong>, y una técnica fundamental para ello es el <strong>método de mínimos cuadrados</strong>, que se estudia en el Capítulo 2.</p>
+<p>Por ejemplo, el ajuste por mínimos cuadrados para los datos de tiempo de entrega arroja:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y} = 3.321 + 2.1762x
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{y}\)</span> representa el valor estimado del tiempo de entrega para un volumen <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<section id="verificacion-del-modelo">
+<h3><span class="section-number">1.1.1. </span>Verificación del modelo<a class="headerlink" href="#verificacion-del-modelo" title="Link to this heading">#</a></h3>
+<p>Una vez ajustado el modelo, se realiza una <strong>verificación de adecuación</strong>, analizando si el modelo describe adecuadamente los datos. Este paso puede llevar a aceptar o modificar el modelo. La <strong>regresión es un proceso iterativo</strong>, donde los datos conducen a un modelo, el cual se ajusta y verifica repetidamente.</p>
+<p><strong>Importante:</strong> la existencia de una relación entre <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> <strong>no implica causalidad</strong>. Aun con una fuerte asociación empírica, no se puede concluir que existe una relación causa-efecto. Para ello, se requiere una justificación teórica o externa al conjunto de datos. La regresión puede respaldar hipótesis causales, pero no establecerlas por sí sola.</p>
+<p>Finalmente, conviene recordar que el análisis de regresión forma parte de un enfoque <strong>más amplio de análisis de datos</strong>. El modelo ajustado puede no ser el objetivo principal, sino un medio para obtener <strong>conocimiento y comprensión del sistema que genera los datos</strong>.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -453,13 +457,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="logistic_regression.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Regresión Logística</p>
+        <p class="prev-next-title">Profesor: Dr. Lihki Rubio</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="simple_linear_regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Regresión Lineal Simple</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -467,6 +480,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-y-construccion-de-modelos">1.1. Regresión y construcción de modelos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacion-del-modelo">1.1.1. Verificación del modelo</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

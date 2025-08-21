@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Diagnóstico de Apalancamiento e Influencia &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'diagnostic_leverage_influence';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Variable Indicadoras" href="indicator_variables.html" />
+    <link rel="prev" title="4. Comprobación de Adecuación del Modelo" href="model_adequacy_checking.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indicator_variables.html">6. Variable Indicadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multicollinearity.html">7. Multicolinealidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/diagnostic_leverage_influence.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diagnóstico de Apalancamiento e Influencia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-de-detectar-observaciones-influyentes">5.1. Importancia de detectar observaciones influyentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apalancamiento">5.2. Apalancamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">5.3. Ejemplo: Datos de tiempo de entrega</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-diagnostico-de-influencia">5.3.1. Código en Python para diagnóstico de influencia:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-influencia-distancia-de-cook">5.3.2. Medidas de Influencia: Distancia de Cook</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempos-de-entrega">5.3.2.1. Ejemplo: Datos de Tiempos de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-calcular-la-distancia-de-cook">5.3.2.2. Código en Python para calcular la distancia de Cook</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-influencia-dffits-y-dfbetas">5.3.3. Medidas de Influencia: DFFITS y DFBETAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comentario-sobre-los-valores-criticos">5.3.3.1. Comentario sobre los valores críticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3.3.2. Ejemplo: Datos de Tiempos de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-calcular-dffits-y-dfbetas">5.3.3.3. Código en Python para calcular DFFITS y DFBETAS</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-medida-del-desempeno-del-modelo">5.3.4. Una Medida del Desempeño del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-grupos-de-observaciones-influyentes">5.3.5. Detección de Grupos de Observaciones Influyentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-observaciones-influyentes">5.3.6. Tratamiento de Observaciones Influyentes</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diagnostico-de-apalancamiento-e-influencia">
+<h1><span class="section-number">5. </span>Diagnóstico de Apalancamiento e Influencia<a class="headerlink" href="#diagnostico-de-apalancamiento-e-influencia" title="Link to this heading">#</a></h1>
+<section id="importancia-de-detectar-observaciones-influyentes">
+<h2><span class="section-number">5.1. </span>Importancia de detectar observaciones influyentes<a class="headerlink" href="#importancia-de-detectar-observaciones-influyentes" title="Link to this heading">#</a></h2>
+<p><strong>En los modelos de regresión, no todas las observaciones poseen el mismo peso en la determinación del modelo.</strong> A diferencia de un promedio muestral, donde cada valor contribuye de manera equitativa, en regresión algunas observaciones pueden tener una influencia desproporcionada sobre los coeficientes estimados.</p>
+<ul class="simple">
+<li><p>Tal como se discutió en la Sección 2.9, <strong>la ubicación de los puntos en el espacio de las variables explicativas (<span class="math notranslate nohighlight">\(x\)</span>) puede desempeñar un papel crucial en la estimación de los parámetros del modelo.</strong></p></li>
+<li><p>En la Sección 4.4 se analizó que los <em>outliers</em> o valores atípicos pueden detectarse mediante residuos inusualmente grandes, y que estos puntos también pueden influir en los resultados del modelo de regresión.</p></li>
+</ul>
+<p><strong>Este capítulo amplía y consolida estos conceptos fundamentales.</strong></p>
+<ul class="simple">
+<li><p>En la Figura 6.1, el punto A se ubica lejos del resto de los datos en el espacio <span class="math notranslate nohighlight">\(x\)</span>, pero se encuentra cerca de la recta de regresión. Este es un ejemplo de punto con alto apalancamiento (<em>leverage</em>); es decir, posee un valor de <span class="math notranslate nohighlight">\(x\)</span> atípico y podría afectar propiedades clave del modelo.</p></li>
+<li><p>Aunque este punto no altera los coeficientes de regresión, sí puede influir notablemente en estadísticas resumen como <span class="math notranslate nohighlight">\(R^2\)</span> o los errores estándar de los coeficientes.</p></li>
+<li><p>En cambio, en la Figura 6.2, el punto A muestra tanto una coordenada <span class="math notranslate nohighlight">\(x\)</span> inusual como un valor <span class="math notranslate nohighlight">\(y\)</span> atípico, lo que lo convierte en un punto influyente (<em>influence point</em>) que tiende a “arrastrar” el modelo en su dirección.</p></li>
+</ul>
+<p><strong>En ocasiones, un pequeño subconjunto de datos puede ejercer una influencia desmedida sobre los coeficientes y propiedades del modelo.</strong> En los casos más extremos, las estimaciones de los parámetros pueden depender más de los puntos influyentes que del conjunto global de observaciones. Esta situación es indeseable, ya que se espera que el modelo represente adecuadamente a toda la muestra y no que sea una consecuencia de unos pocos datos atípicos.</p>
+<ul class="simple">
+<li><p>Por ello, es esencial identificar estos puntos influyentes y evaluar su impacto.</p></li>
+<li><p>Si se trata de valores erróneos, deben eliminarse del análisis.</p></li>
+<li><p>Si son válidos pero determinan propiedades clave del modelo, el analista debe estar al tanto de su efecto potencial sobre la interpretación y el uso del modelo.</p></li>
+</ul>
+<p><strong>En este capítulo se presentan diversos diagnósticos para detectar apalancamiento e influencia.</strong> Estas herramientas están disponibles en la mayoría de los paquetes estadísticos para regresión múltiple y deben utilizarse junto con los análisis de residuos desarrollados en el Capítulo 4.</p>
+<ul class="simple">
+<li><p>Situaciones en las que un coeficiente presenta un signo incoherente desde el punto de vista científico, un predictor relevante aparece estadísticamente no significativo, o un modelo que ajusta bien a los datos pero presenta pobres capacidades predictivas pueden deberse a puntos influyentes.</p></li>
+<li><p>Detectar dichas observaciones permite esclarecer problemas subyacentes del modelo y mejorar su validez.</p></li>
+</ul>
+</section>
+<section id="apalancamiento">
+<h2><span class="section-number">5.2. </span>Apalancamiento<a class="headerlink" href="#apalancamiento" title="Link to this heading">#</a></h2>
+<p><strong>La posición de las observaciones en el espacio de los regresores (<span class="math notranslate nohighlight">\(x\)</span>) puede impactar significativamente las propiedades del modelo de regresión.</strong></p>
+<ul class="simple">
+<li><p>Los puntos alejados del centro del espacio <span class="math notranslate nohighlight">\(x\)</span> pueden afectar en forma desproporcionada las estimaciones de los parámetros, sus errores estándar, los valores ajustados y otras estadísticas resumen.</p></li>
+<li><p>La matriz sombrero (<em>hat matrix</em>) es una herramienta fundamental en la detección de observaciones influyentes:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-hat-matrix">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-hat-matrix" title="Link to this equation">#</a></span>\[
+\mathbf{H} = \mathbf{X} (\mathbf{X}'\mathbf{X})^{-1} \mathbf{X}'
+\]</div>
+<ul class="simple">
+<li><p>Esta matriz determina la varianza de los valores ajustados <span class="math notranslate nohighlight">\(\hat{y}\)</span> y de los residuos <span class="math notranslate nohighlight">\(e\)</span>, ya que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{Var}(\hat{\mathbf{y}}) = \sigma^2 \mathbf{H}, \quad \text{Var}(\mathbf{e}) = \sigma^2 (\mathbf{I} - \mathbf{H})
+\]</div>
+<ul class="simple">
+<li><p>Los elementos <span class="math notranslate nohighlight">\(h_{ij}\)</span> de <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> pueden interpretarse como la cantidad de apalancamiento que ejerce la observación <span class="math notranslate nohighlight">\(i\)</span> sobre el valor ajustado <span class="math notranslate nohighlight">\(\hat{y}_j\)</span>.</p></li>
+</ul>
+<p><strong>La atención se centra habitualmente en los elementos diagonales <span class="math notranslate nohighlight">\(h_{ii}\)</span>, que se calculan como:</strong></p>
+<div class="math notranslate nohighlight" id="equation-hii-hat-diag">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-hii-hat-diag" title="Link to this equation">#</a></span>\[
+h_{ii} = \mathbf{x}_i' (\mathbf{X}'\mathbf{X})^{-1} \mathbf{x}_i
+\]</div>
+<ul class="simple">
+<li><p>Donde <span class="math notranslate nohighlight">\(\mathbf{x}_i'\)</span> representa la <span class="math notranslate nohighlight">\(i\)</span>-ésima fila de la matriz de diseño <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p></li>
+<li><p>Estos elementos diagonales son una medida estandarizada de la distancia de cada punto al centro del espacio <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Valores grandes de <span class="math notranslate nohighlight">\(h_{ii}\)</span> indican observaciones potencialmente influyentes por su lejanía respecto a la nube de puntos.</p></li>
+</ul>
+<p><strong>La media de los elementos <span class="math notranslate nohighlight">\(h_{ii}\)</span> es <span class="math notranslate nohighlight">\(h = p/n\)</span></strong>, ya que:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{n} h_{ii} = \text{tr}(\mathbf{H}) = \text{rango}(\mathbf{H}) = p
+\]</div>
+<ul class="simple">
+<li><p>Por tanto, una regla práctica común es considerar como punto de apalancamiento a toda observación para la cual <span class="math notranslate nohighlight">\(h_{ii} &gt; 2p/n\)</span>.</p></li>
+</ul>
+<p><strong>No todos los puntos con alto apalancamiento afectan los coeficientes de regresión.</strong> Por ejemplo, el punto A de la Figura 6.1 posee un <span class="math notranslate nohighlight">\(h_{ii}\)</span> alto pero no influye en los coeficientes, ya que se encuentra alineado con el resto de las observaciones.</p>
+<ul class="simple">
+<li><p>Debido a que los valores <span class="math notranslate nohighlight">\(h_{ii}\)</span> solo capturan la posición en el espacio <span class="math notranslate nohighlight">\(x\)</span>, algunos analistas recomiendan examinar los residuos studentizados junto con los <span class="math notranslate nohighlight">\(h_{ii}\)</span>.</p></li>
+<li><p>Observaciones con <span class="math notranslate nohighlight">\(h_{ii}\)</span> grandes y residuos elevados tienen mayor probabilidad de ser influyentes.</p></li>
+<li><p>Es importante tener en cuenta que si <span class="math notranslate nohighlight">\(2p/n &gt; 1\)</span>, este umbral no es aplicable y deben usarse otras medidas complementarias.</p></li>
+</ul>
+</section>
+<section id="ejemplo-datos-de-tiempo-de-entrega">
+<h2><span class="section-number">5.3. </span>Ejemplo: Datos de tiempo de entrega<a class="headerlink" href="#ejemplo-datos-de-tiempo-de-entrega" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>En la columna (a) de la Tabla 6.1 se muestran los valores <span class="math notranslate nohighlight">\(h_{ii}\)</span> para los datos del tiempo de entrega de bebidas (Ejemplo 3.1).</p></li>
+<li><p>Con <span class="math notranslate nohighlight">\(p = 3\)</span> y <span class="math notranslate nohighlight">\(n = 25\)</span>, el umbral <span class="math notranslate nohighlight">\(2p/n = 0.24\)</span> identifica las observaciones 9 y 22 como puntos de apalancamiento.</p></li>
+<li><p>Esta ubicación remota de dichas observaciones ya había sido detectada previamente al analizar la matriz de gráficos de dispersión (Figura 3.4) y al discutir los problemas de interpolación/extrapolación en la Figura 3.11.</p></li>
+</ul>
+<p><strong>En la Sección 4.1 se calcularon los residuos escalados para estos datos.</strong></p>
+<ul class="simple">
+<li><p>Los residuos studentizados para la observación 22 no son anómalos, lo que sugiere una baja influencia sobre el modelo ajustado.</p></li>
+<li><p>En cambio, los residuos escalados para el punto 9 son moderadamente grandes, lo que indica que podría tener influencia moderada sobre el modelo.</p></li>
+</ul>
+<p>Para evaluar el efecto de estas observaciones, se realizaron tres análisis adicionales:</p>
+<ul class="simple">
+<li><p>Eliminando el punto 9</p></li>
+<li><p>Eliminando el punto 22</p></li>
+<li><p>Eliminando ambos puntos</p></li>
+</ul>
+<p>Los resultados se resumen en la siguiente tabla:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Observaciones</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(R^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ambas incluidas</p></td>
+<td><p>2.341</p></td>
+<td><p>1.616</p></td>
+<td><p>0.014</p></td>
+<td><p>10.624</p></td>
+<td><p>0.9596</p></td>
+</tr>
+<tr class="row-odd"><td><p>9 eliminada</p></td>
+<td><p>4.447</p></td>
+<td><p>1.498</p></td>
+<td><p>0.010</p></td>
+<td><p>5.905</p></td>
+<td><p>0.9487</p></td>
+</tr>
+<tr class="row-even"><td><p>22 eliminada</p></td>
+<td><p>1.916</p></td>
+<td><p>1.786</p></td>
+<td><p>0.012</p></td>
+<td><p>10.066</p></td>
+<td><p>0.9564</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ambas fuera</p></td>
+<td><p>4.643</p></td>
+<td><p>1.456</p></td>
+<td><p>0.011</p></td>
+<td><p>6.163</p></td>
+<td><p>0.9072</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Eliminar la observación 9 produce un cambio moderado en <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span> (≈28%) y significativo en <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> (≈90%), lo que indica que este punto afecta la dirección de la regresión respecto a la variable <span class="math notranslate nohighlight">\(x_2\)</span>.</strong></p>
+<ul class="simple">
+<li><p>Esto es coherente con el hecho de que <span class="math notranslate nohighlight">\(x_2 = 1460\)</span> para esta observación, valor notablemente distinto del resto.</p></li>
+<li><p>El residuo cuadrático medio se reduce a 5.905, valor cercano al error puro estimado <span class="math notranslate nohighlight">\(\hat{\sigma} = 1.969\)</span> hallado en el Análisis de Vecinos Cercanos (Ejemplo 4.10).</p></li>
+<li><p>Esto sugiere que la mayor parte del desajuste observado en la Sección 4.11 se debe al residuo elevado del punto 9.</p></li>
+</ul>
+<p><strong>Eliminar el punto 22 tiene un impacto mucho menor en los coeficientes y estadísticas resumen.</strong> La exclusión de ambos puntos genera efectos similares a la eliminación exclusiva del punto 9.</p>
+<section id="codigo-en-python-para-diagnostico-de-influencia">
+<h3><span class="section-number">5.3.1. </span>Código en Python para diagnóstico de influencia:<a class="headerlink" href="#codigo-en-python-para-diagnostico-de-influencia" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">OLSInfluence</span>
+
+<span class="n">deliver_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;time ~ cases + dist&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">deliver</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">influence</span> <span class="o">=</span> <span class="n">OLSInfluence</span><span class="p">(</span><span class="n">deliver_model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">influence</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="medidas-de-influencia-distancia-de-cook">
+<h3><span class="section-number">5.3.2. </span>Medidas de Influencia: Distancia de Cook<a class="headerlink" href="#medidas-de-influencia-distancia-de-cook" title="Link to this heading">#</a></h3>
+<p><strong>Es deseable considerar tanto la ubicación de un punto en el espacio de las variables explicativas como su valor de respuesta al medir su influencia sobre el modelo.</strong> Cook [1977, 1979] propuso una medida de la distancia cuadrática entre el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> basado en los <span class="math notranslate nohighlight">\(n\)</span> puntos y el estimador obtenido al eliminar la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_{(i)}\)</span>. Esta medida puede expresarse en forma general como:</p>
+<div class="math notranslate nohighlight" id="equation-cook-general-form">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-cook-general-form" title="Link to this equation">#</a></span>\[
+D_i = D_i(\mathbf{M}, c) = \frac{(\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})' \mathbf{M} (\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})}{c}, \quad i = 1, 2, \dots, n
+\]</div>
+<p>Donde usualmente se toma <span class="math notranslate nohighlight">\(\mathbf{M} = \mathbf{X}'\mathbf{X}\)</span> y <span class="math notranslate nohighlight">\(c = p \cdot \text{MSRes}\)</span>, lo cual lleva a la forma clásica:</p>
+<div class="math notranslate nohighlight" id="equation-cook-distance">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-cook-distance" title="Link to this equation">#</a></span>\[
+D_i = \frac{(\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})' \mathbf{X}'\mathbf{X} (\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})}{p \cdot \text{MSRes}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p><strong>Los valores grandes de <span class="math notranslate nohighlight">\(D_i\)</span> indican que la observación <span class="math notranslate nohighlight">\(i\)</span> tiene una influencia considerable sobre los estimadores de mínimos cuadrados.</strong></p>
+<p>La magnitud de <span class="math notranslate nohighlight">\(D_i\)</span> se evalúa comparándola con un valor crítico de una distribución <span class="math notranslate nohighlight">\(F_{\alpha, p, n-p}\)</span>. Si <span class="math notranslate nohighlight">\(D_i = F_{0.5, p, n-p}\)</span>, entonces eliminar la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación desplazaría <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_{(i)}\)</span> hasta el borde de una región de confianza aproximada del 50% para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> basada en todos los datos. Como <span class="math notranslate nohighlight">\(F_{0.5, p, n-p} \approx 1\)</span>, <strong>se considera que una observación es influyente si <span class="math notranslate nohighlight">\(D_i &gt; 1\)</span></strong>.</p>
+<p>Otra forma equivalente de expresar <span class="math notranslate nohighlight">\(D_i\)</span> es:</p>
+<div class="math notranslate nohighlight" id="equation-cook-distance-alternative">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-cook-distance-alternative" title="Link to this equation">#</a></span>\[
+D_i = \frac{r_i^2}{p} \cdot \frac{h_{ii}}{1 - h_{ii}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(r_i\)</span> es el residuo studentizado, y <span class="math notranslate nohighlight">\(h_{ii}\)</span> es el elemento diagonal del “hat matrix” asociado con la observación <span class="math notranslate nohighlight">\(i\)</span>. <strong>Así, <span class="math notranslate nohighlight">\(D_i\)</span> refleja tanto el ajuste del modelo a la observación <span class="math notranslate nohighlight">\(y_i\)</span> como la distancia de ésta al resto del conjunto de datos en el espacio <span class="math notranslate nohighlight">\(x\)</span>.</strong></p>
+<p>También es posible escribir la distancia de Cook como:</p>
+<div class="math notranslate nohighlight" id="equation-cook-distance-fitted">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-cook-distance-fitted" title="Link to this equation">#</a></span>\[
+D_i = \frac{(\hat{\mathbf{y}}_{(i)} - \hat{\mathbf{y}})'(\hat{\mathbf{y}}_{(i)} - \hat{\mathbf{y}})}{p \cdot \text{MSRes}}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span> es el vector de valores ajustados con todos los datos y <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}_{(i)}\)</span> es el vector ajustado al excluir la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación.</p>
+<section id="ejemplo-datos-de-tiempos-de-entrega">
+<h4><span class="section-number">5.3.2.1. </span>Ejemplo: Datos de Tiempos de Entrega<a class="headerlink" href="#ejemplo-datos-de-tiempos-de-entrega" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>La columna b de la Tabla 6.1 contiene los valores de <span class="math notranslate nohighlight">\(D_i\)</span> para los datos de entrega de refrescos.</p></li>
+<li><p>Se ilustra el cálculo de la primera observación. El residuo studentizado correspondiente a la observación 1 es <span class="math notranslate nohighlight">\(r_1 = -1.6277\)</span> y <span class="math notranslate nohighlight">\(h_{11} = 0.10180\)</span>. Con <span class="math notranslate nohighlight">\(p = 3\)</span>, se obtiene:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+D_1 = \frac{(-1.6277)^2}{3} \cdot \frac{0.10180}{1 - 0.10180} = 0.10009
+\]</div>
+<ul class="simple">
+<li><p>El mayor valor es <span class="math notranslate nohighlight">\(D_9 = 3.41835\)</span>, lo cual indica que eliminar la observación 9 desplazaría el estimador <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> aproximadamente hasta el borde de una región de confianza del 96%.</p></li>
+<li><p>El siguiente valor más alto es <span class="math notranslate nohighlight">\(D_{22} = 0.45106\)</span>, lo que apenas alcanzaría el borde de una región del 35%. <strong>Por tanto, se concluye que la observación 9 es definitivamente influyente, mientras que la 22 no lo es.</strong></p></li>
+</ul>
+<p><strong>Estas conclusiones son coherentes con las obtenidas previamente usando los residuos escalados y los elementos diagonales del “hat matrix”.</strong></p>
+</section>
+<section id="codigo-en-python-para-calcular-la-distancia-de-cook">
+<h4><span class="section-number">5.3.2.2. </span>Código en Python para calcular la distancia de Cook<a class="headerlink" href="#codigo-en-python-para-calcular-la-distancia-de-cook" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">OLSInfluence</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">deliver</span><span class="p">[[</span><span class="s1">&#39;cases&#39;</span><span class="p">,</span> <span class="s1">&#39;dist&#39;</span><span class="p">]])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">deliver</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">influence</span> <span class="o">=</span> <span class="n">OLSInfluence</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">influence</span><span class="o">.</span><span class="n">cooks_distance</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="medidas-de-influencia-dffits-y-dfbetas">
+<h3><span class="section-number">5.3.3. </span>Medidas de Influencia: DFFITS y DFBETAS<a class="headerlink" href="#medidas-de-influencia-dffits-y-dfbetas" title="Link to this heading">#</a></h3>
+<p><strong>La distancia de Cook es un diagnóstico de eliminación: mide la influencia de la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación al excluirla del conjunto de datos.</strong> Belsley, Kuh y Welsch [1980] introdujeron dos medidas adicionales muy útiles de influencia por eliminación.</p>
+<ul class="simple">
+<li><p>La primera es un estadístico que indica cuánto cambia el coeficiente <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>, en unidades de desviación estándar, si se elimina la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dfbetas-def">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-dfbetas-def" title="Link to this equation">#</a></span>\[
+\text{DFBETAS}_{j,i} = \frac{\hat{\beta}_j - \hat{\beta}_j^{(i)}}{S_{(i)} \sqrt{C_{jj}}}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal <span class="math notranslate nohighlight">\(j\)</span>-ésimo de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_j^{(i)}\)</span> es el estimador del coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> al eliminar la observación <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Un valor absoluto grande de <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i}\)</span> indica que la observación <span class="math notranslate nohighlight">\(i\)</span> tiene un impacto considerable sobre el coeficiente <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</strong></p>
+<p>Esta medida proporciona información detallada de la influencia que complementa la información compuesta proporcionada por la distancia de Cook.</p>
+<ul class="simple">
+<li><p>Definimos la matriz <span class="math notranslate nohighlight">\(\mathbf{R} = (\mathbf{X}'\mathbf{X})^{-1} \mathbf{X}'\)</span>. La fila <span class="math notranslate nohighlight">\(j\)</span> de <span class="math notranslate nohighlight">\(\mathbf{R}\)</span> determina la influencia de las <span class="math notranslate nohighlight">\(n\)</span> observaciones sobre el estimador <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</p></li>
+</ul>
+<p>Sea <span class="math notranslate nohighlight">\(r_{j,i}\)</span> el elemento <span class="math notranslate nohighlight">\(i\)</span> de la fila <span class="math notranslate nohighlight">\(j\)</span> de <span class="math notranslate nohighlight">\(\mathbf{R}\)</span>, entonces (ver Apéndice C.13 en <span id="id1">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>):</p>
+<div class="math notranslate nohighlight" id="equation-dfbetas-ri">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-dfbetas-ri" title="Link to this equation">#</a></span>\[
+\text{DFBETAS}_{j,i} = \frac{r_{j,i} \cdot e_i}{S_{(i)} (1 - h_{ii}) \cdot \sqrt{r_j'r_j}} = \frac{r_{j,i}}{\sqrt{r_j'r_j}} \cdot \frac{t_i}{1 - h_{ii}}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(t_i\)</span> es el residuo <span class="math notranslate nohighlight">\(R\)</span>-student de la observación <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Este estadístico captura simultáneamente el efecto del apalancamiento (<span class="math notranslate nohighlight">\(r_{j,i}/\sqrt{r_j'r_j}\)</span>) y el tamaño del residuo.</strong></p>
+<ul class="simple">
+<li><p>Belsley, Kuh y Welsch [1980] sugieren un punto de corte de <span class="math notranslate nohighlight">\(2/n\)</span>. Es decir, si <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i} &gt; 2/n\)</span>, entonces la observación <span class="math notranslate nohighlight">\(i\)</span> merece ser examinada cuidadosamente.</p></li>
+<li><p>La segunda medida propuesta es el <strong>DFFITS</strong>, que evalúa la influencia de la observación <span class="math notranslate nohighlight">\(i\)</span> sobre su valor ajustado <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>. Se define como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dffits-def">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-dffits-def" title="Link to this equation">#</a></span>\[
+\text{DFFITS}_i = \frac{\hat{y}_i - \hat{y}_i^{(i)}}{S_{(i)} \sqrt{h_{ii}}}, \quad i = 1, 2, \dots, n
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\hat{y}_i^{(i)}\)</span> es el valor ajustado para <span class="math notranslate nohighlight">\(y_i\)</span> al eliminar la observación <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(\text{Var}(\hat{y}_i) = \sigma^2 h_{ii}\)</span>, el denominador es una estandarización. Se puede demostrar (ver Apéndice C.13 en <span id="id2">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>) que:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dffits-ti">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-dffits-ti" title="Link to this equation">#</a></span>\[
+\text{DFFITS}_i = t_i \cdot \sqrt{\frac{h_{ii}}{1 - h_{ii}}}
+\]</div>
+<p><strong>Así, <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> resulta del producto entre el residuo R-student <span class="math notranslate nohighlight">\(t_i\)</span> y la raíz del apalancamiento relativo.</strong></p>
+<ul class="simple">
+<li><p>Si el residuo es grande (<span class="math notranslate nohighlight">\(t_i\)</span> alto) o si el punto tiene alto apalancamiento (<span class="math notranslate nohighlight">\(h_{ii}\)</span> cercano a 1), entonces <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> también será grande. Si ambos factores son bajos, <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> será pequeño.</p></li>
+<li><p>Belsley et al. recomiendan examinar cualquier observación para la cual <span class="math notranslate nohighlight">\(\text{DFFITS}_i &gt; 2\sqrt{p/n}\)</span>.</p></li>
+</ul>
+<section id="comentario-sobre-los-valores-criticos">
+<h4><span class="section-number">5.3.3.1. </span>Comentario sobre los valores críticos<a class="headerlink" href="#comentario-sobre-los-valores-criticos" title="Link to this heading">#</a></h4>
+<p><strong>Las recomendaciones de corte para <span class="math notranslate nohighlight">\(\text{DFBETAS}\)</span> y <span class="math notranslate nohighlight">\(\text{DFFITS}\)</span> deben considerarse como guías, no reglas estrictas.</strong> Se debe considerar tanto la interpretación de los diagnósticos como el contexto del problema para definir la relevancia de una observación.</p>
+<p>Por ejemplo:</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(\text{DFFITS}_i = 1.0\)</span>, se puede interpretar en unidades reales de la variable respuesta para evaluar su impacto.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i}\)</span> es elevado, se puede analizar si cambia la significancia estadística de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> o incluso su signo.</p></li>
+<li><p>Incluso si los valores no superan el umbral formal, podrían ser relevantes dependiendo del contexto específico.</p></li>
+</ul>
+<p><strong>En muestras pequeñas, los puntos de corte sugeridos pueden ser demasiado sensibles.</strong> Se recomienda usar estos diagnósticos en conjunto con el análisis residual y otros gráficos de influencia.</p>
+</section>
+<section id="id3">
+<h4><span class="section-number">5.3.3.2. </span>Ejemplo: Datos de Tiempos de Entrega<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Las columnas c–f de la Tabla 6.1 contienen los valores de <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> y <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i}\)</span> para los datos de entrega de refrescos.</p></li>
+<li><p>Para <span class="math notranslate nohighlight">\(p = 3\)</span> y <span class="math notranslate nohighlight">\(n = 25\)</span>, el valor crítico de <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> es <span class="math notranslate nohighlight">\(2\sqrt{3/25} \approx 0.69\)</span>.</p></li>
+<li><p>Se observa que las observaciones 9 y 22 superan este valor. El punto 20 también se encuentra cerca del umbral.</p></li>
+<li><p>Para <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i}\)</span>, el punto de corte es <span class="math notranslate nohighlight">\(2/25 = 0.08\)</span>. Las observaciones 9 y 22 tienen un impacto importante sobre todos los coeficientes:</p>
+<ul>
+<li><p>Punto 9: efecto alto sobre la intersección y efectos moderados en <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span>.</p></li>
+<li><p>Punto 22: mayor efecto sobre <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Otras observaciones con efectos cercanos al umbral son:</p>
+<ul>
+<li><p>Observación 1: sobre <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span></p></li>
+<li><p>Observación 4: sobre <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span></p></li>
+<li><p>Observación 24: sobre <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Desde una perspectiva diagnóstica, la observación 9 es claramente influyente</strong>, ya que su eliminación desplaza todos los coeficientes en al menos 0.9 desviaciones estándar. Además, al eliminarla, el valor ajustado se desplaza más de 4 desviaciones estándar. <strong>Esto constituye una fuerte evidencia de su influencia.</strong></p>
+</section>
+<section id="codigo-en-python-para-calcular-dffits-y-dfbetas">
+<h4><span class="section-number">5.3.3.3. </span>Código en Python para calcular DFFITS y DFBETAS<a class="headerlink" href="#codigo-en-python-para-calcular-dffits-y-dfbetas" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.outliers_influence</span> <span class="kn">import</span> <span class="n">OLSInfluence</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">deliver</span><span class="p">[[</span><span class="s1">&#39;cases&#39;</span><span class="p">,</span> <span class="s1">&#39;dist&#39;</span><span class="p">]])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">deliver</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">influence</span> <span class="o">=</span> <span class="n">OLSInfluence</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">influence</span><span class="o">.</span><span class="n">dffits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">influence</span><span class="o">.</span><span class="n">dfbetas</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="una-medida-del-desempeno-del-modelo">
+<h3><span class="section-number">5.3.4. </span>Una Medida del Desempeño del Modelo<a class="headerlink" href="#una-medida-del-desempeno-del-modelo" title="Link to this heading">#</a></h3>
+<p><strong>Los diagnósticos <span class="math notranslate nohighlight">\(D_i\)</span>, <span class="math notranslate nohighlight">\(\text{DFBETAS}_{j,i}\)</span> y <span class="math notranslate nohighlight">\(\text{DFFITS}_i\)</span> proporcionan información sobre la influencia de ciertas observaciones en los coeficientes estimados <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> y en los valores ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>. Sin embargo, no ofrecen indicios sobre la precisión global de la estimación.</strong></p>
+<ul class="simple">
+<li><p>Es práctica común utilizar el <strong>determinante de la matriz de covarianzas</strong> como una medida escalar de precisión, denominada <strong>varianza generalizada</strong>. Esta se puede expresar como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-gv-beta">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-gv-beta" title="Link to this equation">#</a></span>\[
+GV(\hat{\boldsymbol{\beta}}) = \text{Var}(\hat{\boldsymbol{\beta}}) = \sigma^2 (\mathbf{X}'\mathbf{X})^{-1}
+\]</div>
+<ul class="simple">
+<li><p>Para cuantificar el efecto de la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación en la precisión de la estimación, se define:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-covratio-def">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-covratio-def" title="Link to this equation">#</a></span>\[
+\text{COVRATIO}_i = \frac{( \mathbf{X}'_{(i)} \mathbf{X}_{(i)} )^{-1} S^2_{(i)}}{( \mathbf{X}' \mathbf{X} )^{-1} \text{MSRes}}, \quad i = 1, 2, \dots, n
+\]</div>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(\text{COVRATIO}_i &gt; 1\)</span>, la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación mejora la precisión de la estimación; si <span class="math notranslate nohighlight">\(\text{COVRATIO}_i &lt; 1\)</span>, su inclusión disminuye dicha precisión.</p></li>
+<li><p>Computacionalmente, la expresión anterior puede reescribirse como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-covratio-comp">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-covratio-comp" title="Link to this equation">#</a></span>\[
+\text{COVRATIO}_i = \left( \frac{S^2_{(i)}}{\text{MSRes}} \right)^p \left( \frac{1}{1 - h_{ii}} \right)^p
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(h_{ii}\)</span> es el elemento diagonal correspondiente de la matriz sombrero <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>.</p>
+<p><strong>Es importante observar que <span class="math notranslate nohighlight">\(\left(1 / (1 - h_{ii})\right)\)</span> representa la razón entre los determinantes <span class="math notranslate nohighlight">\(|\mathbf{X}'_{(i)} \mathbf{X}_{(i)}|^{-1}\)</span> y <span class="math notranslate nohighlight">\(|\mathbf{X}' \mathbf{X}|^{-1}\)</span>, lo cual implica que un punto con alta apalancamiento (<span class="math notranslate nohighlight">\(h_{ii}\)</span> grande) tiende a incrementar el valor de <span class="math notranslate nohighlight">\(\text{COVRATIO}_i\)</span>.</strong></p>
+<ul class="simple">
+<li><p>Sin embargo, si dicha observación es también un valor atípico en el espacio de respuesta (<span class="math notranslate nohighlight">\(y\)</span>), el cociente <span class="math notranslate nohighlight">\(S^2_{(i)} / \text{MSRes}\)</span> será considerablemente menor que 1, contrarrestando el efecto anterior.</p></li>
+<li><p>No es sencillo establecer valores de corte exactos para <span class="math notranslate nohighlight">\(\text{COVRATIO}_i\)</span>. Belsley, Kuh y Welsch (1980) sugieren considerar que una observación es influyente si:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{COVRATIO}_i &gt; 1 + \frac{3p}{n} \quad \text{o} \quad \text{COVRATIO}_i &lt; 1 - \frac{3p}{n}
+\]</div>
+<p>Este último límite inferior solo es apropiado cuando <span class="math notranslate nohighlight">\(n &gt; 3p\)</span>, y ambos umbrales se recomiendan únicamente en muestras grandes.</p>
+<p><strong>Ejemplo: Datos de Tiempos de Entrega</strong></p>
+<ul class="simple">
+<li><p>La columna <span class="math notranslate nohighlight">\(g\)</span> de la Tabla 6.1 muestra los valores de <span class="math notranslate nohighlight">\(\text{COVRATIO}_i\)</span> para los datos de entrega de bebidas del Ejemplo 3.1.</p></li>
+<li><p>El valor de corte formal es:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+1 \pm \frac{3p}{n} = 1 \pm \frac{3(3)}{25} = 1 \pm 0.36 \Rightarrow [0.64,\ 1.36]
+\]</div>
+<ul class="simple">
+<li><p>Se observa que <span class="math notranslate nohighlight">\(\text{COVRATIO}_9\)</span> y <span class="math notranslate nohighlight">\(\text{COVRATIO}_{22}\)</span> exceden estos límites, lo que indica que ambas observaciones son influyentes.</p>
+<ul>
+<li><p>Como <span class="math notranslate nohighlight">\(\text{COVRATIO}_9 &lt; 1\)</span>, esta observación <strong>reduce</strong> la precisión de la estimación.</p></li>
+<li><p>Por el contrario, <span class="math notranslate nohighlight">\(\text{COVRATIO}_{22} &gt; 1\)</span>, lo que sugiere que su inclusión <strong>mejora</strong> la precisión. No obstante, el valor apenas supera el umbral, por lo que su influencia es relativamente pequeña.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>La observación 9, en cambio, tiene una influencia considerablemente mayor sobre la precisión del modelo.</strong></p>
+</section>
+<section id="deteccion-de-grupos-de-observaciones-influyentes">
+<h3><span class="section-number">5.3.5. </span>Detección de Grupos de Observaciones Influyentes<a class="headerlink" href="#deteccion-de-grupos-de-observaciones-influyentes" title="Link to this heading">#</a></h3>
+<p><strong>Hasta ahora, nos hemos enfocado en diagnósticos de eliminación para observaciones individuales, tanto para influencia como para apalancamiento. No obstante, podrían existir situaciones en las que un grupo de puntos ejerza una influencia considerable o presente alto apalancamiento en el modelo de regresión.</strong></p>
+<ul class="simple">
+<li><p>Existen excelentes estudios sobre esta problemática en Belsley, Kuh y Welsch (1980) y Rousseeuw y Leroy (1987).</p></li>
+<li><p>En principio, los diagnósticos diseñados para observaciones individuales pueden extenderse al caso de múltiples observaciones.</p></li>
+<li><p>Diversas estrategias han sido propuestas para abordar este tipo de situaciones. Algunas referencias relevantes incluyen:</p>
+<ul>
+<li><p>Atkinson (1994)</p></li>
+<li><p>Hadi y Simonoff (1993)</p></li>
+<li><p>Hawkings, Bradu y Kass (1984)</p></li>
+<li><p>Peña y Yohai (1995)</p></li>
+<li><p>Rousseeuw y van Zomeren (1990)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Una extensión del estadístico de Cook permite evaluar la influencia simultánea de un conjunto de <span class="math notranslate nohighlight">\(m\)</span> observaciones.</strong> Sea <span class="math notranslate nohighlight">\(\mathbf{i}\)</span> el vector columna de tamaño <span class="math notranslate nohighlight">\(m \times 1\)</span> que contiene los índices de las observaciones eliminadas, se define:</p>
+<div class="math notranslate nohighlight" id="equation-cook-multiobs">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-cook-multiobs" title="Link to this equation">#</a></span>\[
+D_i = \frac{(\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})' \mathbf{X}'\mathbf{X} (\hat{\boldsymbol{\beta}}_{(i)} - \hat{\boldsymbol{\beta}})}{p \cdot \text{MSRes}}
+\]</div>
+<ul class="simple">
+<li><p>Esta expresión generaliza la distancia de Cook para múltiples observaciones. Al igual que en el caso individual, <strong>valores grandes de <span class="math notranslate nohighlight">\(D_i\)</span> indican que el conjunto de puntos es influyente</strong>.</p></li>
+<li><p>No obstante, <strong>la selección del subconjunto <span class="math notranslate nohighlight">\(m\)</span> no es trivial</strong>, ya que en muchos conjuntos de datos algunos subconjuntos son influyentes sólo de forma conjunta y no individualmente.</p></li>
+</ul>
+<p><strong>Una solución efectiva fue propuesta por Sebert, Montgomery y Roillier (1998):</strong></p>
+<ul class="simple">
+<li><p>Utilizan <strong>análisis de conglomerados (clústeres)</strong> para identificar subconjuntos de observaciones influyentes.</p></li>
+<li><p>Esta técnica agrupa observaciones con base en una medida de similitud. En particular, emplean el método de enlace simple aplicado sobre los residuos y valores ajustados por mínimos cuadrados.</p></li>
+<li><p>El procedimiento separa las <span class="math notranslate nohighlight">\(n - m\)</span> observaciones “limpias” del grupo potencialmente influyente.</p></li>
+<li><p>Posteriormente, se evalúan todos los subconjuntos del grupo sospechoso con la versión generalizada de la distancia de Cook.</p></li>
+</ul>
+<p><strong>Este método demostró ser altamente efectivo:</strong></p>
+<ul class="simple">
+<li><p>Puede haber casos de “sobreinclusión” (swamping), pero el uso de la distancia de Cook permite <strong>descartar las observaciones no influyentes</strong>.</p></li>
+<li><p>En el análisis de nueve conjuntos de datos de la literatura y simulaciones de Monte Carlo, <strong>no se detectaron casos de “enmascaramiento” (masking)</strong>, es decir, no se omitió ningún punto influyente.</p></li>
+</ul>
+</section>
+<section id="tratamiento-de-observaciones-influyentes">
+<h3><span class="section-number">5.3.6. </span>Tratamiento de Observaciones Influyentes<a class="headerlink" href="#tratamiento-de-observaciones-influyentes" title="Link to this heading">#</a></h3>
+<p><strong>Los diagnósticos de apalancamiento e influencia constituyen herramientas fundamentales para el análisis de regresión. Permiten al analista identificar observaciones que merecen una revisión detallada.</strong></p>
+<ul class="simple">
+<li><p>La cantidad de esfuerzo dedicada al análisis de estos puntos dependerá de:</p>
+<ul>
+<li><p>El número de observaciones influyentes detectadas.</p></li>
+<li><p>El impacto que tienen sobre el modelo.</p></li>
+<li><p>La relevancia del problema de modelado.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Cuando el conjunto de datos es pequeño o costoso de obtener, vale la pena examinar cuidadosamente cualquier observación que genere resultados inusuales.</strong></p>
+<ul class="simple">
+<li><p><strong>¿Debe eliminarse una observación influyente?</strong> Esta cuestión es análoga al problema de descartar valores atípicos.</p></li>
+<li><p>Como regla general:</p>
+<ul>
+<li><p>Si existe un <strong>error en la recolección de datos</strong> o la observación <strong>no pertenece a la población objetivo</strong>, puede justificarse su eliminación.</p></li>
+<li><p>Si la observación es válida y forma parte de la población de interés, <strong>no debe ser descartada</strong>.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Una alternativa intermedia</strong> consiste en utilizar técnicas de estimación que <strong>sean menos sensibles a observaciones influyentes</strong>, conocidas como <strong>técnicas de regresión robusta</strong>.</p>
+<ul class="simple">
+<li><p>Estas técnicas ajustan el peso de las observaciones en función de su magnitud residual o influencia.</p></li>
+<li><p>De esta forma, una observación influyente recibe <strong>menor peso</strong> que en un ajuste por mínimos cuadrados ordinarios.</p></li>
+<li><p>Estas técnicas se exploran en la <strong>Sección 15.1</strong>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="model_adequacy_checking.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Comprobación de Adecuación del Modelo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="indicator_variables.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Variable Indicadoras</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-de-detectar-observaciones-influyentes">5.1. Importancia de detectar observaciones influyentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apalancamiento">5.2. Apalancamiento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">5.3. Ejemplo: Datos de tiempo de entrega</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-diagnostico-de-influencia">5.3.1. Código en Python para diagnóstico de influencia:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-influencia-distancia-de-cook">5.3.2. Medidas de Influencia: Distancia de Cook</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempos-de-entrega">5.3.2.1. Ejemplo: Datos de Tiempos de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-calcular-la-distancia-de-cook">5.3.2.2. Código en Python para calcular la distancia de Cook</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-de-influencia-dffits-y-dfbetas">5.3.3. Medidas de Influencia: DFFITS y DFBETAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comentario-sobre-los-valores-criticos">5.3.3.1. Comentario sobre los valores críticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5.3.3.2. Ejemplo: Datos de Tiempos de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-en-python-para-calcular-dffits-y-dfbetas">5.3.3.3. Código en Python para calcular DFFITS y DFBETAS</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-medida-del-desempeno-del-modelo">5.3.4. Una Medida del Desempeño del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteccion-de-grupos-de-observaciones-influyentes">5.3.5. Detección de Grupos de Observaciones Influyentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-observaciones-influyentes">5.3.6. Tratamiento de Observaciones Influyentes</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

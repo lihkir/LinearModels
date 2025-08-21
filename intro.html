@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Profesor: Dr. Lihki Rubio &#8212; Machine Learning</title>
+    <title>Profesor: Dr. Lihki Rubio &#8212; Modelos Lineales</title>
   
   
   
@@ -68,7 +68,7 @@
     <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Aprendizaje supervisado" href="supervised_intro.html" />
+    <link rel="next" title="1. Introducción" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,8 +162,8 @@
       
     
     
-    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Machine Learning - Home"/>
-    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Machine Learning - Home"/>`);</script>
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
   
   
 </a></div>
@@ -189,22 +189,17 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="supervised_intro.html">1. Aprendizaje supervisado</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knn_model.html">2. <span class="math notranslate nohighlight">\(k\)</span>-vecinos más cercanos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linear_model.html">3. Regresión Ridge y Lasso</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bayes_model.html">4. Clasificador Bayesiano</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decisiontree_model.html">5. Random Forest y XGBoost</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="svm_model.html">8. Máquinas de vectores de soporte</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="ann_model.html">10. Redes Neuronales y Deep Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="practical_pca.html">11. Análisis de Componentes Principales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_evaluation.html">12. Evaluación de modelos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chains_pipelines.html">13. Cadenas de Algoritmos y Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix.html">14. Apéndice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises_sols.html">15. Soluciones a ejercicios</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">16. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostic_leverage_influence.html">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indicator_variables.html">6. Variable Indicadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multicollinearity.html">7. Multicolinealidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -357,40 +352,43 @@ document.write(`
                   
   <center> 
 <h1>
-Machine Learning
+Modelos Lineales
 </h1>
 </center>
-<a class="reference internal image-reference" href="_images/machinelearning_logo.jpg"><img alt="_images/machinelearning_logo.jpg" class="align-center" src="_images/machinelearning_logo.jpg" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/linearmodels.jpg"><img alt="_images/linearmodels.jpg" class="align-center" src="_images/linearmodels.jpg" style="width: 500px;" />
+</a>
 </br>
 <section class="tex2jax_ignore mathjax_ignore" id="profesor-dr-lihki-rubio">
 <h1>Profesor: Dr. Lihki Rubio<a class="headerlink" href="#profesor-dr-lihki-rubio" title="Link to this heading">#</a></h1>
 <div class="tip admonition">
 <p class="admonition-title"><em><strong>Introducción</strong></em></p>
 <ul class="simple">
-<li><p>En la era del <em><strong>Big Data</strong></em> y la <em><strong>automatización</strong></em>, <em><strong>Machine Learning (ML)</strong></em> se ha convertido en una <em><strong>herramienta fundamental para transformar datos en conocimiento útil y en decisiones estratégicas</strong></em>. Este curso está diseñado para proporcionar una comprensión sólida de los <em><strong>fundamentos teóricos y prácticos del aprendizaje automático</strong></em>, con un enfoque en su aplicabilidad en el mundo real.</p></li>
-<li><p>¿Por qué es importante Machine Learning para tu carrera?</p>
+<li><p>En el contexto actual, donde la toma de decisiones basada en datos es cada vez más relevante, los <strong>Modelos Lineales</strong> constituyen una herramienta estadística esencial para <strong>comprender, predecir y explicar relaciones entre variables</strong>. Este curso ofrece una base teórica y práctica rigurosa en regresión lineal y sus extensiones, fundamentales en el análisis estadístico moderno.</p></li>
+<li><p>¿Por qué estudiar Modelos Lineales?</p>
 <ul>
-<li><p>El Machine Learning impulsa innovaciones en casi todas las industrias, desde la <em><strong>banca y finanzas, donde se usa para la detección de fraudes y la evaluación de riesgos crediticios</strong></em>, hasta la <em><strong>salud, donde se aplica en el diagnóstico asistido por inteligencia artificial</strong></em>. Dominar estas técnicas le permitirá:</p></li>
-<li><p>Resolver problemas complejos mediante modelos predictivos.</p></li>
-<li><p>Optimizar procesos y mejorar la toma de decisiones en las empresas.</p></li>
-<li><p>Desarrollar productos y servicios impulsados por IA.</p></li>
-</ul>
-</li>
-<li><p>Aplicaciones Reales</p>
+<li><p>Estos modelos son ampliamente utilizados en diversas disciplinas como la <strong>economía, salud pública, ciencias sociales, ingeniería y biología</strong>, debido a su <strong>interpretabilidad, eficiencia y capacidad predictiva</strong>. El dominio de los modelos lineales le permitirá:</p>
 <ul>
-<li><p>En este curso, explorarás aplicaciones de Machine Learning en diferentes áreas, tales como:</p>
-<ul>
-<li><p><em><strong>Finanzas</strong></em>: Predicción de precios de acciones y detección de fraudes.</p></li>
-<li><p><em><strong>Salud</strong></em>: Diagnóstico automatizado y análisis de imágenes médicas.</p></li>
-<li><p><em><strong>Industria y manufactura</strong></em>: Mantenimiento predictivo y optimización de procesos.</p></li>
-<li><p><em><strong>Marketing y negocios</strong></em>: Recomendación de productos y segmentación de clientes.</p></li>
-<li><p><em><strong>Medio ambiente</strong></em>: Predicción de la calidad del aire</p></li>
-<li><p><em><strong>Energías renovables</strong></em>: Predicción de velocidad del viento y radiación solar</p></li>
+<li><p>Formular e interpretar modelos para explicar fenómenos observados.</p></li>
+<li><p>Evaluar el impacto de variables explicativas sobre una variable de interés.</p></li>
+<li><p>Realizar inferencias válidas y tomar decisiones sustentadas en evidencia estadística.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>A lo largo del curso, combinarás teoría con práctica mediante el uso de herramientas como <code class="docutils literal notranslate"><span class="pre">Python,</span> <span class="pre">Scikit-Learn</span></code> y <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code>, preparándole para enfrentar desafíos en el mundo laboral con un enfoque basado en datos.</p></li>
+<li><p>Aplicaciones Relevantes</p>
+<ul>
+<li><p>A lo largo del curso se explorarán aplicaciones prácticas en áreas como:</p>
+<ul>
+<li><p><strong>Salud pública</strong>: Modelado de factores de riesgo asociados a enfermedades.</p></li>
+<li><p><strong>Economía y finanzas</strong>: Análisis de retornos y predicción de precios.</p></li>
+<li><p><strong>Educación</strong>: Estudio de factores que afectan el rendimiento académico.</p></li>
+<li><p><strong>Industria</strong>: Optimización de procesos mediante análisis de regresión.</p></li>
+<li><p><strong>Ciencias ambientales</strong>: Evaluación de relaciones entre variables climáticas.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Durante el curso, se integrarán conceptos teóricos con ejercicios aplicados utilizando herramientas estadísticas como <code class="docutils literal notranslate"><span class="pre">R</span></code> y <code class="docutils literal notranslate"><span class="pre">Python</span></code>, fortaleciendo tanto la comprensión matemática como la capacidad de implementar modelos en contextos reales.</p></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -428,11 +426,11 @@ Machine Learning
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="supervised_intro.html"
+       href="introduction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Aprendizaje supervisado</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introducción</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

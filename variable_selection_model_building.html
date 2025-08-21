@@ -1,0 +1,1450 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Selección de variables y construcción de modelos &#8212; Modelos Lineales</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=530fe47d" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'variable_selection_model_building';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/custom.js?v=14184634"></script>
+    <script src="_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Validación de modelos de regresión" href="validation_regression_models.html" />
+    <link rel="prev" title="7. Multicolinealidad" href="multicollinearity.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotolihki.jpg" class="logo__image only-light" alt="Modelos Lineales - Home"/>
+    <script>document.write(`<img src="_static/fotolihki.jpg" class="logo__image only-dark" alt="Modelos Lineales - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profesor: Dr. Lihki Rubio
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simple_linear_regression.html">2. Regresión Lineal Simple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_linear_regression.html">3. Regresión Lineal Múltiple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_adequacy_checking.html">4. Comprobación de Adecuación del Modelo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostic_leverage_influence.html">5. Diagnóstico de Apalancamiento e Influencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indicator_variables.html">6. Variable Indicadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multicollinearity.html">7. Multicolinealidad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Selección de variables y construcción de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/variable_selection_model_building.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Selección de variables y construcción de modelos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">8.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-construccion-del-modelo">8.1.1. El Problema de Construcción del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencias-de-una-especificacion-incorrecta-del-modelo">8.1.2. Consecuencias de una especificación incorrecta del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-para-evaluar-modelos-de-regresion-con-subconjuntos">8.1.3. Criterios para evaluar modelos de regresión con subconjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficiente-de-determinacion-multiple">8.1.3.1. Coeficiente de determinación múltiple</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficiente-de-determinacion-ajustado">8.1.3.2. Coeficiente de determinación ajustado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-adicionales-para-evaluar-modelos-con-subconjuntos">8.1.4. Criterios adicionales para evaluar modelos con subconjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadrado-medio-residual">8.1.4.1. Cuadrado medio residual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-c-p-de-mallows">8.1.4.2. Estadístico <span class="math notranslate nohighlight">\(C_p\)</span> de Mallows</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-informacion-aic-y-bic">8.1.5. Criterios de Información: AIC y BIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-informacion-de-akaike-aic">8.1.5.1. Criterio de Información de Akaike (AIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-informacion-bayesiano-bic">8.1.5.2. Criterio de Información Bayesiano (BIC)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-la-regresion-y-criterios-de-evaluacion">8.1.6. Uso de la Regresión y Criterios de Evaluación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tecnicas-computacionales-para-seleccion-de-variables">8.2. Técnicas Computacionales para Selección de Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresiones-de-todos-los-posibles-subconjuntos">8.2.1. Regresiones de Todos los Posibles Subconjuntos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-10-1-datos-de-cemento-de-hald">8.3. Ejemplo 10.1: Datos de Cemento de Hald</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-el-criterio-r-p-2">8.3.1. Evaluación por el criterio <span class="math notranslate nohighlight">\(R_p^2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-correlaciones">8.3.2. Matriz de Correlaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-msres-p">8.3.3. Evaluación por <span class="math notranslate nohighlight">\(MSRes(p)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-mediante-el-estadistico-c-p">8.3.4. Evaluación mediante el estadístico <span class="math notranslate nohighlight">\(C_p\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.3.5. Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-eficiente-de-todas-las-regresiones-posibles">8.4. Generación eficiente de todas las regresiones posibles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-10-4">8.4.1. <strong>Tabla 10.4</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-regresion-paso-a-paso">8.5. Métodos de regresión paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-progresiva">8.5.1. Selección progresiva</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="seleccion-de-variables-y-construccion-de-modelos">
+<h1><span class="section-number">8. </span>Selección de variables y construcción de modelos<a class="headerlink" href="#seleccion-de-variables-y-construccion-de-modelos" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2><span class="section-number">8.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<section id="el-problema-de-construccion-del-modelo">
+<h3><span class="section-number">8.1.1. </span>El Problema de Construcción del Modelo<a class="headerlink" href="#el-problema-de-construccion-del-modelo" title="Link to this heading">#</a></h3>
+<p>En los capítulos anteriores se asumió que las variables regresoras incluidas en el modelo eran <strong>importantes y conocidas de antemano</strong>. El enfoque estuvo centrado en asegurar que la forma funcional del modelo fuera adecuada y que los <strong>supuestos estadísticos fundamentales</strong> no fueran violados.</p>
+<p>En muchas aplicaciones, los <strong>criterios teóricos o la experiencia previa</strong> pueden ayudar en la selección de las variables regresoras apropiadas. Hasta ahora, se ha seguido el enfoque clásico para la selección de modelos de regresión, el cual parte de la <strong>suposición de que conocemos la forma básica del modelo</strong> y las variables que deben considerarse. Esta estrategia clásica se puede resumir de la siguiente forma:</p>
+<ol class="arabic simple">
+<li><p><strong>Ajustar el modelo completo</strong>, es decir, el que incluye todas las variables regresoras en consideración.</p></li>
+<li><p><strong>Realizar un análisis exhaustivo del modelo completo</strong>, incluyendo un análisis de residuos detallado. Es recomendable también investigar posibles problemas de <strong>colinealidad</strong>.</p></li>
+<li><p><strong>Evaluar la necesidad de aplicar transformaciones</strong> a la variable respuesta o a algunas de las regresoras.</p></li>
+<li><p><strong>Utilizar las pruebas t individuales</strong> para eliminar regresores innecesarios y editar el modelo.</p></li>
+<li><p><strong>Evaluar la adecuación del modelo editado</strong>, prestando especial atención al análisis de residuos.</p></li>
+</ol>
+<p>En la práctica, especialmente cuando se trabaja con <strong>datos históricos</strong>, el analista suele disponer de un conjunto amplio de variables regresoras candidatas, de las cuales solo <strong>unas pocas resultan relevantes</strong>. Este proceso de identificar un subconjunto adecuado de regresores se conoce como el <strong>problema de selección de variables</strong>.</p>
+<p>La selección adecuada de variables es crucial, particularmente cuando existe <strong>multicolinealidad</strong>. De hecho, el método más común para corregirla consiste en <strong>seleccionar variables</strong> cuidadosamente. Aunque la selección de variables no elimina por completo la multicolinealidad, puede <strong>justificar la presencia de regresores altamente correlacionados</strong> en el modelo final cuando estos son necesarios desde un punto de vista explicativo.</p>
+<p>La <strong>multicolinealidad no es el único motivo</strong> para aplicar técnicas de selección de variables. Incluso relaciones moderadas entre regresores, que podrían no ser identificadas como problemáticas mediante diagnósticos estándar, pueden <strong>afectar significativamente la calidad del modelo</strong>.</p>
+<p>La construcción de un modelo de regresión que solo incluya un subconjunto de los regresores disponibles <strong>implica un conflicto entre dos objetivos</strong>:</p>
+<ul class="simple">
+<li><p>(1) Incluir <strong>la mayor cantidad posible de regresores</strong>, de forma que la información contenida en estas variables contribuya a la predicción de <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>(2) Incluir <strong>la menor cantidad posible de regresores</strong>, ya que la varianza de la predicción <span class="math notranslate nohighlight">\(\hat{y}\)</span> aumenta con el número de regresores. Además, modelos más grandes conllevan <strong>mayores costos de recolección de datos y mantenimiento</strong>.</p></li>
+</ul>
+<p>El proceso de encontrar un modelo que equilibre estos dos objetivos se conoce como la <strong>selección de la “mejor” ecuación de regresión</strong>. Sin embargo, no existe una definición única de “mejor” modelo. Existen <strong>múltiples algoritmos</strong> para la selección de variables, y es común que <strong>produzcan diferentes subconjuntos</strong> de regresores como óptimos.</p>
+<p>La selección de variables suele tratarse bajo <strong>condiciones idealizadas</strong>, asumiendo que la especificación funcional de los regresores es conocida (por ejemplo, <span class="math notranslate nohighlight">\(1/x_1\)</span>, <span class="math notranslate nohighlight">\(\ln x_2\)</span>), y que <strong>no existen valores atípicos ni observaciones influyentes</strong>. Sin embargo, en la práctica estas condiciones rara vez se cumplen.</p>
+<p>El <strong>análisis de residuos</strong> (véase el Capítulo 4) es útil para:</p>
+<ul class="simple">
+<li><p>Sugerir <strong>formas funcionales alternativas</strong> para los regresores.</p></li>
+<li><p>Identificar <strong>nuevos regresores candidatos</strong>.</p></li>
+<li><p>Detectar <strong>defectos en los datos</strong>, como observaciones atípicas o influyentes.</p></li>
+</ul>
+<p>Por tanto, la evaluación de la <strong>adecuación del modelo</strong> está estrechamente vinculada al problema de selección de variables. Aunque lo ideal sería abordar ambos aspectos simultáneamente, en la práctica se recurre a un <strong>enfoque iterativo</strong>:</p>
+<ol class="arabic simple">
+<li><p>Aplicar una estrategia de selección de variables.</p></li>
+<li><p>Evaluar el modelo resultante en términos de <strong>especificación funcional, valores atípicos y observaciones influyentes</strong>.</p></li>
+</ol>
+<p>Este proceso puede requerir <strong>varias iteraciones</strong> hasta obtener un modelo adecuado.</p>
+<p><strong>Ninguno de los métodos de selección de variables garantiza encontrar la mejor ecuación de regresión</strong> para un conjunto de datos dado. De hecho, a menudo <strong>no existe una única mejor ecuación</strong>, sino varias que son estadísticamente equivalentes. Dado que los algoritmos de selección de variables dependen en gran medida del software utilizado, existe el riesgo de <strong>depositar excesiva confianza en los resultados computacionales</strong>. Este riesgo debe evitarse.</p>
+<p>La <strong>experiencia, el criterio profesional en el área de aplicación y los factores subjetivos</strong> juegan un papel importante en la selección de variables. Los procedimientos de selección deben utilizarse como <strong>herramientas exploratorias</strong> para estudiar la estructura del conjunto de datos.</p>
+<p><strong>Referencias recomendadas sobre selección de variables en regresión</strong> incluyen:</p>
+<ul class="simple">
+<li><p>Cox y Snell (1974),</p></li>
+<li><p>Hocking (1972, 1976),</p></li>
+<li><p>Hocking y LaMotte (1973),</p></li>
+<li><p>Myers (1990),</p></li>
+<li><p>Thompson (1978a, b).</p></li>
+</ul>
+</section>
+<section id="consecuencias-de-una-especificacion-incorrecta-del-modelo">
+<h3><span class="section-number">8.1.2. </span>Consecuencias de una especificación incorrecta del modelo<a class="headerlink" href="#consecuencias-de-una-especificacion-incorrecta-del-modelo" title="Link to this heading">#</a></h3>
+<p>Para motivar el uso de técnicas de selección de variables, revisamos brevemente las <strong>consecuencias de especificar incorrectamente un modelo</strong>. Supongamos que hay <span class="math notranslate nohighlight">\(K\)</span> regresores candidatos <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_K\)</span> y que se dispone de <span class="math notranslate nohighlight">\(n \geq K + 1\)</span> observaciones sobre estos regresores y la respuesta <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>El <strong>modelo completo</strong>, que contiene los <span class="math notranslate nohighlight">\(K\)</span> regresores, es:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \beta_0 + \sum_{j=1}^K \beta_j x_{ij} + \varepsilon_i,\quad i = 1, 2, \dots, n \tag{10.1a}\label{eq:10.1a}
+\]</div>
+<p>o, de forma matricial:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \mathbf{e} \tag{10.1b}\label{eq:10.1b}
+\]</div>
+<p>Asumimos que la lista de regresores candidatos contiene todas las variables importantes. Notamos que el modelo incluye un <strong>término de intercepto</strong> <span class="math notranslate nohighlight">\(\beta_0\)</span>, el cual usualmente <strong>se mantiene en el modelo</strong> y no se somete a selección.</p>
+<p>Si se eliminan <span class="math notranslate nohighlight">\(r\)</span> regresores del modelo completo, entonces el número de regresores retenidos es <span class="math notranslate nohighlight">\(p = K + 1 - r\)</span> (incluyendo el intercepto). Por tanto, el subconjunto de regresores contiene <span class="math notranslate nohighlight">\(p - 1 = K - r\)</span> de los regresores originales.</p>
+<p>Reescribimos el modelo completo como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{y} = \mathbf{X}_p \boldsymbol{\beta}_p + \mathbf{X}_r \boldsymbol{\beta}_r + \mathbf{e} \tag{10.2}\label{eq:10.2}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{X}_p\)</span> es una matriz <span class="math notranslate nohighlight">\(n \times p\)</span> con el intercepto y las variables retenidas, y <span class="math notranslate nohighlight">\(\mathbf{X}_r\)</span> es una matriz <span class="math notranslate nohighlight">\(n \times r\)</span> con las variables eliminadas. El vector de parámetros <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> se particiona como <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_p\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_r\)</span>.</p>
+<p>El estimador de mínimos cuadrados del modelo completo es:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\boldsymbol{\beta}}^* = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y} \tag{10.3}\label{eq:10.3}
+\]</div>
+<p>y la estimación de la varianza del error es:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\sigma}^{*2} = \frac{\mathbf{y}^\top (\mathbf{I} - \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top) \mathbf{y}}{n - K - 1} \tag{10.4}\label{eq:10.4}
+\]</div>
+<p>El modelo de subconjunto se expresa como:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{y} = \mathbf{X}_p \boldsymbol{\beta}_p + \mathbf{e} \tag{10.5}\label{eq:10.5}
+\]</div>
+<p>y su estimador de mínimos cuadrados es:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\boldsymbol{\beta}}_p = (\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{X}_p^\top \mathbf{y} \tag{10.6}\label{eq:10.6}
+\]</div>
+<p>La varianza residual estimada para el modelo de subconjunto es:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\sigma}^2 = \frac{\mathbf{y}^\top (\mathbf{I} - \mathbf{X}_p(\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{X}_p^\top) \mathbf{y}}{n - p} \tag{10.7}\label{eq:10.7}
+\]</div>
+<p><strong>Resultados clave sobre los estimadores del modelo reducido</strong>:</p>
+<ol class="arabic simple">
+<li><p>El valor esperado de <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_p\)</span> es:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}[\hat{\boldsymbol{\beta}}_p] = \boldsymbol{\beta}_p + (\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{X}_p^\top \mathbf{X}_r \boldsymbol{\beta}_r = \boldsymbol{\beta}_p + \mathbf{A} \boldsymbol{\beta}_r
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbf{A} = (\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{X}_p^\top \mathbf{X}_r\)</span> es la <strong>matriz de aliasado</strong>. El estimador <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_p\)</span> es <strong>sesgado</strong> salvo que <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_r = \mathbf{0}\)</span> o que <span class="math notranslate nohighlight">\(\mathbf{X}_p^\top \mathbf{X}_r = \mathbf{0}\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p>Las varianzas de los estimadores son:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\boldsymbol{\beta}}_p) = \sigma^2 (\mathbf{X}_p^\top \mathbf{X}_p)^{-1}, \quad \operatorname{Var}(\hat{\boldsymbol{\beta}}^*) = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}
+\]</div>
+<p>Además, se cumple que:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\boldsymbol{\beta}}^*_p) - \operatorname{Var}(\hat{\boldsymbol{\beta}}_p) \text{ es semidefinida positiva}
+\]</div>
+<p>por lo que <strong>eliminar variables nunca incrementa la varianza de los coeficientes retenidos</strong>.</p>
+<ol class="arabic simple" start="3">
+<li><p>Como <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_p\)</span> es sesgado, se recomienda evaluar la <strong>precisión en términos del error cuadrático medio (ECM)</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{MSE}(\hat{\boldsymbol{\theta}}) = \operatorname{Var}(\hat{\boldsymbol{\theta}}) + \left[\mathbb{E}(\hat{\boldsymbol{\theta}}) - \boldsymbol{\theta} \right]^2
+\]</div>
+<p>El ECM del modelo reducido es:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{MSE}(\hat{\boldsymbol{\beta}}_p) = \sigma^2 (\mathbf{X}_p^\top \mathbf{X}_p)^{-1} + \mathbf{A} \boldsymbol{\beta}_r \boldsymbol{\beta}_r^\top \mathbf{A}^\top
+\]</div>
+<p>Si <span class="math notranslate nohighlight">\(\operatorname{Var}(\hat{\boldsymbol{\beta}}_r^*) - \boldsymbol{\beta}_r \boldsymbol{\beta}_r^\top\)</span> es semidefinida positiva, entonces:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{\boldsymbol{\beta}}^*_p) - \operatorname{MSE}(\hat{\boldsymbol{\beta}}_p) \text{ es semidefinida positiva}
+\]</div>
+<p>por lo tanto, el <strong>modelo reducido puede tener menor ECM</strong> si los coeficientes eliminados son pequeños.</p>
+<ol class="arabic simple" start="4">
+<li><p>La estimación <span class="math notranslate nohighlight">\(\hat{\sigma}^{*2}\)</span> es insesgada en el modelo completo. En el modelo reducido, el valor esperado es:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(\hat{\sigma}^2) = \sigma^2 + \frac{\boldsymbol{\beta}_r^\top \mathbf{X}_r^\top [\mathbf{I} - \mathbf{X}_p(\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{X}_p^\top] \mathbf{X}_r \boldsymbol{\beta}_r}{n - p}
+\]</div>
+<p>lo cual implica que <strong><span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es sesgada hacia arriba</strong>.</p>
+<ol class="arabic simple" start="5">
+<li><p>Para predecir en un nuevo punto <span class="math notranslate nohighlight">\(\mathbf{x}^\top = [\mathbf{x}_p^\top,\ \mathbf{x}_r^\top]\)</span>:</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Modelo completo</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}^* = \mathbf{x}^\top \hat{\boldsymbol{\beta}}^*, \quad \operatorname{Var}(\hat{y}^*) = \sigma^2 \left[1 + \mathbf{x}^\top (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{x} \right]
+\]</div>
+<ul class="simple">
+<li><p><strong>Modelo reducido</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{y} = \mathbf{x}_p^\top \hat{\boldsymbol{\beta}}_p, \quad \mathbb{E}(\hat{y}) = \mathbf{x}_p^\top \boldsymbol{\beta}_p + \mathbf{x}_p^\top \mathbf{A} \boldsymbol{\beta}_r
+\]</div>
+<p>y su ECM es:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{MSE}(\hat{y}) = \sigma^2 \left[1 + \mathbf{x}_p^\top (\mathbf{X}_p^\top \mathbf{X}_p)^{-1} \mathbf{x}_p \right] + (\mathbf{x}_p^\top \mathbf{A} \boldsymbol{\beta}_r - \mathbf{x}_r^\top \boldsymbol{\beta}_r)^2
+\]</div>
+<p>Por tanto, <strong><span class="math notranslate nohighlight">\(\hat{y}\)</span> será sesgado a menos que <span class="math notranslate nohighlight">\(\mathbf{x}_p^\top \mathbf{A} \boldsymbol{\beta}_r = \mathbf{x}_r^\top \boldsymbol{\beta}_r\)</span></strong>. Además, si se cumple que:</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\hat{y}^*) \geq \operatorname{MSE}(\hat{y})
+\]</div>
+<p>entonces el modelo reducido puede ofrecer mejor precisión de predicción, incluso con sesgo.</p>
+<p><strong>Resumen</strong>: La selección de variables puede <strong>reducir la varianza</strong> de los estimadores y de las predicciones, aunque introduce <strong>sesgo</strong> si las variables eliminadas no son totalmente irrelevantes. Si el sesgo es pequeño, el <strong>ECM puede mejorar</strong> en el modelo reducido. Por otro lado, mantener variables irrelevantes <strong>aumenta la varianza</strong> innecesariamente. Además, los modelos ajustados sobre datos retrospectivos suelen estar afectados por errores, rangos limitados y puntos influyentes, lo cual <strong>afecta críticamente la selección de variables</strong>. En tales casos, es recomendable recolectar nuevos datos mediante <strong>experimentos diseñados</strong>.</p>
+</section>
+<section id="criterios-para-evaluar-modelos-de-regresion-con-subconjuntos">
+<h3><span class="section-number">8.1.3. </span>Criterios para evaluar modelos de regresión con subconjuntos<a class="headerlink" href="#criterios-para-evaluar-modelos-de-regresion-con-subconjuntos" title="Link to this heading">#</a></h3>
+<p>Dos aspectos fundamentales del problema de selección de variables son: <strong>(1) generar modelos con subconjuntos</strong> y <strong>(2) decidir cuál de ellos es mejor</strong>. En esta sección se discuten criterios para <strong>evaluar y comparar modelos de regresión con subconjuntos</strong>. En la Sección 10.2 se presentan métodos computacionales para llevar a cabo la selección.</p>
+<section id="coeficiente-de-determinacion-multiple">
+<h4><span class="section-number">8.1.3.1. </span>Coeficiente de determinación múltiple<a class="headerlink" href="#coeficiente-de-determinacion-multiple" title="Link to this heading">#</a></h4>
+<p>Una medida ampliamente utilizada para evaluar la adecuación de un modelo de regresión es el <strong>coeficiente de determinación múltiple</strong> <span class="math notranslate nohighlight">\(R^2\)</span>. Denotamos por <span class="math notranslate nohighlight">\(R_p^2\)</span> el coeficiente de determinación correspondiente a un modelo de subconjunto con <span class="math notranslate nohighlight">\(p\)</span> términos (es decir, <span class="math notranslate nohighlight">\(p - 1\)</span> regresores más un intercepto <span class="math notranslate nohighlight">\(\beta_0\)</span>). Computacionalmente, se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+R_p^2 = \frac{\text{SSR}(p)}{\text{SST}} = 1 - \frac{\text{SSRes}(p)}{\text{SST}} \tag{10.8}\label{eq:10.8}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\text{SSR}(p)\)</span> es la suma de cuadrados de regresión del modelo de <span class="math notranslate nohighlight">\(p\)</span> términos, y <span class="math notranslate nohighlight">\(\text{SSRes}(p)\)</span> es la suma de cuadrados residual correspondiente. Existen <span class="math notranslate nohighlight">\(\binom{K}{p - 1}\)</span> posibles valores de <span class="math notranslate nohighlight">\(R_p^2\)</span> para cada tamaño de subconjunto <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p><strong><span class="math notranslate nohighlight">\(R_p^2\)</span> siempre aumenta al agregar regresores</strong>, alcanzando su máximo cuando <span class="math notranslate nohighlight">\(p = K + 1\)</span> (modelo completo). Por ello, el criterio se usa agregando regresores hasta que una nueva variable proporciona solo una <strong>pequeña ganancia</strong> en <span class="math notranslate nohighlight">\(R_p^2\)</span>. Este enfoque se ilustra en la Figura 10.1, donde se grafica el valor máximo de <span class="math notranslate nohighlight">\(R_p^2\)</span> frente a <span class="math notranslate nohighlight">\(p\)</span>. Generalmente, el analista selecciona el tamaño del modelo en el punto donde se aprecia una <strong>curvatura o “codo”</strong> en la gráfica, lo cual requiere juicio experto.</p>
+<p>Dado que no existe un valor “óptimo” de <span class="math notranslate nohighlight">\(R^2\)</span> para un modelo reducido, buscamos un valor <strong>satisfactorio</strong>. Aitkin (1974) propuso un <strong>test para identificar subconjuntos que no difieren significativamente del modelo completo en términos de <span class="math notranslate nohighlight">\(R^2\)</span></strong>. Definimos:</p>
+<div class="math notranslate nohighlight">
+\[
+R_0^2 = 1 - (1 - R_{K+1}^2)(1 + d_{\alpha, n, K}) \tag{10.9}\label{eq:10.9}
+\]</div>
+<p>donde</p>
+<div class="math notranslate nohighlight">
+\[
+d_{\alpha, n, K} = \frac{K F_{\alpha, K, n - K - 1}}{n - K - 1}
+\]</div>
+<p>y <span class="math notranslate nohighlight">\(R_{K+1}^2\)</span> es el <span class="math notranslate nohighlight">\(R^2\)</span> del modelo completo. Cualquier subconjunto que produzca un <span class="math notranslate nohighlight">\(R^2 &gt; R_0^2\)</span> se denomina <strong>subconjunto <span class="math notranslate nohighlight">\(R^2\)</span>-adecuado al nivel <span class="math notranslate nohighlight">\(\alpha\)</span></strong>.</p>
+<p>Aunque <span class="math notranslate nohighlight">\(R^2\)</span> no es ideal para elegir el número óptimo de regresores, <strong>para un número fijo <span class="math notranslate nohighlight">\(p\)</span></strong>, se puede comparar entre modelos con el mismo número de variables. En ese caso, <strong>se prefieren los modelos con mayor <span class="math notranslate nohighlight">\(R_p^2\)</span></strong>.</p>
+</section>
+<section id="coeficiente-de-determinacion-ajustado">
+<h4><span class="section-number">8.1.3.2. </span>Coeficiente de determinación ajustado<a class="headerlink" href="#coeficiente-de-determinacion-ajustado" title="Link to this heading">#</a></h4>
+<p>Para evitar los inconvenientes de interpretar <span class="math notranslate nohighlight">\(R^2\)</span>, algunos analistas prefieren usar el <strong>coeficiente de determinación ajustado</strong>, definido como:</p>
+<div class="math notranslate nohighlight">
+\[
+R^2_{\text{Adj},\ p} = 1 - \left(\frac{n - 1}{n - p}\right)(1 - R_p^2) \tag{10.10}\label{eq:10.10}
+\]</div>
+<p>Este estadístico <strong>no necesariamente aumenta al incluir nuevos regresores</strong>. De hecho, se ha demostrado (Edwards, 1969; Haitovski, 1969; Seber, 1977) que si se agregan <span class="math notranslate nohighlight">\(s\)</span> regresores al modelo, entonces:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R^2_{\text{Adj},\ p + s} &gt; R^2_{\text{Adj},\ p}\)</span> <strong>si y solo si</strong> el <strong>estadístico F parcial</strong> para probar la significancia de los <span class="math notranslate nohighlight">\(s\)</span> regresores adicionales <strong>es mayor que 1</strong>.</p></li>
+</ul>
+<p>Por lo tanto, un <strong>criterio alternativo</strong> para seleccionar el subconjunto óptimo consiste en <strong>maximizar <span class="math notranslate nohighlight">\(R^2_{\text{Adj}}\)</span></strong>, lo cual equivale al uso del estadístico <span class="math notranslate nohighlight">\(F\)</span> parcial, que se presenta en la siguiente sección.</p>
+</section>
+</section>
+<section id="criterios-adicionales-para-evaluar-modelos-con-subconjuntos">
+<h3><span class="section-number">8.1.4. </span>Criterios adicionales para evaluar modelos con subconjuntos<a class="headerlink" href="#criterios-adicionales-para-evaluar-modelos-con-subconjuntos" title="Link to this heading">#</a></h3>
+<section id="cuadrado-medio-residual">
+<h4><span class="section-number">8.1.4.1. </span>Cuadrado medio residual<a class="headerlink" href="#cuadrado-medio-residual" title="Link to this heading">#</a></h4>
+<p>El <strong>cuadrado medio residual</strong> para un modelo de regresión con <span class="math notranslate nohighlight">\(p\)</span> términos se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSRes}(p) = \frac{\text{SSRes}(p)}{n - p} \tag{10.11}\label{eq:10.11}
+\]</div>
+<p>Dado que <span class="math notranslate nohighlight">\(\text{SSRes}(p)\)</span> <strong>disminuye al aumentar <span class="math notranslate nohighlight">\(p\)</span></strong>, <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span> suele <strong>disminuir inicialmente</strong>, luego se <strong>estabiliza</strong>, y finalmente <strong>puede aumentar</strong>. Este incremento ocurre cuando la reducción en <span class="math notranslate nohighlight">\(\text{SSRes}(p)\)</span> <strong>no compensa</strong> la pérdida de un grado de libertad en el denominador. Es decir, añadir un regresor ocasiona que:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSRes}(p+1) &gt; \text{MSRes}(p)
+\]</div>
+<p>si la disminución en la suma de cuadrados residuales es <strong>menor que</strong> <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span>. Los analistas que emplean este criterio suelen graficar <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span> vs. <span class="math notranslate nohighlight">\(p\)</span> y eligen el número óptimo de regresores según uno de estos criterios:</p>
+<ol class="arabic simple">
+<li><p>El valor mínimo de <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span></p></li>
+<li><p>El valor de <span class="math notranslate nohighlight">\(p\)</span> tal que <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span> sea aproximadamente igual al del modelo completo</p></li>
+<li><p>El valor de <span class="math notranslate nohighlight">\(p\)</span> cercano al punto donde <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span> comienza a <strong>incrementarse</strong></p></li>
+</ol>
+<p>Este criterio es <strong>equivalente al de maximizar</strong> <span class="math notranslate nohighlight">\(R^2_{\text{Adj}, p}\)</span>. Para verlo, observemos:</p>
+<div class="math notranslate nohighlight">
+\[
+R^2_{\text{Adj}, p} = 1 - \left(\frac{n - 1}{n - p}\right)(1 - R^2_p)
+= 1 - \frac{(n - 1)\text{SSRes}(p)}{(n - p)\text{SST}} = 1 - \frac{\text{MSRes}(p)}{\text{SST}/(n - 1)}
+\]</div>
+<p>Por lo tanto, <strong>minimizar</strong> <span class="math notranslate nohighlight">\(\text{MSRes}(p)\)</span> es equivalente a <strong>maximizar</strong> <span class="math notranslate nohighlight">\(R^2_{\text{Adj}, p}\)</span>.</p>
+</section>
+<section id="estadistico-c-p-de-mallows">
+<h4><span class="section-number">8.1.4.2. </span>Estadístico <span class="math notranslate nohighlight">\(C_p\)</span> de Mallows<a class="headerlink" href="#estadistico-c-p-de-mallows" title="Link to this heading">#</a></h4>
+<p>Mallows propuso un criterio relacionado con el <strong>error cuadrático medio de la predicción</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE}(\hat{y}_i) = \left[E(y_i) - E(\hat{y}_i)\right]^2 + \text{Var}(\hat{y}_i) \tag{10.12}\label{eq:10.12}
+\]</div>
+<p>El primer término es el <strong>cuadrado del sesgo</strong>, y el segundo es la <strong>varianza</strong>. Definamos la suma de sesgos al cuadrado:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{SSB}(p) = \sum_{i=1}^n \left[ E(y_i) - E(\hat{y}_i) \right]^2
+\]</div>
+<p>y la <strong>media cuadrática total estandarizada</strong> como:</p>
+<div class="math notranslate nohighlight">
+\[
+\Gamma_p = \frac{1}{\sigma^2} \left[ \text{SSB}(p) + \sum_{i=1}^n \text{Var}(\hat{y}_i) \right] \tag{10.13}\label{eq:10.13}
+\]</div>
+<p>Dado que:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^n \text{Var}(\hat{y}_i) = p \sigma^2 \quad \text{y} \quad E[\text{SSRes}(p)] = \text{SSB}(p) + (n - p)\sigma^2
+\]</div>
+<p>Entonces:</p>
+<div class="math notranslate nohighlight">
+\[
+\Gamma_p = \frac{E[\text{SSRes}(p)] - (n - p)\sigma^2 + p\sigma^2}{\sigma^2} = \frac{E[\text{SSRes}(p)]}{\sigma^2} - n + 2p \tag{10.14}\label{eq:10.14}
+\]</div>
+<p>Suponiendo que <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es una buena estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span>, sustituimos la esperanza por su valor observado:</p>
+<div class="math notranslate nohighlight">
+\[
+C_p = \frac{\text{SSRes}(p)}{\hat{\sigma}^2} - n + 2p \tag{10.15}\label{eq:10.15}
+\]</div>
+<p>Si el modelo de <span class="math notranslate nohighlight">\(p\)</span> términos <strong>no presenta sesgo</strong>, entonces <span class="math notranslate nohighlight">\(\text{SSB}(p) = 0\)</span>, y:</p>
+<div class="math notranslate nohighlight">
+\[
+E[\text{SSRes}(p)] = (n - p)\sigma^2 \quad \Rightarrow \quad E[C_p] = p
+\]</div>
+<p>Al graficar <span class="math notranslate nohighlight">\(C_p\)</span> contra <span class="math notranslate nohighlight">\(p\)</span>, los modelos <strong>con poco sesgo</strong> se alinean cerca de la línea <span class="math notranslate nohighlight">\(C_p = p\)</span> (punto A). Modelos con <strong>alto sesgo</strong> estarán por encima (punto B). En general, se prefieren modelos con <strong>valores pequeños de <span class="math notranslate nohighlight">\(C_p\)</span></strong>. Incluso si un modelo tiene algo de sesgo (por estar por debajo de la línea <span class="math notranslate nohighlight">\(C_p = p\)</span>), puede representar <strong>menor error total de predicción</strong> (punto C).</p>
+<p>Para calcular <span class="math notranslate nohighlight">\(C_p\)</span>, se requiere una <strong>estimación no sesgada de <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong>. Frecuentemente se usa <span class="math notranslate nohighlight">\(\text{MSRes}(K+1)\)</span> del modelo completo. Sin embargo, si el modelo completo contiene <strong>regresores no significativos</strong>, <span class="math notranslate nohighlight">\(\text{MSRes}(K+1)\)</span> puede <strong>sobreestimar</strong> <span class="math notranslate nohighlight">\(\sigma^2\)</span>, resultando en <strong>valores pequeños de <span class="math notranslate nohighlight">\(C_p\)</span></strong>.</p>
+<p>Como alternativa, puede estimarse <span class="math notranslate nohighlight">\(\sigma^2\)</span> usando pares de observaciones <strong>cercanas en el espacio de los regresores</strong>.</p>
+</section>
+</section>
+<section id="criterios-de-informacion-aic-y-bic">
+<h3><span class="section-number">8.1.5. </span>Criterios de Información: AIC y BIC<a class="headerlink" href="#criterios-de-informacion-aic-y-bic" title="Link to this heading">#</a></h3>
+<section id="criterio-de-informacion-de-akaike-aic">
+<h4><span class="section-number">8.1.5.1. </span>Criterio de Información de Akaike (AIC)<a class="headerlink" href="#criterio-de-informacion-de-akaike-aic" title="Link to this heading">#</a></h4>
+<p>Akaike propuso un <strong>criterio de información (AIC)</strong> basado en la <strong>maximización de la entropía esperada</strong> del modelo. La entropía, en este contexto, se refiere a la medida de información de Kullback-Leibler. El AIC es esencialmente una medida del logaritmo de verosimilitud penalizado:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{AIC} = -2 \ln(L) + 2p
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(L\)</span> es la función de verosimilitud del modelo y <span class="math notranslate nohighlight">\(p\)</span> es el número de parámetros. En regresión por mínimos cuadrados ordinarios:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{AIC} = n \ln\left( \frac{\text{SSRes}}{n} \right) + 2p
+\]</div>
+<p>Este criterio, al igual que <span class="math notranslate nohighlight">\(R^2_{\text{Adj}}\)</span> y <span class="math notranslate nohighlight">\(C_p\)</span>, evalúa si la disminución en <span class="math notranslate nohighlight">\(\text{SSRes}\)</span> justifica el incremento en complejidad del modelo al añadir más regresores.</p>
+</section>
+<section id="criterio-de-informacion-bayesiano-bic">
+<h4><span class="section-number">8.1.5.2. </span>Criterio de Información Bayesiano (BIC)<a class="headerlink" href="#criterio-de-informacion-bayesiano-bic" title="Link to this heading">#</a></h4>
+<p>Existen varias extensiones bayesianas del AIC, conocidas como <strong>criterios BIC</strong>. Las más comunes son:</p>
+<ul class="simple">
+<li><p><strong>Criterio de Schwartz (BIC\textsubscript{Sch})</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\text{BIC}_{\text{Sch}} = -2 \ln(L) + p \ln(n)
+\]</div>
+<p>Para regresión por mínimos cuadrados ordinarios:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{BIC}_{\text{Sch}} = n \ln\left( \frac{\text{SSRes}}{n} \right) + p \ln(n)
+\]</div>
+<p>Este criterio <strong>penaliza más fuertemente</strong> la inclusión de regresores a medida que <span class="math notranslate nohighlight">\(n\)</span> crece.</p>
+<ul class="simple">
+<li><p><strong>Criterio de Sawa (BIC\textsubscript{Sawa})</strong>:<br />
+Es una alternativa empleada en SAS, con una penalización más compleja que involucra <span class="math notranslate nohighlight">\(\sigma^2\)</span> y <span class="math notranslate nohighlight">\(\sigma^4\)</span>.</p></li>
+</ul>
+<p><strong>Nota importante</strong>: en software como R y SAS, ambos criterios pueden denominarse “BIC”, por lo que se debe revisar cuidadosamente cuál versión está implementada.</p>
+<p>Estos criterios se emplean con frecuencia en modelos más complejos que la regresión OLS, como los <strong>modelos lineales generalizados</strong> (ver Capítulo 13) o <strong>modelos mixtos</strong> (ver Sección 5.6).</p>
+</section>
+</section>
+<section id="uso-de-la-regresion-y-criterios-de-evaluacion">
+<h3><span class="section-number">8.1.6. </span>Uso de la Regresión y Criterios de Evaluación<a class="headerlink" href="#uso-de-la-regresion-y-criterios-de-evaluacion" title="Link to this heading">#</a></h3>
+<p>El criterio de evaluación debe relacionarse con el <strong>propósito del modelo</strong>. Algunos usos comunes de la regresión incluyen:</p>
+<ol class="arabic simple">
+<li><p><strong>Descripción de datos</strong>:<br />
+Si se desea representar un proceso o sistema complejo, se prefieren modelos con suma de cuadrados residual pequeña. Aunque <span class="math notranslate nohighlight">\(\text{SSRes}\)</span> se minimiza con todos los regresores, conviene eliminar aquellos cuya exclusión <strong>no aumente significativamente</strong> <span class="math notranslate nohighlight">\(\text{SSRes}\)</span>.</p></li>
+<li><p><strong>Predicción y estimación</strong>:<br />
+El objetivo es <strong>minimizar el error cuadrático medio de predicción</strong>. Esto usualmente implica <strong>eliminar regresores con efectos pequeños</strong>. Se puede utilizar el <strong>estadístico PRESS</strong> como criterio:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{PRESS}_p = \sum_{i=1}^{n} \left[ y_i - \hat{y}_{(i)} \right]^2 = \sum_{i=1}^{n} \left( \frac{e_i}{1 - h_{ii}} \right)^2 \tag{10.16}\label{eq:10.16}
+\]</div>
+<p>Aunque es útil para evaluar la capacidad predictiva, su cálculo no es trivial ni directamente relacionado con <span class="math notranslate nohighlight">\(\text{SSRes}\)</span>.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Estimación de parámetros</strong>:<br />
+Se debe considerar tanto el <strong>sesgo</strong> por exclusión de variables como las <strong>varianzas</strong> de los coeficientes. En presencia de multicolinealidad, las estimaciones por mínimos cuadrados pueden ser muy inestables (ver Capítulo 9).</p></li>
+<li><p><strong>Control</strong>:<br />
+Cuando se usa el modelo para control, se requieren <strong>estimaciones precisas</strong> de los coeficientes. Esto implica <strong>errores estándar pequeños</strong>. Además, como los ajustes sobre <span class="math notranslate nohighlight">\(x\)</span> se basan en los <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>, estos deben reflejar fielmente los efectos reales. La multicolinealidad puede comprometer esta fidelidad.</p></li>
+</ol>
+</section>
+</section>
+<section id="tecnicas-computacionales-para-seleccion-de-variables">
+<h2><span class="section-number">8.2. </span>Técnicas Computacionales para Selección de Variables<a class="headerlink" href="#tecnicas-computacionales-para-seleccion-de-variables" title="Link to this heading">#</a></h2>
+<section id="regresiones-de-todos-los-posibles-subconjuntos">
+<h3><span class="section-number">8.2.1. </span>Regresiones de Todos los Posibles Subconjuntos<a class="headerlink" href="#regresiones-de-todos-los-posibles-subconjuntos" title="Link to this heading">#</a></h3>
+<p>Una estrategia directa en Python consiste en ajustar <strong>todas las combinaciones posibles</strong> de los regresores candidatos, desde modelos con un solo regresor hasta el modelo completo.</p>
+<p>Si se tienen <span class="math notranslate nohighlight">\(K\)</span> variables explicativas y se incluye el intercepto, existen <span class="math notranslate nohighlight">\(2^K\)</span> subconjuntos posibles. Por ejemplo:</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(K = 4\)</span>, hay <span class="math notranslate nohighlight">\(2^4 = 16\)</span> modelos</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(K = 10\)</span>, hay <span class="math notranslate nohighlight">\(2^{10} = 1024\)</span> modelos</p></li>
+</ul>
+<p><strong>El número de combinaciones crece exponencialmente</strong> con <span class="math notranslate nohighlight">\(K\)</span>, por lo cual esta técnica es factible solo para <span class="math notranslate nohighlight">\(K\)</span> pequeños o moderados. Sin embargo, en Python podemos implementarla eficientemente con herramientas como <code class="docutils literal notranslate"><span class="pre">itertools</span></code>, <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<p>A continuación, se muestra un ejemplo para ajustar todos los modelos posibles y calcular <span class="math notranslate nohighlight">\(R^2_{\text{Adj}}\)</span>, AIC y BIC:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="k">def</span> <span class="nf">all_subsets_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+            <span class="n">X_subset</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="p">)])</span>  <span class="c1"># añade intercepto</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;variables&quot;</span><span class="p">:</span> <span class="n">subset</span><span class="p">,</span>
+                <span class="s2">&quot;adj_r2&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">rsquared_adj</span><span class="p">,</span>
+                <span class="s2">&quot;aic&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">aic</span><span class="p">,</span>
+                <span class="s2">&quot;bic&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">bic</span>
+            <span class="p">})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;adj_r2&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este procedimiento permite:</p>
+<ul class="simple">
+<li><p>Explorar <strong>todos los modelos posibles</strong> con uno o más regresores</p></li>
+<li><p>Comparar modelos con base en <span class="math notranslate nohighlight">\(R^2_{\text{Adj}}\)</span>, AIC y BIC</p></li>
+<li><p>Elegir el modelo más parsimonioso que maximice la calidad del ajuste</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La técnica de todas las regresiones posibles en Python es especialmente útil para conjuntos de datos con <strong>menos de 15 variables explicativas</strong>. Para dimensiones mayores, es preferible usar métodos secuenciales como selección hacia adelante o regresión penalizada (LASSO, Ridge).</p>
+</div>
+</section>
+</section>
+<section id="ejemplo-10-1-datos-de-cemento-de-hald">
+<h2><span class="section-number">8.3. </span>Ejemplo 10.1: Datos de Cemento de Hald<a class="headerlink" href="#ejemplo-10-1-datos-de-cemento-de-hald" title="Link to this heading">#</a></h2>
+<p><strong>Hald [1952] presentó un conjunto de datos que describe la cantidad de calor liberado (en calorías por gramo de cemento), denotado por <span class="math notranslate nohighlight">\(y\)</span>, en función de la cantidad de cuatro componentes utilizados en la mezcla</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1\)</span>: Tricalcio aluminato</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_2\)</span>: Silicato tricálcico</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_3\)</span>: Aluminoferrito tetracálcico</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_4\)</span>: Silicato dicálcico</p></li>
+</ul>
+<p><strong>Estos datos, incluidos en la Tabla B.21 del Apéndice C.3 en <span id="id1">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>, presentan problemas significativos de multicolinealidad</strong>. Los factores de inflación de la varianza (VIFs) son:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_1\)</span>: 38.496</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_2\)</span>: 254.423</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_3\)</span>: 46.868</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_4\)</span>: 282.513</p></li>
+</ul>
+<p><strong>Utilizaremos estos datos para ilustrar el método de regresiones posibles (all-possible-regressions) en la selección de variables.</strong></p>
+<p>Las Tablas 10.1 y 10.2 resumen los resultados obtenidos al ajustar todos los modelos posibles que incluyen intercepto. Dado que hay <span class="math notranslate nohighlight">\(K = 4\)</span> regresores candidatos, existen <span class="math notranslate nohighlight">\(2^4 = 16\)</span> modelos posibles. La Tabla 10.1 presenta métricas como <span class="math notranslate nohighlight">\(R_p^2\)</span>, <span class="math notranslate nohighlight">\(R_{p,\text{adj}}^2\)</span>, <span class="math notranslate nohighlight">\(MSRes(p)\)</span> y <span class="math notranslate nohighlight">\(C_p\)</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Regresores</p></th>
+<th class="head"><p>$SSRes(p)$</p></th>
+<th class="head"><p>$R_p^2$</p></th>
+<th class="head"><p>$R_{p,\text{adj}}^2$</p></th>
+<th class="head"><p>$MSRes(p)$</p></th>
+<th class="head"><p>$C_p$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ninguno</p></td>
+<td><p>2715.7635</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>226.3136</p></td>
+<td><p>442.92</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1$</p></td>
+<td><p>1265.6867</p></td>
+<td><p>0.53395</p></td>
+<td><p>0.49158</p></td>
+<td><p>115.0624</p></td>
+<td><p>202.55</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_2$</p></td>
+<td><p>906.3363</p></td>
+<td><p>0.66627</p></td>
+<td><p>0.63593</p></td>
+<td><p>82.3942</p></td>
+<td><p>142.49</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_3$</p></td>
+<td><p>1939.4005</p></td>
+<td><p>0.28587</p></td>
+<td><p>0.22095</p></td>
+<td><p>176.3092</p></td>
+<td><p>315.16</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_4$</p></td>
+<td><p>883.8669</p></td>
+<td><p>0.67459</p></td>
+<td><p>0.64495</p></td>
+<td><p>80.3515</p></td>
+<td><p>138.73</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1, x_2$</p></td>
+<td><p>57.9045</p></td>
+<td><p>0.97868</p></td>
+<td><p>0.97441</p></td>
+<td><p>5.7904</p></td>
+<td><p>2.68</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_1, x_3$</p></td>
+<td><p>1227.0721</p></td>
+<td><p>0.54817</p></td>
+<td><p>0.45780</p></td>
+<td><p>122.7073</p></td>
+<td><p>198.10</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1, x_4$</p></td>
+<td><p>74.7621</p></td>
+<td><p>0.97247</p></td>
+<td><p>0.96697</p></td>
+<td><p>7.4762</p></td>
+<td><p>5.50</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_2, x_3$</p></td>
+<td><p>415.4427</p></td>
+<td><p>0.84703</p></td>
+<td><p>0.81644</p></td>
+<td><p>41.5443</p></td>
+<td><p>62.44</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_2, x_4$</p></td>
+<td><p>868.8801</p></td>
+<td><p>0.68006</p></td>
+<td><p>0.61607</p></td>
+<td><p>86.8880</p></td>
+<td><p>138.23</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_3, x_4$</p></td>
+<td><p>175.7380</p></td>
+<td><p>0.93529</p></td>
+<td><p>0.92235</p></td>
+<td><p>17.5738</p></td>
+<td><p>22.37</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1, x_2, x_3$</p></td>
+<td><p>48.1106</p></td>
+<td><p>0.98228</p></td>
+<td><p>0.97638</p></td>
+<td><p>5.3456</p></td>
+<td><p>3.04</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_1, x_2, x_4$</p></td>
+<td><p>47.9727</p></td>
+<td><p>0.98234</p></td>
+<td><p>0.97645</p></td>
+<td><p>5.3303</p></td>
+<td><p>3.02</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1, x_3, x_4$</p></td>
+<td><p>50.8361</p></td>
+<td><p>0.98128</p></td>
+<td><p>0.97504</p></td>
+<td><p>5.6485</p></td>
+<td><p>3.50</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_2, x_3, x_4$</p></td>
+<td><p>73.8145</p></td>
+<td><p>0.97282</p></td>
+<td><p>0.96376</p></td>
+<td><p>8.2017</p></td>
+<td><p>7.34</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_1, x_2, x_3, x_4$</p></td>
+<td><p>47.8636</p></td>
+<td><p>0.98238</p></td>
+<td><p>0.97356</p></td>
+<td><p>5.9829</p></td>
+<td><p>5.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>La Tabla 10.2 muestra los estimadores de mínimos cuadrados para cada subconjunto de regresores. La naturaleza parcial de los coeficientes de regresión es evidente.</strong></p>
+<p>Por ejemplo:</p>
+<ul class="simple">
+<li><p>En el modelo con solo <span class="math notranslate nohighlight">\(x_2\)</span>, el coeficiente estimado es <span class="math notranslate nohighlight">\(0.789\)</span>.</p></li>
+<li><p>Al incluir <span class="math notranslate nohighlight">\(x_4\)</span>, el efecto de <span class="math notranslate nohighlight">\(x_2\)</span> se reduce a <span class="math notranslate nohighlight">\(0.311\)</span>.</p></li>
+<li><p>Con la adición de <span class="math notranslate nohighlight">\(x_3\)</span>, el efecto de <span class="math notranslate nohighlight">\(x_2\)</span> cambia a <span class="math notranslate nohighlight">\(-0.923\)</span>.</p></li>
+</ul>
+<p><strong>Estos cambios notables en los coeficientes estimados indican una fuerte multicolinealidad.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>$x_1$</p></th>
+<th class="head"><p>$x_2$</p></th>
+<th class="head"><p>$x_3$</p></th>
+<th class="head"><p>$x_4$</p></th>
+<th class="head"><p>$y$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>$x_1$</p></td>
+<td><p>1.000</p></td>
+<td><p>0.229</p></td>
+<td><p>-0.824</p></td>
+<td><p>-0.245</p></td>
+<td><p>0.731</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_2$</p></td>
+<td><p>0.229</p></td>
+<td><p>1.000</p></td>
+<td><p>-0.139</p></td>
+<td><p>-0.973</p></td>
+<td><p>0.816</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_3$</p></td>
+<td><p>-0.824</p></td>
+<td><p>-0.139</p></td>
+<td><p>1.000</p></td>
+<td><p>0.030</p></td>
+<td><p>-0.535</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_4$</p></td>
+<td><p>-0.245</p></td>
+<td><p>-0.973</p></td>
+<td><p>0.030</p></td>
+<td><p>1.000</p></td>
+<td><p>-0.821</p></td>
+</tr>
+<tr class="row-even"><td><p>$y$</p></td>
+<td><p>0.731</p></td>
+<td><p>0.816</p></td>
+<td><p>-0.535</p></td>
+<td><p>-0.821</p></td>
+<td><p>1.000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="evaluacion-por-el-criterio-r-p-2">
+<h3><span class="section-number">8.3.1. </span>Evaluación por el criterio <span class="math notranslate nohighlight">\(R_p^2\)</span><a class="headerlink" href="#evaluacion-por-el-criterio-r-p-2" title="Link to this heading">#</a></h3>
+<p><strong>Un gráfico de <span class="math notranslate nohighlight">\(R_p^2\)</span> contra <span class="math notranslate nohighlight">\(p\)</span> (ver Figura 10.4) revela que tras incluir dos regresores, las mejoras en <span class="math notranslate nohighlight">\(R^2\)</span> son marginales.</strong> Ambos modelos con dos regresores, <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> y <span class="math notranslate nohighlight">\((x_1, x_4)\)</span>, presentan valores de <span class="math notranslate nohighlight">\(R^2\)</span> similares. Dado que <span class="math notranslate nohighlight">\(x_4\)</span> proporciona el mejor ajuste entre modelos con un solo regresor, se podría preferir el modelo <span class="math notranslate nohighlight">\((x_1, x_4)\)</span>.</p>
+<p>A partir de la ecuación (10.9), si <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>, se calcula el umbral de adecuación de <span class="math notranslate nohighlight">\(R^2\)</span> como:</p>
+<div class="math notranslate nohighlight" id="equation-r2-threshold">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-r2-threshold" title="Link to this equation">#</a></span>\[
+R_0^2 = 1 - (1 - R_5^2) \left(1 + \frac{4 F_{0.05,4,8}}{8} \right) = 1 - 0.01762 \left(1 + \frac{4(3.84)}{8} \right) = 0.94855
+\]</div>
+<p><strong>Todo modelo con <span class="math notranslate nohighlight">\(R_p^2 &gt; R_0^2 = 0.94855\)</span> se considera estadísticamente adecuado al nivel 0.05.</strong> Varios modelos en la Tabla 10.1 cumplen esta condición.</p>
+</section>
+<section id="matriz-de-correlaciones">
+<h3><span class="section-number">8.3.2. </span>Matriz de Correlaciones<a class="headerlink" href="#matriz-de-correlaciones" title="Link to this heading">#</a></h3>
+<p><strong>La Tabla 10.3 presenta las correlaciones simples entre las variables.</strong> Algunas observaciones clave:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r_{13} = -0.824\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{24} = -0.973\)</span></p></li>
+</ul>
+<p><strong>Las variables <span class="math notranslate nohighlight">\((x_1, x_3)\)</span> y <span class="math notranslate nohighlight">\((x_2, x_4)\)</span> están altamente correlacionadas.</strong> Por tanto, añadir variables adicionales que estén fuertemente correlacionadas con las ya incluidas en el modelo aporta poca información adicional. Esta estructura explicativa es en parte responsable de los cambios drásticos en los coeficientes estimados.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>$x_1$</p></th>
+<th class="head"><p>$x_2$</p></th>
+<th class="head"><p>$x_3$</p></th>
+<th class="head"><p>$x_4$</p></th>
+<th class="head"><p>$y$</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>$x_1$</p></td>
+<td><p>1.000</p></td>
+<td><p>0.229</p></td>
+<td><p>-0.824</p></td>
+<td><p>-0.245</p></td>
+<td><p>0.731</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_2$</p></td>
+<td><p>0.229</p></td>
+<td><p>1.000</p></td>
+<td><p>-0.139</p></td>
+<td><p>-0.973</p></td>
+<td><p>0.816</p></td>
+</tr>
+<tr class="row-even"><td><p>$x_3$</p></td>
+<td><p>-0.824</p></td>
+<td><p>-0.139</p></td>
+<td><p>1.000</p></td>
+<td><p>0.030</p></td>
+<td><p>-0.535</p></td>
+</tr>
+<tr class="row-odd"><td><p>$x_4$</p></td>
+<td><p>-0.245</p></td>
+<td><p>-0.973</p></td>
+<td><p>0.030</p></td>
+<td><p>1.000</p></td>
+<td><p>-0.821</p></td>
+</tr>
+<tr class="row-even"><td><p>$y$</p></td>
+<td><p>0.731</p></td>
+<td><p>0.816</p></td>
+<td><p>-0.535</p></td>
+<td><p>-0.821</p></td>
+<td><p>1.000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="evaluacion-por-msres-p">
+<h3><span class="section-number">8.3.3. </span>Evaluación por <span class="math notranslate nohighlight">\(MSRes(p)\)</span><a class="headerlink" href="#evaluacion-por-msres-p" title="Link to this heading">#</a></h3>
+<p><strong>La Figura 10.5 muestra el gráfico de <span class="math notranslate nohighlight">\(MSRes(p)\)</span> frente a <span class="math notranslate nohighlight">\(p\)</span>.</strong> El modelo con <span class="math notranslate nohighlight">\(p=3\)</span> que minimiza <span class="math notranslate nohighlight">\(MSRes\)</span> es <span class="math notranslate nohighlight">\((x_1, x_2, x_4)\)</span> con <span class="math notranslate nohighlight">\(MSRes = 5.3303\)</span>.</p>
+<p><strong>Como se esperaba, este modelo también maximiza el <span class="math notranslate nohighlight">\(R^2\)</span> ajustado.</strong> Sin embargo, los modelos <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>, <span class="math notranslate nohighlight">\((x_1, x_3, x_4)\)</span>, <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> y <span class="math notranslate nohighlight">\((x_1, x_4)\)</span> tienen valores similares de <span class="math notranslate nohighlight">\(MSRes\)</span>. Entre los modelos con dos regresores, <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> parece preferible ya que tiene menor <span class="math notranslate nohighlight">\(MSRes\)</span>.</p>
+</section>
+<section id="evaluacion-mediante-el-estadistico-c-p">
+<h3><span class="section-number">8.3.4. </span>Evaluación mediante el estadístico <span class="math notranslate nohighlight">\(C_p\)</span><a class="headerlink" href="#evaluacion-mediante-el-estadistico-c-p" title="Link to this heading">#</a></h3>
+<p><strong>En la Figura 10.6 se muestra el gráfico de <span class="math notranslate nohighlight">\(C_p\)</span>.</strong> Considerando que <span class="math notranslate nohighlight">\(\hat{\sigma} = 5.9829\)</span> (el <span class="math notranslate nohighlight">\(MSRes\)</span> del modelo completo), calculemos <span class="math notranslate nohighlight">\(C_3\)</span> para el modelo <span class="math notranslate nohighlight">\((x_1, x_4)\)</span> usando la ecuación (10.15):</p>
+<div class="math notranslate nohighlight" id="equation-cp-x1x4">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-cp-x1x4" title="Link to this equation">#</a></span>\[
+C_3 = \frac{SSRes(3)}{\hat{\sigma}^2} - n + 2p = \frac{74.7621}{5.9829} - 13 + 6 = 5.50
+\]</div>
+<p><strong>Este análisis sugiere que los modelos <span class="math notranslate nohighlight">\((x_1, x_2)\)</span>, <span class="math notranslate nohighlight">\((x_1, x_2, x_3)\)</span>, <span class="math notranslate nohighlight">\((x_1, x_2, x_4)\)</span> y <span class="math notranslate nohighlight">\((x_1, x_3, x_4)\)</span> podrían ser aceptables.</strong> Si no se consideran factores externos como el costo de recopilación de datos, puede elegirse el modelo más simple: <span class="math notranslate nohighlight">\((x_1, x_2)\)</span>.</p>
+</section>
+<section id="conclusion">
+<h3><span class="section-number">8.3.5. </span>Conclusión<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p><strong>Este ejemplo ha ilustrado el procedimiento computacional para la selección de modelos usando todas las regresiones posibles.</strong> No existe una única elección óptima: distintos criterios conducen a diferentes modelos candidatos.</p>
+<ul class="simple">
+<li><p>Mínimo <span class="math notranslate nohighlight">\(C_p\)</span>: <span class="math notranslate nohighlight">\((x_1, x_2)\)</span></p></li>
+<li><p>Mínimo <span class="math notranslate nohighlight">\(MSRes\)</span>: <span class="math notranslate nohighlight">\((x_1, x_2, x_4)\)</span></p></li>
+</ul>
+<p><strong>Todos los modelos finales deben evaluarse mediante pruebas estándar: puntos de influencia, apalancamiento y multicolinealidad.</strong></p>
+<p>La Tabla 10.4 compara los modelos <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> y <span class="math notranslate nohighlight">\((x_1, x_2, x_4)\)</span> respecto a sus estadísticas PRESS y factores de inflación de la varianza.</p>
+<p><strong>Ambos presentan valores similares de PRESS, aproximadamente el doble del <span class="math notranslate nohighlight">\(SSRes\)</span> del modelo con menor <span class="math notranslate nohighlight">\(MSRes\)</span>.</strong> Además, el <span class="math notranslate nohighlight">\(R^2\)</span> predictivo es comparable. Sin embargo, la alta colinealidad entre <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_4\)</span> en el modelo <span class="math notranslate nohighlight">\((x_1, x_2, x_4)\)</span> se refleja en sus elevados VIFs.</p>
+<p><strong>Por tanto, se recomienda el modelo <span class="math notranslate nohighlight">\((x_1, x_2)\)</span> por su menor multicolinealidad.</strong></p>
+</section>
+</section>
+<section id="generacion-eficiente-de-todas-las-regresiones-posibles">
+<h2><span class="section-number">8.4. </span>Generación eficiente de todas las regresiones posibles<a class="headerlink" href="#generacion-eficiente-de-todas-las-regresiones-posibles" title="Link to this heading">#</a></h2>
+<p><strong>Existen diversos algoritmos eficientes para generar todas las regresiones posibles.</strong> Véanse, por ejemplo, Furnival [1971], Furnival y Wilson [1974], Gartside [1965, 1971], Morgan y Tatar [1972], y Schatzoff, Tsao y Fienberg [1968].</p>
+<p><strong>La idea central de estos algoritmos es estructurar los cálculos de los <span class="math notranslate nohighlight">\(2^K\)</span> modelos posibles de forma que modelos sucesivos difieran en una sola variable.</strong> Esto permite aplicar métodos numéricos altamente eficientes, usualmente basados en reducción de Gauss–Jordan o en el operador sweep (véase Beaton [1964] o Seber [1977]).</p>
+<p><strong>Algunos de estos algoritmos están disponibles comercialmente.</strong> Por ejemplo, el algoritmo de Furnival y Wilson [1974] ha sido implementado en software como Python mediante librerías como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> y <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
+<p>Una salida típica en Python para los datos de cemento de Hald incluiría los mejores modelos de cada tamaño <span class="math notranslate nohighlight">\(1 \leq p \leq K+1\)</span> según criterios como:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_p\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_p^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(MSRes(p)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(R_{p,\text{adj}}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S = \sqrt{MSRes(p)}\)</span></p></li>
+</ul>
+<p><strong>Algunos programas también permiten identificar los <span class="math notranslate nohighlight">\(m\)</span> mejores modelos (por ejemplo, <span class="math notranslate nohighlight">\(m \leq 5\)</span>) por cada tamaño <span class="math notranslate nohighlight">\(p\)</span>.</strong></p>
+<p><strong>Los procedimientos actuales de regresión con todos los subconjuntos pueden manejar eficientemente hasta aproximadamente 30 regresores candidatos</strong>, con tiempos de cómputo similares a los métodos stepwise descritos en la Sección 10.2.2.</p>
+<p><strong>En nuestra experiencia, problemas con 30 o menos variables suelen resolverse con relativa facilidad mediante este enfoque.</strong></p>
+<section id="tabla-10-4">
+<h3><span class="section-number">8.4.1. </span><strong>Tabla 10.4</strong><a class="headerlink" href="#tabla-10-4" title="Link to this heading">#</a></h3>
+<p><strong>Comparación de dos modelos para los datos de Hald</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Obs.</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\hat{y} = 52.58 + 1.468x_1 + 0.662x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(e_i\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(h_{ii}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\([e_i / (1 - h_{ii})]^2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\hat{y} = 71.65 + 1.452x_1 + 0.416x_2 - 0.237x_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(e_i\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(h_{ii}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\([e_i / (1 - h_{ii})]^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p></p></td>
+<td><p>-1.5740</p></td>
+<td><p>0.25119</p></td>
+<td><p>4.4184</p></td>
+<td><p></p></td>
+<td><p>0.0617</p></td>
+<td><p>0.52058</p></td>
+<td><p>0.0166</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p></p></td>
+<td><p>-1.0491</p></td>
+<td><p>0.26189</p></td>
+<td><p>2.0202</p></td>
+<td><p></p></td>
+<td><p>1.4327</p></td>
+<td><p>0.27670</p></td>
+<td><p>3.9235</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p></p></td>
+<td><p>-1.5147</p></td>
+<td><p>0.11890</p></td>
+<td><p>2.9553</p></td>
+<td><p></p></td>
+<td><p>-1.8910</p></td>
+<td><p>0.13315</p></td>
+<td><p>4.7588</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p></p></td>
+<td><p>-1.6585</p></td>
+<td><p>0.24225</p></td>
+<td><p>4.7905</p></td>
+<td><p></p></td>
+<td><p>-1.8016</p></td>
+<td><p>0.24431</p></td>
+<td><p>5.6837</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p></p></td>
+<td><p>-1.3925</p></td>
+<td><p>0.08362</p></td>
+<td><p>2.3091</p></td>
+<td><p></p></td>
+<td><p>0.2562</p></td>
+<td><p>0.35733</p></td>
+<td><p>0.1589</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p></p></td>
+<td><p>4.0475</p></td>
+<td><p>0.11512</p></td>
+<td><p>20.9221</p></td>
+<td><p></p></td>
+<td><p>3.8982</p></td>
+<td><p>0.11737</p></td>
+<td><p>19.5061</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p></p></td>
+<td><p>-1.3031</p></td>
+<td><p>0.36180</p></td>
+<td><p>4.1627</p></td>
+<td><p></p></td>
+<td><p>-1.4287</p></td>
+<td><p>0.36341</p></td>
+<td><p>5.0369</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p></p></td>
+<td><p>-2.0754</p></td>
+<td><p>0.24119</p></td>
+<td><p>7.4806</p></td>
+<td><p></p></td>
+<td><p>-3.0919</p></td>
+<td><p>0.34522</p></td>
+<td><p>22.2977</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p></p></td>
+<td><p>1.8245</p></td>
+<td><p>0.17195</p></td>
+<td><p>4.9404</p></td>
+<td><p></p></td>
+<td><p>1.2818</p></td>
+<td><p>0.20881</p></td>
+<td><p>2.6247</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p></p></td>
+<td><p>1.3625</p></td>
+<td><p>0.55002</p></td>
+<td><p>9.1683</p></td>
+<td><p></p></td>
+<td><p>0.3539</p></td>
+<td><p>0.65244</p></td>
+<td><p>1.0368</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p></p></td>
+<td><p>3.2643</p></td>
+<td><p>0.18402</p></td>
+<td><p>16.0037</p></td>
+<td><p></p></td>
+<td><p>2.0977</p></td>
+<td><p>0.32105</p></td>
+<td><p>9.5458</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p></p></td>
+<td><p>0.8628</p></td>
+<td><p>0.19666</p></td>
+<td><p>1.1535</p></td>
+<td><p></p></td>
+<td><p>1.0556</p></td>
+<td><p>0.20040</p></td>
+<td><p>1.7428</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p></p></td>
+<td><p>-2.8934</p></td>
+<td><p>0.21420</p></td>
+<td><p>13.5579</p></td>
+<td><p></p></td>
+<td><p>-2.2247</p></td>
+<td><p>0.25923</p></td>
+<td><p>9.0194</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>PRESS <span class="math notranslate nohighlight">\((x_1, x_2) = 93.8827\)</span></p></li>
+<li><p>PRESS <span class="math notranslate nohighlight">\((x_1, x_2, x_4) = 85.3516\)</span></p></li>
+</ul>
+<p>a) <span class="math notranslate nohighlight">\(R^2_{\text{pred}} = 0.9654\)</span>, VIF<span class="math notranslate nohighlight">\(_1\)</span> = 1.05, VIF<span class="math notranslate nohighlight">\(_2\)</span> = 1.06<br />
+b) <span class="math notranslate nohighlight">\(R^2_{\text{pred}} = 0.9684\)</span>, VIF<span class="math notranslate nohighlight">\(_1\)</span> = 1.07, VIF<span class="math notranslate nohighlight">\(_2\)</span> = 18.78, VIF<span class="math notranslate nohighlight">\(_4\)</span> = 18.94</p>
+</section>
+</section>
+<section id="metodos-de-regresion-paso-a-paso">
+<h2><span class="section-number">8.5. </span>Métodos de regresión paso a paso<a class="headerlink" href="#metodos-de-regresion-paso-a-paso" title="Link to this heading">#</a></h2>
+<p><strong>Dado que evaluar todas las regresiones posibles puede ser computacionalmente costoso, se han desarrollado métodos que consideran solo un subconjunto de modelos al añadir o eliminar una variable por vez.</strong> Estos métodos se conocen como procedimientos <em>stepwise</em>, y se clasifican en tres categorías:</p>
+<ul class="simple">
+<li><p>Selección progresiva (<em>forward selection</em>)</p></li>
+<li><p>Eliminación regresiva (<em>backward elimination</em>)</p></li>
+<li><p>Regresión paso a paso combinada (<em>stepwise regression</em>)</p></li>
+</ul>
+<section id="seleccion-progresiva">
+<h3><span class="section-number">8.5.1. </span>Selección progresiva<a class="headerlink" href="#seleccion-progresiva" title="Link to this heading">#</a></h3>
+<p><strong>Este procedimiento inicia sin regresores (solo el intercepto) y agrega uno por uno los que más contribuyen.</strong> El primer regresor incluido es el que tiene <strong>mayor correlación simple</strong> con la variable respuesta <span class="math notranslate nohighlight">\(y\)</span>, es decir, el que produce el mayor valor <span class="math notranslate nohighlight">\(F\)</span> para evaluar significancia.</p>
+<p>Se incluye si el estadístico <span class="math notranslate nohighlight">\(F\)</span> excede un umbral predefinido <span class="math notranslate nohighlight">\(F_{\text{IN}}\)</span> (también llamado <em>F-to-enter</em>). El siguiente candidato es el que presenta la <strong>mayor correlación parcial</strong> con <span class="math notranslate nohighlight">\(y\)</span>, una vez ajustado por el regresor ya incluido.</p>
+<p>Sea <span class="math notranslate nohighlight">\(x_1\)</span> el primer regresor. Luego se calculan las correlaciones parciales entre los residuos de:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_j = \hat{\alpha}_{0j} + \hat{\alpha}_{1j} x_1\)</span>, para <span class="math notranslate nohighlight">\(j = 2, 3, ..., K\)</span></p></li>
+</ul>
+<p>Supongamos que <span class="math notranslate nohighlight">\(x_2\)</span> es el que tiene la mayor correlación parcial. Entonces se evalúa:</p>
+<div class="math notranslate nohighlight" id="equation-f-partial-x2">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-f-partial-x2" title="Link to this equation">#</a></span>\[
+F = \frac{SSR(x_2 \mid x_1)}{MSRes(x_1, x_2)}
+\]</div>
+<p><strong>Si este valor excede <span class="math notranslate nohighlight">\(F_{\text{IN}}\)</span>, se incluye <span class="math notranslate nohighlight">\(x_2\)</span>.</strong> El procedimiento continúa iterativamente, añadiendo el siguiente regresor más relevante si supera el umbral. El algoritmo termina cuando ningún nuevo regresor supera el <span class="math notranslate nohighlight">\(F_{\text{IN}}\)</span> o si ya se han incluido todos los candidatos.</p>
+<p><strong>Algunos paquetes computacionales reportan valores-<span class="math notranslate nohighlight">\(t\)</span> en lugar de <span class="math notranslate nohighlight">\(F\)</span> para ingresar o eliminar variables.</strong> Esta variante es válida, ya que <span class="math notranslate nohighlight">\(t^2_{\alpha/2, \nu} = F_{\alpha, 1, \nu}\)</span>.</p>
+<p><strong>La implementación puede realizarse en Python con la función <code class="docutils literal notranslate"><span class="pre">stepwise_selection</span></code> (ver ejemplos en la librería <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> o implementaciones personalizadas con <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>).</strong></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tf"
+        },
+        kernelOptions: {
+            name: "tf",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tf'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multicollinearity.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Multicolinealidad</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="validation_regression_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Validación de modelos de regresión</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">8.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-de-construccion-del-modelo">8.1.1. El Problema de Construcción del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencias-de-una-especificacion-incorrecta-del-modelo">8.1.2. Consecuencias de una especificación incorrecta del modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-para-evaluar-modelos-de-regresion-con-subconjuntos">8.1.3. Criterios para evaluar modelos de regresión con subconjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficiente-de-determinacion-multiple">8.1.3.1. Coeficiente de determinación múltiple</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficiente-de-determinacion-ajustado">8.1.3.2. Coeficiente de determinación ajustado</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-adicionales-para-evaluar-modelos-con-subconjuntos">8.1.4. Criterios adicionales para evaluar modelos con subconjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuadrado-medio-residual">8.1.4.1. Cuadrado medio residual</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#estadistico-c-p-de-mallows">8.1.4.2. Estadístico <span class="math notranslate nohighlight">\(C_p\)</span> de Mallows</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-informacion-aic-y-bic">8.1.5. Criterios de Información: AIC y BIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-informacion-de-akaike-aic">8.1.5.1. Criterio de Información de Akaike (AIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-informacion-bayesiano-bic">8.1.5.2. Criterio de Información Bayesiano (BIC)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-la-regresion-y-criterios-de-evaluacion">8.1.6. Uso de la Regresión y Criterios de Evaluación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tecnicas-computacionales-para-seleccion-de-variables">8.2. Técnicas Computacionales para Selección de Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresiones-de-todos-los-posibles-subconjuntos">8.2.1. Regresiones de Todos los Posibles Subconjuntos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-10-1-datos-de-cemento-de-hald">8.3. Ejemplo 10.1: Datos de Cemento de Hald</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-el-criterio-r-p-2">8.3.1. Evaluación por el criterio <span class="math notranslate nohighlight">\(R_p^2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-correlaciones">8.3.2. Matriz de Correlaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-msres-p">8.3.3. Evaluación por <span class="math notranslate nohighlight">\(MSRes(p)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-mediante-el-estadistico-c-p">8.3.4. Evaluación mediante el estadístico <span class="math notranslate nohighlight">\(C_p\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.3.5. Conclusión</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-eficiente-de-todas-las-regresiones-posibles">8.4. Generación eficiente de todas las regresiones posibles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-10-4">8.4.1. <strong>Tabla 10.4</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-regresion-paso-a-paso">8.5. Métodos de regresión paso a paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-progresiva">8.5.1. Selección progresiva</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lihki Rubio, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>Lihki Rubio, Ph.D. All rights reserved.</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
