@@ -348,6 +348,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-una-variable-de-respuesta-binaria">10.1. Modelos con una Variable de Respuesta Binaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.2. Estimación de los parámetros en un modelo de regresión logística</a></li>
 </ul>
             </nav>
         </div>
@@ -483,14 +484,44 @@ p &amp; \text{si } x = 1 \\
       \mu = \mathbb{E}[X] = 1 \cdot \mathbb{P}(X=1) + 0 \cdot \mathbb{P}(X=0) = \frac{1}{6}
       \]</div>
 </li>
-<li><p>Varianza:</p>
-<div class="math notranslate nohighlight">
-\[
-      \sigma^2 = \mathbb{Var}(X) = \mathbb{P}(1 - p) = \frac{1}{6} \cdot \frac{5}{6} = \frac{5}{36}
-      \]</div>
-</li>
+<li><p>Varianza:</p></li>
 </ul>
+<h3 class="rubric" id="estimacion-de-los-parametros-en-un-modelo-de-regresion-logistica">13.2.2 Estimación de los parámetros en un modelo de regresión logística</h3>
 </li>
+<li><p><strong>La forma general del modelo de regresión logística es:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-logistic-model-general">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-logistic-model-general" title="Link to this equation">#</a></span>\[
+y_i = \mathbb{E}(y_i) + \varepsilon_i
+\]</div>
+<p>donde las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son variables aleatorias de Bernoulli independientes con valores esperados:</p>
+<div class="math notranslate nohighlight" id="equation-logistic-expected-value">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-logistic-expected-value" title="Link to this equation">#</a></span>\[
+\mathbb{E}(y_i) = \pi_i = \frac{\exp(\mathbf{x}_i' \boldsymbol{\beta})}{1 + \exp(\mathbf{x}_i' \boldsymbol{\beta})}
+\]</div>
+<ul class="simple">
+<li><p><strong>Para estimar los parámetros en el predictor lineal <span class="math notranslate nohighlight">\(\mathbf{x}_i' \boldsymbol{\beta}\)</span> se utiliza el método de máxima verosimilitud.</strong></p></li>
+<li><p>Dado que cada observación de la muestra sigue una distribución Bernoulli, la función de probabilidad de cada observación es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-bernoulli-pdf">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-bernoulli-pdf" title="Link to this equation">#</a></span>\[
+f_i(y_i) = \pi_i^{y_i}(1-\pi_i)^{1-y_i}, \quad i = 1,2,\ldots,n
+\]</div>
+<p>y naturalmente cada <span class="math notranslate nohighlight">\(y_i\)</span> solo puede tomar los valores 0 o 1.</p>
+<ul class="simple">
+<li><p><strong>Como las observaciones son independientes, la función de verosimilitud es:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-likelihood-function-log">
+<span class="eqno">(10.5)<a class="headerlink" href="#equation-likelihood-function-log" title="Link to this equation">#</a></span>\[
+L(y_1, y_2, \ldots, y_n, \boldsymbol{\beta}) = \prod_{i=1}^n f_i(y_i) 
+= \prod_{i=1}^n \pi_i^{y_i}(1-\pi_i)^{1-y_i}
+\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  $$
+  \sigma^2 = \mathbb{Var}(X) = \mathbb{P}(1 - p) = \frac{1}{6} \cdot \frac{5}{6} = \frac{5}{36}
+  $$  
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>La variable <span class="math notranslate nohighlight">\(X\)</span> sigue una <strong>distribución Bernoulli</strong> con parámetro <span class="math notranslate nohighlight">\(p = \frac{1}{6}\)</span>. Su función de masa de probabilidad (PMF) es:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -541,7 +572,7 @@ p &amp; \text{si } x = 1 \\
 <li><p>En consecuencia, <strong>los errores en este modelo no pueden tener distribución normal.</strong> En segundo lugar, <strong>la varianza del error no es constante</strong>, ya que <span class="math notranslate nohighlight">\(\varepsilon_i = y_i - \pi_i=y_{i}-\mathbb{E}(y_i)\)</span> y <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i) = 0\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-var-bernoulli">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-var-bernoulli" title="Link to this equation">#</a></span>\[
+<span class="eqno">(10.6)<a class="headerlink" href="#equation-var-bernoulli" title="Link to this equation">#</a></span>\[
 \sigma^2_{y_i} = \mathbb{E} \left\{ (y_i - \mathbb{E}(y_i))^2 \right\}
 = (1 - \pi_i)^2 \pi_i + (0 - \pi_i)^2 (1 - \pi_i)
 = \pi_i(1 - \pi_i)
@@ -564,7 +595,7 @@ p &amp; \text{si } x = 1 \\
 <li><p>Esta restricción puede generar <strong>dificultades importantes si se emplea una función de respuesta lineal</strong>, como se ha supuesto inicialmente en la ecuación:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-linear-model-eq13-1">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-linear-model-eq13-1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(10.7)<a class="headerlink" href="#equation-linear-model-eq13-1" title="Link to this equation">#</a></span>\[
 y_i = \mathbf{x}_i'\boldsymbol{\beta} + \varepsilon_i
 \]</div>
 <ul class="simple">
@@ -609,7 +640,7 @@ y_i = \mathbf{x}_i'\boldsymbol{\beta} + \varepsilon_i
 <li><p>Esta es la <strong>función logística</strong> o <strong>sigmoide</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
-    \pi_i = \sigma(\mathbf{x}_i' \boldsymbol{\beta}) = \frac{1}{1 + \exp(-\mathbf{x}_i' \boldsymbol{\beta})}
+    \mathbb{E}(y_i) = \pi_i = \frac{1}{1 + \exp(-\mathbf{x}_i' \boldsymbol{\beta})}
     \]</div>
 <ul class="simple">
 <li><p>Mapea cualquier valor real a una probabilidad entre 0 y 1.</p></li>
@@ -618,6 +649,465 @@ y_i = \mathbf{x}_i'\boldsymbol{\beta} + \varepsilon_i
 </li>
 <li><p>Nótese que, un incremento en una variable explicativa <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> incrementa o disminuye <strong>log-odds</strong> de que <span class="math notranslate nohighlight">\(y_{i} = 1\)</span>. Además, el parámetro <span class="math notranslate nohighlight">\(\beta_j\)</span> mide el cambio en el <strong>logit</strong> por unidad adicional en <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>, manteniendo fijos los demás predictores.</p></li>
 </ul>
+</section>
+<section id="id1">
+<h2><span class="section-number">10.2. </span>Estimación de los parámetros en un modelo de regresión logística<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>La forma general del modelo de regresión logística es:</strong></p>
+<div class="math notranslate nohighlight" id="equation-logistic-model-general-estimation">
+<span class="eqno">(10.8)<a class="headerlink" href="#equation-logistic-model-general-estimation" title="Link to this equation">#</a></span>\[
+    y_i = \mathbb{E}(y_i) + \varepsilon_i
+    \]</div>
+<p>donde las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son variables aleatorias de Bernoulli independientes con valores esperados:</p>
+<div class="math notranslate nohighlight" id="equation-logistic-expected-value-estimation">
+<span class="eqno">(10.9)<a class="headerlink" href="#equation-logistic-expected-value-estimation" title="Link to this equation">#</a></span>\[
+    \mathbb{E}(y_i) = \pi_i = \frac{\exp(\mathbf{x}_i' \boldsymbol{\beta})}{1 + \exp(\mathbf{x}_i' \boldsymbol{\beta})}
+    \]</div>
+</li>
+<li><p><strong>Para estimar los parámetros en el predictor lineal <span class="math notranslate nohighlight">\(\mathbf{x}_i' \boldsymbol{\beta}\)</span> se utiliza el método de máxima verosimilitud.</strong> Dado que cada observación de la muestra sigue una distribución Bernoulli, la función de probabilidad de cada observación es:</p>
+<div class="math notranslate nohighlight" id="equation-bernoulli-pdf-estimation">
+<span class="eqno">(10.10)<a class="headerlink" href="#equation-bernoulli-pdf-estimation" title="Link to this equation">#</a></span>\[
+    f_i(y_i) = \pi_i^{y_i}(1-\pi_i)^{1-y_i}, \quad i = 1,2,\ldots,n
+    \]</div>
+<p>y naturalmente cada <span class="math notranslate nohighlight">\(y_i\)</span> solo puede tomar los valores 0 o 1.</p>
+</li>
+<li><p>Como las <strong>observaciones son independientes</strong>, la función de verosimilitud es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-likelihood-function-estimation">
+<span class="eqno">(10.11)<a class="headerlink" href="#equation-likelihood-function-estimation" title="Link to this equation">#</a></span>\[
+L(y_1, y_2, \ldots, y_n, \beta) = \prod_{i=1}^n f_i(y_i) 
+= \prod_{i=1}^n \pi_i^{y_i}(1-\pi_i)^{1-y_i}
+\]</div>
+<ul class="simple">
+<li><p><strong>Es más conveniente trabajar con la log-verosimilitud:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-log-likelihood-expanded">
+<span class="eqno">(10.12)<a class="headerlink" href="#equation-log-likelihood-expanded" title="Link to this equation">#</a></span>\[
+\ln L(y_1, y_2, \ldots, y_n, \boldsymbol{\beta}) = \ln \prod_{i=1}^n f_i(y_i) 
+= \sum_{i=1}^n \left[ y_i \ln \left(\frac{\pi_i}{1-\pi_i}\right)\right] + \sum_{i=1}^n \ln(1-\pi_i)
+\]</div>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(1 - \pi_i = [1 + \exp(\mathbf{x}_i' \boldsymbol{\beta})]^{-1}\)</span> y al definir <span class="math notranslate nohighlight">\(\eta_i = \ln\!\left(\pi_i/(1-\pi_i)\right) = \mathbf{x}_i' \boldsymbol{\beta}\)</span>, la log-verosimilitud puede reescribirse como:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-log-likelihood-eta">
+<span class="eqno">(10.13)<a class="headerlink" href="#equation-log-likelihood-eta" title="Link to this equation">#</a></span>\[
+\ln L(\boldsymbol{y}, \boldsymbol{\beta}) = \sum_{i=1}^n y_i \mathbf{x}_i' \boldsymbol{\beta} - \sum_{i=1}^n \ln \big[ 1 + \exp(\mathbf{x}_i' \boldsymbol{\beta}) \big]
+\]</div>
+<ul class="simple">
+<li><p><strong>En modelos de regresión logística es común tener observaciones o ensayos repetidos en cada nivel de las variables <span class="math notranslate nohighlight">\(x\)</span>.</strong> Esto ocurre con frecuencia en experimentos diseñados.</p></li>
+<li><p>Sea <span class="math notranslate nohighlight">\(y_i\)</span> el número de éxitos observados en la <span class="math notranslate nohighlight">\(i\)</span>-ésima unidad y <span class="math notranslate nohighlight">\(n_i\)</span> el número de ensayos correspondientes, esto es, <span class="math notranslate nohighlight">\(Y_i \sim \text{Bernoulli}(n_{i}, \pi_i)\)</span>) y la probabilidad de observar <span class="math notranslate nohighlight">\(y_i\)</span> éxitos es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+f_i(y_i) = \binom{n_i}{y_i}\pi_i^{y_i}(1-\pi_i)^{n_i-y_i}
+\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, la <strong>verosimilitud total</strong> es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+L(y_1, y_2, \ldots, y_n, \boldsymbol{\beta}) = \prod_{i=1}^n \binom{n_i}{y_i}\pi_i^{y_i}(1-\pi_i)^{n_i-y_i}
+\]</div>
+<ul class="simple">
+<li><p>Tomando logaritmo</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\ln L(\boldsymbol{y}, \boldsymbol{\beta}) = \sum_{i=1}^n \Bigg[ \ln \binom{n_i}{y_i} + y_i \ln(\pi_i) + (n_i-y_i)\ln(1-\pi_i) \Bigg]
+\]</div>
+<ul>
+<li><p>El término</p>
+<div class="math notranslate nohighlight">
+\[
+    \ln \binom{n_i}{y_i} = \ln \frac{n_i!}{y_i!(n_i-y_i)!}
+    \]</div>
+<p><strong>no depende de <span class="math notranslate nohighlight">\(\pi_i\)</span> ni de los parámetros <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>. Es decir, es una constante respecto a la estimación de máxima verosimilitud. Como en máxima verosimilitud lo que importa es <strong>maximizar</strong> la función respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>, se pueden eliminar los términos constantes, ya que <strong>no afectan la localización del máximo</strong>. Entonces</p>
+<div class="math notranslate nohighlight" id="equation-log-likelihood-trials">
+<span class="eqno">(10.14)<a class="headerlink" href="#equation-log-likelihood-trials" title="Link to this equation">#</a></span>\[
+    \ln L(\boldsymbol{y}, \boldsymbol{\beta}) = \sum_{i=1}^n y_i \ln(\pi_i) + \sum_{i=1}^n (n_i - y_i)\ln(1-\pi_i)
+    \]</div>
+</li>
+<li><p>Calculemo estimadores de máxima verosimilitud (MLEs) <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> mediante el procedimiento de <em>Iteratively Reweighted Least Squares</em> (IRLS). Al derivar con respecto a <span class="math notranslate nohighlight">\(\pi_i\)</span>, se obtiene:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-score-pi-log">
+<span class="eqno">(10.15)<a class="headerlink" href="#equation-score-pi-log" title="Link to this equation">#</a></span>\[
+\frac{\partial \ln L(\boldsymbol{y}, \boldsymbol{\beta})}{\partial \pi_i} = \frac{y_i}{\pi_i} - \frac{n_i-y_i}{1-\pi_i}
+= \frac{y_i}{\pi_i} - \frac{n_i}{1-\pi_i} + \frac{y_i}{1-\pi_i}
+\]</div>
+<ul class="simple">
+<li><p>Ahora, para propagar la derivada hacia <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>, usamos que <span class="math notranslate nohighlight">\(\pi_i = \exp(\mathbf{x}_i'\boldsymbol{\beta})/(1+\exp(\mathbf{x}_i'\boldsymbol{\beta}))\)</span>. Calculemos <span class="math notranslate nohighlight">\(\partial\pi_i/\partial\boldsymbol{\beta}\)</span>. Sea <span class="math notranslate nohighlight">\(z_i = \mathbf{x}_i'\boldsymbol{\beta}\)</span> entonces <span class="math notranslate nohighlight">\(\pi_i = \exp(\mathbf{x}_i'\boldsymbol{\beta})/(1+\exp(\mathbf{x}_i'\boldsymbol{\beta}))\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dpi-dzi-exp-beta">
+<span class="eqno">(10.16)<a class="headerlink" href="#equation-dpi-dzi-exp-beta" title="Link to this equation">#</a></span>\[
+\frac{d\pi_i}{dz_i}
+= \frac{\exp(z_i)\big(1+\exp(z_i)\big) - \exp(z_i)\exp(z_i)}{\big(1+\exp(z_i)\big)^2}
+= \frac{\exp(z_i)}{\big(1+\exp(z_i)\big)^2}.
+\]</div>
+<ul class="simple">
+<li><p>Reescribiendo esta última expresión en términos de <span class="math notranslate nohighlight">\(\pi_i\)</span> y <span class="math notranslate nohighlight">\((1-\pi_i)\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dpi-dzi-factor-beta">
+<span class="eqno">(10.17)<a class="headerlink" href="#equation-dpi-dzi-factor-beta" title="Link to this equation">#</a></span>\[
+\frac{\exp(z_i)}{(1+\exp(z_i))^2}
+= \underbrace{\frac{\exp(z_i)}{1+\exp(z_i)}}_{\displaystyle{\pi_i}}\;
+\underbrace{\frac{1}{1+\exp(z_i)}}_{\displaystyle{1-\pi_i}}
+= \pi_i(1-\pi_i).
+\]</div>
+<ul class="simple">
+<li><p>Gradiente de <span class="math notranslate nohighlight">\(z_i\)</span> respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> (forma vectorial) <span class="math notranslate nohighlight">\(\partial z_i/\partial\boldsymbol{\beta}=\mathbf{x}_i'\)</span>. Aplicando la regla de la cadena</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-dpi-dbeta-final-beta">
+<span class="eqno">(10.18)<a class="headerlink" href="#equation-dpi-dbeta-final-beta" title="Link to this equation">#</a></span>\[
+\frac{\partial \pi_i}{\partial \boldsymbol{\beta}}
+= \frac{d\pi_i}{dz_i}\,\frac{\partial z_i}{\partial \boldsymbol{\beta}}
+= \pi_i(1-\pi_i)\,\mathbf{x}_i'
+= \frac{\exp(\mathbf{x}_i'\boldsymbol{\beta})}{\big(1+\exp(\mathbf{x}_i'\boldsymbol{\beta})\big)^2}\,\mathbf{x}_i'.
+\]</div>
+<ul class="simple">
+<li><p>Aplicando la regla de la cadena:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-score-beta-chain-log">
+<span class="eqno">(10.19)<a class="headerlink" href="#equation-score-beta-chain-log" title="Link to this equation">#</a></span>\[
+\frac{\partial \ln L(\boldsymbol{y}, \boldsymbol{\beta})}{\partial \boldsymbol{\beta}} = 
+\sum_{i=1}^n \left[ \frac{\partial \ln L}{\partial \pi_i} \cdot \frac{\partial \pi_i}{\partial \boldsymbol{\beta}} \right]
+\]</div>
+<ul class="simple">
+<li><p>Sustituyendo <a class="reference internal" href="#equation-score-pi-log">(10.15)</a> y <a class="reference internal" href="#equation-dpi-dbeta-final-beta">(10.18)</a> en <a class="reference internal" href="#equation-score-beta-chain-log">(10.19)</a>:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-score-beta-expanded">
+<span class="eqno">(10.20)<a class="headerlink" href="#equation-score-beta-expanded" title="Link to this equation">#</a></span>\[
+\frac{\partial \ln L(\boldsymbol{y}, \boldsymbol{\beta})}{\partial \boldsymbol{\beta}} =
+\sum_{i=1}^n \left[\frac{y_i}{\pi_i} - \frac{n_i}{1-\pi_i} + \frac{y_i}{1-\pi_i}\right] \pi_i (1-\pi_i)\mathbf{x}_i'
+\]</div>
+<ul class="simple">
+<li><p>Para simplificar la expresión, partimos de la forma expandida del gradiente de la log-verosimilitud:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial \ln L(\boldsymbol{y}, \boldsymbol{\beta})}{\partial \boldsymbol{\beta}}
+&amp;= \sum_{i=1}^n \left[\frac{y_i}{\pi_i} - \frac{n_i}{1-\pi_i} + \frac{y_i}{1-\pi_i}\right] \pi_i (1-\pi_i)\,\mathbf{x}_i'\\[6pt]
+&amp;= \sum_{i=1}^n \left[\frac{y_i}{\pi_i} + \frac{y_i-n_i}{1-\pi_i}\right] \pi_i (1-\pi_i)\,\mathbf{x}_i'
+\quad\text{(agrupar términos semejantes)}\\[6pt]
+&amp;= \sum_{i=1}^n \left[\frac{y_i}{\pi_i}\pi_i(1-\pi_i) + \frac{y_i-n_i}{1-\pi_i}\pi_i(1-\pi_i)\right]\mathbf{x}_i'
+\quad\text{(distribuir)}\\[6pt]
+&amp;= \sum_{i=1}^n \left[y_i(1-\pi_i) + (y_i-n_i)\pi_i\right]\mathbf{x}_i'
+\quad\text{(cancelar $\pi_i$ y $1-\pi_i$)}\\[6pt]
+&amp;= \sum_{i=1}^n \left[y_i - y_i\pi_i + y_i\pi_i - n_i\pi_i\right]\mathbf{x}_i'
+\quad\text{(desarrollar)}\\[6pt]
+&amp;= \sum_{i=1}^n (y_i - n_i\pi_i)\,\mathbf{x}_i'
+\end{align*}
+\end{split}\]</div>
+<ul>
+<li><p>Por lo tanto, el <strong>estimador de máxima verosimilitud <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span></strong> se obtiene resolviendo la ecuación de score</p>
+<div class="math notranslate nohighlight" id="equation-score-matrix">
+<span class="eqno">(10.21)<a class="headerlink" href="#equation-score-matrix" title="Link to this equation">#</a></span>\[
+    \mathbf{X}'(\boldsymbol{y} - \boldsymbol{\mu}) = 0
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\boldsymbol{\mu} = (n_1\pi_1, \ldots, n_n\pi_n)'\)</span> es el vector de medias esperadas bajo el modelo logístico.</p>
+</li>
+<li><p><strong>Este conjunto de ecuaciones suele denominarse ecuaciones de score de máxima verosimilitud.</strong> En realidad, adoptan la misma forma que las ecuaciones normales vistas previamente en el método de mínimos cuadrados lineales.</p></li>
+<li><p>En el modelo de regresión lineal se cumple que <span class="math notranslate nohighlight">\(\mathbb{E}(\boldsymbol{y}) = \mathbf{X}\boldsymbol{\beta} = \boldsymbol{\mu}\)</span>, y las ecuaciones normales son:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-normal-equations">
+<span class="eqno">(10.22)<a class="headerlink" href="#equation-normal-equations" title="Link to this equation">#</a></span>\[
+\mathbf{X}'\mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}'\boldsymbol{y}
+\]</div>
+<ul class="simple">
+<li><p>Que puede reescribirse como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{X}'(\boldsymbol{y} - \mathbf{X}\boldsymbol{\beta}) &amp;= 0\\
+\mathbf{X}'(\boldsymbol{y} - \boldsymbol{\mu}) &amp;= 0
+\end{align}
+\end{split}\]</div>
+<ul>
+<li><p>En el caso de la regresión logística, <strong>las ecuaciones de score se resuelven mediante el método de Newton-Raphson.</strong> Se busca aproximar cómo varía <span class="math notranslate nohighlight">\(\pi_i\)</span> cuando <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> se ajusta hacia <span class="math notranslate nohighlight">\(\boldsymbol{\beta}^*\)</span> (el estimador que satisface las ecuaciones de verosimilitud).</p></li>
+<li><p>Se emplea una <strong>expansión de Taylor de primer orden</strong> para <span class="math notranslate nohighlight">\(\pi_i(\boldsymbol{\beta})\)</span> alrededor de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\pi_i(\boldsymbol{\beta}^*) \approx \pi_i(\boldsymbol{\beta}) + \left( \frac{\partial \pi_i}{\partial \boldsymbol{\beta}} \right)' (\boldsymbol{\beta}^* - \boldsymbol{\beta})\]</div>
+</li>
+<li><p>Dado que el valor óptimo <span class="math notranslate nohighlight">\(\boldsymbol{\beta}^*\)</span> satisface <span class="math notranslate nohighlight">\(p_i \approx \pi_i(\boldsymbol{\beta}^*)\)</span> en las ecuaciones de score, donde <span class="math notranslate nohighlight">\(p_i = y_i/n_i\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\beta}^*\)</span>, es el valor de los coeficientes <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> que <strong>maximiza la función de verosimilitud</strong>, es decir, el conjunto de valores que hace que las <strong>probabilidades predichas por el modelo <span class="math notranslate nohighlight">\(\pi_{i}:=\pi_{i}(\boldsymbol{\beta})\)</span> sean lo más parecidas posible a las proporciones observadas <span class="math notranslate nohighlight">\(p_{i}\)</span></strong></p>
+<div class="math notranslate nohighlight">
+\[p_i \approx \pi_i(\boldsymbol{\beta}) + \left( \frac{\partial \pi_i}{\partial \boldsymbol{\beta}} \right)' (\boldsymbol{\beta}^* - \boldsymbol{\beta})\]</div>
+</li>
+<li><p>Reordenando términos</p>
+<div class="math notranslate nohighlight" id="equation-taylor-expansion">
+<span class="eqno">(10.23)<a class="headerlink" href="#equation-taylor-expansion" title="Link to this equation">#</a></span>\[p_i - \pi_i \approx \left( \frac{\partial \pi_i}{\partial \boldsymbol{\beta}} \right)' (\boldsymbol{\beta}^* - \boldsymbol{\beta})\]</div>
+</li>
+<li><p>Si definimos <span class="math notranslate nohighlight">\(\eta_i = \mathbf{x}_i'\boldsymbol{\beta}\)</span>, se cumple que <span class="math notranslate nohighlight">\(\partial \eta_i/\partial\boldsymbol{\beta} = \mathbf{x}_i\)</span>. Además, recordemos que <span class="math notranslate nohighlight">\(\pi_i = \exp(\eta_i)/(1+\exp(\eta_i))\)</span></p></li>
+<li><p>Aplicando la <strong>regla de la cadena:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-chain-rule">
+<span class="eqno">(10.24)<a class="headerlink" href="#equation-chain-rule" title="Link to this equation">#</a></span>\[
+\frac{\partial \pi_i}{\partial \boldsymbol{\beta}} 
+= \frac{\partial \pi_i}{\partial \eta_i} \cdot \frac{\partial \eta_i}{\partial \boldsymbol{\beta}}
+= \frac{\partial \pi_i}{\partial \eta_i}\mathbf{x}_i
+\]</div>
+<ul>
+<li><p>Por lo tanto, podemos reescribir la aproximación en Ecuación <a class="reference internal" href="#equation-taylor-expansion">(10.23)</a> como</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+    p_i - \pi_i &amp;\approx \left(\frac{\partial \pi_i}{\partial \eta_i}\right)\mathbf{x}_i'(\boldsymbol{\beta}^* - \boldsymbol{\beta}) \\
+    &amp;= \left(\frac{\partial \pi_i}{\partial \eta_i}\right)(\mathbf{x}_i'\boldsymbol{\beta}^* - \mathbf{x}_i'\boldsymbol{\beta}) \\
+    &amp;= \left(\frac{\partial \pi_i}{\partial \eta_i}\right)(\eta_i^* - \eta_i)
+    \end{align*}
+    \end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\eta_{i}^{*}\)</span> es el valor de <span class="math notranslate nohighlight">\(\eta_{i}\)</span> evaluado en <span class="math notranslate nohighlight">\(\boldsymbol{\beta}^{*}\)</span>.</p>
+</li>
+</ul>
+<ul>
+<li><p>Se observa que</p>
+<div class="math notranslate nohighlight">
+\[(y_{i}-n_{i}\pi_{i})=(n_{i}p_{i}-n_{i}\pi_{i})=n_{i}(p_{i}-\pi_{i})\]</div>
+<p>y dado que <span class="math notranslate nohighlight">\(\pi_{i}=\exp(\eta_{i})/(1+\exp(\eta_{i}))\)</span> y además</p>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{\partial\pi_i}{\partial\eta_i} = \pi_i (1 - \pi_i)\]</div>
+<ul class="simple">
+<li><p>Entonces, combinando las expresiones anteriores</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[p_i - \pi_i \approx \left(\frac{\partial \pi_i}{\partial \eta_i}\right)(\eta_i^* - \eta_i) = \pi_i (1 - \pi_i) (\eta_i^* - \eta_i)\]</div>
+<ul class="simple">
+<li><p>Lultiplicando ambos miembros por <span class="math notranslate nohighlight">\(n_i\)</span> (tamaño muestral)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[n_i(p_i - \pi_i) \approx n_i \pi_i (1 - \pi_i) (\eta_i^* - \eta_i)\]</div>
+<ul class="simple">
+<li><p>Dado que, el lado izquierdo equivale a <span class="math notranslate nohighlight">\(y_i - n_i \pi_i\)</span>, se deduce</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-y-i-n-i-pi-eq">
+<span class="eqno">(10.25)<a class="headerlink" href="#equation-y-i-n-i-pi-eq" title="Link to this equation">#</a></span>\[
+y_i - n_i \pi_i \approx n_i \pi_i (1 - \pi_i) (\eta_i^* - \eta_i)
+\]</div>
+<ul class="simple">
+<li><p><strong>A continuación, se calcula la varianza para ambos miembros</strong> de la aproximación precedente. El miembro izquierdo es directo: la varianza de <span class="math notranslate nohighlight">\((y_i - n_i \pi_i)\)</span> es simplemente la varianza de <span class="math notranslate nohighlight">\(y_i\)</span>, que para una distribución Binomial resulta</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Var}(y_i - n_i \pi_i) = \text{Var}(y_i) = n_i \pi_i (1 - \pi_i)\]</div>
+<ul class="simple">
+<li><p>El miembro derecho requiere el método delta. La regla fundamental establece: para una constante <span class="math notranslate nohighlight">\(c\)</span> y una variable aleatoria <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(cX) = c^2 \text{Var}(X)\)</span>. En nuestra aproximación, el término <span class="math notranslate nohighlight">\(n_i \pi_i (1 - \pi_i)\)</span> se considera una <strong>constante conocida</strong> (o evaluada en la estimación corriente), no como una variable aleatoria. De este modo</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{Var}(y_i - n_i \pi_i) &amp;\approx \text{Var}\left( [n_i \pi_i (1 - \pi_i)] (\eta_i^* - \eta_i) \right) \\
+n_i \pi_i (1 - \pi_i) &amp;\approx \left[ n_i \pi_i (1 - \pi_i) \right]^2 \cdot \text{Var}(\eta_i^* - \eta_i)
+\end{align}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Ahora es posible resolver la ecuación para hallar la varianza de interés,</strong> <span class="math notranslate nohighlight">\(\text{Var}(\eta_i^*)\)</span>. Nótese que <span class="math notranslate nohighlight">\(\eta_i\)</span> es un valor fijo (el valor “verdadero”), por lo cual <span class="math notranslate nohighlight">\(\text{Var}(\eta_i^* - \eta_i) = \text{Var}(\eta_i^*)\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[n_i \pi_i (1 - \pi_i) \approx \left[ n_i \pi_i (1 - \pi_i) \right]^2 \cdot \text{Var}(\eta_i^*)\]</div>
+<ul class="simple">
+<li><p>Para despejar <span class="math notranslate nohighlight">\(\text{Var}(\eta_i^*)\)</span>, dividimos ambos lados entre <span class="math notranslate nohighlight">\(\left[ n_i \pi_i (1 - \pi_i) \right]^2\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{n_i \pi_i (1 - \pi_i)}{\left[ n_i \pi_i (1 - \pi_i) \right]^2} \approx \text{Var}(\eta_i^*)\]</div>
+<ul class="simple">
+<li><p>Simplificando la fracción:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-var-etai-eq-log">
+<span class="eqno">(10.26)<a class="headerlink" href="#equation-var-etai-eq-log" title="Link to this equation">#</a></span>\[
+\text{Var}(\eta_i^*)\approx\frac{1}{n_i \pi_i (1 - \pi_i)}
+\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, usando las Ecuaciones <a class="reference internal" href="#equation-y-i-n-i-pi-eq">(10.25)</a> y <a class="reference internal" href="#equation-var-etai-eq-log">(10.26)</a> se tiene que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[y_{i}-n_{i}\pi_{i}\approx\left[\frac{1}{\mathrm{Var}\big{(}\eta_{i}^{*}\big{)}}\right ](\eta_{i}^{*}-\eta_{i})\]</div>
+<ul class="simple">
+<li><p>Usando la Ecuación <a class="reference internal" href="#equation-score-matrix">(10.21)</a>, se pueden reescribir las ecuaciones de verosimilitud como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n}\left[\frac{1}{\mathrm{Var}(\eta_{i})}\right](\eta_{i}^{*}-\eta_{ i})\mathbf{x}_i'=0\Leftrightarrow\mathbf{X}^{\prime}\mathbf{V}^{-1}(\boldsymbol{\eta}^{*}-\boldsymbol{\eta})=\mathbf{0}\]</div>
+<ul class="simple">
+<li><p>Siendo <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> una matriz diagonal con los pesos formados a partir de las varianzas de los <span class="math notranslate nohighlight">\(\eta_{i}\)</span>. Debido a que <span class="math notranslate nohighlight">\(\boldsymbol{\eta}=\mathbf{X}\boldsymbol{\beta}\)</span> es posible escribir las ecuaciones de score como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mathbf{X}^{\prime}\mathbf{V}^{-1}(\boldsymbol{\eta}^{*}-\mathbf{X}\boldsymbol{\beta})=\mathbf{0}\]</div>
+<ul class="simple">
+<li><p>Aplicando álgebra matricial, se obtiene el estimador de máxima verosimilitud para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-beta-hat">
+<span class="eqno">(10.27)<a class="headerlink" href="#equation-eq-beta-hat" title="Link to this equation">#</a></span>\[\begin{split}
+\begin{align}
+\mathbf{X}'\mathbf{V}^{-1}\eta^* - \mathbf{X}'\mathbf{V}^{-1}\mathbf{X}\boldsymbol{\beta} &amp;= 0 \\[6pt]
+\mathbf{X}'\mathbf{V}^{-1}\mathbf{X}\boldsymbol{\beta} &amp;= \mathbf{X}'\mathbf{V}^{-1}\eta^* \\[6pt]
+\hat{\boldsymbol{\beta}} &amp;= (\mathbf{X}'\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{X}'\mathbf{V}^{-1}\eta^*
+\end{align}
+\end{split}\]</div>
+<ul>
+<li><p><strong>Sin embargo, existe una dificultad porque se desconoce <span class="math notranslate nohighlight">\(\eta^{*}\)</span>.</strong> Para solucionar esto, partimos de la expansión de Taylor de primer orden</p>
+<div class="math notranslate nohighlight" id="equation-eq-working-varz">
+<span class="eqno">(10.28)<a class="headerlink" href="#equation-eq-working-varz" title="Link to this equation">#</a></span>\[\begin{split}
+    \begin{align}
+    p_i - \pi_i &amp;= \left(\frac{\partial\pi_i}{\partial\eta_i}\right)(\eta_i^* - \eta_i) 
+    &amp;&amp; \text{(expansión de Taylor)} \\[6pt]
+    \eta_i^* &amp;= \eta_i + (p_i - \pi_i)\frac{\partial\eta_i}{\partial\pi_i} 
+    &amp;&amp; \text{(regla de la función inversa)} \\[6pt]
+    z_i &amp;= \eta_i + (p_i - \pi_i)\frac{\partial\eta_i}{\partial\pi_i} 
+    &amp;&amp; \text{(definición de variable pseudo-respuesta)}
+    \end{align}
+    \end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(z_i\)</span> se conoce como la <strong>variable pseudo-respuesta</strong> (<em>working variable</em>).</p>
+</li>
+<li><p>El paso de actualización para <span class="math notranslate nohighlight">\(\beta\)</span> se obtiene resolviendo un problema de <strong>mínimos cuadrados ponderados</strong> en cada iteración</p>
+<div class="math notranslate nohighlight" id="equation-newron-raphson-irls">
+<span class="eqno">(10.29)<a class="headerlink" href="#equation-newron-raphson-irls" title="Link to this equation">#</a></span>\[
+    \begin{align}
+    \hat{\boldsymbol{\beta}} 
+    = (\mathbf{X}'\mathbf{V}^{-1}\mathbf{X})^{-1}\mathbf{X}'\mathbf{V}^{-1}\mathbf{z}
+    &amp;&amp; \text{(estimador IRLS)}
+    \end{align}
+    \]</div>
+<p>con <span class="math notranslate nohighlight">\(\mathbf{z} = (z_1,\dots,z_n)'\)</span> y  <span class="math notranslate nohighlight">\(\mathbf{V} = \mathrm{diag}\!\left[1/(n_i\pi_i(1-\pi_i))\right]\)</span>.</p>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Algoritmo</span> <span class="pre">IRLS</span></code></strong></p></li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Inicializar</strong> <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}_0\)</span> (por OLS). <em>Se parte de una estimación preliminar lineal.</em></p></li>
+<li><p><strong>Calcular probabilidades y pesos:</strong> <span class="math notranslate nohighlight">\(\hat{\pi}_i = g^{-1}(\mathbf{x}_i'\hat{\boldsymbol{\beta}}_k)\)</span>, <span class="math notranslate nohighlight">\(\hat{\mathbf{V}} = \mathrm{diag}\!\left[1/(n_i\hat{\pi}_i(1-\hat{\pi}_i))\right]\)</span>. <em>Los pesos provienen de la varianza binomial.</em></p></li>
+<li><p><strong>Construir pseudo-respuesta:</strong> <span class="math notranslate nohighlight">\(\mathbf{z} = (z_1,\dots,z_n)'\)</span>, <em>linealización local del predictor con corrección de residuales.</em></p></li>
+<li><p><strong>Actualizar estimador</strong></p>
+<div class="math notranslate nohighlight">
+\[
+   \hat{\boldsymbol{\beta}}_{k+1} = (\mathbf{X}'\hat{\mathbf{V}}^{-1}\mathbf{X})^{-1}\mathbf{X}'\hat{\mathbf{V}}^{-1}\mathbf{z}
+   \]</div>
+<p><em>Estimador por mínimos cuadrados ponderados.</em></p>
+</li>
+<li><p><strong>Iterar hasta convergencia:</strong> <span class="math notranslate nohighlight">\(\|\hat{\boldsymbol{\beta}}_{k+1} - \hat{\boldsymbol{\beta}}_k\| &lt; \epsilon\)</span>. <em>El proceso converge al estimador máximo verosímil.</em></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Análisis de la Varianza</strong>. La componente aleatoria de <span class="math notranslate nohighlight">\(z_{i}\)</span> es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[(p_{i}-\pi_{i})\frac{\partial\eta_{i}}{\partial\pi_{i}}\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, por propiedades de la varianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{Var}\!\left[(p_i - \pi_i)\frac{\partial \eta_i}{\partial \pi_i}\right] 
+&amp;= \left(\frac{\partial \eta_i}{\partial \pi_i}\right)^2 \text{Var}(p_i - \pi_i) \\[6pt]
+&amp;= \left(\frac{\partial \eta_i}{\partial \pi_i}\right)^2 \text{Var}(p_i)
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Dado que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+p_i &amp;= \frac{y_i}{n_i}, \quad y_i \sim \text{Binomial}(n_i, \pi_i) \\[6pt]
+\text{Var}(p_i) &amp;= \frac{1}{n_i^2}\text{Var}(y_i) \\[6pt]
+&amp;= \frac{1}{n_i^2} \, n_i \pi_i (1-\pi_i) \\[6pt]
+&amp;= \frac{\pi_i (1-\pi_i)}{n_i}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Sustituyendo en la fórmula de varianza</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align*}
+\text{Var}\!\left[(p_i - \pi_i)\frac{\partial \eta_i}{\partial \pi_i}\right] 
+&amp;= \left(\frac{\partial \eta_i}{\partial \pi_i}\right)^2 \cdot \frac{\pi_i (1-\pi_i)}{n_i}
+\end{align*}
+\]</div>
+<ul class="simple">
+<li><p>Dado que, para el caso <em>logit</em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\eta_i &amp;= \log\!\left(\frac{\pi_i}{1-\pi_i}\right) \\[6pt]
+\frac{\partial \eta_i}{\partial \pi_i} 
+&amp;= \frac{1}{\pi_i} + \frac{1}{1-\pi_i} \\[6pt]
+&amp;= \frac{1}{\pi_i (1-\pi_i)}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Sustituyendo se tiene que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\text{Var}\!\left[(p_i - \pi_i)\frac{\partial \eta_i}{\partial \pi_i}\right] 
+&amp;= \left(\frac{1}{\pi_i(1-\pi_i)}\right)^2 \cdot \frac{\pi_i(1-\pi_i)}{n_i} \\[6pt]
+&amp;= \frac{1}{n_i \pi_i (1-\pi_i)}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Así, <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> es la matriz diagonal de pesos construida a partir de las varianzas de la parte aleatoria de <span class="math notranslate nohighlight">\(z\)</span>.</strong></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Implementación</span> <span class="pre">en</span> <span class="pre">Python</span></code></strong></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="k">def</span> <span class="nf">newton_raphson_irls</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementación del algoritmo IRLS usando el método de Newton-Raphson</span>
+<span class="sd">    para regresión logística</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Paso 1: Estimación inicial por MCO</span>
+    <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="c1"># Paso 2: Estimar pi y V</span>
+        <span class="n">eta</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">))</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span>
+        <span class="n">V_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">V</span><span class="p">)</span>
+        
+        <span class="c1"># Paso 3: Calcular variable ajustada z</span>
+        <span class="n">d_eta_d_pi</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pi</span><span class="p">))</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">+</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">d_eta_d_pi</span>
+        
+        <span class="c1"># Paso 4: Actualizar estimación de beta</span>
+        <span class="n">Xt_V_inv</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">V_inv</span>
+        <span class="n">beta_new</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Xt_V_inv</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">Xt_V_inv</span> <span class="o">@</span> <span class="n">z</span>
+        
+        <span class="c1"># Verificar convergencia</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">beta_new</span> <span class="o">-</span> <span class="n">beta_hat</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">beta_new</span>
+    
+    <span class="k">return</span> <span class="n">beta_hat</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Existen varias bibliotecas en <strong>Python</strong> que implementan estimación por máxima verosimilitud para regresión logística, como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p></li>
+<li><p>Sea <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> el estimador final de los parámetros del modelo obtenido por el algoritmo. <strong>Si se cumplen los supuestos, asintóticamente se tiene que:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-mle-asymptotics">
+<span class="eqno">(10.30)<a class="headerlink" href="#equation-mle-asymptotics" title="Link to this equation">#</a></span>\[
+\mathbb{E}(\hat{\boldsymbol{\beta}}) = \boldsymbol{\beta}, 
+\quad
+\text{Var}(\hat{\boldsymbol{\beta}}) = (X' V X)^{-1}
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(V\)</span> es una matriz diagonal <span class="math notranslate nohighlight">\(n \times n\)</span> que contiene en la diagonal la varianza estimada de cada observación, es decir, el elemento <span class="math notranslate nohighlight">\(i\)</span> de la diagonal es:</p>
+<div class="math notranslate nohighlight" id="equation-variance-matrix-diag">
+<span class="eqno">(10.31)<a class="headerlink" href="#equation-variance-matrix-diag" title="Link to this equation">#</a></span>\[
+V_{ii} = n_i \hat{\pi}_i (1-\hat{\pi}_i)
+\]</div>
+<ul class="simple">
+<li><p>El valor estimado del predictor lineal es <span class="math notranslate nohighlight">\(\hat{\eta}_i = \mathbf{x}_i' \hat{\boldsymbol{\beta}}\)</span> y el valor ajustado del modelo logístico es:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-fitted-logistic-model">
+<span class="eqno">(10.32)<a class="headerlink" href="#equation-fitted-logistic-model" title="Link to this equation">#</a></span>\[
+\hat{y}_i = \hat{\pi}_i = \frac{\exp(\hat{\eta}_i)}{1+\exp(\hat{\eta}_i)} 
+= \frac{\exp(\mathbf{x}_i' \hat{\boldsymbol{\beta}})}{1+\exp(\mathbf{x}_i' \hat{\boldsymbol{\beta}})} 
+= \frac{1}{1+\exp(-\mathbf{x}_i' \hat{\boldsymbol{\beta}})}
+\]</div>
 </section>
 </section>
 
@@ -686,6 +1176,7 @@ y_i = \mathbf{x}_i'\boldsymbol{\beta} + \varepsilon_i
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-con-una-variable-de-respuesta-binaria">10.1. Modelos con una Variable de Respuesta Binaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">10.2. Estimación de los parámetros en un modelo de regresión logística</a></li>
 </ul>
   </nav></div>
 

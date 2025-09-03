@@ -353,6 +353,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-datos-de-propulsor-de-cohete">2.4. Aplicación: Datos de Propulsor de Cohete</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-modelo">2.4.1. Evaluación del modelo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nota-sobre-el-uso-de-software">2.4.2. Nota sobre el uso de software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-resultados">2.4.3. Resumen de resultados</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-de-minimos-cuadrados-y-del-modelo-ajustado">2.5. Propiedades de los Estimadores de Mínimos Cuadrados y del Modelo Ajustado</a></li>
@@ -430,41 +431,46 @@ document.write(`
 <h1><span class="section-number">2. </span>Regresión Lineal Simple<a class="headerlink" href="#regresion-lineal-simple" title="Link to this heading">#</a></h1>
 <section id="modelo-de-regresion-lineal-simple">
 <h2><span class="section-number">2.1. </span>Modelo de Regresión Lineal Simple<a class="headerlink" href="#modelo-de-regresion-lineal-simple" title="Link to this heading">#</a></h2>
-<p><strong>El modelo de regresión lineal simple describe la relación entre una variable independiente <span class="math notranslate nohighlight">\(x\)</span> y una variable dependiente <span class="math notranslate nohighlight">\(y\)</span> mediante una función lineal:</strong></p>
+<ul>
+<li><p>El modelo de <strong>regresión lineal simple describe la relación entre una variable independiente <span class="math notranslate nohighlight">\(x\)</span> y una variable dependiente <span class="math notranslate nohighlight">\(y\)</span> mediante una función lineal</strong></p>
 <div class="math notranslate nohighlight">
 \[
-y = \beta_0 + \beta_1 x + \varepsilon
-\]</div>
+    y = \beta_0 + \beta_1 x + \varepsilon
+    \]</div>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> es el intercepto y <span class="math notranslate nohighlight">\(\beta_1\)</span> la pendiente; ambos son parámetros desconocidos.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span> representa el error aleatorio, con media cero, varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span> desconocida, y errores no correlacionados.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\beta_0\)</span> es el intercepto y <span class="math notranslate nohighlight">\(\beta_1\)</span> la pendiente</strong>; ambos son parámetros desconocidos.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\varepsilon\)</span> representa el error aleatorio, con media cero, varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> desconocida, y errores no correlacionados.</p></li>
 </ul>
-<p><strong>Se asume que <span class="math notranslate nohighlight">\(x\)</span> es controlada por el analista, con error de medición despreciable, y que <span class="math notranslate nohighlight">\(y\)</span> es una variable aleatoria con distribución condicionada a cada valor de <span class="math notranslate nohighlight">\(x\)</span>.</strong></p>
-<p>Las propiedades del modelo son:</p>
+</li>
+<li><p>Se asume que <strong><span class="math notranslate nohighlight">\(x\)</span> es controlada por el analista</strong>, con error de medición despreciable, y que <strong><span class="math notranslate nohighlight">\(y\)</span> es una variable aleatoria con distribución condicionada a cada valor de <span class="math notranslate nohighlight">\(x\)</span>.</strong> Las propiedades del modelo son</p>
 <div class="math notranslate nohighlight">
-\[
-\mathbb{E}(y \mid x) = \beta_0 + \beta_1 x
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\mathbb{Var}(y \mid x) = \mathbb{Var}(\beta_0 + \beta_1 x + \varepsilon) = \sigma^2
-\]</div>
-<p><strong>Esto implica que la media de <span class="math notranslate nohighlight">\(y\)</span> es función lineal de <span class="math notranslate nohighlight">\(x\)</span>, la varianza de <span class="math notranslate nohighlight">\(y\)</span> es constante e independiente de <span class="math notranslate nohighlight">\(x\)</span>, y las respuestas son no correlacionadas debido a la independencia de los errores.</strong></p>
-<p><strong>Interpretación</strong>:</p>
+\[\begin{split}
+    \begin{align}
+    \mathbb{E}(y \mid x) &amp;= \beta_0 + \beta_1 x \\
+    \mathbb{Var}(y \mid x) &amp;= \mathbb{Var}(\beta_0 + \beta_1 x + \varepsilon) = \sigma^2
+    \end{align}
+    \end{split}\]</div>
+</li>
+<li><p>Esto implica que <strong>la media de <span class="math notranslate nohighlight">\(y\)</span> es función lineal de <span class="math notranslate nohighlight">\(x\)</span>, la varianza de <span class="math notranslate nohighlight">\(y\)</span> es constante e independiente de <span class="math notranslate nohighlight">\(x\)</span>, y las respuestas son no correlacionadas</strong> debido a la independencia de los errores</p></li>
+<li><p><strong>Interpretación</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> indica el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante un aumento unitario en <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> representa la media de <span class="math notranslate nohighlight">\(y\)</span> cuando <span class="math notranslate nohighlight">\(x = 0\)</span>, aunque puede no tener interpretación práctica si <span class="math notranslate nohighlight">\(x = 0\)</span> no está en el rango observado.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> indica el <strong>cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante un aumento unitario en <span class="math notranslate nohighlight">\(x\)</span></strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> representa la <strong>media de <span class="math notranslate nohighlight">\(y\)</span> cuando <span class="math notranslate nohighlight">\(x = 0\)</span></strong>, aunque puede <em>no tener interpretación práctica si <span class="math notranslate nohighlight">\(x = 0\)</span> no está en el rango observado</em>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="estimacion-por-minimos-cuadrados">
 <h2><span class="section-number">2.2. </span>Estimación por Mínimos Cuadrados<a class="headerlink" href="#estimacion-por-minimos-cuadrados" title="Link to this heading">#</a></h2>
-<p><strong>Los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> son desconocidos y deben estimarse a partir de datos muestrales.</strong></p>
-<p>Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n\)</span> pares de datos observados: <span class="math notranslate nohighlight">\((y_1, x_1), (y_2, x_2), \dots, (y_n, x_n)\)</span>.</p>
 <ul class="simple">
+<li><p>Los parámetros <strong><span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> son desconocidos y deben estimarse a partir de datos muestrales.</strong> Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n\)</span> pares de datos observados: <span class="math notranslate nohighlight">\((y_1, x_1), (y_2, x_2), \dots, (y_n, x_n)\)</span>.</p>
+<ul>
 <li><p>Estos datos pueden provenir de un experimento controlado, un estudio observacional o registros históricos (estudio retrospectivo).</p></li>
 <li><p>El objetivo es encontrar los valores de <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> <strong>que minimicen la suma de los cuadrados de los errores</strong> (residuos), definidos como las diferencias entre los valores observados <span class="math notranslate nohighlight">\(y_i\)</span> y los valores ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> producidos por el modelo.</p></li>
 </ul>
-<p><strong>Este procedimiento se conoce como estimación por mínimos cuadrados.</strong></p>
+</li>
+<li><p>Este procedimiento se conoce como <strong>estimación por mínimos cuadrados.</strong></p></li>
+</ul>
 </section>
 <section id="estimacion-de-beta-0-y-beta-1-mediante-minimos-cuadrados">
 <h2><span class="section-number">2.3. </span>Estimación de <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> mediante mínimos cuadrados<a class="headerlink" href="#estimacion-de-beta-0-y-beta-1-mediante-minimos-cuadrados" title="Link to this heading">#</a></h2>
@@ -474,33 +480,47 @@ y = \beta_0 + \beta_1 x + \varepsilon
 <p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Generación de observaciones en regresión lineal: aproximación de una relación compleja.</span><a class="headerlink" href="#lm-sample-normal-dist-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>El método de mínimos cuadrados se utiliza para <strong>estimar los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> del modelo de regresión lineal simple.</strong> Se busca minimizar la suma de los cuadrados de las diferencias entre las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> y la recta ajustada.</p>
-<p>A partir del modelo:</p>
+<div class="important admonition">
+<p class="admonition-title">Observación</p>
+<ul class="simple">
+<li><p><strong>En cada valor de <span class="math notranslate nohighlight">\(x\)</span>, los puntos de la muestra se concentran en el pico de la distribución normal, es decir, alrededor de la recta</strong>. Se observan <em>datos agrupados o repetidos cerca de la media, y pocos en los extremos de la normal</em>.</p></li>
+<li><p>Cuando usamos regresión lineal, estamos diciendo: <strong>para cada valor de <span class="math notranslate nohighlight">\(x\)</span>, la respuesta <span class="math notranslate nohighlight">\(y\)</span> no es un número fijo, sino una variable aleatoria con media en la recta de regresión y varianza constante</strong>.</p></li>
+<li><p><strong>Los datos que observamos son realizaciones ruidosas de esa distribución</strong>. Además, el modelo lineal es solo una aproximación: si la relación verdadera no es lineal, la recta trata de capturar la tendencia general.</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>El método de <em>mínimos cuadrados</em> se utiliza para <strong>estimar los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> del modelo de regresión lineal simple.</strong> Se busca minimizar la suma de los cuadrados de las diferencias entre las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> y la recta ajustada. A partir del modelo</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,\quad i = 1, 2, \dots, n
 \]</div>
-<p><strong>La suma de cuadrados a minimizar es:</strong></p>
+<ul class="simple">
+<li><p><strong>La suma de cuadrados a minimizar es</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 S(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2
 \]</div>
-<p><strong>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> satisfacen:</strong></p>
+<ul>
+<li><p><strong>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> satisfacen:</strong></p>
 <ul class="simple">
 <li><p>Derivada parcial respecto a <span class="math notranslate nohighlight">\(\beta_0\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial S}{\partial \beta_0} = -2 \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i) = 0
-\]</div>
+    \frac{\partial S}{\partial \beta_0} = -2 \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i) = 0
+    \]</div>
 <ul class="simple">
 <li><p>Derivada parcial respecto a <span class="math notranslate nohighlight">\(\beta_1\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial S}{\partial \beta_1} = -2 \sum_{i=1}^n x_i (y_i - \beta_0 - \beta_1 x_i) = 0
-\]</div>
-<p>Obtenemos el siguiente <strong>sistema de ecuaciones normales</strong></p>
+    \frac{\partial S}{\partial \beta_1} = -2 \sum_{i=1}^n x_i (y_i - \beta_0 - \beta_1 x_i) = 0
+    \]</div>
+</li>
+<li><p>Obtenemos el siguiente <strong>sistema de ecuaciones normales</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-beta01-normal-eq">
 <span class="eqno">(2.1)<a class="headerlink" href="#equation-beta01-normal-eq" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
@@ -508,64 +528,108 @@ n \hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^n x_i &amp;= \sum_{i=1}^n y_i\\
 \hat{\beta}_0 \sum_{i=1}^n x_i + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n x_i y_i
 \end{align*}
 \end{split}\]</div>
-<p>Despejando <span class="math notranslate nohighlight">\(\beta_{0}\)</span> de la Ecuación <a class="reference internal" href="#equation-beta01-normal-eq">(2.1)</a> y usando la definición de la media, se obtiene <span class="math notranslate nohighlight">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}\)</span>. Luego reemplazando <span class="math notranslate nohighlight">\(\hat{\beta}_{0}\)</span> en la Ecuación <a class="reference internal" href="#equation-beta01-normal-eq">(2.1)</a> obtenemos <span class="math notranslate nohighlight">\(\hat{\beta}_{1}\)</span> y por lo tanto, la <strong>solución de las ecuaciones normales (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>):</strong></p>
+<ul class="simple">
+<li><p>Despejando <span class="math notranslate nohighlight">\(\beta_{0}\)</span> de la Ecuación <a class="reference internal" href="#equation-beta01-normal-eq">(2.1)</a> y usando la definición de la media, se obtiene</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+n\hat{\beta}_0 &amp;= \sum_{i=1}^n y_i - \hat{\beta}_1 \sum_{i=1}^n x_i \\
+\hat{\beta}_0 &amp;= \displaystyle{\frac{1}{n}}\sum_{i=1}^n y_i - \hat{\beta}_1 \displaystyle{\frac{1}{n}}\sum_{i=1}^n x_i \\
+\hat{\beta}_0 &amp;= \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Luego, reemplazando <span class="math notranslate nohighlight">\(\hat{\beta}_{0}\)</span> en la segunda ecuación en <a class="reference internal" href="#equation-beta01-normal-eq">(2.1)</a> obtenemos <span class="math notranslate nohighlight">\(\hat{\beta}_{1}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{\beta}_0 \sum_{i=1}^n x_i + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n x_i y_i \\[6pt]
+\left(\bar{y} - \hat{\beta}_1 \bar{x}\right)\sum_{i=1}^n x_i + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n x_i y_i \\[6pt]
+\bar{y}\sum_{i=1}^n x_i - \hat{\beta}_1 \bar{x}\sum_{i=1}^n x_i + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n x_i y_i \\[6pt]
+- \hat{\beta}_1 \frac{1}{n}\left(\sum_{i=1}^n x_i\right)^2 + \hat{\beta}_1 \sum_{i=1}^n x_i^2 &amp;= \sum_{i=1}^n x_i y_i - \bar{y}\sum_{i=1}^n x_i \\[6pt]
+\hat{\beta}_1 \left(\sum_{i=1}^n x_i^2 - \displaystyle{\frac{1}{n}}\left(\sum_{i=1}^n x_i\right)^2\right) &amp;= \sum_{i=1}^n x_i y_i - \displaystyle{\frac{1}{n}}\left(\sum_{i=1}^n y_i\right)\left(\sum_{i=1}^n x_i\right) \\[6pt]
+\hat{\beta}_1 &amp;= 
+\frac{\displaystyle{\sum_{i=1}^n x_i y_i} - \displaystyle{\frac{1}{n}}\left(\sum_{i=1}^n x_i\right)\left(\sum_{i=1}^n y_i\right)}{\displaystyle{\sum_{i=1}^n x_i^2} - \displaystyle{\frac{1}{n}}\left(\sum_{i=1}^n x_i\right)^2}
+\end{align}
+\end{split}\]</div>
+<ul>
+<li><p>En conclusión</p>
 <div class="math notranslate nohighlight" id="equation-first-beta0-eqn">
 <span class="eqno">(2.2)<a class="headerlink" href="#equation-first-beta0-eqn" title="Link to this equation">#</a></span>\[
-\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
-\]</div>
+    \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+    \]</div>
 <p>y</p>
 <div class="math notranslate nohighlight" id="equation-first-beta1-eqn">
 <span class="eqno">(2.3)<a class="headerlink" href="#equation-first-beta1-eqn" title="Link to this equation">#</a></span>\[
-\hat{\beta}_1 = 
-\frac{
-\displaystyle{ \sum_{i=1}^n y_i x_i } - \frac{\displaystyle{ \left( \sum_{i=1}^n y_i \right) \left( \sum_{i=1}^n x_i \right)}}{n}
-}{
-\displaystyle{ \sum_{i=1}^n x_i^2 } - \frac{\displaystyle{ \left( \sum_{i=1}^n x_i \right)^2}}{n}
-}
-\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
-\bar{y} = \frac{1}{n} \displaystyle{ \sum_{i=1}^n y_i }, \qquad
-\bar{x} = \frac{1}{n} \displaystyle{ \sum_{i=1}^n x_i }
-\]</div>
-<p><strong>Expresiones en notación compacta: (<code class="docutils literal notranslate"><span class="pre">verifíquelas</span></code>)</strong></p>
+    \hat{\beta}_1 = 
+    \frac{
+    \displaystyle{ \sum_{i=1}^n y_i x_i } - \frac{\displaystyle{ \left( \sum_{i=1}^n y_i \right) \left( \sum_{i=1}^n x_i \right)}}{n}
+    }{
+    \displaystyle{ \sum_{i=1}^n x_i^2 } - \frac{\displaystyle{ \left( \sum_{i=1}^n x_i \right)^2}}{n}
+    }
+    \]</div>
+</li>
+</ul>
+<ul>
+<li><p>Las siguientes son <strong>expresiones en notación compacta</strong></p>
 <ul class="simple">
 <li><p>Varianza corregida de <span class="math notranslate nohighlight">\(x\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align}
+    S_{xx} &amp;= \sum_{i=1}^n (x_i - \bar{x})^2 \\[6pt]
+           &amp;= \sum_{i=1}^n \left(x_i^2 - 2x_i\bar{x} + \bar{x}^2\right) \\[6pt]
+           &amp;= \sum_{i=1}^n x_i^2 - 2\bar{x}\sum_{i=1}^n x_i + n\bar{x}^2 \\[6pt]
+           &amp;= \sum_{i=1}^n x_i^2 - n\bar{x}^2 \\[6pt]
+           &amp;= \sum_{i=1}^n x_i^2 - \frac{1}{n}\left(\sum_{i=1}^n x_i\right)^2
+    \end{align}
+    \end{split}\]</div>
+<p>entonces</p>
+<div class="math notranslate nohighlight">
 \[
-S_{xx} = \displaystyle{ \sum_{i=1}^n x_i^2 } - \frac{ \displaystyle{ \left( \sum_{i=1}^n x_i \right)^2 } }{n} 
-= \displaystyle{ \sum_{i=1}^n (x_i - \bar{x})^2 }
-\]</div>
+    S_{xx} = \displaystyle{ \sum_{i=1}^n x_i^2 } - \frac{ \displaystyle{ \left( \sum_{i=1}^n x_i \right)^2 } }{n} 
+    = \displaystyle{ \sum_{i=1}^n (x_i - \bar{x})^2 }
+    \]</div>
 <ul class="simple">
 <li><p>Covarianza entre <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-S_{xy} = \displaystyle{ \sum_{i=1}^n x_i y_i } - \frac{ \displaystyle{ \left( \sum_{i=1}^n x_i \right) \left( \sum_{i=1}^n y_i \right) } }{n}
-= \displaystyle{ \sum_{i=1}^n y_i(x_i - \bar{x})}
-\]</div>
-<p><strong>Por lo tanto:</strong></p>
+    S_{xy} = \displaystyle{ \sum_{i=1}^n x_i y_i } - \frac{ \displaystyle{ \left( \sum_{i=1}^n x_i \right) \left( \sum_{i=1}^n y_i \right) } }{n}
+    = \displaystyle{ \sum_{i=1}^n y_i(x_i - \bar{x})}
+    \]</div>
+</li>
+<li><p>Por lo tanto</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}
-\]</div>
-<p>El <strong>modelo ajustado de regresión</strong> es:</p>
+    \hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}
+    \]</div>
+</li>
+<li><p>El <strong>modelo ajustado de regresión</strong> es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
 \]</div>
-<p>El <strong>residuo</strong> para cada observación es:</p>
+<ul class="simple">
+<li><p>El <strong>residuo</strong> para cada observación es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 e_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i), \quad i = 1, 2, \dots, n
 \]</div>
-<p><strong>Los residuos son fundamentales para evaluar la adecuación del modelo y detectar posibles violaciones a los supuestos</strong>, tema que se desarrolla en capítulos posteriores.</p>
+<ul class="simple">
+<li><p><strong>Los residuos son fundamentales para evaluar la adecuación del modelo y detectar posibles violaciones a los supuestos</strong>, tema que se desarrolla en capítulos posteriores.</p></li>
+</ul>
 </section>
 <section id="aplicacion-datos-de-propulsor-de-cohete">
 <h2><span class="section-number">2.4. </span>Aplicación: Datos de Propulsor de Cohete<a class="headerlink" href="#aplicacion-datos-de-propulsor-de-cohete" title="Link to this heading">#</a></h2>
-<p>Este ejemplo analiza la <strong>relación entre la resistencia al corte (<span class="math notranslate nohighlight">\(y\)</span>) de un propulsor y la edad (<span class="math notranslate nohighlight">\(x\)</span>) del lote en semanas</strong>, mediante un modelo de regresión lineal simple.</p>
+<ul class="simple">
+<li><p>Este ejemplo analiza la <strong>relación entre la resistencia al corte (<span class="math notranslate nohighlight">\(y\)</span>) de un propulsor y la edad (<span class="math notranslate nohighlight">\(x\)</span>) del lote en semanas</strong>, mediante un modelo de regresión lineal simple.</p></li>
+</ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Observación</p></th>
@@ -657,17 +721,20 @@ e_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i), \quad i = 1, 
 </tbody>
 </table>
 </div>
-<p>Se propone el siguiente modelo:</p>
+<ul>
+<li><p>Se propone el siguiente modelo:</p>
 <div class="math notranslate nohighlight">
 \[
-y = \beta_0 + \beta_1 x + \varepsilon
-\]</div>
-<p>Donde:</p>
+    y = \beta_0 + \beta_1 x + \varepsilon
+    \]</div>
+<p>donde:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(y\)</span>: resistencia al corte (psi)</p></li>
 <li><p><span class="math notranslate nohighlight">\(x\)</span>: edad del propulsor (semanas)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span>: parámetros del modelo</p></li>
 <li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span>: error aleatorio con <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon) = 0\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span></p></li>
+</ul>
+</li>
 </ul>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -702,48 +769,47 @@ y = \beta_0 + \beta_1 x + \varepsilon
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2cb70954a91771d73bd93b1abfd4b9b761ab40c95582d9f647fbd4eaaf89491f.png" src="_images/2cb70954a91771d73bd93b1abfd4b9b761ab40c95582d9f647fbd4eaaf89491f.png" />
+<img alt="_images/aff9d372c54d7b090e29e61c427a413875c4c54b1eeb22b444a3f19d63c773a2.png" src="_images/aff9d372c54d7b090e29e61c427a413875c4c54b1eeb22b444a3f19d63c773a2.png" />
 </div>
 </div>
-<p><strong>Los datos recolectados sugieren una fuerte relación lineal negativa entre edad y resistencia.</strong> Para estimar los parámetros se calcula:</p>
-<ul class="simple">
-<li><p>Suma de cuadrados de <span class="math notranslate nohighlight">\(x\)</span>:</p></li>
-</ul>
+<ul>
+<li><p>Los datos recolectados sugieren una <strong>fuerte relación lineal negativa entre edad y resistencia</strong>. Para estimar los parámetros se calcula:</p>
+<p><strong>Suma de cuadrados de <span class="math notranslate nohighlight">\(x\)</span></strong></p>
 <div class="math notranslate nohighlight">
 \[
-S_{xx} = \sum_{i=1}^{n} x_i^2 - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right)^2 = 1106.56
-\]</div>
-<ul class="simple">
-<li><p>Suma de productos cruzados:</p></li>
-</ul>
+    S_{xx} = \sum_{i=1}^{n} x_i^2 - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right)^2 = 1106.56
+    \]</div>
+<p><strong>Suma de productos cruzados</strong></p>
 <div class="math notranslate nohighlight">
 \[
-S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) \left( \sum_{i=1}^{n} y_i \right) = -41112.65
-\]</div>
-<p>Entonces, los estimadores de mínimos cuadrados son:</p>
-<ul class="simple">
-<li><p>Pendiente:</p></li>
-</ul>
+    S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) \left( \sum_{i=1}^{n} y_i \right) = -41112.65
+    \]</div>
+</li>
+<li><p>Entonces, los <strong>estimadores de mínimos cuadrados</strong> son:</p>
+<p><strong>Pendiente</strong></p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-41112.65}{1106.56} = -37.15
-\]</div>
-<ul class="simple">
-<li><p>Intercepto (usando <span class="math notranslate nohighlight">\(\bar{x} = 13.36\)</span>, <span class="math notranslate nohighlight">\(\bar{y} = 2131.36\)</span>):</p></li>
-</ul>
+    \hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-41112.65}{1106.56} = -37.15
+    \]</div>
+<p><strong>Intercepto</strong> (usando <span class="math notranslate nohighlight">\(\bar{x} = 13.36\)</span>, <span class="math notranslate nohighlight">\(\bar{y} = 2131.36\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = 2131.36 - (-37.15)(13.36) = 2627.82
-\]</div>
-<p><strong>El modelo ajustado es:</strong></p>
+    \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = 2131.36 - (-37.15)(13.36) = 2627.82
+    \]</div>
+</li>
+<li><p>El <strong>modelo ajustado</strong> es:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 \hat{y} = 2627.82 - 37.15x
 \]</div>
-<p><strong>Interpretación:</strong></p>
 <ul class="simple">
+<li><p><strong>Interpretación:</strong></p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}_1 = -37.15\)</span> indica que <strong>por cada semana adicional, la resistencia promedio disminuye en 37.15 psi</strong>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}_0 = 2627.82\)</span> representa la <strong>resistencia esperada justo después de la fabricación</strong> (<span class="math notranslate nohighlight">\(x = 0\)</span>).</p></li>
+</ul>
+</li>
 </ul>
 <div class="pst-scrollable-table-container"><table class="table" id="tbl-residuos">
 <caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Observed, predicted and residual values</span><a class="headerlink" href="#tbl-residuos" title="Link to this table">#</a></caption>
@@ -839,24 +905,24 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </div>
 <section id="evaluacion-del-modelo">
 <h3><span class="section-number">2.4.1. </span>Evaluación del modelo<a class="headerlink" href="#evaluacion-del-modelo" title="Link to this heading">#</a></h3>
-<p><strong>Se reportan los valores observados, ajustados y residuos</strong>. La suma total de residuos es cero, como se espera en un modelo bien especificado.</p>
+<ul>
+<li><p><strong>Se reportan los valores observados, ajustados y residuos</strong>. La suma total de residuos es cero, como se espera en un modelo bien especificado.</p>
 <p>Entre las preguntas clave están:</p>
 <ul class="simple">
 <li><p><em>¿Qué tan bien se ajusta el modelo a los datos?</em></p></li>
 <li><p><em>¿Es útil para predecir nuevas observaciones?</em></p></li>
 <li><p><em>¿Se cumplen las suposiciones de varianza constante y errores no correlacionados?</em></p></li>
 </ul>
-<p><strong>Estas preguntas se abordan mediante análisis de residuos, que se consideran aproximaciones de los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span>.</strong> Si los residuos parecen distribuidos aleatoriamente con varianza constante, las suposiciones del modelo son razonables.</p>
+</li>
+<li><p><strong>Estas preguntas se abordan mediante análisis de residuos, que se consideran aproximaciones de los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span>.</strong> Si los residuos parecen distribuidos aleatoriamente con varianza constante, las suposiciones del modelo son razonables.</p></li>
+</ul>
 </section>
 <section id="nota-sobre-el-uso-de-software">
 <h3><span class="section-number">2.4.2. </span>Nota sobre el uso de software<a class="headerlink" href="#nota-sobre-el-uso-de-software" title="Link to this heading">#</a></h3>
-<p><strong>Se presentan resultados computacionales que coinciden con los cálculos manuales.</strong> La salida del algoritmo ofrece información complementaria que será discutida en secciones posteriores.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<ul class="simple">
+<li><p><strong>Se presentan resultados computacionales que coinciden con los cálculos manuales.</strong> La salida del algoritmo ofrece información complementaria que será discutida en secciones posteriores.</p></li>
+</ul>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
@@ -874,7 +940,6 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
  &quot;&quot;&quot;
@@ -883,8 +948,8 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
  Dep. Variable:            Resistencia   R-squared:                       0.902
  Model:                            OLS   Adj. R-squared:                  0.896
  Method:                 Least Squares   F-statistic:                     165.4
- Date:                Thu, 03 Jul 2025   Prob (F-statistic):           1.64e-10
- Time:                        22:09:50   Log-Likelihood:                -118.63
+ Date:                Tue, 02 Sep 2025   Prob (F-statistic):           1.64e-10
+ Time:                        21:25:56   Log-Likelihood:                -118.63
  No. Observations:                  20   AIC:                             241.3
  Df Residuals:                      18   BIC:                             243.3
  Df Model:                           1                                         
@@ -911,24 +976,59 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </div>
 </div>
 </div>
-<p>De acuerdo con la salida anterior, <strong>se ajustó un modelo de regresión lineal simple para predecir la <code class="docutils literal notranslate"><span class="pre">resistencia</span></code></strong> en función de la <strong><code class="docutils literal notranslate"><span class="pre">edad</span></code></strong> del propulsor. El modelo estimado fue:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">modelo_formula</span> <span class="pre">=</span> <span class="pre">smf.ols('Resistencia</span> <span class="pre">~</span> <span class="pre">Edad',</span> <span class="pre">data=df).fit()</span></code> ajusta un modelo de <strong>Regresión Lineal Ordinaria (OLS)</strong> donde <code class="docutils literal notranslate"><span class="pre">Resistencia</span></code> es la variable dependiente y <code class="docutils literal notranslate"><span class="pre">Edad</span></code> la explicativa. Por defecto incluye intercepto (si se quisiera omitir sería <code class="docutils literal notranslate"><span class="pre">'Resistencia</span> <span class="pre">~</span> <span class="pre">Edad</span> <span class="pre">-</span> <span class="pre">1'</span></code>). El método <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> estima los parámetros por mínimos cuadrados y devuelve un objeto con resultados (<code class="docutils literal notranslate"><span class="pre">RegressionResultsWrapper</span></code>) que contiene coeficientes (<code class="docutils literal notranslate"><span class="pre">params</span></code>), errores estándar (<code class="docutils literal notranslate"><span class="pre">bse</span></code>), valores <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(p\)</span>-values, predicciones (<code class="docutils literal notranslate"><span class="pre">fittedvalues</span></code>), residuos, <span class="math notranslate nohighlight">\(R^2\)</span>, y grados de libertad del modelo y residuales.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resumen_formula</span> <span class="pre">=</span> <span class="pre">modelo_formula.summary()</span></code> genera un objeto <code class="docutils literal notranslate"><span class="pre">summary</span></code> con la salida tabular estándar: coeficientes, errores, estadísticos <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(R^2\)</span>, <span class="math notranslate nohighlight">\(F\)</span>, AIC/BIC, pruebas de normalidad (Omnibus, Skew, Kurtosis), Durbin–Watson e intervalos de confianza. El punto y coma (<code class="docutils literal notranslate"><span class="pre">;</span></code>) solo evita mostrar la salida en notebooks. Para imprimir basta <code class="docutils literal notranslate"><span class="pre">print(resumen_formula)</span></code> o <code class="docutils literal notranslate"><span class="pre">modelo_formula.summary()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anova_formula</span> <span class="pre">=</span> <span class="pre">sm.stats.anova_lm(modelo_formula,</span> <span class="pre">typ=2)</span></code> construye la <strong>tabla ANOVA</strong>, mostrando sumas de cuadrados (<code class="docutils literal notranslate"><span class="pre">sum_sq</span></code>), grados de libertad, estadístico <span class="math notranslate nohighlight">\(F\)</span> y su <span class="math notranslate nohighlight">\(p\)</span>-value. Con <code class="docutils literal notranslate"><span class="pre">typ=2</span></code> se usan <em>sums of squares</em> ajustadas (útil en modelos multivariados; en regresión simple, Type I, II y III coinciden). La tabla incluye una fila para el predictor (<code class="docutils literal notranslate"><span class="pre">Edad</span></code>) y otra para el residual.</p></li>
+<li><p>En notebooks, <code class="docutils literal notranslate"><span class="pre">resumen_formula,</span> <span class="pre">anova_formula</span></code> devuelve ambos objetos.</p>
+<p><strong>Interpretación:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Intercept</span></code> = <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Edad</span></code> = <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>, cambio esperado en <code class="docutils literal notranslate"><span class="pre">Resistencia</span></code> por unidad de <code class="docutils literal notranslate"><span class="pre">Edad</span></code>.</p></li>
+<li><p>El <span class="math notranslate nohighlight">\(p\)</span>-value del coeficiente (<code class="docutils literal notranslate"><span class="pre">pvalues['Edad']</span></code>) indica su significancia.</p></li>
+<li><p>En ANOVA, <code class="docutils literal notranslate"><span class="pre">sum_sq</span></code> del predictor mide variación explicada y la del residual, variación no explicada; el estadístico <span class="math notranslate nohighlight">\(F\)</span> evalúa si <code class="docutils literal notranslate"><span class="pre">Edad</span></code> explica significativamente más que el error.</p></li>
+</ul>
+<p><strong>Verificación de supuestos:</strong></p>
+<ul class="simple">
+<li><p>Linealidad: gráfica <code class="docutils literal notranslate"><span class="pre">fittedvalues</span></code> vs <code class="docutils literal notranslate"><span class="pre">resid</span></code>.</p></li>
+<li><p>Homoscedasticidad: test Breusch–Pagan (<code class="docutils literal notranslate"><span class="pre">sm.stats.diagnostic.het_breuschpagan</span></code>).</p></li>
+<li><p>Normalidad: QQ-plot (<code class="docutils literal notranslate"><span class="pre">sm.qqplot(modelo_formula.resid,</span> <span class="pre">line='s')</span></code>) o test <code class="docutils literal notranslate"><span class="pre">sm.stats.normal_ad</span></code>.</p></li>
+<li><p>Autocorrelación: estadístico Durbin–Watson (incluido en el resumen).</p></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo de extracción numérica:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">modelo_formula</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>    <span class="c1"># coeficientes</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelo_formula</span><span class="o">.</span><span class="n">pvalues</span><span class="p">)</span>   <span class="c1"># p-values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelo_formula</span><span class="o">.</span><span class="n">rsquared</span><span class="p">)</span>  <span class="c1"># R^2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelo_formula</span><span class="o">.</span><span class="n">conf_int</span><span class="p">())</span><span class="c1"># IC 95%</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="resumen-de-resultados">
+<h3><span class="section-number">2.4.3. </span>Resumen de resultados<a class="headerlink" href="#resumen-de-resultados" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>De acuerdo con la salida anterior, <strong>se ajustó un modelo de regresión lineal simple para predecir la <code class="docutils literal notranslate"><span class="pre">Resistencia</span></code></strong> en función de la <strong><code class="docutils literal notranslate"><span class="pre">Edad</span></code></strong> del propulsor. El modelo estimado fue:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \varepsilon_i
-\]</div>
-<p>Donde:</p>
+    \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \varepsilon_i
+    \]</div>
+<p>donde</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}_0 = 2627.82\)</span> (Intercepto)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}_1 = -37.15\)</span> (Pendiente para Edad)</p></li>
 </ul>
-<p><strong>Estimaciones y significancia estadística</strong></p>
+</li>
+<li><p><strong>Estimaciones y significancia estadística</strong></p></li>
+</ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parámetro</p></th>
 <th class="head"><p>Estimación</p></th>
 <th class="head"><p>Error estándar</p></th>
 <th class="head"><p>Estadístico t</p></th>
-<th class="head"><p>Valor-p</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(p\)</span>-value</p></th>
 <th class="head"><p>Intervalo 95% de confianza</p></th>
 </tr>
 </thead>
@@ -950,25 +1050,27 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </tbody>
 </table>
 </div>
-<p><strong>Interpretación:</strong></p>
+<ul>
+<li><p><strong>Interpretación:</strong></p>
 <ul class="simple">
 <li><p>Por cada unidad adicional de <strong>edad</strong>, la <strong>resistencia disminuye en promedio 37.15 unidades</strong>.</p></li>
-<li><p>Ambos coeficientes son altamente significativos (<span class="math notranslate nohighlight">\(p &lt; 0.001\)</span>), lo que indica evidencia estadística fuerte de una relación entre edad y resistencia.</p></li>
+<li><p>Ambos <strong>coeficientes son altamente significativos</strong> (<span class="math notranslate nohighlight">\(p &lt; 0.05\)</span>), lo que indica evidencia estadística fuerte de una relación entre edad y resistencia.</p></li>
 </ul>
-<p><strong>Medidas de ajuste</strong></p>
+</li>
+<li><p><strong>Medidas de ajuste</strong></p>
 <ul>
 <li><p>Coeficiente de determinación:</p>
 <div class="math notranslate nohighlight">
 \[
-  R^2 = 0.902 \quad \text{y} \quad R^2_{\text{ajustado}} = 0.896
-  \]</div>
+      R^2 = 0.902 \quad \text{y} \quad R^2_{\text{ajustado}} = 0.896
+      \]</div>
 <p>→ El modelo explica el <strong>90.2% de la variación total</strong> en la resistencia.</p>
 </li>
 <li><p>Estadístico <span class="math notranslate nohighlight">\(F\)</span> global:</p>
 <div class="math notranslate nohighlight">
 \[
-  F = 165.38,\quad p &lt; 0.0001
-  \]</div>
+      F = 165.38,\quad p &lt; 0.05
+      \]</div>
 <p>→ El modelo completo es estadísticamente significativo.</p>
 </li>
 <li><p>Log-verosimilitud: <span class="math notranslate nohighlight">\(-118.63\)</span></p></li>
@@ -979,7 +1081,8 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </ul>
 </li>
 </ul>
-<p><strong>Diagnóstico de supuestos</strong></p>
+</li>
+<li><p><strong>Diagnóstico de supuestos</strong></p>
 <ul class="simple">
 <li><p><strong>Durbin-Watson = 1.842</strong><br />
 → No se observa evidencia clara de autocorrelación en los residuos.</p></li>
@@ -992,7 +1095,9 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 <li><p><strong>Condición del número (Condition Number): 31.5</strong><br />
 → No hay señales fuertes de multicolinealidad.</p></li>
 </ul>
-<p><strong>Análisis de varianza</strong></p>
+</li>
+<li><p><strong>Análisis de varianza</strong></p></li>
+</ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fuente</p></th>
@@ -1022,18 +1127,15 @@ S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{1}{n} \left( \sum_{i=1}^{n} x_i \right) 
 </section>
 <section id="propiedades-de-los-estimadores-de-minimos-cuadrados-y-del-modelo-ajustado">
 <h2><span class="section-number">2.5. </span>Propiedades de los Estimadores de Mínimos Cuadrados y del Modelo Ajustado<a class="headerlink" href="#propiedades-de-los-estimadores-de-minimos-cuadrados-y-del-modelo-ajustado" title="Link to this heading">#</a></h2>
-<p><strong>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> poseen propiedades fundamentales.</strong></p>
-<ul class="simple">
-<li><p>A partir de las Ecs. <a class="reference internal" href="#equation-first-beta0-eqn">(2.2)</a> y <a class="reference internal" href="#equation-first-beta1-eqn">(2.3)</a>, se observa que <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> son combinaciones lineales de las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>. Por ejemplo, la expresión para <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es:</p></li>
-</ul>
+<ul>
+<li><p>Los <strong>estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> poseen propiedades fundamentales.</strong> A partir de las Eucaciones <a class="reference internal" href="#equation-first-beta0-eqn">(2.2)</a> y <a class="reference internal" href="#equation-first-beta1-eqn">(2.3)</a>, se observa que <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> son combinaciones lineales de las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>. Por ejemplo, la expresión para <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_1 = \sum_{i=1}^{n} c_i y_i = \frac{\displaystyle{\sum_{i=1}^{n} (x_i - \bar{x}) y_i}}{S_{xx}}
-\]</div>
+    \hat{\beta}_1 = \sum_{i=1}^{n} c_i y_i = \frac{\displaystyle{\sum_{i=1}^{n} (x_i - \bar{x}) y_i}}{S_{xx}}
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(c_i = (x_i - \bar{x})/S_{xx}\)</span>, para <span class="math notranslate nohighlight">\(i = 1, 2, \dots, n\)</span>.</p>
-<p><strong>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> son insesgados para los parámetros del modelo <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</strong></p>
-<ul class="simple">
-<li><p>Para demostrar que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es insesgado, se considera:</p></li>
+</li>
+<li><p>Los <strong>estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> son insesgados para los parámetros del modelo <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</strong> Para demostrar que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es insesgado, se considera</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -2559,6 +2661,7 @@ Z_0 = \frac{\text{arctanh}(r) - \text{arctanh}(\rho_0)}{\sqrt{1/(n - 3)}}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-datos-de-propulsor-de-cohete">2.4. Aplicación: Datos de Propulsor de Cohete</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-del-modelo">2.4.1. Evaluación del modelo</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nota-sobre-el-uso-de-software">2.4.2. Nota sobre el uso de software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-resultados">2.4.3. Resumen de resultados</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-de-minimos-cuadrados-y-del-modelo-ajustado">2.5. Propiedades de los Estimadores de Mínimos Cuadrados y del Modelo Ajustado</a></li>
