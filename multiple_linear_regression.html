@@ -351,68 +351,57 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-regresion-multiple">3.1. Modelos de Regresión Múltiple</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-parametros-del-modelo">3.2. Estimación de los Parámetros del Modelo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion">3.2.1. Estimación por Mínimos Cuadrados de los Coeficientes de Regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-formulacion-del-modelo-de-regresion">3.2.2. Supuestos y Formulación del Modelo de Regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-muestral">3.2.3. Modelo muestral</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-minimos-cuadrados">3.2.4. Función de mínimos cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-primer-orden">3.2.5. Condiciones de primer orden</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-normales-de-minimos-cuadrados">3.2.6. Ecuaciones normales de mínimos cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-matricial-del-modelo-y-estimacion-por-minimos-cuadrados">3.2.7. Representación Matricial del Modelo y Estimación por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicion-de-primer-orden-y-ecuacion-normal">3.2.8. Condición de Primer Orden y Ecuación Normal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-las-ecuaciones-normales-y-estimador-de-minimos-cuadrados">3.2.9. Solución de las Ecuaciones Normales y Estimador de Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-forma-matricial-y-escalar">3.2.10. Relación entre la forma matricial y escalar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado-y-matriz-sombrero">3.2.11. Modelo ajustado y matriz sombrero</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos">3.2.12. Residuos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">3.2.13. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1">3.2.14. Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-y-construccion-del-modelo">3.2.15. Visualización y Construcción del Modelo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-la-matriz-x-y-el-vector-y">3.2.16. Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados">3.2.17. Estimación de los Coeficientes por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado">3.2.18. Modelo Ajustado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-ajustados-y-residuos">3.2.19. Valores Ajustados y Residuos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salida-computacional">3.2.20. Salida Computacional</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-geometrica-de-los-minimos-cuadrados">3.2.21. Interpretación Geométrica de los Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-por-minimos-cuadrados">3.2.22. Propiedades de los Estimadores por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-sigma-2">3.2.23. Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">3.2.23.1. Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">3.2.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1">3.2.3. Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-y-construccion-del-modelo">3.2.4. Visualización y Construcción del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-la-matriz-x-y-el-vector-y">3.2.5. Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados">3.2.6. Estimación de los Coeficientes por Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado">3.2.7. Modelo Ajustado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-ajustados-y-residuos">3.2.8. Valores Ajustados y Residuos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salida-computacional">3.2.9. Salida Computacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-geometrica-de-los-minimos-cuadrados">3.2.10. Interpretación Geométrica de los Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-por-minimos-cuadrados">3.2.11. Propiedades de los Estimadores por Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-sigma-2">3.2.12. Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">3.2.12.1. Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">3.2.24. Inadecuación de los Diagramas de Dispersión en Regresión Múltiple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-maxima-verosimilitud">3.2.25. Estimación por Máxima Verosimilitud</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-significancia-de-la-regresion">3.2.26. Prueba de significancia de la regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-del-tiempo-de-entrega">3.2.27. Ejemplo: Los datos del tiempo de entrega</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.28. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.29. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.30. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.30.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.30.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">3.2.13. Inadecuación de los Diagramas de Dispersión en Regresión Múltiple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-maxima-verosimilitud">3.2.14. Estimación por Máxima Verosimilitud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-significancia-de-la-regresion">3.2.15. Prueba de significancia de la regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-del-tiempo-de-entrega">3.2.16. Ejemplo: Los datos del tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.17. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.18. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.19. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.19.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.19.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.31. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.32. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.32.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.32.2. Ejemplo: Prueba conjunta de restricciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.20. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.21. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.21.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.21.2. Ejemplo: Prueba conjunta de restricciones</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial-alternativa-del-estadistico">3.2.33. Forma matricial alternativa del estadístico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">3.2.34. Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-adicional">3.2.34.1. Ejemplo adicional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial-alternativa-del-estadistico">3.2.22. Forma matricial alternativa del estadístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">3.2.23. Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-adicional">3.2.23.1. Ejemplo adicional</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-en-regresion-multiple">3.2.35. Intervalos de confianza en regresión múltiple</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion">3.2.35.1. Intervalos de confianza para los coeficientes de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-en-regresion-multiple">3.2.24. Intervalos de confianza en regresión múltiple</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion">3.2.24.1. Intervalos de confianza para los coeficientes de regresión</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.36. Estimación por intervalo de confianza de la respuesta media</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.37. Intervalos de confianza simultáneos para los coeficientes de regresión</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.37.1. Ejemplo: Datos de Propulsor de Cohetes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor">3.2.37.2. Ejemplo: Datos del Propulsor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.25. Estimación por intervalo de confianza de la respuesta media</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.26. Intervalos de confianza simultáneos para los coeficientes de regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.26.1. Ejemplo: Datos de Propulsor de Cohetes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor">3.2.26.2. Ejemplo: Datos del Propulsor</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.38. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.38.1. Escalamiento normal estándar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.38.2. Escalamiento de longitud unitaria</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-los-coeficientes-originales">3.2.38.3. Relación con los coeficientes originales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-finales">3.2.38.4. Observaciones finales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.27. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.27.1. Escalamiento normal estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.27.2. Escalamiento de longitud unitaria</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-los-coeficientes-originales">3.2.27.3. Relación con los coeficientes originales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-finales">3.2.27.4. Observaciones finales</a></li>
 </ul>
 </li>
 </ul>
@@ -432,87 +421,115 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regresion-lineal-multiple">
 <h1><span class="section-number">3. </span>Regresión Lineal Múltiple<a class="headerlink" href="#regresion-lineal-multiple" title="Link to this heading">#</a></h1>
-<p><strong>Un modelo de regresión que incluye más de una variable explicativa se denomina modelo de regresión múltiple.</strong> El ajuste y análisis de estos modelos se desarrolla en este capítulo como una extensión de los resultados presentados en el Capítulo 2 sobre regresión lineal simple.</p>
+<ul class="simple">
+<li><p>Un <strong>modelo de regresión que incluye más de una variable explicativa se denomina modelo de regresión múltiple.</strong> El ajuste y análisis de estos modelos se desarrolla en este capítulo como una <strong>extensión de los resultados presentados en la <a class="reference internal" href="simple_linear_regression.html#simple-linear-regression-sec"><span class="std std-numref">Sección 2</span></a> sobre regresión lineal simple</strong>.</p></li>
+</ul>
 <section id="modelos-de-regresion-multiple">
 <h2><span class="section-number">3.1. </span>Modelos de Regresión Múltiple<a class="headerlink" href="#modelos-de-regresion-multiple" title="Link to this heading">#</a></h2>
-<p>Supóngase que el rendimiento en libras de conversión de un proceso químico depende de la temperatura y de la concentración de un catalizador. Un modelo de regresión múltiple que podría describir esta relación es</p>
+<ul>
+<li><p>Supóngase que el <strong>rendimiento en libras de conversión de un proceso químico depende de la temperatura y de la concentración de un catalizador</strong>. Un <strong>modelo de regresión múltiple</strong> que podría describir esta relación es</p>
 <div class="math notranslate nohighlight" id="equation-nonlinear-plane-regression">
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-nonlinear-plane-regression" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon\]</div>
-<p>donde <span class="math notranslate nohighlight">\(y\)</span> representa el rendimiento, <span class="math notranslate nohighlight">\(x_1\)</span> la temperatura, y <span class="math notranslate nohighlight">\(x_2\)</span> la concentración del catalizador. Este es un modelo de regresión lineal múltiple con dos regresores. Se le denomina <em>lineal</em> porque es lineal respecto a los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\beta_2\)</span>.</p>
-<p><strong>El modelo anterior describe un plano en el espacio tridimensional definido por <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>.</strong> Por ejemplo, la siguiente expresión representa un modelo con valores asignados:</p>
+<p>donde <strong><span class="math notranslate nohighlight">\(y\)</span> representa el rendimiento, <span class="math notranslate nohighlight">\(x_1\)</span> la temperatura, y <span class="math notranslate nohighlight">\(x_2\)</span> la concentración del catalizador</strong>. Este es un modelo de <strong>regresión lineal múltiple con dos regresores</strong>. Se le denomina <em>lineal</em>, porque es <em>lineal respecto a los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\beta_2\)</span></em>.</p>
+</li>
+<li><p>El modelo anterior describe un <strong>plano en el espacio tridimensional definido por <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>.</strong> Por ejemplo, la siguiente expresión representa un modelo con valores asignados</p>
 <div class="math notranslate nohighlight">
-\[E(y) = 50 + 10x_1 + 7x_2\]</div>
-<p>donde se asume que el valor esperado del término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> es cero. El parámetro <span class="math notranslate nohighlight">\(\beta_0\)</span> es la ordenada al origen del plano de regresión. Si el rango de datos incluye <span class="math notranslate nohighlight">\(x_1 = x_2 = 0\)</span>, entonces <span class="math notranslate nohighlight">\(\beta_0\)</span> corresponde al valor medio de <span class="math notranslate nohighlight">\(y\)</span> en ese punto; de lo contrario, no tiene interpretación física directa.</p>
+\[\mathbb{E}(y) = 50 + 10x_1 + 7x_2\]</div>
+<p>donde se asume que el <strong>valor esperado del término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> es cero</strong>. El parámetro <span class="math notranslate nohighlight">\(\beta_0\)</span> es la ordenada al origen del plano de regresión. <em>Si el rango de datos incluye <span class="math notranslate nohighlight">\(x_1 = x_2 = 0\)</span>, entonces <span class="math notranslate nohighlight">\(\beta_0\)</span> corresponde al valor medio de <span class="math notranslate nohighlight">\(y\)</span> en ese punto; de lo contrario, no tiene interpretación física directa</em>.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> indica el cambio esperado en la respuesta <span class="math notranslate nohighlight">\(y\)</span> por unidad de cambio en <span class="math notranslate nohighlight">\(x_1\)</span>, manteniendo constante <span class="math notranslate nohighlight">\(x_2\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta_2\)</span> mide el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> por unidad de cambio en <span class="math notranslate nohighlight">\(x_2\)</span>, manteniendo constante <span class="math notranslate nohighlight">\(x_1\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> indica el <strong>cambio esperado en la respuesta <span class="math notranslate nohighlight">\(y\)</span> por unidad de cambio en <span class="math notranslate nohighlight">\(x_1\)</span>, manteniendo constante <span class="math notranslate nohighlight">\(x_2\)</span></strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_2\)</span> mide el <strong>cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> por unidad de cambio en <span class="math notranslate nohighlight">\(x_2\)</span>, manteniendo constante <span class="math notranslate nohighlight">\(x_1\)</span></strong>.</p></li>
 </ul>
-<p><strong>La Figura 3.1b muestra las curvas de nivel del modelo de regresión, es decir, líneas de respuesta esperada constante <span class="math notranslate nohighlight">\(E(y)\)</span> en función de <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>. Estas curvas son líneas rectas paralelas.</strong></p>
-<p>En general, la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> puede estar relacionada con <span class="math notranslate nohighlight">\(k\)</span> variables regresoras o predictoras. El modelo general se expresa como</p>
+</li>
+</ul>
+<figure class="align-center" id="sec3-img1-fig">
+<img alt="_images/sec3_img1.png" src="_images/sec3_img1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 3.1 </span><span class="caption-text">(a) El plano de regresión para el modelo (<span class="math notranslate nohighlight">\(\mathbb{E}(y) = 50 + 10x_1 + 7x_2\)</span>). (b) El gráfico de contorno.</span><a class="headerlink" href="#sec3-img1-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>La <a class="reference internal" href="#sec3-img1-fig"><span class="std std-numref">Figura 3.1</span></a> muestra las <strong>curvas de nivel del modelo de regresión</strong>, es decir, líneas de respuesta esperada constante <span class="math notranslate nohighlight">\(\mathbb{E}(y)\)</span> en función de <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>. Estas curvas son líneas rectas paralelas. En general, <strong>la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> puede estar relacionada con <span class="math notranslate nohighlight">\(k\)</span> variables regresoras o predictoras</strong>. El modelo general se expresa como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-multiple-linear-regression">
 <span class="eqno">(3.2)<a class="headerlink" href="#equation-multiple-linear-regression" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_k x_k + \varepsilon\]</div>
-<p>Este modelo se denomina modelo de regresión lineal múltiple con <span class="math notranslate nohighlight">\(k\)</span> regresores. Los parámetros <span class="math notranslate nohighlight">\(\beta_j\)</span>, <span class="math notranslate nohighlight">\(j = 0, 1, \dots, k\)</span>, se denominan coeficientes de regresión. Este modelo define un hiperplano en el espacio <span class="math notranslate nohighlight">\(k\)</span>-dimensional de las variables regresoras <span class="math notranslate nohighlight">\(x_j\)</span>.</p>
 <ul class="simple">
-<li><p>Cada parámetro <span class="math notranslate nohighlight">\(\beta_j\)</span> representa el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una variación unitaria en <span class="math notranslate nohighlight">\(x_j\)</span>, manteniendo constantes las demás variables regresoras <span class="math notranslate nohighlight">\(x_i\)</span> (<span class="math notranslate nohighlight">\(i \ne j\)</span>).</p></li>
-<li><p>Por ello, se les denomina coeficientes de regresión parcial.</p></li>
+<li><p>Este modelo se denomina <strong>modelo de regresión lineal múltiple con <span class="math notranslate nohighlight">\(k\)</span> regresores</strong>. Los parámetros <span class="math notranslate nohighlight">\(\beta_j\)</span>, <span class="math notranslate nohighlight">\(j = 0, 1, \dots, k\)</span>, se denominan <strong>coeficientes de regresión</strong>. Este modelo define un hiperplano en el espacio <span class="math notranslate nohighlight">\(k\)</span>-dimensional de las variables regresoras <span class="math notranslate nohighlight">\(x_j\)</span>.</p></li>
+<li><p>Cada parámetro <strong><span class="math notranslate nohighlight">\(\beta_j\)</span> representa el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una variación unitaria en <span class="math notranslate nohighlight">\(x_j\)</span>, manteniendo constantes las demás variables regresoras <span class="math notranslate nohighlight">\(x_i\)</span> (<span class="math notranslate nohighlight">\(i \ne j\)</span>)</strong>. Por ello, se les denomina <strong>coeficientes de regresión parcial</strong>.</p></li>
+<li><p>Los modelos de regresión lineal múltiple suelen emplearse como <strong>modelos empíricos o funciones de aproximación.</strong> Aunque se desconozca la relación funcional exacta entre <span class="math notranslate nohighlight">\(y\)</span> y las variables <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>, <strong>en ciertos rangos de los regresores el modelo lineal resulta una buena aproximación</strong>.</p></li>
+<li><p>Modelos con estructuras más complejas que la Ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a> pueden aún analizarse mediante técnicas de regresión múltiple. Por ejemplo, el <strong>modelo polinomial cúbico</strong></p></li>
 </ul>
-<p><strong>Los modelos de regresión lineal múltiple suelen emplearse como modelos empíricos o funciones de aproximación.</strong></p>
-<ul class="simple">
-<li><p>Aunque se desconozca la relación funcional exacta entre <span class="math notranslate nohighlight">\(y\)</span> y las variables <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>, en ciertos rangos de los regresores el modelo lineal resulta una buena aproximación.</p></li>
-</ul>
-<p>Modelos con estructuras más complejas que la ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a> pueden aún analizarse mediante técnicas de regresión múltiple. Por ejemplo, el modelo polinomial cúbico:</p>
 <div class="math notranslate nohighlight" id="equation-cubic-polynomial">
 <span class="eqno">(3.3)<a class="headerlink" href="#equation-cubic-polynomial" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \varepsilon\]</div>
-<p>Si definimos <span class="math notranslate nohighlight">\(x_1 = x\)</span>, <span class="math notranslate nohighlight">\(x_2 = x^2\)</span>, y <span class="math notranslate nohighlight">\(x_3 = x^3\)</span>, la ecuación anterior se reescribe como:</p>
+<ul>
+<li><p>Si definimos <span class="math notranslate nohighlight">\(x_1 = x\)</span>, <span class="math notranslate nohighlight">\(x_2 = x^2\)</span>, y <span class="math notranslate nohighlight">\(x_3 = x^3\)</span>, la ecuación anterior se reescribe como</p>
 <div class="math notranslate nohighlight" id="equation-polynomial-multiple-linear">
 <span class="eqno">(3.4)<a class="headerlink" href="#equation-polynomial-multiple-linear" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon\]</div>
-<p>que es un modelo de regresión múltiple con tres regresores. Los modelos polinomiales se tratan con más detalle en el Capítulo 7.</p>
-<p><strong>También pueden analizarse mediante regresión múltiple los modelos que incluyen efectos de interacción.</strong> Por ejemplo, el modelo:</p>
+<p>que es un <strong>modelo de regresión múltiple con tres regresores</strong>. Los modelos polinomiales se tratan con más detalle en secciones posteriores.</p>
+</li>
+<li><p>También pueden analizarse mediante regresión múltiple los <strong>modelos que incluyen efectos de interacción</strong>. Por ejemplo, el modelo</p>
 <div class="math notranslate nohighlight" id="equation-interaction-model">
 <span class="eqno">(3.5)<a class="headerlink" href="#equation-interaction-model" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \varepsilon\]</div>
-<p>si se define <span class="math notranslate nohighlight">\(x_3 = x_1 x_2\)</span> y <span class="math notranslate nohighlight">\(\beta_3 = \beta_{12}\)</span>, se transforma en:</p>
+<p>si se define <span class="math notranslate nohighlight">\(x_3 = x_1 x_2\)</span> y <span class="math notranslate nohighlight">\(\beta_3 = \beta_{12}\)</span>, se transforma en</p>
 <div class="math notranslate nohighlight" id="equation-linear-with-interaction">
 <span class="eqno">(3.6)<a class="headerlink" href="#equation-linear-with-interaction" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon\]</div>
-<p><strong>Aunque este modelo es lineal en los parámetros, la superficie generada no es necesariamente plana.</strong></p>
+</li>
+<li><p>Aunque este modelo es lineal en los parámetros, la superficie generada no es necesariamente plana</p>
 <ul class="simple">
-<li><p>La Figura 3.2a muestra la superficie generada por el modelo: <span class="math notranslate nohighlight">\(y = 50 + 10x_1 + 7x_2 + 5x_1 x_2\)</span>.</p></li>
-<li><p>La Figura 3.2b representa su gráfico de contorno correspondiente.</p></li>
+<li><p>La <a class="reference internal" href="#sec3-img2-fig"><span class="std std-numref">Figura 3.2</span></a>(a) muestra la *superficie generada por el modelo: <span class="math notranslate nohighlight">\(y = 50 + 10x_1 + 7x_2 + 5x_1 x_2\)</span>+.</p></li>
+<li><p>La <a class="reference internal" href="#sec3-img2-fig"><span class="std std-numref">Figura 3.2</span></a>(b) representa su <em>gráfico de contorno correspondiente</em>.</p></li>
 </ul>
-<p>La interacción significa que <strong>el efecto de una variable (por ejemplo, <span class="math notranslate nohighlight">\(x_1\)</span>) depende del nivel de la otra (<span class="math notranslate nohighlight">\(x_2\)</span>)</strong>. En el ejemplo de la Figura 3.2, un cambio de <span class="math notranslate nohighlight">\(x_1 = 2\)</span> a <span class="math notranslate nohighlight">\(x_1 = 8\)</span> produce un cambio mucho menor en <span class="math notranslate nohighlight">\(E(y)\)</span> cuando <span class="math notranslate nohighlight">\(x_2 = 2\)</span> que cuando <span class="math notranslate nohighlight">\(x_2 = 10\)</span>.</p>
-<p><strong>Los efectos de interacción son comunes en estudios de sistemas reales y la regresión es una herramienta fundamental para su análisis.</strong></p>
-<p>Como último ejemplo, se presenta el modelo cuadrático con interacción:</p>
+</li>
+<li><p>La interacción significa que <strong>el efecto de una variable (por ejemplo, <span class="math notranslate nohighlight">\(x_1\)</span>) depende del nivel de la otra (<span class="math notranslate nohighlight">\(x_2\)</span>)</strong>. En el ejemplo de la <a class="reference internal" href="#sec3-img2-fig"><span class="std std-numref">Figura 3.2</span></a>, un cambio de <span class="math notranslate nohighlight">\(x_1 = 2\)</span> a <span class="math notranslate nohighlight">\(x_1 = 8\)</span> produce un cambio mucho menor en <span class="math notranslate nohighlight">\(\mathbb{E}(y)\)</span> cuando <span class="math notranslate nohighlight">\(x_2 = 2\)</span> que cuando <span class="math notranslate nohighlight">\(x_2 = 10\)</span>.</p></li>
+</ul>
+<figure class="align-center" id="sec3-img2-fig">
+<img alt="_images/sec3_img2.png" src="_images/sec3_img2.png" />
+<figcaption>
+<p><span class="caption-number">Figura 3.2 </span><span class="caption-text">(a) Gráfico tridimensional del modelo de regresión <span class="math notranslate nohighlight">\(E(y) = 50 + 10x_1 + 7x_2 + 5x_1x_2.\)</span> (b) Gráfico de contorno.</span><a class="headerlink" href="#sec3-img2-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Los <strong>efectos de interacción son comunes en estudios de sistemas reales</strong> y la regresión es una herramienta fundamental para su análisis. Como último ejemplo, se presenta el <strong>modelo cuadrático con interacción</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-second-order-model">
 <span class="eqno">(3.7)<a class="headerlink" href="#equation-second-order-model" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{11} x_1^2 + \beta_{22} x_2^2 + \beta_{12} x_1 x_2 + \varepsilon\]</div>
-<p>Si se define <span class="math notranslate nohighlight">\(x_3 = x_1^2\)</span>, <span class="math notranslate nohighlight">\(x_4 = x_2^2\)</span>, <span class="math notranslate nohighlight">\(x_5 = x_1 x_2\)</span>, <span class="math notranslate nohighlight">\(\beta_3 = \beta_{11}\)</span>, <span class="math notranslate nohighlight">\(\beta_4 = \beta_{22}\)</span> y <span class="math notranslate nohighlight">\(\beta_5 = \beta_{12}\)</span>, entonces el modelo puede expresarse como:</p>
+<ul class="simple">
+<li><p>Si se define <span class="math notranslate nohighlight">\(x_3 = x_1^2\)</span>, <span class="math notranslate nohighlight">\(x_4 = x_2^2\)</span>, <span class="math notranslate nohighlight">\(x_5 = x_1 x_2\)</span>, <span class="math notranslate nohighlight">\(\beta_3 = \beta_{11}\)</span>, <span class="math notranslate nohighlight">\(\beta_4 = \beta_{22}\)</span> y <span class="math notranslate nohighlight">\(\beta_5 = \beta_{12}\)</span>, entonces el modelo puede expresarse como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-linearized-second-order">
 <span class="eqno">(3.8)<a class="headerlink" href="#equation-linearized-second-order" title="Link to this equation">#</a></span>\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \beta_4 x_4 + \beta_5 x_5 + \varepsilon\]</div>
-<p><strong>Las Figuras 3.3a y 3.3b presentan la superficie generada por</strong></p>
-<div class="math notranslate nohighlight">
-\[E(y) = 800 + 10x_1 + 7x_2 - 8.5x_1^2 - 5x_2^2 + 4x_1 x_2\]</div>
 <ul class="simple">
-<li><p>Estos gráficos muestran que el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una unidad de cambio en <span class="math notranslate nohighlight">\(x_1\)</span> depende tanto de <span class="math notranslate nohighlight">\(x_1\)</span> como de <span class="math notranslate nohighlight">\(x_2\)</span>.</p></li>
-<li><p>Los términos cuadráticos y de interacción generan una forma abovedada en la función.</p></li>
-<li><p>Dependiendo de los coeficientes, el modelo puede adoptar formas variadas, siendo altamente flexible.</p></li>
+<li><p>Las Figuras 3.3a y 3.3b presentan la superficie generada por</p></li>
 </ul>
-<p><strong>En la mayoría de aplicaciones reales, los parámetros <span class="math notranslate nohighlight">\(\beta_i\)</span> y la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> no son conocidos y deben ser estimados a partir de datos muestrales.</strong></p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}(y) = 800 + 10x_1 + 7x_2 - 8.5x_1^2 - 5x_2^2 + 4x_1 x_2\]</div>
+<figure class="align-center" id="sec3-img3-fig">
+<img alt="_images/sec3_img3.png" src="_images/sec3_img3.png" />
+<figcaption>
+<p><span class="caption-number">Figura 3.3 </span><span class="caption-text">(a) Gráfico del modelo de regresión <span class="math notranslate nohighlight">\(E(y) = 800 + 10x_1 + 7x_2 - 8.5x_1^2 - 5x_2^2 + 4x_1x_2\)</span>, (b) Gráfico de contorno.</span><a class="headerlink" href="#sec3-img3-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
-<li><p>La ecuación ajustada de regresión se utiliza para predecir valores futuros de la respuesta <span class="math notranslate nohighlight">\(y\)</span> o para estimar la media de <span class="math notranslate nohighlight">\(y\)</span> en niveles específicos de los regresores.</p></li>
+<li><p>Estos gráficos muestran que el <strong>cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una unidad de cambio en <span class="math notranslate nohighlight">\(x_1\)</span> depende tanto de <span class="math notranslate nohighlight">\(x_1\)</span> como de <span class="math notranslate nohighlight">\(x_2\)</span></strong>. Los términos cuadráticos y de interacción generan una forma abovedada en la función. <strong>Dependiendo de los coeficientes, el modelo puede adoptar formas variadas</strong>, siendo altamente flexible.</p></li>
+<li><p>En la mayoría de aplicaciones reales, <strong>los parámetros <span class="math notranslate nohighlight">\(\beta_i\)</span> y la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> no son conocidos y deben ser estimados a partir de datos muestrales.</strong> La ecuación ajustada de regresión se utiliza para predecir valores futuros de la respuesta <span class="math notranslate nohighlight">\(y\)</span> o para estimar la media de <span class="math notranslate nohighlight">\(y\)</span> en niveles específicos de los regresores.</p></li>
 </ul>
 </section>
 <section id="estimacion-de-los-parametros-del-modelo">
 <h2><span class="section-number">3.2. </span>Estimación de los Parámetros del Modelo<a class="headerlink" href="#estimacion-de-los-parametros-del-modelo" title="Link to this heading">#</a></h2>
 <section id="estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion">
 <h3><span class="section-number">3.2.1. </span>Estimación por Mínimos Cuadrados de los Coeficientes de Regresión<a class="headerlink" href="#estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
-<p><strong>El método de mínimos cuadrados puede utilizarse para estimar los coeficientes de regresión en la ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a>.</strong></p>
-<p>Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n &gt; k\)</span> observaciones, y que <span class="math notranslate nohighlight">\(y_i\)</span> representa la <span class="math notranslate nohighlight">\(i\)</span>-ésima respuesta observada, mientras que <span class="math notranslate nohighlight">\(x_{ij}\)</span> denota la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación o nivel del regresor <span class="math notranslate nohighlight">\(x_j\)</span>. Los datos pueden organizarse como se indica en la Tabla 3.1.</p>
-<p><strong>Se asume que el término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> cumple con las siguientes condiciones:</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(E(\varepsilon) = 0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathrm{Var}(\varepsilon) = \sigma^2\)</span></p></li>
-<li><p>Los errores son no correlacionados entre sí</p></li>
+<li><p>El método de <strong>mínimos cuadrados puede utilizarse para estimar los coeficientes de regresión en la ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a>.</strong> Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n &gt; k\)</span> observaciones, y que <strong><span class="math notranslate nohighlight">\(y_i\)</span> representa la <span class="math notranslate nohighlight">\(i\)</span>-ésima respuesta observada</strong>, mientras que <strong><span class="math notranslate nohighlight">\(x_{ij}\)</span> denota la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación o nivel del regresor <span class="math notranslate nohighlight">\(x_j\)</span></strong>. Los datos pueden organizarse como se indica en la <a class="reference internal" href="#tbl-datos-regmult"><span class="std std-numref">Tabla 3.1</span></a>.</p></li>
+<li><p>Se asume que el <strong>término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> cumple con las siguientes condiciones</strong></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Var}(\varepsilon) = \sigma^2\)</span></p></li>
+<li><p>Los <strong>errores son no correlacionados entre sí</strong></p></li>
 </ul>
-<p><strong>Tabla 3.1. Datos para Regresión Lineal Múltiple</strong></p>
-<div class="pst-scrollable-table-container"><table class="table">
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="tbl-datos-regmult">
+<caption><span class="caption-number">Tabla 3.1 </span><span class="caption-text">Datos para Regresión Lineal Múltiple</span><a class="headerlink" href="#tbl-datos-regmult" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Observación (<span class="math notranslate nohighlight">\(i\)</span>)</p></th>
 <th class="head"><p>Respuesta (<span class="math notranslate nohighlight">\(y_i\)</span>)</p></th>
@@ -554,159 +571,221 @@ document.write(`
 </tbody>
 </table>
 </div>
-</section>
-<section id="supuestos-y-formulacion-del-modelo-de-regresion">
-<h3><span class="section-number">3.2.2. </span>Supuestos y Formulación del Modelo de Regresión<a class="headerlink" href="#supuestos-y-formulacion-del-modelo-de-regresion" title="Link to this heading">#</a></h3>
-<p><strong>A lo largo de este capítulo, se asume que las variables regresoras <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span> son variables fijas (es decir, determinísticas o no aleatorias), medidas sin error.</strong> No obstante, como se discutió en la Sección 2.12, todos los resultados obtenidos siguen siendo válidos cuando los regresores son variables aleatorias.</p>
-<p>Esto resulta relevante, ya que en estudios observacionales muchas de las variables explicativas suelen ser aleatorias. En cambio, cuando los datos provienen de un experimento diseñado, es más probable que las <span class="math notranslate nohighlight">\(x\)</span> sean variables fijas.</p>
-<p><strong>Cuando las variables <span class="math notranslate nohighlight">\(x\)</span> son aleatorias, basta con que las observaciones de cada regresor sean independientes y que su distribución no dependa de los coeficientes de regresión (los <span class="math notranslate nohighlight">\(\beta\)</span>) ni de <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong></p>
-<p>Al realizar pruebas de hipótesis o construir intervalos de confianza, se requerirá asumir que <strong>la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span> es normal, con media <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_k x_k\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong></p>
-</section>
-<section id="modelo-muestral">
-<h3><span class="section-number">3.2.3. </span>Modelo muestral<a class="headerlink" href="#modelo-muestral" title="Link to this heading">#</a></h3>
-<p>Podemos escribir el modelo de regresión muestral correspondiente a la ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a> como:</p>
+<div class="info admonition">
+<p class="admonition-title">Supuestos y Formulación del Modelo de Regresión</p>
+<ul class="simple">
+<li><p>A lo largo de esta sección, se asume que <strong>las variables regresoras <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span> son variables fijas (es decir, determinísticas o no aleatorias), medidas sin error.</strong> No obstante, como se discutió en la <a class="reference internal" href="simple_linear_regression.html#simple-linear-regression-sec"><span class="std std-numref">Sección 2</span></a>, <strong>todos los resultados obtenidos siguen siendo válidos cuando los regresores son variables aleatorias</strong>. Esto resulta relevante, ya que en estudios observacionales muchas de las variables explicativas suelen ser aleatorias. En cambio, cuando los datos provienen de un experimento diseñado, es más probable que las <span class="math notranslate nohighlight">\(x\)</span> sean variables fijas.</p></li>
+<li><p>Cuando las <strong>variables <span class="math notranslate nohighlight">\(x\)</span> son aleatorias</strong>, basta con que las <strong>observaciones de cada regresor sean independientes y que su distribución no dependa de los coeficientes de regresión</strong> (los <span class="math notranslate nohighlight">\(\beta\)</span>) ni de <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Al realizar pruebas de hipótesis o construir intervalos de confianza, se requerirá asumir que <strong>la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span> es normal, con media <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_k x_k\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong></p></li>
+</ul>
+</div>
+<ul>
+<li><p>Podemos escribir el <strong>modelo de regresión muestral correspondiente a la Ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a></strong> como</p>
 <div class="math notranslate nohighlight" id="equation-sample-regression-model">
 <span class="eqno">(3.9)<a class="headerlink" href="#equation-sample-regression-model" title="Link to this equation">#</a></span>\[
-y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_k x_{ik} + \varepsilon_i
-\]</div>
+    y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \dots + \beta_k x_{ik} + \varepsilon_i
+    \]</div>
 <p>o, en forma sumatoria:</p>
 <div class="math notranslate nohighlight" id="equation-regression-summation-form">
 <span class="eqno">(3.10)<a class="headerlink" href="#equation-regression-summation-form" title="Link to this equation">#</a></span>\[
-y_i = \beta_0 + \sum_{j=1}^k \beta_j x_{ij} + \varepsilon_i,\quad i = 1, 2, \dots, n
-\]</div>
-</section>
-<section id="funcion-de-minimos-cuadrados">
-<h3><span class="section-number">3.2.4. </span>Función de mínimos cuadrados<a class="headerlink" href="#funcion-de-minimos-cuadrados" title="Link to this heading">#</a></h3>
-<p>La función de mínimos cuadrados a minimizar con respecto a los parámetros <span class="math notranslate nohighlight">\(\beta_0, \beta_1, \dots, \beta_k\)</span> es:</p>
+    y_i = \beta_0 + \sum_{j=1}^k \beta_j x_{ij} + \varepsilon_i,\quad i = 1, 2, \dots, n
+    \]</div>
+</li>
+</ul>
+<ul class="simple">
+<li><p>La función de <strong>mínimos cuadrados a minimizar con respecto a los parámetros <span class="math notranslate nohighlight">\(\beta_0, \beta_1, \dots, \beta_k\)</span></strong> es</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-least-squares-function">
 <span class="eqno">(3.11)<a class="headerlink" href="#equation-least-squares-function" title="Link to this equation">#</a></span>\[
 S(\beta_0, \beta_1, \dots, \beta_k) = \sum_{i=1}^n \varepsilon_i^2 = \sum_{i=1}^n \left( y_i - \beta_0 - \sum_{j=1}^k \beta_j x_{ij} \right)^2
 \]</div>
-</section>
-<section id="condiciones-de-primer-orden">
-<h3><span class="section-number">3.2.5. </span>Condiciones de primer orden<a class="headerlink" href="#condiciones-de-primer-orden" title="Link to this heading">#</a></h3>
-<p>Los estimadores por mínimos cuadrados deben satisfacer el sistema de ecuaciones obtenido al anular las derivadas parciales:</p>
-<p>Para <span class="math notranslate nohighlight">\(\beta_0\)</span>:</p>
+<ul>
+<li><p>Los estimadores por mínimos cuadrados deben <strong>satisfacer el sistema de ecuaciones obtenido al anular las derivadas parciales</strong>. Para <span class="math notranslate nohighlight">\(\beta_0\)</span></p>
 <div class="math notranslate nohighlight" id="equation-first-order-beta0">
 <span class="eqno">(3.12)<a class="headerlink" href="#equation-first-order-beta0" title="Link to this equation">#</a></span>\[
-\frac{\partial S}{\partial \beta_0} = -2 \sum_{i=1}^n \left( y_i - \hat{\beta}_0 - \sum_{j=1}^k \hat{\beta}_j x_{ij} \right) = 0
-\]</div>
+    \left.\frac{\partial S}{\partial \beta_0}\right|_{\hat{\beta}_{0},\hat{\beta}_{1},\dots,\hat{\beta}_{k}} = -2 \sum_{i=1}^n \left( y_i - \hat{\beta}_0 - \sum_{j=1}^k \hat{\beta}_j x_{ij} \right) = 0
+    \]</div>
 <p>Para cada <span class="math notranslate nohighlight">\(\beta_j\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-first-order-betaj">
 <span class="eqno">(3.13)<a class="headerlink" href="#equation-first-order-betaj" title="Link to this equation">#</a></span>\[
-\frac{\partial S}{\partial \beta_j} = -2 \sum_{i=1}^n \left( y_i - \hat{\beta}_0 - \sum_{j=1}^k \hat{\beta}_j x_{ij} \right) x_{ij} = 0,\quad j = 1, 2, \dots, k
-\]</div>
-</section>
-<section id="ecuaciones-normales-de-minimos-cuadrados">
-<h3><span class="section-number">3.2.6. </span>Ecuaciones normales de mínimos cuadrados<a class="headerlink" href="#ecuaciones-normales-de-minimos-cuadrados" title="Link to this heading">#</a></h3>
-<p>Simplificando el sistema anterior se obtiene el conjunto de ecuaciones normales:</p>
-<ul class="simple">
-<li><p>Para la constante:</p></li>
+    \left.\frac{\partial S}{\partial \beta_j}\right|_{\hat{\beta}_{0},\hat{\beta}_{1},\dots,\hat{\beta}_{k}} = -2 \sum_{i=1}^n \left( y_i - \hat{\beta}_0 - \sum_{j=1}^k \hat{\beta}_j x_{ij} \right) x_{ij} = 0,\quad j = 1, 2, \dots, k
+    \]</div>
+</li>
 </ul>
+<ul>
+<li><p>Simplificando el sistema anterior se obtiene el <strong>conjunto de ecuaciones normales</strong>. Para la constante</p>
 <div class="math notranslate nohighlight">
 \[
-n \hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^n x_{i1} + \hat{\beta}_2 \sum_{i=1}^n x_{i2} + \dots + \hat{\beta}_k \sum_{i=1}^n x_{ik} = \sum_{i=1}^n y_i
-\]</div>
-<ul class="simple">
-<li><p>Para cada regresor <span class="math notranslate nohighlight">\(x_j\)</span>:</p></li>
-</ul>
+    n \hat{\beta}_0 + \hat{\beta}_1 \sum_{i=1}^n x_{i1} + \hat{\beta}_2 \sum_{i=1}^n x_{i2} + \dots + \hat{\beta}_k \sum_{i=1}^n x_{ik} = \sum_{i=1}^n y_i
+    \]</div>
+<p>Para cada regresor <span class="math notranslate nohighlight">\(x_j\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-normal-equations">
 <span class="eqno">(3.14)<a class="headerlink" href="#equation-normal-equations" title="Link to this equation">#</a></span>\[
-\hat{\beta}_0 \sum_{i=1}^n x_{ij} + \hat{\beta}_1 \sum_{i=1}^n x_{i1} x_{ij} + \hat{\beta}_2 \sum_{i=1}^n x_{i2} x_{ij} + \dots + \hat{\beta}_k \sum_{i=1}^n x_{ik} x_{ij} = \sum_{i=1}^n x_{ij} y_i,\quad j = 1, 2, \dots, k
-\]</div>
-</section>
-<section id="representacion-matricial-del-modelo-y-estimacion-por-minimos-cuadrados">
-<h3><span class="section-number">3.2.7. </span>Representación Matricial del Modelo y Estimación por Mínimos Cuadrados<a class="headerlink" href="#representacion-matricial-del-modelo-y-estimacion-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
-<p>Obsérvese que existen <span class="math notranslate nohighlight">\(p = k + 1\)</span> ecuaciones normales, una por cada coeficiente de regresión desconocido. La solución de este sistema corresponde a los <strong>estimadores de mínimos cuadrados</strong> <span class="math notranslate nohighlight">\(\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_k\)</span>.</p>
-<p>Es más conveniente analizar los modelos de regresión múltiple utilizando <strong>notación matricial</strong>, ya que permite representar de manera compacta tanto el modelo como los datos y los resultados.</p>
-<p>En notación matricial, el modelo dado por la ecuación <a class="reference internal" href="#equation-sample-regression-model">(3.9)</a> se expresa como:</p>
+    \hat{\beta}_0 \sum_{i=1}^n x_{ij} + \hat{\beta}_1 \sum_{i=1}^n x_{i1} x_{ij} + \hat{\beta}_2 \sum_{i=1}^n x_{i2} x_{ij} + \dots + \hat{\beta}_k \sum_{i=1}^n x_{ik} x_{ij} = \sum_{i=1}^n x_{ij} y_i,\quad j = 1, 2, \dots, k
+    \]</div>
+</li>
+</ul>
+<ul>
+<li><p>Obsérvese que existen <strong><span class="math notranslate nohighlight">\(p = k + 1\)</span> ecuaciones normales, una por cada coeficiente de regresión desconocido</strong>. La solución de este sistema corresponde a los <strong>estimadores de mínimos cuadrados</strong> <span class="math notranslate nohighlight">\(\hat{\beta}_0, \hat{\beta}_1, \dots, \hat{\beta}_k\)</span>.</p></li>
+<li><p>Es más conveniente analizar los modelos de regresión múltiple utilizando <strong>notación matricial</strong>, ya que permite <strong>representar de manera compacta tanto el modelo como los datos y los resultados</strong>. En notación matricial, el modelo dado por la ecuación <a class="reference internal" href="#equation-sample-regression-model">(3.9)</a> se expresa como</p>
 <div class="math notranslate nohighlight" id="equation-matrix-model">
 <span class="eqno">(3.15)<a class="headerlink" href="#equation-matrix-model" title="Link to this equation">#</a></span>\[
-\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
-\]</div>
+    \mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
+    \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\mathbf{y} =
-\begin{bmatrix}
-y_1 \\
-y_2 \\
-\vdots \\
-y_n
-\end{bmatrix},\quad
-\mathbf{X} =
-\begin{bmatrix}
-1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k} \\
-1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k} \\
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}
-\end{bmatrix}
-\end{split}\]</div>
+    \mathbf{y} =
+    \begin{bmatrix}
+    y_1 \\
+    y_2 \\
+    \vdots \\
+    y_n
+    \end{bmatrix},\quad
+    \mathbf{X} =
+    \begin{bmatrix}
+    1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k} \\
+    1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k} \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}
+    \end{bmatrix}
+    \end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\boldsymbol{\beta} =
-\begin{bmatrix}
-\beta_0 \\
-\beta_1 \\
-\vdots \\
-\beta_k
-\end{bmatrix},\quad
-\boldsymbol{\varepsilon} =
-\begin{bmatrix}
-\varepsilon_1 \\
-\varepsilon_2 \\
-\vdots \\
-\varepsilon_n
-\end{bmatrix}
-\end{split}\]</div>
-<p>En general:</p>
+    \boldsymbol{\beta} =
+    \begin{bmatrix}
+    \beta_0 \\
+    \beta_1 \\
+    \vdots \\
+    \beta_k
+    \end{bmatrix},\quad
+    \boldsymbol{\varepsilon} =
+    \begin{bmatrix}
+    \varepsilon_1 \\
+    \varepsilon_2 \\
+    \vdots \\
+    \varepsilon_n
+    \end{bmatrix}
+    \end{split}\]</div>
+</li>
+<li><p>En general:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de respuestas observadas,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> es una matriz <span class="math notranslate nohighlight">\(n \times p\)</span> (con <span class="math notranslate nohighlight">\(p = k+1\)</span>) de niveles de los regresores,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> es un vector <span class="math notranslate nohighlight">\(p \times 1\)</span> de coeficientes de regresión,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de errores aleatorios.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{y}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de <strong>respuestas observadas</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X}\)</span> es una matriz <span class="math notranslate nohighlight">\(n \times p\)</span> (con <span class="math notranslate nohighlight">\(p = k+1\)</span>) de <strong>niveles de los regresores</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> es un vector <span class="math notranslate nohighlight">\(p \times 1\)</span> de <strong>coeficientes de regresión</strong>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\varepsilon}\)</span> es un vector <span class="math notranslate nohighlight">\(n \times 1\)</span> de <strong>errores aleatorios</strong>.</p></li>
 </ul>
-<p>Queremos encontrar el <strong>vector de estimadores de mínimos cuadrados</strong>, denotado <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span>, que minimiza la función:</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Queremos encontrar el <strong>vector de estimadores de mínimos cuadrados</strong>, denotado <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span>, que minimiza la función</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-least-squares-matrix-function">
 <span class="eqno">(3.16)<a class="headerlink" href="#equation-least-squares-matrix-function" title="Link to this equation">#</a></span>\[
 S(\boldsymbol{\beta}) = \sum_{i=1}^n \varepsilon_i^2 = \boldsymbol{\varepsilon}' \boldsymbol{\varepsilon} = (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})' (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})
 \]</div>
-<p>Expandimos esta expresión:</p>
+<ul>
+<li><p>Expandimos esta expresión</p>
 <div class="math notranslate nohighlight" id="equation-expanded-least-squares">
 <span class="eqno">(3.17)<a class="headerlink" href="#equation-expanded-least-squares" title="Link to this equation">#</a></span>\[
-S(\boldsymbol{\beta}) = \mathbf{y}' \mathbf{y} - \boldsymbol{\beta}' \mathbf{X}' \mathbf{y} - \mathbf{y}' \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}
-= \mathbf{y}' \mathbf{y} - 2 \boldsymbol{\beta}' \mathbf{X}' \mathbf{y} + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}
-\]</div>
+    S(\boldsymbol{\beta}) = \mathbf{y}' \mathbf{y} - \boldsymbol{\beta}' \mathbf{X}' \mathbf{y} - \mathbf{y}' \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}
+    = \mathbf{y}' \mathbf{y} - 2 \boldsymbol{\beta}' \mathbf{X}' \mathbf{y} + \boldsymbol{\beta}' \mathbf{X}' \mathbf{X} \boldsymbol{\beta}
+    \]</div>
 <p>ya que <span class="math notranslate nohighlight">\(\boldsymbol{\beta}' \mathbf{X}' \mathbf{y}\)</span> es un escalar y su transpuesta coincide: <span class="math notranslate nohighlight">\((\boldsymbol{\beta}' \mathbf{X}' \mathbf{y})' = \mathbf{y}' \mathbf{X} \boldsymbol{\beta}\)</span>.</p>
-</section>
-<section id="condicion-de-primer-orden-y-ecuacion-normal">
-<h3><span class="section-number">3.2.8. </span>Condición de Primer Orden y Ecuación Normal<a class="headerlink" href="#condicion-de-primer-orden-y-ecuacion-normal" title="Link to this heading">#</a></h3>
-<p>El mínimo de <span class="math notranslate nohighlight">\(S(\boldsymbol{\beta})\)</span> se obtiene al anular su derivada con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>:</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Sean <span class="math notranslate nohighlight">\(\boldsymbol{x}=\boldsymbol{\beta}\)</span> y <span class="math notranslate nohighlight">\(A=\mathbf{X}' \mathbf{X}\)</span>, calculemos la derivada de la forma cuadratica <span class="math notranslate nohighlight">\(\boldsymbol{x}'A\boldsymbol{x}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\boldsymbol{x}'A\boldsymbol{x}&amp;=(x_{1}, x_{2},\dots, x_{p})
+\begin{pmatrix}
+A_{11} &amp; A_{12} &amp; \cdots &amp; A_{1p}\\
+A_{21} &amp; A_{22} &amp; \cdots &amp; A_{2p}\\
+\vdots\\
+A_{31} &amp; A_{32} &amp; \cdots &amp; A_{3p}\\
+\vdots\\
+A_{p1} &amp; A_{p2} &amp; \cdots &amp; A_{pp}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1}\\
+x_{2}\\
+\vdots\\
+x_{p}
+\end{pmatrix}
+% &amp;=\left(\sum_{i=1}^{p}x_{i}A_{i1}, \sum_{i=1}^{p}x_{i}A_{i2},\dots, \sum_{i=1}^{p}x_{i}A_{ip}\right)
+% \begin{pmatrix}
+% x_{1}\\
+% x_{2}\\
+% \vdots\\
+% x_{p}
+% \end{pmatrix}\\
+=\sum_{j=1}^{p}\left(\sum_{i=1}^{p}x_{i}A_{ij}\right)x_{j}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Derivando con respecto a <span class="math notranslate nohighlight">\(x_{k}\)</span> para obtener la <span class="math notranslate nohighlight">\(k\)</span><em><strong>-ésima componente del gradiente</strong></em> <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}(\boldsymbol{x}'A\boldsymbol{x})\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial(\boldsymbol{x}'A\boldsymbol{x})}{\partial x_{k}}&amp;=
+\frac{\partial}{\partial x_{k}}\left[\sum_{j=1}^{p}\left(\sum_{i=1}^{p}x_{i}A_{ij}\right)x_{j}\right]\\
+&amp;=\sum_{j=1}^{p}\left(\sum_{i=1}^{p}\frac{\partial x_{i}}{\partial x_{k}}A_{ij}\right)x_{j}+
+\sum_{j=1}^{p}\frac{\partial x_{j}}{\partial x_{k}}\left(\sum_{i=1}^{p}x_{i}A_{ij}\right)\\
+&amp;=\sum_{j=1}^{p}A_{kj}x_{j}+\sum_{i=1}^{p}x_{i}A_{ik}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Por lo tanto, para <span class="math notranslate nohighlight">\(k=1,2,\dots,p\)</span>, <em><strong>bajo el supuesto de simetría</strong></em> para <span class="math notranslate nohighlight">\(A\)</span> se tiene que</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-quadratic-form-dedrivate">
+<span class="eqno">(3.18)<a class="headerlink" href="#equation-quadratic-form-dedrivate" title="Link to this equation">#</a></span>\[\begin{split}
+\begin{align*}
+\frac{\partial(\boldsymbol{x}'A\boldsymbol{x})}{\partial\boldsymbol{x}}&amp;=
+\begin{pmatrix}
+\displaystyle{\sum_{j=1}^{p}A_{1j}x_{j}+\sum_{i=1}^{p}x_{i}A_{i1}}\\
+\displaystyle{\sum_{j=1}^{p}A_{2j}x_{j}+\sum_{i=1}^{p}x_{i}A_{i2}}\\
+\vdots\\
+\displaystyle{\sum_{j=1}^{p}A_{pj}x_{j}+\sum_{i=1}^{p}x_{i}A_{ip}}
+\end{pmatrix}\\
+&amp;=A\boldsymbol{x}+A'\boldsymbol{x}\\
+&amp;=(A+A')\boldsymbol{x}\\
+&amp;=2A\boldsymbol{x}
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><em><strong>Nótese que</strong></em> <span class="math notranslate nohighlight">\(A:=\mathbf{X}'\mathbf{X}\)</span>, <em><strong>es simétrica</strong></em>, en efecto: <span class="math notranslate nohighlight">\(A'=(\mathbf{X}'\mathbf{X})'=\mathbf{X}'(\mathbf{X}')'=\mathbf{X}'\mathbf{X}=A\)</span>, entonces <span class="math notranslate nohighlight">\(\partial_{\boldsymbol{\beta}}(\boldsymbol{\beta}'\mathbf{X}'\mathbf{X}\boldsymbol{\beta})=2\mathbf{X}'\mathbf{X}\boldsymbol{\beta}\)</span>.</p></li>
+</ul>
+<ul>
+<li><p>Por lo tanto, el <strong>mínimo de <span class="math notranslate nohighlight">\(S(\boldsymbol{\beta})\)</span></strong> se obtiene al anular su derivada con respecto a <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></p>
 <div class="math notranslate nohighlight" id="equation-first-order-matrix">
-<span class="eqno">(3.18)<a class="headerlink" href="#equation-first-order-matrix" title="Link to this equation">#</a></span>\[
-\frac{\partial S}{\partial \boldsymbol{\beta}} = -2 \mathbf{X}' \mathbf{y} + 2 \mathbf{X}' \mathbf{X} \hat{\boldsymbol{\beta}} = 0
-\]</div>
-<p>lo cual se simplifica a:</p>
+<span class="eqno">(3.19)<a class="headerlink" href="#equation-first-order-matrix" title="Link to this equation">#</a></span>\[
+    \frac{\partial S}{\partial \boldsymbol{\beta}} = -2 \mathbf{X}' \mathbf{y} + 2 \mathbf{X}' \mathbf{X} \hat{\boldsymbol{\beta}} = 0
+    \]</div>
+<p>lo cual se simplifica a</p>
 <div class="math notranslate nohighlight" id="equation-matrix-normal-equation">
-<span class="eqno">(3.19)<a class="headerlink" href="#equation-matrix-normal-equation" title="Link to this equation">#</a></span>\[
-\mathbf{X}' \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X}' \mathbf{y}
-\]</div>
-<p>La ecuación <a class="reference internal" href="#equation-matrix-normal-equation">(3.19)</a> representa el <strong>sistema matricial de ecuaciones normales de mínimos cuadrados</strong>, análogo matricial de la presentación escalar en la ecuación <a class="reference internal" href="#equation-normal-equations">(3.14)</a>.</p>
-</section>
-<section id="solucion-de-las-ecuaciones-normales-y-estimador-de-minimos-cuadrados">
-<h3><span class="section-number">3.2.9. </span>Solución de las Ecuaciones Normales y Estimador de Mínimos Cuadrados<a class="headerlink" href="#solucion-de-las-ecuaciones-normales-y-estimador-de-minimos-cuadrados" title="Link to this heading">#</a></h3>
-<p>Para resolver el sistema de ecuaciones normales <a class="reference internal" href="#equation-matrix-normal-equation">(3.19)</a>, multiplicamos ambos lados por la inversa de <span class="math notranslate nohighlight">\(\mathbf{X}' \mathbf{X}\)</span>. Así, el estimador de mínimos cuadrados de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> se expresa como:</p>
+<span class="eqno">(3.20)<a class="headerlink" href="#equation-matrix-normal-equation" title="Link to this equation">#</a></span>\[
+    \mathbf{X}' \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X}' \mathbf{y}
+    \]</div>
+<p>La Ecuación <a class="reference internal" href="#equation-matrix-normal-equation">(3.20)</a> representa el <strong>sistema matricial de ecuaciones normales de mínimos cuadrados</strong>, análogo matricial de la presentación escalar en la Ecuación <a class="reference internal" href="#equation-normal-equations">(3.14)</a>.</p>
+</li>
+</ul>
+<ul>
+<li><p>Para resolver el sistema de Ecuaciones normales <a class="reference internal" href="#equation-matrix-normal-equation">(3.20)</a>, multiplicamos ambos lados por la inversa de <span class="math notranslate nohighlight">\(\mathbf{X}' \mathbf{X}\)</span>. Así, <strong>el estimador de mínimos cuadrados de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong> se expresa como</p>
 <div class="math notranslate nohighlight" id="equation-ols-solution">
-<span class="eqno">(3.20)<a class="headerlink" href="#equation-ols-solution" title="Link to this equation">#</a></span>\[
-\hat{\boldsymbol{\beta}} = (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}
-\]</div>
-<p>siempre que exista la matriz inversa <span class="math notranslate nohighlight">\((\mathbf{X}' \mathbf{X})^{-1}\)</span>. Esta condición se cumple si las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> son linealmente independientes, es decir, si ninguna columna puede escribirse como combinación lineal de las demás.</p>
-</section>
-<section id="relacion-entre-la-forma-matricial-y-escalar">
-<h3><span class="section-number">3.2.10. </span>Relación entre la forma matricial y escalar<a class="headerlink" href="#relacion-entre-la-forma-matricial-y-escalar" title="Link to this heading">#</a></h3>
-<p>Es fácil verificar que la forma matricial de las ecuaciones normales coincide con la forma escalar dada en <a class="reference internal" href="#equation-normal-equations">(3.14)</a>. Si desarrollamos <a class="reference internal" href="#equation-matrix-normal-equation">(3.19)</a>, obtenemos el sistema:</p>
+<span class="eqno">(3.21)<a class="headerlink" href="#equation-ols-solution" title="Link to this equation">#</a></span>\[
+    \hat{\boldsymbol{\beta}} = (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y}
+    \]</div>
+<p>siempre que exista la matriz inversa <span class="math notranslate nohighlight">\((\mathbf{X}' \mathbf{X})^{-1}\)</span>. Esta condición se cumple <strong>si las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> son linealmente independientes</strong>, es decir, si <strong>ninguna columna puede escribirse como combinación lineal de las demás</strong>.</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Es fácil verificar que <strong>la forma matricial de las ecuaciones normales coincide con la forma escalar dada en la Ecuación <a class="reference internal" href="#equation-normal-equations">(3.14)</a></strong>. Si desarrollamos la Ecuación <a class="reference internal" href="#equation-matrix-normal-equation">(3.20)</a>, obtenemos el sistema</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-expanded-normal-equations">
-<span class="eqno">(3.21)<a class="headerlink" href="#equation-expanded-normal-equations" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.22)<a class="headerlink" href="#equation-expanded-normal-equations" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{bmatrix}
 n &amp; \sum x_{i1} &amp; \sum x_{i2} &amp; \cdots &amp; \sum x_{ik} \\
 \sum x_{i1} &amp; \sum x_{i1}^2 &amp; \sum x_{i1} x_{i2} &amp; \cdots &amp; \sum x_{i1} x_{ik} \\
@@ -730,53 +809,62 @@ n &amp; \sum x_{i1} &amp; \sum x_{i2} &amp; \cdots &amp; \sum x_{ik} \\
 \sum x_{ik} y_i
 \end{bmatrix}
 \end{split}\]</div>
-<p>Aquí se observa que <span class="math notranslate nohighlight">\(\mathbf{X}' \mathbf{X}\)</span> es una matriz simétrica de tamaño <span class="math notranslate nohighlight">\(p \times p\)</span>, donde los elementos diagonales son sumas de cuadrados de las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, mientras que los elementos fuera de la diagonal son productos cruzados. Por su parte, <span class="math notranslate nohighlight">\(\mathbf{X}' \mathbf{y}\)</span> es un vector <span class="math notranslate nohighlight">\(p \times 1\)</span> que contiene las sumas de productos cruzados entre las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> y las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>.</p>
-</section>
-<section id="modelo-ajustado-y-matriz-sombrero">
-<h3><span class="section-number">3.2.11. </span>Modelo ajustado y matriz sombrero<a class="headerlink" href="#modelo-ajustado-y-matriz-sombrero" title="Link to this heading">#</a></h3>
-<p>El modelo ajustado para un vector de niveles de regresores <span class="math notranslate nohighlight">\(\mathbf{x}' = [1, x_1, x_2, \dots, x_k]\)</span> es:</p>
+<ul class="simple">
+<li><p>Aquí se observa que <strong><span class="math notranslate nohighlight">\(\mathbf{X}'\mathbf{X}\)</span> es una matriz simétrica de tamaño <span class="math notranslate nohighlight">\(p \times p\)</span>, donde los elementos diagonales son sumas de cuadrados de las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, mientras que los elementos fuera de la diagonal son productos cruzados</strong>. Por su parte, <span class="math notranslate nohighlight">\(\mathbf{X}' \mathbf{y}\)</span> es un vector <span class="math notranslate nohighlight">\(p \times 1\)</span> que contiene las sumas de productos cruzados entre las columnas de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> y las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>El modelo ajustado para un vector de niveles de regresores <span class="math notranslate nohighlight">\(\mathbf{x}' = [1, x_1, x_2, \dots, x_k]\)</span> es</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-prediction-formula">
-<span class="eqno">(3.22)<a class="headerlink" href="#equation-prediction-formula" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.23)<a class="headerlink" href="#equation-prediction-formula" title="Link to this equation">#</a></span>\[
 \hat{y} = \mathbf{x}' \hat{\boldsymbol{\beta}} = \hat{\beta}_0 + \sum_{j=1}^k \hat{\beta}_j x_j
 \]</div>
-<p>El vector de valores ajustados <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span> correspondientes a las observaciones <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> se expresa como:</p>
+<ul>
+<li><p>El vector de valores ajustados <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span> correspondientes a las observaciones <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> se expresa como:</p>
 <div class="math notranslate nohighlight" id="equation-fitted-vector">
-<span class="eqno">(3.23)<a class="headerlink" href="#equation-fitted-vector" title="Link to this equation">#</a></span>\[
-\hat{\mathbf{y}} = \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y} = \mathbf{H} \mathbf{y}
-\]</div>
-<p>donde la matriz <span class="math notranslate nohighlight">\(\mathbf{H} = \mathbf{X}(\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'\)</span> se denomina <strong>matriz sombrero</strong> (<em>hat matrix</em>). Esta matriz proyecta el vector de observaciones <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> en el espacio columna de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> y desempeña un papel fundamental en el análisis de regresión.</p>
-</section>
-<section id="residuos">
-<h3><span class="section-number">3.2.12. </span>Residuos<a class="headerlink" href="#residuos" title="Link to this heading">#</a></h3>
-<p>La diferencia entre el valor observado <span class="math notranslate nohighlight">\(y_i\)</span> y el correspondiente valor ajustado <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> es el <strong>residuo</strong>:</p>
+<span class="eqno">(3.24)<a class="headerlink" href="#equation-fitted-vector" title="Link to this equation">#</a></span>\[
+    \hat{\mathbf{y}} = \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X} (\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}' \mathbf{y} = \mathbf{H} \mathbf{y}
+    \]</div>
+<p>donde la matriz <span class="math notranslate nohighlight">\(\mathbf{H} = \mathbf{X}(\mathbf{X}' \mathbf{X})^{-1} \mathbf{X}'\)</span> se denomina <strong>matriz sombrero</strong> (<em>hat matrix</em>) porque «pone el sombrero» a <span class="math notranslate nohighlight">\(\mathbf{y}\rightarrow\)</span> produce <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span> :). Esta matriz <strong>proyecta el vector de valores observados <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> en un vector de valores ajustados, <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span> y desempeña un papel fundamental en el análisis de regresión</strong>.</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>La <strong>diferencia entre el valor observado <span class="math notranslate nohighlight">\(y_i\)</span> y el correspondiente valor ajustado <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> es el residuo</strong>:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 e_i = y_i - \hat{y}_i
 \]</div>
-<p>El vector completo de residuos puede expresarse en notación matricial como:</p>
+<ul class="simple">
+<li><p>El <strong>vector completo de residuos</strong> puede expresarse en notación matricial como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-vector">
-<span class="eqno">(3.24)<a class="headerlink" href="#equation-residual-vector" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.25)<a class="headerlink" href="#equation-residual-vector" title="Link to this equation">#</a></span>\[
 \mathbf{e} = \mathbf{y} - \hat{\mathbf{y}}
 \]</div>
-<p>Otra forma útil de expresar el vector de residuos <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> es:</p>
+<ul class="simple">
+<li><p>Otra forma útil de expresar el vector de residuos <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> es</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-projection">
-<span class="eqno">(3.25)<a class="headerlink" href="#equation-residual-projection" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.26)<a class="headerlink" href="#equation-residual-projection" title="Link to this equation">#</a></span>\[
 \mathbf{e} = \mathbf{y} - \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{y} - \mathbf{H} \mathbf{y} = (\mathbf{I} - \mathbf{H}) \mathbf{y}
 \]</div>
-<p>Esta expresión muestra que <strong>los residuos son una proyección ortogonal del vector de observaciones <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> sobre el complemento ortogonal del espacio columna de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span></strong>, ya que <span class="math notranslate nohighlight">\(\mathbf{I} - \mathbf{H}\)</span> es una matriz simétrica e idempotente que representa dicha proyección.</p>
+<ul class="simple">
+<li><p>Esta expresión muestra que <strong>los residuos son una proyección ortogonal del vector de observaciones <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> sobre el complemento ortogonal del espacio columna de <span class="math notranslate nohighlight">\(\mathbf{X}\)</span></strong>, ya que <span class="math notranslate nohighlight">\(\mathbf{I} - \mathbf{H}\)</span> es una <strong>matriz simétrica e idempotente que representa dicha proyección</strong>.</p></li>
+</ul>
 </section>
 <section id="ejemplo-datos-de-tiempo-de-entrega">
-<h3><span class="section-number">3.2.13. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#ejemplo-datos-de-tiempo-de-entrega" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#ejemplo-datos-de-tiempo-de-entrega" title="Link to this heading">#</a></h3>
 <p>Una embotelladora de bebidas gaseosas está analizando las rutas de servicio a máquinas expendedoras en su sistema de distribución. El objetivo es predecir el tiempo requerido por el conductor de ruta para atender las máquinas en un punto de venta. Esta actividad incluye el reabastecimiento de productos y labores menores de mantenimiento o limpieza.</p>
 <p>El ingeniero industrial a cargo del estudio ha sugerido que las dos variables más importantes que afectan el tiempo de entrega (<span class="math notranslate nohighlight">\(y\)</span>) son el número de cajas de producto abastecidas (<span class="math notranslate nohighlight">\(x_1\)</span>) y la distancia recorrida por el conductor (<span class="math notranslate nohighlight">\(x_2\)</span>). Se recolectaron 25 observaciones, presentadas en la Tabla 3.2.</p>
 <p>Se ajustará el siguiente modelo de regresión lineal múltiple:</p>
 <div class="math notranslate nohighlight" id="equation-delivery-model">
-<span class="eqno">(3.26)<a class="headerlink" href="#equation-delivery-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.27)<a class="headerlink" href="#equation-delivery-model" title="Link to this equation">#</a></span>\[
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
 \]</div>
 </section>
 <section id="tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1">
-<h3><span class="section-number">3.2.14. </span>Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1<a class="headerlink" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1<a class="headerlink" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Observación</p></th>
@@ -916,13 +1004,13 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
 </div>
 </section>
 <section id="visualizacion-y-construccion-del-modelo">
-<h3><span class="section-number">3.2.15. </span>Visualización y Construcción del Modelo<a class="headerlink" href="#visualizacion-y-construccion-del-modelo" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.4. </span>Visualización y Construcción del Modelo<a class="headerlink" href="#visualizacion-y-construccion-del-modelo" title="Link to this heading">#</a></h3>
 <p>Las representaciones gráficas resultan muy útiles al ajustar modelos de regresión múltiple. La Figura 3.4 muestra una <strong>matriz de diagramas de dispersión</strong> para los datos de tiempo de entrega. Esta matriz es un arreglo bidimensional de gráficos bidimensionales, donde cada recuadro (exceptuando la diagonal) contiene un diagrama de dispersión entre un par de variables.</p>
 <p><strong>Este tipo de visualización permite identificar relaciones lineales o no lineales</strong> entre las variables, así como observar la dispersión de los datos. En muchos casos, esto proporciona más información que un resumen numérico, como la matriz de correlación.</p>
 <p>Cuando hay solo dos regresores, también puede ser útil un <strong>diagrama tridimensional de dispersión</strong> que relacione la respuesta con las variables explicativas. La Figura 3.5 muestra dicha visualización para los datos de tiempo de entrega. Algunos paquetes estadísticos permiten rotar estas gráficas, ofreciendo múltiples vistas de la nube de puntos, lo cual ayuda a evaluar visualmente si un modelo de regresión lineal es razonable.</p>
 </section>
 <section id="construccion-de-la-matriz-x-y-el-vector-y">
-<h3><span class="section-number">3.2.16. </span>Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span><a class="headerlink" href="#construccion-de-la-matriz-x-y-el-vector-y" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.5. </span>Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span><a class="headerlink" href="#construccion-de-la-matriz-x-y-el-vector-y" title="Link to this heading">#</a></h3>
 <p>Para ajustar el modelo de regresión múltiple, primero se forma la matriz <span class="math notranslate nohighlight">\(X\)</span> y el vector de respuestas <span class="math notranslate nohighlight">\(y\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -983,7 +1071,7 @@ y = \begin{bmatrix}
 \end{split}\]</div>
 <p>La matriz <span class="math notranslate nohighlight">\(X^\top X\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-matrix-xtx">
-<span class="eqno">(3.27)<a class="headerlink" href="#equation-matrix-xtx" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.28)<a class="headerlink" href="#equation-matrix-xtx" title="Link to this equation">#</a></span>\[\begin{split}
 X^\top X = \begin{bmatrix}
 25 &amp; 219 &amp; 10232 \\
 219 &amp; 3055 &amp; 133899 \\
@@ -992,7 +1080,7 @@ X^\top X = \begin{bmatrix}
 \end{split}\]</div>
 <p>y el vector <span class="math notranslate nohighlight">\(X^\top y\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-vector-xty">
-<span class="eqno">(3.28)<a class="headerlink" href="#equation-vector-xty" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.29)<a class="headerlink" href="#equation-vector-xty" title="Link to this equation">#</a></span>\[\begin{split}
 X^\top y = \begin{bmatrix}
 559.60 \\
 7375.44 \\
@@ -1001,15 +1089,15 @@ X^\top y = \begin{bmatrix}
 \end{split}\]</div>
 </section>
 <section id="estimacion-de-los-coeficientes-por-minimos-cuadrados">
-<h3><span class="section-number">3.2.17. </span>Estimación de los Coeficientes por Mínimos Cuadrados<a class="headerlink" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.6. </span>Estimación de los Coeficientes por Mínimos Cuadrados<a class="headerlink" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
 <p>El estimador por mínimos cuadrados está dado por:</p>
 <div class="math notranslate nohighlight" id="equation-ols-estimator-matrix">
-<span class="eqno">(3.29)<a class="headerlink" href="#equation-ols-estimator-matrix" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.30)<a class="headerlink" href="#equation-ols-estimator-matrix" title="Link to this equation">#</a></span>\[
 \hat{\mathbf{b}} = (X^\top X)^{-1} X^\top y
 \]</div>
 <p>Con la matriz inversa <span class="math notranslate nohighlight">\((X^\top X)^{-1}\)</span> aproximada a cinco decimales:</p>
 <div class="math notranslate nohighlight" id="equation-inv-xtx-matrix">
-<span class="eqno">(3.30)<a class="headerlink" href="#equation-inv-xtx-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.31)<a class="headerlink" href="#equation-inv-xtx-matrix" title="Link to this equation">#</a></span>\[\begin{split}
 (X^\top X)^{-1} \approx \begin{bmatrix}
 0.11322 &amp; -0.00445 &amp; -0.00008 \\
 -0.00445 &amp; 0.00274 &amp; -0.00005 \\
@@ -1018,7 +1106,7 @@ X^\top y = \begin{bmatrix}
 \end{split}\]</div>
 <p>Multiplicando, se obtiene:</p>
 <div class="math notranslate nohighlight" id="equation-ols-coefficients-delivery">
-<span class="eqno">(3.31)<a class="headerlink" href="#equation-ols-coefficients-delivery" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.32)<a class="headerlink" href="#equation-ols-coefficients-delivery" title="Link to this equation">#</a></span>\[\begin{split}
 \hat{\mathbf{b}} = \begin{bmatrix}
 2.34123 \\
 1.61591 \\
@@ -1027,73 +1115,73 @@ X^\top y = \begin{bmatrix}
 \end{split}\]</div>
 </section>
 <section id="modelo-ajustado">
-<h3><span class="section-number">3.2.18. </span>Modelo Ajustado<a class="headerlink" href="#modelo-ajustado" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.7. </span>Modelo Ajustado<a class="headerlink" href="#modelo-ajustado" title="Link to this heading">#</a></h3>
 <p>El modelo ajustado por mínimos cuadrados es:</p>
 <p>$<span class="math notranslate nohighlight">\(
 \hat{y} = 2.34123 + 1.61591x_1 + 0.01438x_2
 \)</span>$(delivery_model)m</p>
 </section>
 <section id="valores-ajustados-y-residuos">
-<h3><span class="section-number">3.2.19. </span>Valores Ajustados y Residuos<a class="headerlink" href="#valores-ajustados-y-residuos" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.8. </span>Valores Ajustados y Residuos<a class="headerlink" href="#valores-ajustados-y-residuos" title="Link to this heading">#</a></h3>
 <p>La Tabla 3.3 presenta los valores observados <span class="math notranslate nohighlight">\(y_i\)</span>, los valores ajustados <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> y los residuos <span class="math notranslate nohighlight">\(e_i = y_i - \hat{y}_i\)</span> correspondientes a este modelo.</p>
 </section>
 <section id="salida-computacional">
-<h3><span class="section-number">3.2.20. </span>Salida Computacional<a class="headerlink" href="#salida-computacional" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.9. </span>Salida Computacional<a class="headerlink" href="#salida-computacional" title="Link to this heading">#</a></h3>
 <p>La Tabla 3.4 presenta una porción de la salida de Python para los datos del tiempo de entrega. Aunque el formato varía según el software, este tipo de salida incluye los elementos estándar en un análisis de regresión múltiple. En las siguientes secciones se explicará cada parte de esta salida.</p>
 </section>
 <section id="interpretacion-geometrica-de-los-minimos-cuadrados">
-<h3><span class="section-number">3.2.21. </span>Interpretación Geométrica de los Mínimos Cuadrados<a class="headerlink" href="#interpretacion-geometrica-de-los-minimos-cuadrados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.10. </span>Interpretación Geométrica de los Mínimos Cuadrados<a class="headerlink" href="#interpretacion-geometrica-de-los-minimos-cuadrados" title="Link to this heading">#</a></h3>
 <p>Una interpretación geométrica intuitiva del método de mínimos cuadrados puede ser de utilidad. Podemos considerar al vector de observaciones <span class="math notranslate nohighlight">\(y^\top = [y_1, y_2, \dots, y_n]\)</span> como un vector que va desde el origen hasta un punto <span class="math notranslate nohighlight">\(A\)</span> en un espacio muestral de dimensión <span class="math notranslate nohighlight">\(n\)</span>. En la Figura 3.6 se ilustra este caso para <span class="math notranslate nohighlight">\(n=3\)</span>.</p>
 <p>La matriz <span class="math notranslate nohighlight">\(X\)</span> está compuesta por <span class="math notranslate nohighlight">\(p\)</span> vectores columna de dimensión <span class="math notranslate nohighlight">\(n \times 1\)</span>, como el vector de unos, <span class="math notranslate nohighlight">\(\mathbf{1}\)</span>, y los regresores <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Cada columna define un vector desde el origen. Estos <span class="math notranslate nohighlight">\(p\)</span> vectores generan un subespacio de dimensión <span class="math notranslate nohighlight">\(p\)</span>, llamado <strong>espacio de estimación</strong>.</p>
 <p>Para <span class="math notranslate nohighlight">\(p = 2\)</span>, este subespacio se muestra en la Figura 3.6. Cualquier punto en este subespacio se puede representar como una combinación lineal de los vectores columna de <span class="math notranslate nohighlight">\(X\)</span>, es decir, como <span class="math notranslate nohighlight">\(X \boldsymbol{\beta}\)</span>. Sea el punto <span class="math notranslate nohighlight">\(B\)</span> definido por este vector.</p>
 <p>La distancia cuadrada entre <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(A\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-squared-distance">
-<span class="eqno">(3.32)<a class="headerlink" href="#equation-squared-distance" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.33)<a class="headerlink" href="#equation-squared-distance" title="Link to this equation">#</a></span>\[
 S(\mathbf{b}) = (\mathbf{y} - X\mathbf{b})^\top (\mathbf{y} - X\mathbf{b})
 \]</div>
 <p>Minimizar esta distancia equivale a encontrar el punto en el espacio de estimación más cercano a <span class="math notranslate nohighlight">\(A\)</span>, es decir, el pie de la perpendicular desde <span class="math notranslate nohighlight">\(A\)</span> al subespacio. Este punto es <span class="math notranslate nohighlight">\(C\)</span>, y está dado por:</p>
 <div class="math notranslate nohighlight" id="equation-projection-hat-y">
-<span class="eqno">(3.33)<a class="headerlink" href="#equation-projection-hat-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.34)<a class="headerlink" href="#equation-projection-hat-y" title="Link to this equation">#</a></span>\[
 \hat{\mathbf{y}} = X \hat{\mathbf{b}}
 \]</div>
 <p>Como <span class="math notranslate nohighlight">\(\mathbf{y} - \hat{\mathbf{y}} = \mathbf{y} - X \hat{\mathbf{b}}\)</span> es perpendicular al espacio de estimación, se cumple:</p>
 <div class="math notranslate nohighlight" id="equation-orthogonality-condition">
-<span class="eqno">(3.34)<a class="headerlink" href="#equation-orthogonality-condition" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.35)<a class="headerlink" href="#equation-orthogonality-condition" title="Link to this equation">#</a></span>\[
 X^\top (\mathbf{y} - X \hat{\mathbf{b}}) = 0
 \]</div>
 <p>lo cual lleva directamente a las <strong>ecuaciones normales</strong> del método de mínimos cuadrados:</p>
 <div class="math notranslate nohighlight" id="equation-normal-equations-matrix">
-<span class="eqno">(3.35)<a class="headerlink" href="#equation-normal-equations-matrix" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.36)<a class="headerlink" href="#equation-normal-equations-matrix" title="Link to this equation">#</a></span>\[
 X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
 \]</div>
 </section>
 <section id="propiedades-de-los-estimadores-por-minimos-cuadrados">
-<h3><span class="section-number">3.2.22. </span>Propiedades de los Estimadores por Mínimos Cuadrados<a class="headerlink" href="#propiedades-de-los-estimadores-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.11. </span>Propiedades de los Estimadores por Mínimos Cuadrados<a class="headerlink" href="#propiedades-de-los-estimadores-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
 <p>Las propiedades estadísticas del estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> pueden demostrarse fácilmente. Consideremos primero el sesgo, bajo el supuesto de que el modelo es correcto:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb{E}(\hat{\mathbf{b}}) = \mathbb{E}\left[(X^\top X)^{-1} X^\top \mathbf{y} \right] = \mathbb{E}\left[(X^\top X)^{-1} X^\top (X \boldsymbol{\beta} + \boldsymbol{\varepsilon}) \right]
 \]</div>
 <div class="math notranslate nohighlight" id="equation-unbiased-estimator">
-<span class="eqno">(3.36)<a class="headerlink" href="#equation-unbiased-estimator" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.37)<a class="headerlink" href="#equation-unbiased-estimator" title="Link to this equation">#</a></span>\[
 = (X^\top X)^{-1} X^\top X \boldsymbol{\beta} + (X^\top X)^{-1} X^\top \mathbb{E}(\boldsymbol{\varepsilon}) = \boldsymbol{\beta}
 \]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(\mathbb{E}(\boldsymbol{\varepsilon}) = \mathbf{0}\)</span> y <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top X = I\)</span>, se concluye que <strong><span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> es un estimador insesgado de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong> si el modelo es válido.</p>
 <p>La propiedad de varianza de <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> se expresa mediante la matriz de covarianzas:</p>
 <div class="math notranslate nohighlight" id="equation-covariance-matrix">
-<span class="eqno">(3.37)<a class="headerlink" href="#equation-covariance-matrix" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.38)<a class="headerlink" href="#equation-covariance-matrix" title="Link to this equation">#</a></span>\[
 \mathrm{Cov}(\hat{\mathbf{b}}) = \mathbb{E}\left[ (\hat{\mathbf{b}} - \mathbb{E}(\hat{\mathbf{b}})) (\hat{\mathbf{b}} - \mathbb{E}(\hat{\mathbf{b}}))^\top \right]
 \]</div>
 <p>Esta es una matriz simétrica de dimensión <span class="math notranslate nohighlight">\(p \times p\)</span>, cuya diagonal contiene las varianzas de los coeficientes <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>, y cuyos elementos fuera de la diagonal representan las covarianzas entre <span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</p>
 <p>Aplicando el operador varianza a <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span>, se obtiene:</p>
 <div class="math notranslate nohighlight" id="equation-variance-operator">
-<span class="eqno">(3.38)<a class="headerlink" href="#equation-variance-operator" title="Link to this equation">#</a></span>\[
-\mathrm{Var}(\hat{\mathbf{b}}) = \mathrm{Var} \left[ (X^\top X)^{-1} X^\top \mathbf{y} \right]
+<span class="eqno">(3.39)<a class="headerlink" href="#equation-variance-operator" title="Link to this equation">#</a></span>\[
+\mathbb{Var}(\hat{\mathbf{b}}) = \mathrm{Var} \left[ (X^\top X)^{-1} X^\top \mathbf{y} \right]
 \]</div>
-<p>Dado que <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top\)</span> es una matriz constante, y suponiendo que <span class="math notranslate nohighlight">\(\mathrm{Var}(\mathbf{y}) = \sigma^2 I\)</span>, se concluye:</p>
+<p>Dado que <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top\)</span> es una matriz constante, y suponiendo que <span class="math notranslate nohighlight">\(\mathbb{Var}(\mathbf{y}) = \sigma^2 I\)</span>, se concluye:</p>
 <div class="math notranslate nohighlight" id="equation-ols-variance-matrix">
-<span class="eqno">(3.39)<a class="headerlink" href="#equation-ols-variance-matrix" title="Link to this equation">#</a></span>\[
-\mathrm{Var}(\hat{\mathbf{b}}) = (X^\top X)^{-1} X^\top \sigma^2 I \left[(X^\top X)^{-1} X^\top \right]^\top
+<span class="eqno">(3.40)<a class="headerlink" href="#equation-ols-variance-matrix" title="Link to this equation">#</a></span>\[
+\mathbb{Var}(\hat{\mathbf{b}}) = (X^\top X)^{-1} X^\top \sigma^2 I \left[(X^\top X)^{-1} X^\top \right]^\top
 = \sigma^2 (X^\top X)^{-1}
 \]</div>
 <p>Por tanto, si denotamos <span class="math notranslate nohighlight">\(C = (X^\top X)^{-1}\)</span>, entonces:</p>
@@ -1105,10 +1193,10 @@ X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
 <p>Además, si se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> están distribuidos normalmente, entonces —como se verá en la Sección 3.2.6— <strong><span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> también es el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>. En este caso, <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> es también el <strong>estimador insesgado de varianza mínima</strong> para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
 </section>
 <section id="estimacion-de-sigma-2">
-<h3><span class="section-number">3.2.23. </span>Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#estimacion-de-sigma-2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.12. </span>Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#estimacion-de-sigma-2" title="Link to this heading">#</a></h3>
 <p>Al igual que en el caso de regresión lineal simple, puede construirse un estimador para la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> a partir de la <strong>suma de cuadrados de los residuos</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-residual-ss">
-<span class="eqno">(3.40)<a class="headerlink" href="#equation-residual-ss" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.41)<a class="headerlink" href="#equation-residual-ss" title="Link to this equation">#</a></span>\[
 \text{SS}_{\text{Res}} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} e_i^2 = \mathbf{e}^\top \mathbf{e}
 \]</div>
 <p>Sustituyendo <span class="math notranslate nohighlight">\(\mathbf{e} = \mathbf{y} - X\hat{\mathbf{b}}\)</span>, se obtiene:</p>
@@ -1119,27 +1207,27 @@ X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
 \]</div>
 <p>Agrupando términos y usando la simetría escalar:</p>
 <div class="math notranslate nohighlight" id="equation-residual-ss-expanded">
-<span class="eqno">(3.41)<a class="headerlink" href="#equation-residual-ss-expanded" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.42)<a class="headerlink" href="#equation-residual-ss-expanded" title="Link to this equation">#</a></span>\[
 \text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - 2 \hat{\mathbf{b}}^\top X^\top \mathbf{y} + \hat{\mathbf{b}}^\top X^\top X \hat{\mathbf{b}}
 \]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}\)</span>, la expresión se simplifica a:</p>
 <div class="math notranslate nohighlight" id="equation-residual-ss-final">
-<span class="eqno">(3.42)<a class="headerlink" href="#equation-residual-ss-final" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.43)<a class="headerlink" href="#equation-residual-ss-final" title="Link to this equation">#</a></span>\[
 \text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top X^\top \mathbf{y}
 \]</div>
 <p>El Apéndice C.3 demuestra que la suma de cuadrados de los residuos posee <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, dado que se han estimado <span class="math notranslate nohighlight">\(p\)</span> parámetros en el modelo de regresión. Por tanto, el <strong>cuadrado medio de los residuos</strong> se define como:</p>
 <div class="math notranslate nohighlight" id="equation-residual-ms">
-<span class="eqno">(3.43)<a class="headerlink" href="#equation-residual-ms" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.44)<a class="headerlink" href="#equation-residual-ms" title="Link to this equation">#</a></span>\[
 \text{MS}_{\text{Res}} = \frac{\text{SS}_{\text{Res}}}{n - p}
 \]</div>
 <p>Además, el valor esperado de <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span> es <span class="math notranslate nohighlight">\(\sigma^2\)</span>, por lo cual un <strong>estimador insesgado de <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> está dado por:</p>
 <div class="math notranslate nohighlight" id="equation-sigma-hat-def">
-<span class="eqno">(3.44)<a class="headerlink" href="#equation-sigma-hat-def" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.45)<a class="headerlink" href="#equation-sigma-hat-def" title="Link to this equation">#</a></span>\[
 \hat{\sigma}^2 = \text{MS}_{\text{Res}}
 \]</div>
 <p>Este estimador, como se indicó también en el caso de regresión simple, <strong>depende del modelo</strong> asumido.</p>
 <section id="ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">
-<h4><span class="section-number">3.2.23.1. </span>Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega<a class="headerlink" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.12.1. </span>Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega<a class="headerlink" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega" title="Link to this heading">#</a></h4>
 <p>Procedemos ahora a estimar la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> para el modelo de regresión múltiple ajustado a los datos de tiempo de entrega descritos en el Ejemplo 3.1.</p>
 <p>Primero, se tiene:</p>
 <div class="math notranslate nohighlight">
@@ -1167,7 +1255,7 @@ X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
 \]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(n = 25\)</span> y <span class="math notranslate nohighlight">\(p = 3\)</span>, se obtiene:</p>
 <div class="math notranslate nohighlight" id="equation-sigma-hat-numerical">
-<span class="eqno">(3.45)<a class="headerlink" href="#equation-sigma-hat-numerical" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.46)<a class="headerlink" href="#equation-sigma-hat-numerical" title="Link to this equation">#</a></span>\[
 \hat{\sigma}^2 = \frac{\text{SS}_{\text{Res}}}{n - p} = \frac{233.7260}{22} = 10.6239
 \]</div>
 <p>El valor reportado por el software Python en la Tabla 3.4 es de aproximadamente 10.6, consistente con este resultado.</p>
@@ -1177,12 +1265,12 @@ X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
 </section>
 </section>
 <section id="inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">
-<h3><span class="section-number">3.2.24. </span>Inadecuación de los Diagramas de Dispersión en Regresión Múltiple<a class="headerlink" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.13. </span>Inadecuación de los Diagramas de Dispersión en Regresión Múltiple<a class="headerlink" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple" title="Link to this heading">#</a></h3>
 <p>En el Capítulo 2 se mostró que el <strong>diagrama de dispersión</strong> es una herramienta fundamental para analizar la relación entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span> en la regresión lineal simple. También se observó en el Ejemplo 3.1 que una <strong>matriz de diagramas de dispersión</strong> resulta útil para visualizar la relación entre <span class="math notranslate nohighlight">\(y\)</span> y dos regresores.</p>
 <p>Podría parecer razonable concluir que esta utilidad se extiende al caso general; es decir, que examinar los diagramas de dispersión de <span class="math notranslate nohighlight">\(y\)</span> contra cada regresor <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span> siempre aporta información relevante sobre la relación entre la variable respuesta y los predictores. <strong>Desafortunadamente, esto no es cierto en general.</strong></p>
 <p>Siguiendo la exposición de Daniel y Wood (1980), se ilustra esta limitación en un problema con <strong>dos variables regresoras</strong>. Consideremos los datos generados a partir del modelo:</p>
 <div class="math notranslate nohighlight" id="equation-inadequate-scatter-model">
-<span class="eqno">(3.46)<a class="headerlink" href="#equation-inadequate-scatter-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.47)<a class="headerlink" href="#equation-inadequate-scatter-model" title="Link to this equation">#</a></span>\[
 y = 8 - 5x_1 + 12x_2
 \]</div>
 <p>La matriz de diagramas de dispersión correspondiente a este conjunto de datos se muestra en la Figura 3.7. El gráfico de <span class="math notranslate nohighlight">\(y\)</span> contra <span class="math notranslate nohighlight">\(x_1\)</span> no sugiere ninguna relación aparente entre ambas variables, mientras que el gráfico de <span class="math notranslate nohighlight">\(y\)</span> contra <span class="math notranslate nohighlight">\(x_2\)</span> indica una relación lineal con una pendiente cercana a 8. <strong>Ambos gráficos son engañosos.</strong></p>
@@ -1207,11 +1295,11 @@ y = 8 - 5x_1 + 12x_2
 <p>Los métodos analíticos para disentramar las relaciones entre múltiples variables regresoras y la variable respuesta se desarrollan en el <strong>Capítulo 10</strong>.</p>
 </section>
 <section id="estimacion-por-maxima-verosimilitud">
-<h3><span class="section-number">3.2.25. </span>Estimación por Máxima Verosimilitud<a class="headerlink" href="#estimacion-por-maxima-verosimilitud" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.14. </span>Estimación por Máxima Verosimilitud<a class="headerlink" href="#estimacion-por-maxima-verosimilitud" title="Link to this heading">#</a></h3>
 <p>Al igual que en el caso de la regresión lineal simple, puede demostrarse que los <strong>estimadores de máxima verosimilitud</strong> de los parámetros del modelo en regresión lineal múltiple —cuando los errores del modelo se distribuyen de forma normal e independiente— coinciden con los estimadores por mínimos cuadrados.</p>
 <p>El modelo es:</p>
 <div class="math notranslate nohighlight" id="equation-ml-model">
-<span class="eqno">(3.47)<a class="headerlink" href="#equation-ml-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.48)<a class="headerlink" href="#equation-ml-model" title="Link to this equation">#</a></span>\[
 y = X\beta + \varepsilon
 \]</div>
 <p>y los errores <span class="math notranslate nohighlight">\(\varepsilon\)</span> se suponen <strong>normalmente distribuidos</strong>, independientes entre sí, con varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>; es decir, <span class="math notranslate nohighlight">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span>. La función de densidad normal de cada error <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> es:</p>
@@ -1226,7 +1314,7 @@ L(\varepsilon, \beta, \sigma^2) = \prod_{i=1}^{n} f(\varepsilon_i) = \left(2\pi\
 \]</div>
 <p>Como <span class="math notranslate nohighlight">\(\varepsilon = y - X\beta\)</span>, la función de verosimilitud puede reescribirse como:</p>
 <div class="math notranslate nohighlight" id="equation-likelihood-function-multi">
-<span class="eqno">(3.48)<a class="headerlink" href="#equation-likelihood-function-multi" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.49)<a class="headerlink" href="#equation-likelihood-function-multi" title="Link to this equation">#</a></span>\[
 L(y, X, \beta, \sigma^2) = (2\pi)^{-n/2} \sigma^{-n} \exp\left( -\frac{1}{2\sigma^2}(y - X\beta)'(y - X\beta) \right)
 \]</div>
 <p>Al igual que en la regresión simple, resulta más cómodo trabajar con el logaritmo de la verosimilitud:</p>
@@ -1241,24 +1329,24 @@ L(y, X, \beta, \sigma^2) = (2\pi)^{-n/2} \sigma^{-n} \exp\left( -\frac{1}{2\sigm
 \]</div>
 <p>es mínimo. Por tanto, <strong>el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta\)</span> bajo normalidad es el estimador por mínimos cuadrados</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-mle-beta">
-<span class="eqno">(3.49)<a class="headerlink" href="#equation-mle-beta" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.50)<a class="headerlink" href="#equation-mle-beta" title="Link to this equation">#</a></span>\[
 \hat{\beta} = (X'X)^{-1}X'y
 \]</div>
 <p>El estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\sigma^2\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-mle-sigma">
-<span class="eqno">(3.50)<a class="headerlink" href="#equation-mle-sigma" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.51)<a class="headerlink" href="#equation-mle-sigma" title="Link to this equation">#</a></span>\[
 \hat{\sigma}^2 = \frac{(y - X\hat{\beta})'(y - X\hat{\beta})}{n}
 \]</div>
 <p>Estas expresiones representan la <strong>generalización a regresión múltiple</strong> de los resultados obtenidos en la Sección 2.11 para el caso simple. Las propiedades estadísticas de los estimadores de máxima verosimilitud también fueron discutidas allí.</p>
 </section>
 <section id="prueba-de-significancia-de-la-regresion">
-<h3><span class="section-number">3.2.26. </span>Prueba de significancia de la regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.15. </span>Prueba de significancia de la regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
 <p>Una vez estimados los parámetros del modelo de regresión, surgen dos preguntas fundamentales:</p>
 <ol class="arabic simple">
 <li><p>¿Qué tan adecuado es el modelo en su conjunto?</p></li>
 <li><p>¿Qué variables regresoras específicas son importantes?</p></li>
 </ol>
-<p>Para abordar estas cuestiones, se utilizan procedimientos de prueba de hipótesis que suponen que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son <strong>independientes</strong>, con <strong>media cero</strong> <span class="math notranslate nohighlight">\(E(\varepsilon_i) = 0\)</span> y <strong>varianza constante</strong> <span class="math notranslate nohighlight">\(Var(\varepsilon_i) = \sigma^2\)</span>, y que siguen una distribución normal.</p>
+<p>Para abordar estas cuestiones, se utilizan procedimientos de prueba de hipótesis que suponen que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son <strong>independientes</strong>, con <strong>media cero</strong> <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i) = 0\)</span> y <strong>varianza constante</strong> <span class="math notranslate nohighlight">\(Var(\varepsilon_i) = \sigma^2\)</span>, y que siguen una distribución normal.</p>
 <p>La prueba de significancia de la regresión busca determinar si existe alguna relación lineal entre la variable de respuesta <span class="math notranslate nohighlight">\(y\)</span> y al menos una de las variables regresoras <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Se trata de una prueba <strong>global</strong> de adecuación del modelo.</p>
 <p>Las hipótesis que se evalúan son:</p>
 <div class="math notranslate nohighlight">
@@ -1296,12 +1384,12 @@ F_0 = \frac{MSR}{MS_{Res}} = \frac{SSR / k}{SS_{Res} / (n - k - 1)}
 <p>El valor esperado del cuadrado medio residual es:</p>
 <div class="math notranslate nohighlight">
 \[
-E(MS_{Res}) = \sigma^2
+\mathbb{E}(MS_{Res}) = \sigma^2
 \]</div>
 <p>y el valor esperado del cuadrado medio de regresión es:</p>
 <div class="math notranslate nohighlight">
 \[
-E(MSR) = \sigma^2 + \frac{1}{k} \beta^{*\top} X_c^\top X_c \beta^*
+\mathbb{E}(MSR) = \sigma^2 + \frac{1}{k} \beta^{*\top} X_c^\top X_c \beta^*
 \]</div>
 <p>donde:</p>
 <ul class="simple">
@@ -1309,7 +1397,7 @@ E(MSR) = \sigma^2 + \frac{1}{k} \beta^{*\top} X_c^\top X_c \beta^*
 <li><p><span class="math notranslate nohighlight">\(X_c\)</span> es la matriz <strong>centrada</strong> de regresores, es decir:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-centered-matrix">
-<span class="eqno">(3.51)<a class="headerlink" href="#equation-centered-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.52)<a class="headerlink" href="#equation-centered-matrix" title="Link to this equation">#</a></span>\[\begin{split}
 X_c = \begin{bmatrix}
 x_{11} - \bar{x}_1 &amp; x_{12} - \bar{x}_2 &amp; \dots &amp; x_{1k} - \bar{x}_k \\
 x_{21} - \bar{x}_1 &amp; x_{22} - \bar{x}_2 &amp; \dots &amp; x_{2k} - \bar{x}_k \\
@@ -1364,38 +1452,38 @@ F_0 &gt; F_{\alpha, k, n-k-1}
 </div>
 <p>Una fórmula computacional útil para <span class="math notranslate nohighlight">\(SS_{Res}\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-ssres-formula">
-<span class="eqno">(3.52)<a class="headerlink" href="#equation-ssres-formula" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.53)<a class="headerlink" href="#equation-ssres-formula" title="Link to this equation">#</a></span>\[
 SS_{Res} = y^\top y - \hat{\beta}^\top X^\top y
 \]</div>
 <p>Usando:</p>
 <div class="math notranslate nohighlight" id="equation-sst-formula">
-<span class="eqno">(3.53)<a class="headerlink" href="#equation-sst-formula" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.54)<a class="headerlink" href="#equation-sst-formula" title="Link to this equation">#</a></span>\[
 SST = y^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
 \]</div>
 <p>entonces se obtiene:</p>
 <div class="math notranslate nohighlight" id="equation-ssr-formula">
-<span class="eqno">(3.54)<a class="headerlink" href="#equation-ssr-formula" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.55)<a class="headerlink" href="#equation-ssr-formula" title="Link to this equation">#</a></span>\[
 SSR = \hat{\beta}^\top X^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
 \]</div>
 <p>y la relación:</p>
 <div class="math notranslate nohighlight" id="equation-ssres-relation">
-<span class="eqno">(3.55)<a class="headerlink" href="#equation-ssres-relation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.56)<a class="headerlink" href="#equation-ssres-relation" title="Link to this equation">#</a></span>\[
 SS_{Res} = SST - SSR
 \]</div>
 </section>
 <section id="ejemplo-los-datos-del-tiempo-de-entrega">
-<h3><span class="section-number">3.2.27. </span>Ejemplo: Los datos del tiempo de entrega<a class="headerlink" href="#ejemplo-los-datos-del-tiempo-de-entrega" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.16. </span>Ejemplo: Los datos del tiempo de entrega<a class="headerlink" href="#ejemplo-los-datos-del-tiempo-de-entrega" title="Link to this heading">#</a></h3>
 <p>Procedemos a realizar la prueba de significancia de la regresión utilizando los datos del tiempo de entrega presentados en el Ejemplo 3.1. Algunos de los valores necesarios se calcularon previamente en el Ejemplo 3.2. Notamos que:</p>
 <div class="math notranslate nohighlight" id="equation-sst-example3-3">
-<span class="eqno">(3.56)<a class="headerlink" href="#equation-sst-example3-3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.57)<a class="headerlink" href="#equation-sst-example3-3" title="Link to this equation">#</a></span>\[
 SST = \mathbf{y}^\top \mathbf{y} - \frac{\left( \sum_{i=1}^{n} y_i \right)^2}{n} = 18\,310.6290 - \frac{(559.60)^2}{25} = 5784.5426
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ssr-example3-3">
-<span class="eqno">(3.57)<a class="headerlink" href="#equation-ssr-example3-3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.58)<a class="headerlink" href="#equation-ssr-example3-3" title="Link to this equation">#</a></span>\[
 SSR = \hat{\mathbf{b}}^\top \mathbf{X}^\top \mathbf{y} - \frac{\left( \sum_{i=1}^{n} y_i \right)^2}{n} = 18\,076.9030 - \frac{(559.60)^2}{25} = 5550.8166
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ssres-example3-3">
-<span class="eqno">(3.58)<a class="headerlink" href="#equation-ssres-example3-3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.59)<a class="headerlink" href="#equation-ssres-example3-3" title="Link to this equation">#</a></span>\[
 SS_{Res} = SST - SSR = \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top \mathbf{X}^\top \mathbf{y} = 233.7260
 \]</div>
 <p>El análisis de varianza se presenta en la Tabla 3.6. Para contrastar la hipótesis nula:</p>
@@ -1405,13 +1493,13 @@ H_0: \beta_1 = \beta_2 = 0
 \]</div>
 <p>calculamos la estadística de prueba:</p>
 <div class="math notranslate nohighlight" id="equation-f-example3-3">
-<span class="eqno">(3.59)<a class="headerlink" href="#equation-f-example3-3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.60)<a class="headerlink" href="#equation-f-example3-3" title="Link to this equation">#</a></span>\[
 F_0 = \frac{MSR}{MS_{Res}} = \frac{2775.4083}{10.6239} = 261.24
 \]</div>
 <p>Dado que el valor <em>p</em> asociado a esta estadística es muy pequeño, se concluye que el tiempo de entrega está relacionado significativamente con el volumen entregado y/o la distancia recorrida. No obstante, este resultado <strong>no garantiza que la relación encontrada sea apropiada para predecir</strong> el tiempo de entrega como función del volumen y la distancia. Para ello, se requerirán pruebas adicionales de adecuación del modelo.</p>
 </section>
 <section id="tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">
-<h3><span class="section-number">3.2.28. </span>Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión<a class="headerlink" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.17. </span>Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión<a class="headerlink" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fuente de variación</p></th>
@@ -1445,7 +1533,7 @@ F_0 = \frac{MSR}{MS_{Res}} = \frac{2775.4083}{10.6239} = 261.24
 </div>
 </section>
 <section id="r-2-y-r-2-text-ajustado">
-<h3><span class="section-number">3.2.29. </span><span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span><a class="headerlink" href="#r-2-y-r-2-text-ajustado" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.18. </span><span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span><a class="headerlink" href="#r-2-y-r-2-text-ajustado" title="Link to this heading">#</a></h3>
 <p>Dos medidas adicionales para evaluar la adecuación global del modelo son el coeficiente de determinación <span class="math notranslate nohighlight">\(R^2\)</span> y su versión ajustada, denotada como <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span>.</p>
 <p>El resultado generado por <em>Python</em> en la Tabla 3.4 reporta que el valor de <span class="math notranslate nohighlight">\(R^2\)</span> para el modelo de regresión múltiple aplicado a los datos de tiempo de entrega es:</p>
 <div class="math notranslate nohighlight">
@@ -1482,7 +1570,7 @@ R^2_{\text{ajustado}} = 0.927 \quad \text{o bien,} \quad 92.7\% \tag{ver Tabla 2
 <p>En capítulos posteriores, al tratar sobre la construcción de modelos y la selección de variables, será útil disponer de un criterio que evite el sobreajuste (<em>overfitting</em>), es decir, la inclusión de términos innecesarios. En este contexto, el uso del <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span> es especialmente valioso, ya que penaliza la inclusión de variables no informativas y favorece modelos más parsimoniosos.</p>
 </section>
 <section id="pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">
-<h3><span class="section-number">3.2.30. </span>Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes<a class="headerlink" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.19. </span>Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes<a class="headerlink" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes" title="Link to this heading">#</a></h3>
 <p>Una vez determinado que al menos uno de los regresores es significativo, surge la pregunta lógica: ¿cuál o cuáles de ellos lo son? Agregar una variable a un modelo de regresión siempre incrementa la suma de cuadrados de regresión y reduce la suma de cuadrados de residuos. Es necesario evaluar si este incremento justifica incluir el nuevo regresor. Además, agregar regresores irrelevantes puede incrementar la varianza del valor ajustado <span class="math notranslate nohighlight">\(\hat{y}\)</span> y el cuadrado medio residual, reduciendo así la utilidad del modelo.</p>
 <p>Las hipótesis para evaluar la significancia de un coeficiente individual <span class="math notranslate nohighlight">\(\beta_j\)</span> son:</p>
 <div class="math notranslate nohighlight">
@@ -1496,7 +1584,7 @@ t_0 = \frac{\hat{\beta}_j}{\sqrt{\hat{\sigma}^2 C_{jj}}} = \frac{\hat{\beta}_j}{
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal correspondiente a <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en la matriz <span class="math notranslate nohighlight">\((X'X)^{-1}\)</span>. Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n - k - 1}\)</span>. Esta prueba es parcial, ya que el valor de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> depende de los otros regresores incluidos en el modelo.</p>
 <section id="id1">
-<h4><span class="section-number">3.2.30.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.19.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>Supongamos que deseamos evaluar la contribución del regresor <span class="math notranslate nohighlight">\(x_2\)</span> (distancia), dado que <span class="math notranslate nohighlight">\(x_1\)</span> (casos) ya está en el modelo. Las hipótesis son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1581,7 +1669,7 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \beta_{11} x_1^2 
 <p>Estas pruebas permiten descomponer la suma de cuadrados de regresión en componentes marginales de un grado de libertad. En resumen, la prueba parcial <span class="math notranslate nohighlight">\(F\)</span> es una herramienta flexible y general que permite evaluar la significancia de variables individuales o conjuntos de variables en presencia de otros regresores.</p>
 </section>
 <section id="id2">
-<h4><span class="section-number">3.2.30.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.19.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p>Consideremos nuevamente los datos de tiempo de entrega de bebidas gaseosas del Ejemplo 3.1. Supongamos que deseamos investigar la contribución de la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) al modelo. Las hipótesis apropiadas son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1636,7 +1724,7 @@ t_0^2 = (3.98)^2 = 15.84 \approx F_0
 </section>
 </section>
 <section id="caso-especial-de-columnas-ortogonales-en-x">
-<h3><span class="section-number">3.2.31. </span>Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span><a class="headerlink" href="#caso-especial-de-columnas-ortogonales-en-x" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.20. </span>Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span><a class="headerlink" href="#caso-especial-de-columnas-ortogonales-en-x" title="Link to this heading">#</a></h3>
 <p>Consideremos el modelo:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1728,7 +1816,7 @@ X =
 <p>Los niveles de los regresores corresponden a un diseño factorial <span class="math notranslate nohighlight">\(2^3\)</span>. Es fácil verificar que las columnas de <span class="math notranslate nohighlight">\(X\)</span> son ortogonales. Por tanto, cada <span class="math notranslate nohighlight">\(SSR(\beta_j)\)</span>, <span class="math notranslate nohighlight">\(j = 1, 2, 3\)</span>, mide la contribución del regresor <span class="math notranslate nohighlight">\(x_j\)</span> al modelo sin importar si los otros regresores están o no presentes.</p>
 </section>
 <section id="prueba-de-la-hipotesis-lineal-general">
-<h3><span class="section-number">3.2.32. </span>3.3.4 Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.21. </span>3.3.4 Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
 <p>Muchas hipótesis sobre los coeficientes de regresión pueden evaluarse mediante un <strong>enfoque unificado</strong>. El <strong>método de suma de cuadrados extra</strong> es un caso particular de este procedimiento general. En este enfoque, la <strong>suma de cuadrados utilizada para probar la hipótesis</strong> se calcula como la <strong>diferencia entre dos sumas de cuadrados residuales</strong>.</p>
 <p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como:</p>
 <div class="math notranslate nohighlight">
@@ -1781,7 +1869,7 @@ F_0 = \frac{SS_H / r}{SS_{Res}(\text{MC}) / (n - p)}
 \]</div>
 <p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span></strong> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n-p}\)</span>.</p>
 <section id="ejemplo-prueba-de-igualdad-de-coeficientes">
-<h4><span class="section-number">3.2.32.1. </span>Ejemplo: Prueba de igualdad de coeficientes<a class="headerlink" href="#ejemplo-prueba-de-igualdad-de-coeficientes" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.21.1. </span>Ejemplo: Prueba de igualdad de coeficientes<a class="headerlink" href="#ejemplo-prueba-de-igualdad-de-coeficientes" title="Link to this heading">#</a></h4>
 <p>Sea el modelo:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1820,7 +1908,7 @@ t_0 = \frac{\hat{\beta}_1 - \hat{\beta}_3}{\sqrt{\hat{\sigma}^2(C_{11} + C_{33} 
 <p>con <span class="math notranslate nohighlight">\(n - 4\)</span> grados de libertad.</p>
 </section>
 <section id="ejemplo-prueba-conjunta-de-restricciones">
-<h4><span class="section-number">3.2.32.2. </span>Ejemplo: Prueba conjunta de restricciones<a class="headerlink" href="#ejemplo-prueba-conjunta-de-restricciones" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.21.2. </span>Ejemplo: Prueba conjunta de restricciones<a class="headerlink" href="#ejemplo-prueba-conjunta-de-restricciones" title="Link to this heading">#</a></h4>
 <p>Supongamos que se desea probar:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1849,7 +1937,7 @@ F_0 = \frac{SS_H / 2}{MS_{Res}(\text{MC})}
 </section>
 </section>
 <section id="forma-matricial-alternativa-del-estadistico">
-<h3><span class="section-number">3.2.33. </span>Forma matricial alternativa del estadístico<a class="headerlink" href="#forma-matricial-alternativa-del-estadistico" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.22. </span>Forma matricial alternativa del estadístico<a class="headerlink" href="#forma-matricial-alternativa-del-estadistico" title="Link to this heading">#</a></h3>
 <p>El estadístico <span class="math notranslate nohighlight">\(F\)</span> también puede escribirse como:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1858,7 +1946,7 @@ F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X'X)^{-1}T' \right]^{-1} T\hat
 \]</div>
 </section>
 <section id="extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">
-<h3><span class="section-number">3.2.34. </span>Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span><a class="headerlink" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.23. </span>Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span><a class="headerlink" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c" title="Link to this heading">#</a></h3>
 <p>Más generalmente, se puede probar:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1873,7 +1961,7 @@ F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X'X)^{-1}T' \righ
 \]</div>
 <p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n - p}\)</span></strong>.</p>
 <section id="ejemplo-adicional">
-<h4><span class="section-number">3.2.34.1. </span>Ejemplo adicional<a class="headerlink" href="#ejemplo-adicional" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.23.1. </span>Ejemplo adicional<a class="headerlink" href="#ejemplo-adicional" title="Link to this heading">#</a></h4>
 <p>Para probar:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1888,30 +1976,30 @@ T = [0 \quad 1 \quad 0 \quad -1], \quad \mathbf{c} = [2]
 </section>
 </section>
 <section id="intervalos-de-confianza-en-regresion-multiple">
-<h3><span class="section-number">3.2.35. </span>Intervalos de confianza en regresión múltiple<a class="headerlink" href="#intervalos-de-confianza-en-regresion-multiple" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.24. </span>Intervalos de confianza en regresión múltiple<a class="headerlink" href="#intervalos-de-confianza-en-regresion-multiple" title="Link to this heading">#</a></h3>
 <p><strong>Los intervalos de confianza para los coeficientes de regresión individuales y para la respuesta media bajo niveles específicos de los regresores desempeñan un papel igualmente importante en regresión múltiple como en el caso de regresión lineal simple.</strong> Esta sección desarrolla los intervalos de confianza uno a uno para estos escenarios y se introduce brevemente el concepto de intervalos de confianza simultáneos para los coeficientes.</p>
 <section id="intervalos-de-confianza-para-los-coeficientes-de-regresion">
-<h4><span class="section-number">3.2.35.1. </span>Intervalos de confianza para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.24.1. </span>Intervalos de confianza para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h4>
 <p><strong>Para construir intervalos de confianza para los coeficientes de regresión <span class="math notranslate nohighlight">\(\beta_j\)</span>, se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son independientes, con distribución normal, media cero y varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong> Por lo tanto, las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son independientes y normales con media <span class="math notranslate nohighlight">\(\beta_0 + \sum_{j=1}^k \beta_j x_{ij}\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p><strong>Dado que el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> es una combinación lineal de las observaciones, entonces <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> sigue una distribución normal multivariada con media <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> y matriz de covarianza <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}'\mathbf{X})^{-1}\)</span>.</strong> Esto implica que cada estimador individual <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> sigue una distribución normal con media <span class="math notranslate nohighlight">\(\beta_j\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2 C_{jj}\)</span>, donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal <span class="math notranslate nohighlight">\(j\)</span>-ésimo de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span>.</p>
 <p><strong>En consecuencia, cada una de las siguientes estadísticas</strong></p>
 <div class="math notranslate nohighlight" id="equation-t-confidence">
-<span class="eqno">(3.60)<a class="headerlink" href="#equation-t-confidence" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.61)<a class="headerlink" href="#equation-t-confidence" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_j - \beta_j}{\sqrt{\hat{\sigma}^2 C_{jj}}}, \quad j = 0, 1, \ldots, k
 \]</div>
 <p><strong>sigue una distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, donde <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es el estimador de la varianza del error.</strong></p>
 <p><strong>Con base en el resultado anterior, se puede definir un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para el coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> como</strong></p>
 <div class="math notranslate nohighlight" id="equation-ci-beta-j">
-<span class="eqno">(3.61)<a class="headerlink" href="#equation-ci-beta-j" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.62)<a class="headerlink" href="#equation-ci-beta-j" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
 <p><strong>El valor <span class="math notranslate nohighlight">\(\sqrt{\hat{\sigma}^2 C_{jj}}\)</span> se conoce como el error estándar del coeficiente de regresión <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>:</strong></p>
 <div class="math notranslate nohighlight" id="equation-se-beta">
-<span class="eqno">(3.62)<a class="headerlink" href="#equation-se-beta" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.63)<a class="headerlink" href="#equation-se-beta" title="Link to this equation">#</a></span>\[
 \text{se}(\hat{\beta}_j) = \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
 <p><strong>Ejemplo. Datos de tiempo de entrega</strong></p>
-<p>Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.61)</a>, se tiene:</p>
+<p>Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.62)</a>, se tiene:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(t_{0.025, 22} = 2.074\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_1) = \sqrt{10.6239 \cdot 0.00274378} = 0.17073\)</span></p></li>
@@ -1930,7 +2018,7 @@ t_0 = \frac{\hat{\beta}_j - \beta_j}{\sqrt{\hat{\sigma}^2 C_{jj}}}, \quad j = 0,
 </section>
 </section>
 <section id="estimacion-por-intervalo-de-confianza-de-la-respuesta-media">
-<h3><span class="section-number">3.2.36. </span>Estimación por intervalo de confianza de la respuesta media<a class="headerlink" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.25. </span>Estimación por intervalo de confianza de la respuesta media<a class="headerlink" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media" title="Link to this heading">#</a></h3>
 <p><strong>Es posible construir un intervalo de confianza para la respuesta media en un punto específico del espacio de los regresores, como <span class="math notranslate nohighlight">\(x_{01}, x_{02}, \dots, x_{0k}\)</span>.</strong> Definimos el vector <span class="math notranslate nohighlight">\(x_0\)</span> como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1945,17 +2033,17 @@ x_{0k}
 \end{split}\]</div>
 <p><strong>El valor ajustado en este punto es:</strong></p>
 <div class="math notranslate nohighlight" id="equation-y0-hat">
-<span class="eqno">(3.63)<a class="headerlink" href="#equation-y0-hat" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.64)<a class="headerlink" href="#equation-y0-hat" title="Link to this equation">#</a></span>\[
 \hat{y}_0 = x_0' \hat{\boldsymbol{\beta}}
 \]</div>
-<p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(E(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(E(\hat{y}_0) = x_0' \boldsymbol{\beta} = E(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p>
+<p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{y}_0) = x_0' \boldsymbol{\beta} = \mathbb{E}(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p>
 <div class="math notranslate nohighlight" id="equation-var-y0-hat">
-<span class="eqno">(3.64)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.65)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
 \operatorname{Var}(\hat{y}_0) = \sigma^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0
 \]</div>
 <p><strong>Por lo tanto, un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x_0\)</span> es:</strong></p>
 <div class="math notranslate nohighlight" id="equation-ci-mean-y">
-<span class="eqno">(3.65)<a class="headerlink" href="#equation-ci-mean-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.66)<a class="headerlink" href="#equation-ci-mean-y" title="Link to this equation">#</a></span>\[
 \hat{y}_0 \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0}
 \]</div>
 <p><strong>Esta expresión es la generalización en regresión múltiple de la ecuación (2.43).</strong></p>
@@ -1970,7 +2058,7 @@ x_0 =
 275
 \end{bmatrix}
 \end{split}\]</div>
-<p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.63)</a>, y utilizando los valores estimados:</p>
+<p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.64)</a>, y utilizando los valores estimados:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \hat{\boldsymbol{\beta}} = 
@@ -2007,7 +2095,7 @@ x_0 =
 \end{bmatrix}
 = 10.6239 \cdot 0.05346 = 0.56794
 \end{split}\]</div>
-<p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.65)</a>:</strong></p>
+<p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.66)</a>:</strong></p>
 <div class="math notranslate nohighlight">
 \[
 19.22 \pm 2.074 \cdot \sqrt{0.56794}
@@ -2015,7 +2103,7 @@ x_0 =
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-17.66 \leq E(y|x_0) \leq 20.78
+17.66 \leq \mathbb{E}(y|x_0) \leq 20.78
 \]</div>
 <p><strong>Esto implica que existe un 95% de confianza de que el verdadero valor medio de tiempo de entrega se encuentre dentro de este intervalo.</strong></p>
 <p><strong>La longitud del intervalo de confianza es una medida útil para evaluar la precisión del modelo de regresión y también puede utilizarse para comparar modelos.</strong></p>
@@ -2032,7 +2120,7 @@ x_0 =
 <p><strong>En general, mientras más alejado esté el punto del centroide del espacio de diseño, mayor será la diferencia en las longitudes de los intervalos de confianza entre modelos.</strong></p>
 </section>
 <section id="intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">
-<h3><span class="section-number">3.2.37. </span>Intervalos de confianza simultáneos para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.26. </span>Intervalos de confianza simultáneos para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
 <p><strong>Hemos discutido procedimientos para construir distintos tipos de intervalos de confianza y de predicción para el modelo de regresión lineal.</strong> Estos intervalos han sido considerados de forma individual, es decir, se interpretan de manera que el coeficiente de confianza <span class="math notranslate nohighlight">\(1 - \alpha\)</span> representa la proporción de afirmaciones correctas al repetir el muestreo y construir el intervalo apropiado para cada muestra.</p>
 <ul class="simple">
 <li><p>En algunas situaciones, es necesario construir múltiples intervalos de confianza o predicción utilizando los mismos datos. En estos casos, el analista desea establecer un nivel de confianza que aplique <strong>simultáneamente</strong> al conjunto completo de estimaciones. Estos conjuntos de intervalos se denominan <strong>intervalos de confianza conjuntos</strong> o <strong>intervalos de predicción conjuntos</strong>.</p></li>
@@ -2047,7 +2135,7 @@ x_0 =
 \]</div>
 <p>lo cual implica que:</p>
 <div class="math notranslate nohighlight" id="equation-joint-confidence-region">
-<span class="eqno">(3.66)<a class="headerlink" href="#equation-joint-confidence-region" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.67)<a class="headerlink" href="#equation-joint-confidence-region" title="Link to this equation">#</a></span>\[
 P\left\{ (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})' \mathbf{X}'\mathbf{X} (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta}) \leq pMS_{\text{Res}} F_{\alpha, p, n - p} \right\} = 1 - \alpha
 \]</div>
 <p>Por tanto, una <strong>región de confianza del <span class="math notranslate nohighlight">\(100(1-\alpha)\%\)</span> para todos los parámetros</strong> es:</p>
@@ -2057,7 +2145,7 @@ P\left\{ (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})' \mathbf{X}'\mathbf{X} 
 \]</div>
 <p>Esta desigualdad describe una región elíptica. Su construcción es sencilla para regresión simple (<span class="math notranslate nohighlight">\(p=2\)</span>), aunque para <span class="math notranslate nohighlight">\(p=3\)</span> se requiere software gráfico tridimensional especializado.</p>
 <section id="ejemplo-datos-de-propulsor-de-cohetes">
-<h4><span class="section-number">3.2.37.1. </span>Ejemplo: Datos de Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-de-propulsor-de-cohetes" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.26.1. </span>Ejemplo: Datos de Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-de-propulsor-de-cohetes" title="Link to this heading">#</a></h4>
 <p>Para regresión lineal simple, la ecuación anterior se reduce a:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2075,7 +2163,7 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </ul>
 <p><strong>Existe otro enfoque general para obtener intervalos simultáneos de los parámetros</strong>, basado en la fórmula:</p>
 <div class="math notranslate nohighlight" id="equation-bonferroni-general">
-<span class="eqno">(3.67)<a class="headerlink" href="#equation-bonferroni-general" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.68)<a class="headerlink" href="#equation-bonferroni-general" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm \Delta \cdot se(\hat{\beta}_j), \quad j = 0, 1, \dots, k
 \]</div>
 <p>donde el valor de <span class="math notranslate nohighlight">\(\Delta\)</span> se selecciona para garantizar una probabilidad conjunta deseada.</p>
@@ -2086,12 +2174,12 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 \]</div>
 <p>y por tanto,</p>
 <div class="math notranslate nohighlight" id="equation-bonferroni-ci">
-<span class="eqno">(3.68)<a class="headerlink" href="#equation-bonferroni-ci" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.69)<a class="headerlink" href="#equation-bonferroni-ci" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm t_{\alpha/2p, n-p} \cdot se(\hat{\beta}_j), \quad j = 0, 1, \dots, k
 \]</div>
 </section>
 <section id="ejemplo-datos-del-propulsor">
-<h4><span class="section-number">3.2.37.2. </span>Ejemplo: Datos del Propulsor<a class="headerlink" href="#ejemplo-datos-del-propulsor" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.26.2. </span>Ejemplo: Datos del Propulsor<a class="headerlink" href="#ejemplo-datos-del-propulsor" title="Link to this heading">#</a></h4>
 <p>Para construir intervalos conjuntos del 90% para <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>, se utilizan los siguientes valores:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\hat{\beta}_0 = 2627.822\)</span>, <span class="math notranslate nohighlight">\(se(\hat{\beta}_0) = 44.184\)</span></p></li>
@@ -2137,7 +2225,7 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </section>
 </section>
 <section id="coeficientes-de-regresion-estandarizados">
-<h3><span class="section-number">3.2.38. </span>Coeficientes de regresión estandarizados<a class="headerlink" href="#coeficientes-de-regresion-estandarizados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.27. </span>Coeficientes de regresión estandarizados<a class="headerlink" href="#coeficientes-de-regresion-estandarizados" title="Link to this heading">#</a></h3>
 <p><strong>Comparar directamente los coeficientes de regresión suele ser difícil debido a que la magnitud de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> refleja las unidades de medida del regresor <span class="math notranslate nohighlight">\(x_j\)</span>.</strong> Por ejemplo, si el modelo de regresión es <span class="math notranslate nohighlight">\(\hat{y} = 5 + x_1 + 1000x_2\)</span>, donde <span class="math notranslate nohighlight">\(y\)</span> está en litros, <span class="math notranslate nohighlight">\(x_1\)</span> en mililitros y <span class="math notranslate nohighlight">\(x_2\)</span> en litros, se observa que, aunque <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span> es mucho mayor que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>, el efecto de ambos regresores sobre <span class="math notranslate nohighlight">\(\hat{y}\)</span> es el mismo, ya que un cambio de una unidad en litros en cualquiera de las variables genera el mismo cambio en la respuesta.</p>
 <ul class="simple">
 <li><p>Generalmente, las unidades del coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> son las unidades de <span class="math notranslate nohighlight">\(y\)</span> divididas entre las de <span class="math notranslate nohighlight">\(x_j\)</span>.</p></li>
@@ -2145,52 +2233,52 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </ul>
 <p>Estos coeficientes adimensionales son conocidos como <strong>coeficientes de regresión estandarizados</strong>. Se presentan dos métodos populares de escalamiento:</p>
 <section id="escalamiento-normal-estandar">
-<h4><span class="section-number">3.2.38.1. </span>Escalamiento normal estándar<a class="headerlink" href="#escalamiento-normal-estandar" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.27.1. </span>Escalamiento normal estándar<a class="headerlink" href="#escalamiento-normal-estandar" title="Link to this heading">#</a></h4>
 <p>Se define la variable estandarizada <span class="math notranslate nohighlight">\(z_{ij}\)</span> como:</p>
 <div class="math notranslate nohighlight" id="equation-standard-scaling-z">
-<span class="eqno">(3.69)<a class="headerlink" href="#equation-standard-scaling-z" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.70)<a class="headerlink" href="#equation-standard-scaling-z" title="Link to this equation">#</a></span>\[
 z_{ij} = \frac{x_{ij} - \bar{x}_j}{s_j}, \quad i = 1, 2, \ldots, n, \quad j = 1, 2, \ldots, k
 \]</div>
 <p>Y la variable de respuesta estandarizada:</p>
 <div class="math notranslate nohighlight" id="equation-standard-scaling-y">
-<span class="eqno">(3.70)<a class="headerlink" href="#equation-standard-scaling-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.71)<a class="headerlink" href="#equation-standard-scaling-y" title="Link to this equation">#</a></span>\[
 y_i^* = \frac{y_i - \bar{y}}{s_y}, \quad i = 1, 2, \ldots, n
 \]</div>
 <p>Donde <span class="math notranslate nohighlight">\(s_j^2\)</span> y <span class="math notranslate nohighlight">\(s_y^2\)</span> son las varianzas muestrales de los regresores y de la respuesta, respectivamente.</p>
 <p><strong>Todas las variables escaladas tienen media muestral cero y varianza igual a uno.</strong></p>
 <p>Con estas variables, el modelo de regresión se reescribe como:</p>
 <div class="math notranslate nohighlight" id="equation-standardized-model">
-<span class="eqno">(3.71)<a class="headerlink" href="#equation-standardized-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.72)<a class="headerlink" href="#equation-standardized-model" title="Link to this equation">#</a></span>\[
 y_i^* = b_1 z_{i1} + b_2 z_{i2} + \cdots + b_k z_{ik} + \varepsilon_i, \quad i = 1, 2, \ldots, n\]</div>
 <p>La matriz de diseño con variables estandarizadas es <span class="math notranslate nohighlight">\(Z\)</span>, y el vector de respuestas estandarizadas es <span class="math notranslate nohighlight">\(y^*\)</span>. El estimador de mínimos cuadrados es:</p>
 <div class="math notranslate nohighlight" id="equation-standardized-b">
-<span class="eqno">(3.72)<a class="headerlink" href="#equation-standardized-b" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.73)<a class="headerlink" href="#equation-standardized-b" title="Link to this equation">#</a></span>\[
 \hat{\mathbf{b}} = (Z'Z)^{-1} Z'y^*\]</div>
 </section>
 <section id="escalamiento-de-longitud-unitaria">
-<h4><span class="section-number">3.2.38.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.27.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
 <p>Se define la transformación:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-scaling-x">
-<span class="eqno">(3.73)<a class="headerlink" href="#equation-unit-length-scaling-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.74)<a class="headerlink" href="#equation-unit-length-scaling-x" title="Link to this equation">#</a></span>\[
 w_{ij} = \frac{x_{ij} - \bar{x}_j}{\sqrt{S_{jj}}}, \quad i = 1, 2, \ldots, n, \quad j = 1, 2, \ldots, k\]</div>
 <p>Y para la respuesta:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-scaling-y">
-<span class="eqno">(3.74)<a class="headerlink" href="#equation-unit-length-scaling-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.75)<a class="headerlink" href="#equation-unit-length-scaling-y" title="Link to this equation">#</a></span>\[
 y_i^\circ = \frac{y_i - \bar{y}}{\sqrt{SST}}, \quad i = 1, 2, \ldots, n\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(S_{jj}\)</span> es la suma de cuadrados corregida del regresor <span class="math notranslate nohighlight">\(x_j\)</span>, y <span class="math notranslate nohighlight">\(SST\)</span> es la suma total de cuadrados de la respuesta.</p>
 <p>El modelo de regresión con estas variables es:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-model">
-<span class="eqno">(3.75)<a class="headerlink" href="#equation-unit-length-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.76)<a class="headerlink" href="#equation-unit-length-model" title="Link to this equation">#</a></span>\[
 y_i^\circ = b_1 w_{i1} + b_2 w_{i2} + \cdots + b_k w_{ik} + \varepsilon_i, \quad i = 1, 2, \ldots, n\]</div>
 <p>El estimador es:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-b">
-<span class="eqno">(3.76)<a class="headerlink" href="#equation-unit-length-b" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.77)<a class="headerlink" href="#equation-unit-length-b" title="Link to this equation">#</a></span>\[
 \hat{\mathbf{b}} = (W'W)^{-1} W'y^\circ\]</div>
 <ul class="simple">
 <li><p>En este caso, la matriz <span class="math notranslate nohighlight">\(W'W\)</span> es una matriz de correlaciones:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-correlation-matrix">
-<span class="eqno">(3.77)<a class="headerlink" href="#equation-correlation-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.78)<a class="headerlink" href="#equation-correlation-matrix" title="Link to this equation">#</a></span>\[\begin{split}
 W'W = \begin{bmatrix}
 1 &amp; r_{12} &amp; \cdots &amp; r_{1k} \\
 r_{12} &amp; 1 &amp; \cdots &amp; r_{2k} \\
@@ -2201,27 +2289,27 @@ r_{1k} &amp; r_{2k} &amp; \cdots &amp; 1
 <li><p>Y <span class="math notranslate nohighlight">\(W'y^\circ\)</span> es un vector de correlaciones entre los regresores y la respuesta:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-regressor-response-correlation">
-<span class="eqno">(3.78)<a class="headerlink" href="#equation-regressor-response-correlation" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.79)<a class="headerlink" href="#equation-regressor-response-correlation" title="Link to this equation">#</a></span>\[\begin{split}
 W'y^\circ = \begin{bmatrix} r_{1y} \\ r_{2y} \\ \vdots \\ r_{ky} \end{bmatrix}\end{split}\]</div>
 <p>Donde cada <span class="math notranslate nohighlight">\(r_{ij}\)</span> es la correlación muestral entre <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span>, y <span class="math notranslate nohighlight">\(r_{jy}\)</span> entre <span class="math notranslate nohighlight">\(x_j\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p><strong>Ambos métodos producen el mismo vector <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> de coeficientes estandarizados.</strong> Esto se debe a que:</p>
 <div class="math notranslate nohighlight" id="equation-z-and-w-relation">
-<span class="eqno">(3.79)<a class="headerlink" href="#equation-z-and-w-relation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.80)<a class="headerlink" href="#equation-z-and-w-relation" title="Link to this equation">#</a></span>\[
 Z'Z = (n - 1) W'W\]</div>
 </section>
 <section id="relacion-con-los-coeficientes-originales">
-<h4><span class="section-number">3.2.38.3. </span>Relación con los coeficientes originales<a class="headerlink" href="#relacion-con-los-coeficientes-originales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.27.3. </span>Relación con los coeficientes originales<a class="headerlink" href="#relacion-con-los-coeficientes-originales" title="Link to this heading">#</a></h4>
 <p>Los coeficientes originales pueden recuperarse a partir de los estandarizados mediante:</p>
 <div class="math notranslate nohighlight" id="equation-original-beta">
-<span class="eqno">(3.80)<a class="headerlink" href="#equation-original-beta" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.81)<a class="headerlink" href="#equation-original-beta" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j = \hat{b}_j \left( \frac{\sqrt{SST}}{\sqrt{S_{jj}}} \right), \quad j = 1, 2, \ldots, k\]</div>
 <p>Y la ordenada al origen es:</p>
 <div class="math notranslate nohighlight" id="equation-original-intercept">
-<span class="eqno">(3.81)<a class="headerlink" href="#equation-original-intercept" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.82)<a class="headerlink" href="#equation-original-intercept" title="Link to this equation">#</a></span>\[
 \hat{\beta}_0 = \bar{y} - \sum_{j=1}^k \hat{\beta}_j \bar{x}_j\]</div>
 </section>
 <section id="observaciones-finales">
-<h4><span class="section-number">3.2.38.4. </span>Observaciones finales<a class="headerlink" href="#observaciones-finales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.27.4. </span>Observaciones finales<a class="headerlink" href="#observaciones-finales" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Muchos programas de cómputo en Python muestran tanto los coeficientes originales como los estandarizados.</p></li>
 <li><p><strong>Los coeficientes estandarizados siguen siendo coeficientes parciales</strong> y dependen del rango de los regresores.</p></li>
@@ -2235,7 +2323,7 @@ Z'Z = (n - 1) W'W\]</div>
 <p><strong>Los modelos de regresión se utilizan en diversas aplicaciones. Un problema significativo que puede afectar su utilidad es la multicolinealidad, es decir, la dependencia casi lineal entre las variables regresoras.</strong> En esta sección se introduce brevemente esta problemática y se indican algunos efectos perjudiciales. Un tratamiento más completo aparece en el Capítulo 9.</p>
 <p><strong>La multicolinealidad implica dependencia lineal aproximada entre los regresores.</strong> Como estos constituyen las columnas de la matriz <span class="math notranslate nohighlight">\(X\)</span>, una dependencia lineal exacta implicaría que <span class="math notranslate nohighlight">\(X'X\)</span> es singular. La existencia de relaciones casi lineales puede dificultar la estimación precisa de los coeficientes de regresión.</p>
 <ul class="simple">
-<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.69)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.70)</a>, la matriz <span class="math notranslate nohighlight">\(X'X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
+<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.70)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.71)</a>, la matriz <span class="math notranslate nohighlight">\(X'X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
 </ul>
 <p>Para un conjunto de datos ortogonales:
 $<span class="math notranslate nohighlight">\(
@@ -2382,68 +2470,57 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-regresion-multiple">3.1. Modelos de Regresión Múltiple</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-parametros-del-modelo">3.2. Estimación de los Parámetros del Modelo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion">3.2.1. Estimación por Mínimos Cuadrados de los Coeficientes de Regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supuestos-y-formulacion-del-modelo-de-regresion">3.2.2. Supuestos y Formulación del Modelo de Regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-muestral">3.2.3. Modelo muestral</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-de-minimos-cuadrados">3.2.4. Función de mínimos cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-primer-orden">3.2.5. Condiciones de primer orden</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-normales-de-minimos-cuadrados">3.2.6. Ecuaciones normales de mínimos cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-matricial-del-modelo-y-estimacion-por-minimos-cuadrados">3.2.7. Representación Matricial del Modelo y Estimación por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicion-de-primer-orden-y-ecuacion-normal">3.2.8. Condición de Primer Orden y Ecuación Normal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-las-ecuaciones-normales-y-estimador-de-minimos-cuadrados">3.2.9. Solución de las Ecuaciones Normales y Estimador de Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-la-forma-matricial-y-escalar">3.2.10. Relación entre la forma matricial y escalar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado-y-matriz-sombrero">3.2.11. Modelo ajustado y matriz sombrero</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residuos">3.2.12. Residuos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">3.2.13. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1">3.2.14. Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-y-construccion-del-modelo">3.2.15. Visualización y Construcción del Modelo</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-la-matriz-x-y-el-vector-y">3.2.16. Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados">3.2.17. Estimación de los Coeficientes por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado">3.2.18. Modelo Ajustado</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-ajustados-y-residuos">3.2.19. Valores Ajustados y Residuos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salida-computacional">3.2.20. Salida Computacional</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-geometrica-de-los-minimos-cuadrados">3.2.21. Interpretación Geométrica de los Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-por-minimos-cuadrados">3.2.22. Propiedades de los Estimadores por Mínimos Cuadrados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-sigma-2">3.2.23. Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">3.2.23.1. Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-tiempo-de-entrega">3.2.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-2-datos-de-tiempos-de-entrega-del-ejemplo-3-1">3.2.3. Tabla 3.2: Datos de tiempos de entrega del Ejemplo 3.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-y-construccion-del-modelo">3.2.4. Visualización y Construcción del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-la-matriz-x-y-el-vector-y">3.2.5. Construcción de la Matriz <span class="math notranslate nohighlight">\(X\)</span> y el Vector <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-los-coeficientes-por-minimos-cuadrados">3.2.6. Estimación de los Coeficientes por Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-ajustado">3.2.7. Modelo Ajustado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-ajustados-y-residuos">3.2.8. Valores Ajustados y Residuos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#salida-computacional">3.2.9. Salida Computacional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-geometrica-de-los-minimos-cuadrados">3.2.10. Interpretación Geométrica de los Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-de-los-estimadores-por-minimos-cuadrados">3.2.11. Propiedades de los Estimadores por Mínimos Cuadrados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-de-sigma-2">3.2.12. Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">3.2.12.1. Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">3.2.24. Inadecuación de los Diagramas de Dispersión en Regresión Múltiple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-maxima-verosimilitud">3.2.25. Estimación por Máxima Verosimilitud</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-significancia-de-la-regresion">3.2.26. Prueba de significancia de la regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-del-tiempo-de-entrega">3.2.27. Ejemplo: Los datos del tiempo de entrega</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.28. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.29. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.30. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.30.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.30.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">3.2.13. Inadecuación de los Diagramas de Dispersión en Regresión Múltiple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-maxima-verosimilitud">3.2.14. Estimación por Máxima Verosimilitud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-significancia-de-la-regresion">3.2.15. Prueba de significancia de la regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-los-datos-del-tiempo-de-entrega">3.2.16. Ejemplo: Los datos del tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.17. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.18. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.19. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.19.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.19.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.31. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.32. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.32.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.32.2. Ejemplo: Prueba conjunta de restricciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.20. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.21. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.21.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.21.2. Ejemplo: Prueba conjunta de restricciones</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial-alternativa-del-estadistico">3.2.33. Forma matricial alternativa del estadístico</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">3.2.34. Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-adicional">3.2.34.1. Ejemplo adicional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-matricial-alternativa-del-estadistico">3.2.22. Forma matricial alternativa del estadístico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">3.2.23. Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-adicional">3.2.23.1. Ejemplo adicional</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-en-regresion-multiple">3.2.35. Intervalos de confianza en regresión múltiple</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion">3.2.35.1. Intervalos de confianza para los coeficientes de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-en-regresion-multiple">3.2.24. Intervalos de confianza en regresión múltiple</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion">3.2.24.1. Intervalos de confianza para los coeficientes de regresión</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.36. Estimación por intervalo de confianza de la respuesta media</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.37. Intervalos de confianza simultáneos para los coeficientes de regresión</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.37.1. Ejemplo: Datos de Propulsor de Cohetes</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor">3.2.37.2. Ejemplo: Datos del Propulsor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.25. Estimación por intervalo de confianza de la respuesta media</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.26. Intervalos de confianza simultáneos para los coeficientes de regresión</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.26.1. Ejemplo: Datos de Propulsor de Cohetes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor">3.2.26.2. Ejemplo: Datos del Propulsor</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.38. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.38.1. Escalamiento normal estándar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.38.2. Escalamiento de longitud unitaria</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-los-coeficientes-originales">3.2.38.3. Relación con los coeficientes originales</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-finales">3.2.38.4. Observaciones finales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.27. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.27.1. Escalamiento normal estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.27.2. Escalamiento de longitud unitaria</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-con-los-coeficientes-originales">3.2.27.3. Relación con los coeficientes originales</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones-finales">3.2.27.4. Observaciones finales</a></li>
 </ul>
 </li>
 </ul>
