@@ -199,7 +199,8 @@
 <li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">12. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -2071,90 +2072,231 @@ y_i &amp;= \beta_0 + \beta_1(x_i - \bar{x}) + \beta_{1}\bar{x} + \varepsilon_i \
 \[
 \beta_0' = \beta_0 + \beta_1 \bar{x}
 \]</div>
-<ul class="simple">
+<ul>
 <li><p>Es sencillo demostrar que el <strong>estimador de mínimos cuadrados para el nuevo intercepto</strong> es <span class="math notranslate nohighlight">\(\hat{\beta}_0' = \bar{y}\)</span>. <strong>El estimador de la pendiente <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> permanece inalterado bajo esta transformación.</strong> Esta forma alternativa del modelo presenta algunas ventajas importantes</p></li>
-<li><p>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0' = \bar{y}\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1 = S_{xy}/S_{xx}\)</span> son <strong>no correlacionados</strong>, es decir <span class="math notranslate nohighlight">\(\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1) = 0\)</span>. Esta propiedad facilita ciertos procedimientos, como el <strong>cálculo de intervalos de confianza para la media de <span class="math notranslate nohighlight">\(y\)</span></strong> como lo veremos en secciones posteriores.</p></li>
+<li><p>Los estimadores de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\beta}_0' = \bar{y}\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_1 = S_{xy}/S_{xx}\)</span> son <strong>no correlacionados</strong>, es decir <span class="math notranslate nohighlight">\(\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1) = 0\)</span>. En efecto</p></li>
+<li><p>Consideremos el modelo de regresión lineal simple <strong>centrado en la media de <span class="math notranslate nohighlight">\(x\)</span></strong></p>
+<div class="math notranslate nohighlight">
+\[
+    y_i = \beta_0' + \beta_1 (x_i - \bar{x}) + \varepsilon_i, \quad i = 1, 2, \dots, n
+    \]</div>
+<p>donde se asume que</p>
+<div class="math notranslate nohighlight">
+\[
+    E[\varepsilon_i] = 0, \quad \operatorname{Var}(\varepsilon_i) = \sigma^2, \quad \operatorname{Cov}(\varepsilon_i, \varepsilon_j) = 0 \text{ para } i \ne j
+    \]</div>
+</li>
+<li><p>Para obtener los <strong>estimadores de mínimos cuadrados, minimizamos</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+S(\beta_0', \beta_1) = \sum_{i=1}^n [y_i - \beta_0' - \beta_1(x_i - \bar{x})]^2
+\]</div>
+<ul class="simple">
+<li><p>Derivando con respecto a <span class="math notranslate nohighlight">\(\beta_0'\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> y resolviendo el sistema normal, se obtiene (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_0' = \bar{y}, \quad \hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+\]</div>
+<ul class="simple">
+<li><p>Definimos</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+S_{xx} = \sum (x_i - \bar{x})^2, \quad S_{xy} = \sum (x_i - \bar{x})(y_i - \bar{y})
+\]</div>
+<ul class="simple">
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(y_i = \beta_0' + \beta_1(x_i - \bar{x}) + \varepsilon_i\)</span> en los estimadores</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(\beta_0' + \beta_1(x_i - \bar{x}) + \varepsilon_i - \bar{y})}{S_{xx}} 
+\]</div>
+<ul>
+<li><p>Del modelo centrado <span class="math notranslate nohighlight">\(y_i = \beta_0' + \beta_1(x_i - \bar{x}) + \varepsilon_i\)</span> tomamos el promedio muestral de ambos lados</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+    \bar{y} 
+    &amp;= \frac{1}{n}\sum_{i=1}^{n} y_i \\[4pt]
+    &amp;= \frac{1}{n}\sum_{i=1}^{n} [\beta_0' + \beta_1(x_i - \bar{x}) + \varepsilon_i] \\[4pt]
+    &amp;= \beta_0' + \beta_1 \frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x}) + \frac{1}{n}\sum_{i=1}^{n}\varepsilon_i
+    \end{aligned}
+    \end{split}\]</div>
+</li>
+<li><p>Como por definición de la media <span class="math notranslate nohighlight">\(\sum_{i=1}^{n}(x_i - \bar{x}) = 0\)</span>, el segundo término se anula y queda</p>
+<div class="math notranslate nohighlight" id="equation-bary-beta0-varepsilon">
+<span class="eqno">(2.17)<a class="headerlink" href="#equation-bary-beta0-varepsilon" title="Link to this equation">#</a></span>\[
+    \bar{y} = \beta_0' + \bar{\varepsilon}
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\bar{\varepsilon} = \frac{1}{n}\sum_{i=1}^{n}\varepsilon_i\)</span> es el promedio muestral de los errores.</p>
+</li>
+<li><p>Entonces, a partir de la Ecuación <a class="reference internal" href="#equation-bary-beta0-varepsilon">(2.17)</a>, reemplazando <span class="math notranslate nohighlight">\(-\bar{\varepsilon}=\beta_{0}'-\bar{y}\)</span> se tiene</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta}_{1} = \frac{\sum (x_i - \bar{x})(\beta_1(x_i - \bar{x}) + \varepsilon_i - \bar{\varepsilon})}{S_{xx}}
+\]</div>
+<ul>
+<li><p>Como <span class="math notranslate nohighlight">\(\sum (x_i - \bar{x}) = 0\)</span>, el término distribuido correspondiente a <span class="math notranslate nohighlight">\(\bar{\varepsilon}\)</span> desaparece</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{\beta}_1 = \beta_1 + \frac{\sum (x_i - \bar{x})\varepsilon_i}{S_{xx}}
+    \]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+    \hat{\beta}_0' = \bar{y} = \beta_0' + \bar{\varepsilon}, \quad \text{donde } \bar{\varepsilon} = \frac{1}{n}\sum_{i=1}^n \varepsilon_i
+    \]</div>
+</li>
+<li><p>Buscamos demostrar que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1) = 0
+\]</div>
+<ul class="simple">
+<li><p>Sustituyendo las expresiones de los estimadores</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1)
+&amp;= \operatorname{Cov}\left( \bar{\varepsilon}, \frac{\sum (x_i - \bar{x})\varepsilon_i}{S_{xx}} \right)
+\end{aligned}
+\]</div>
+<ul class="simple">
+<li><p>Los términos <span class="math notranslate nohighlight">\(\beta_0'\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> se omiten porque son constantes y no afectan la covarianza. Usando las propiedades de la covarianza de combinaciones lineales</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Cov}(a_1 X_1 + \dots + a_n X_n, b_1 X_1 + \dots + b_n X_n) 
+= \sum_{i=1}^n \sum_{j=1}^n a_i b_j \operatorname{Cov}(X_i, X_j)
+\]</div>
+<ul class="simple">
+<li><p>Entonces</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1)
+&amp;= \operatorname{Cov}\left( \frac{1}{n}\sum_i \varepsilon_i, \frac{1}{S_{xx}}\sum_j (x_j - \bar{x})\varepsilon_j \right) \\
+&amp;= \frac{1}{nS_{xx}} \sum_i \sum_j (x_j - \bar{x}) \operatorname{Cov}(\varepsilon_i, \varepsilon_j)
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\(\operatorname{Cov}(\varepsilon_i, \varepsilon_j) = 0\)</span> si <span class="math notranslate nohighlight">\(i \neq j\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> si <span class="math notranslate nohighlight">\(i = j\)</span>, solo sobreviven los términos diagonales</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1)
+= \frac{1}{nS_{xx}} \sum_i (x_i - \bar{x}) \sigma^2
+\]</div>
+<ul class="simple">
+<li><p>Pero por definición <span class="math notranslate nohighlight">\(\sum_i (x_i - \bar{x}) = 0\)</span>. Entonces</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1)
+= \frac{\sigma^2}{nS_{xx}} \times 0 = 0
+\]</div>
+<ul class="simple">
+<li><p>Por tanto</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\boxed{\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1) = 0}\Rightarrow \hat{\beta}_0' \text{ y } \hat{\beta}_1 \text{son no correlacionados.}
+\]</div>
+<ul>
+<li><p>Si el modelo <strong>no está centrado</strong>, es decir</p>
+<div class="math notranslate nohighlight">
+\[
+    y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
+    \]</div>
+<p>entonces</p>
+<div class="math notranslate nohighlight">
+\[
+    \operatorname{Cov}(\hat{\beta}_0, \hat{\beta}_1) = -\frac{\bar{x}\sigma^2}{S_{xx}} \ne 0
+    \]</div>
+</li>
+<li><p>Esto muestra que <strong>centrar las variables</strong> elimina la correlación entre el intercepto y la pendiente estimados. Esta propiedad facilita ciertos procedimientos, como el <strong>cálculo de intervalos de confianza para la media de <span class="math notranslate nohighlight">\(y\)</span></strong> como lo veremos en secciones posteriores.</p></li>
 <li><p><strong>Finalmente, el modelo ajustado se expresa como</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-altern-linear-model">
-<span class="eqno">(2.17)<a class="headerlink" href="#equation-altern-linear-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.18)<a class="headerlink" href="#equation-altern-linear-model" title="Link to this equation">#</a></span>\[
 \hat{y} = \bar{y} + \hat{\beta}_1(x - \bar{x})
 \]</div>
 <ul class="simple">
-<li><p><strong>Aunque las Ecuaciones <a class="reference internal" href="#equation-altern-linear-model">(2.17)</a> y <a class="reference internal" href="#equation-adjs-simple-linear-model">(2.5)</a> son algebraicamente equivalentes (ambas generan el mismo valor de <span class="math notranslate nohighlight">\(\hat{y}\)</span> para un mismo <span class="math notranslate nohighlight">\(x\)</span>)</strong>, la Ecuación <a class="reference internal" href="#equation-altern-linear-model">(2.17)</a> recuerda explícitamente que el modelo de regresión solo es válido dentro del rango de <span class="math notranslate nohighlight">\(x\)</span> observado en los datos originales. Esta región está centrada en <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p></li>
+<li><p><strong>Aunque las Ecuaciones <a class="reference internal" href="#equation-altern-linear-model">(2.18)</a> y <a class="reference internal" href="#equation-adjs-simple-linear-model">(2.5)</a> son algebraicamente equivalentes (ambas generan el mismo valor de <span class="math notranslate nohighlight">\(\hat{y}\)</span> para un mismo <span class="math notranslate nohighlight">\(x\)</span>)</strong>, la Ecuación <a class="reference internal" href="#equation-altern-linear-model">(2.18)</a> recuerda explícitamente que el modelo de regresión solo es válido dentro del rango de <span class="math notranslate nohighlight">\(x\)</span> observado en los datos originales. Esta región está centrada en <span class="math notranslate nohighlight">\(\bar{x}\)</span>.</p></li>
 <li><p><strong>Nota:</strong> En implementaciones prácticas usando <strong>Python</strong>, esta forma del modelo puede obtenerse fácilmente <strong>centrando la variable explicativa antes de ajustar el modelo</strong> con librerías como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, lo cual también facilita la interpretación del intercepto como la media de <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 </ul>
 <div class="important admonition">
-<p class="admonition-title">Ejemplo: Ventas vs. Temperatura</p>
+<p class="admonition-title">Ejemplo: Inversión en publicidad (x) vs. Ingresos por ventas (y)</p>
 <p>El modelo de regresión lineal centrado surge al redefinir la variable predictora como su desviación respecto a la media <span class="math notranslate nohighlight">\((x_i - \bar{x})\)</span>. Esta transformación <strong>modifica el intercepto manteniendo la pendiente original, ofreciendo ventajas interpretativas y computacionales significativas</strong></p>
 <p><strong>Contexto del ejemplo:</strong></p>
 <ul class="simple">
-<li><p><strong>Temperatura (x):</strong> Grados Celsius en un día específico</p></li>
-<li><p><strong>Ventas (y):</strong> Cantidad de helados vendidos (en cientos de unidades)</p></li>
+<li><p><strong>Inversión en publicidad (x):</strong> Miles de dólares invertidos en marketing digital</p></li>
+<li><p><strong>Ingresos por ventas (y):</strong> Miles de dólares en ventas generadas</p></li>
 </ul>
-<p><strong>Representación de cada temperatura:</strong></p>
+<p><strong>Representación de cada escenario de inversión:</strong></p>
 <ul class="simple">
-<li><p><strong>20°C:</strong> Día fresco → 1,500 helados vendidos</p></li>
-<li><p><strong>25°C:</strong> Día templado → 2,500 helados vendidos</p></li>
-<li><p><strong>30°C:</strong> Día cálido → 3,500 helados vendidos</p></li>
+<li><p><strong>$20,000:</strong> Campaña pequeña → $30,000 en ventas</p></li>
+<li><p><strong>$25,000:</strong> Campaña media → $50,000 en ventas</p></li>
+<li><p><strong>$30,000:</strong> Campaña grande → $70,000 en ventas</p></li>
 </ul>
 <p><strong>Datos:</strong></p>
 <ul class="simple">
-<li><p><em>Temperaturas</em>: 20, 25, 30°C</p></li>
-<li><p><em>Ventas</em>: 15, 25, 35 (cientos)</p></li>
+<li><p><em>Inversión publicitaria</em>: 20, 25, 30 (miles de $)</p></li>
+<li><p><em>Ingresos por ventas</em>: 30, 50, 70 (miles de $)</p></li>
 </ul>
 <p><strong>Cálculos:</strong></p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(\bar{x} = 25\)</span>, <span class="math notranslate nohighlight">\(\bar{y} = 25\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{x} = 25\)</span>, <span class="math notranslate nohighlight">\(\bar{y} = 50\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(S_{xx} = (20-25)^2 + (25-25)^2 + (30-25)^2 = 50\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(S_{xy} = (-5)(-7.5) + (0)(2.5) + (5)(12.5) = 100\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{xy} = (-5)(-20) + (0)(0) + (5)(20) = 200\)</span></p></li>
 <li><p><strong>Comparación de Modelos</strong></p>
 <ul class="simple">
 <li><p><strong>Modelo original:</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\hat{\beta}_1 = \frac{100}{50} = 2, \quad \hat{\beta}_0 = 25 - 2 \times 25 = -25\]</div>
+\[\hat{\beta}_1 = \frac{200}{50} = 4, \quad \hat{\beta}_0 = 50 - 4 \times 25 = -50\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{y} = -25 + 2x\]</div>
+\[\hat{y} = -50 + 4x\]</div>
 <ul class="simple">
 <li><p><strong>Modelo centrado:</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\hat{\beta}_1 = 2, \quad \beta_0' = \beta_0 + \beta_1\bar{x} = -25 + 2 \times 25 = -25 + 50 = 25\]</div>
+\[\hat{\beta}_1 = 4, \quad \beta_0' = \beta_0 + \beta_1\bar{x} = -50 + 4 \times 25 = 50\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{y} = 25 + 2(x - 25)\]</div>
+\[\hat{y} = 50 + 4(x - 25)\]</div>
 <ul class="simple">
-<li><p><strong>Verificación (<span class="math notranslate nohighlight">\(x = 28\)</span>):</strong></p>
+<li><p><strong>Verificación (<span class="math notranslate nohighlight">\(x = 28\)</span> miles):</strong></p>
 <ul>
-<li><p>Original: <span class="math notranslate nohighlight">\(-25 + 2 \times 28 = 31\)</span></p></li>
-<li><p>Centrado: <span class="math notranslate nohighlight">\(25 + 2 \times (28-25) = 31\)</span></p></li>
+<li><p>Original: <span class="math notranslate nohighlight">\(-50 + 4 \times 28 = 62\)</span> miles</p></li>
+<li><p>Centrado: <span class="math notranslate nohighlight">\(50 + 4 \times (28-25) = 62\)</span> miles</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>Ventajas Clave</strong></p>
-<ol class="arabic simple">
 <li><p><strong>Interpretación mejorada:</strong></p>
 <ul class="simple">
-<li><p>Intercepto = <span class="math notranslate nohighlight">\(\bar{y}\)</span> = respuesta media en <span class="math notranslate nohighlight">\(x = \bar{x}\)</span></p></li>
+<li><p><strong>Problema original:</strong> El intercepto -50 significa «ingresos de -$50,000 sin invertir en publicidad» (¡no tiene sentido!)</p></li>
+<li><p><strong>Con modelo centrado:</strong> El intercepto 50 significa: ingresos promedio de $50,000 con la inversión promedio de $25,000 (¡tiene sentido práctico!)</p></li>
 </ul>
-</li>
-<li><p><strong>Estimadores no correlacionados:</strong> <span class="math notranslate nohighlight">\(\operatorname{Cov}(\hat{\beta}_0', \hat{\beta}_1) = 0\)</span></p></li>
-<li><p><strong>Inferencia simplificada:</strong> Para <span class="math notranslate nohighlight">\(x_0 = \bar{x}\)</span>: <span class="math notranslate nohighlight">\(\operatorname{Var}(\hat{y}_0) = \sigma^2/n\)</span></p></li>
-</ol>
 </li>
 <li><p><strong>Conclusión:</strong> La forma centrada del modelo de regresión ofrece una interpretación intuitiva y propiedades estadísticas mejoradas en comparación con la especificación tradicional.</p></li>
-<li><p><strong>Problema de validez ecológica en el modelo original:</strong> El intercepto estimado de -25 en el modelo convencional plantea un problema fundamental de extrapolación ilícita. Específicamente, al evaluar la ecuación <span class="math notranslate nohighlight">\(\hat{y} = -25 + 2x\)</span> en el límite inferior del dominio de la variable predictora (<span class="math notranslate nohighlight">\(x = 0\)</span>°C), se obtiene:</p></li>
+<li><p><strong>Problema de interpretación en el modelo original:</strong> El intercepto estimado de -50 en el modelo convencional plantea un problema fundamental de extrapolación. Específicamente, al evaluar la ecuación <span class="math notranslate nohighlight">\(\hat{y} = -50 + 4x\)</span> en el límite inferior del dominio de la variable predictora (<span class="math notranslate nohighlight">\(x = 0\)</span> inversión), se obtiene:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\hat{y} = -25 + 2 \times 0 = -25\]</div>
+\[\hat{y} = -50 + 4 \times 0 = -50\]</div>
 <ul class="simple">
 <li><p><strong>Esta predicción presenta tres problemas metodológicos críticos:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>Imposibilidad física:</strong> Las ventas negativas (-2,500 helados) constituyen una magnitud físicamente irrealizable en el contexto de ventas de productos.</p></li>
-<li><p><strong>Extrapolación beyond el rango observacional:</strong> La predicción corresponde a un valor sustancialmente fuera del rango de temperaturas documentado en los datos (20-30°C), donde el modelo no ha sido validado.</p></li>
-<li><p><strong>Sin sustento contextual:</strong> Carece de sentido práctico dentro del dominio del problema, donde las ventas nulas representarían el límite inferior natural.</p></li>
-<li><p><strong>En contraste,</strong> el modelo centrado evita estas falencias interpretativas al anclar las predicciones en la media observada de los datos, proporcionando así inferencias estadísticamente sólidas y conceptualmente coherentes.</p></li>
+<li><p><strong>Imposibilidad financiera:</strong> Ingresos negativos de $50,000 sin invertir en publicidad contradice la realidad empresarial, donde se esperarían ingresos cercanos a cero.</p></li>
+<li><p><strong>Extrapolación beyond el rango observacional:</strong> La predicción corresponde a un escenario fuera del rango de inversión documentado en los datos ($20,000-$30,000), donde el modelo no ha sido validado.</p></li>
+<li><p><strong>Sin sustento contextual:</strong> Carece de sentido práctico en el dominio del problema, donde ingresos de $0 representarían el límite inferior natural por no realizar ventas.</p></li>
+<li><p><strong>En contraste,</strong> el modelo centrado evita estas falencias interpretativas al anclar las predicciones en la inversión promedio observada, proporcionando así inferencias estadísticamente sólidas y conceptualmente coherentes.</p></li>
 </ol>
 </li>
 </ul>
@@ -2173,20 +2315,20 @@ y_i &amp;= \beta_0 + \beta_1(x_i - \bar{x}) + \beta_{1}\bar{x} + \varepsilon_i \
 <li><p><strong>Supongamos que se desea contrastar la hipótesis de que la pendiente es igual a una constante dada, por ejemplo, <span class="math notranslate nohighlight">\(\beta_{10}\)</span>.</strong> Las hipótesis apropiadas son</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-hypothesis-test">
-<span class="eqno">(2.18)<a class="headerlink" href="#equation-t-hypothesis-test" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.19)<a class="headerlink" href="#equation-t-hypothesis-test" title="Link to this equation">#</a></span>\[
 H_0: \beta_1 = \beta_{10} \quad \text{vs.} \quad H_1: \beta_1 \ne \beta_{10}
 \]</div>
 <ul class="simple">
 <li><p>Dado que los errores <span class="math notranslate nohighlight">\(\varepsilon_i \sim \text{NID}(0, \sigma^2)\)</span>, las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> tienen distribución <span class="math notranslate nohighlight">\(y_i \sim N(\beta_0 + \beta_1 x_i, \sigma^2)\)</span>. El estimador <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>, al ser combinación lineal de las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>, sigue</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-beta1-distribution">
-<span class="eqno">(2.19)<a class="headerlink" href="#equation-beta1-distribution" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.20)<a class="headerlink" href="#equation-beta1-distribution" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 \sim N\left( \beta_1, \frac{\sigma^2}{S_{xx}} \right)
 \]</div>
 <ul>
-<li><p>Bajo la <strong>hipótesis nula <a class="reference internal" href="#equation-t-hypothesis-test">(2.18)</a></strong>, el estadístico</p>
+<li><p>Bajo la <strong>hipótesis nula <a class="reference internal" href="#equation-t-hypothesis-test">(2.19)</a></strong>, el estadístico</p>
 <div class="math notranslate nohighlight" id="equation-z0-distribution">
-<span class="eqno">(2.20)<a class="headerlink" href="#equation-z0-distribution" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.21)<a class="headerlink" href="#equation-z0-distribution" title="Link to this equation">#</a></span>\[
     Z_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\sqrt{\sigma^2 / S_{xx}}}
     \]</div>
 <p>sigue una distribución normal estándar <span class="math notranslate nohighlight">\(N(0,1)\)</span> si <span class="math notranslate nohighlight">\(\sigma^2\)</span> fuera conocida.</p>
@@ -2194,51 +2336,51 @@ H_0: \beta_1 = \beta_{10} \quad \text{vs.} \quad H_1: \beta_1 \ne \beta_{10}
 <li><p>Sin embargo, en la práctica, <span class="math notranslate nohighlight">\(\sigma^2\)</span> no suele conocerse. Ya se ha establecido que <span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span> es un estimador insesgado de <span class="math notranslate nohighlight">\(\sigma^2\)</span>. El Apéndice C.3 en <span id="id3">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> demuestra que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-msres-chi-squared">
-<span class="eqno">(2.21)<a class="headerlink" href="#equation-msres-chi-squared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.22)<a class="headerlink" href="#equation-msres-chi-squared" title="Link to this equation">#</a></span>\[
 \frac{(n-2)MS_{\text{Res}}}{\sigma^2} \sim \chi^2_{n-2}, \quad \text{y que} \quad \hat{\beta}_1 \ \text{es independiente de} \ MS_{\text{Res}}.
 \]</div>
 <ul class="simple">
-<li><p>Por la definición del estadístico <span class="math notranslate nohighlight">\(t\)</span> en la Sección C.1, y además, la estimación de <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> en Ecuación <a class="reference internal" href="#equation-eq-2-19">(2.15)</a>, dada por <span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span>, se tiene</p></li>
+<li><p>Por la definición del estadístico <span class="math notranslate nohighlight">\(t\)</span> en la Sección <a class="reference internal" href="appendix.html#appendix-sec"><span class="std std-ref">Apéndice</span></a>, y además, la estimación de <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> en Ecuación <a class="reference internal" href="#equation-eq-2-19">(2.15)</a>, dada por <span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span>, se tiene</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-definition">
-<span class="eqno">(2.22)<a class="headerlink" href="#equation-t0-definition" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.23)<a class="headerlink" href="#equation-t0-definition" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\sqrt{MS_{\text{Res}} / S_{xx}}}
 \]</div>
 <ul class="simple">
 <li><p>Este estadístico sigue una distribución <span class="math notranslate nohighlight">\(t_{n-2}\)</span> bajo la hipótesis nula. <strong>El procedimiento de prueba consiste en calcular <span class="math notranslate nohighlight">\(t_0\)</span> y compararlo con el cuantil superior <span class="math notranslate nohighlight">\(\alpha/2\)</span> de la distribución <span class="math notranslate nohighlight">\(t_{n-2}\)</span>. Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-critical-value">
-<span class="eqno">(2.23)<a class="headerlink" href="#equation-t0-critical-value" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.24)<a class="headerlink" href="#equation-t0-critical-value" title="Link to this equation">#</a></span>\[
 |t_0| &gt; t_{\alpha/2, \, n-2}
 \]</div>
 <ul class="simple">
-<li><p>Alternativamente, puede emplearse el enfoque basado en el <span class="math notranslate nohighlight">\(p\)</span>-value para tomar decisiones inferenciales. El denominador de <span class="math notranslate nohighlight">\(t_0\)</span> en la Ecuación <a class="reference internal" href="#equation-t0-definition">(2.22)</a> se conoce como el <strong>error estándar estimado de la pendiente</strong>, definido como:</p></li>
+<li><p>Alternativamente, puede emplearse el enfoque basado en el <span class="math notranslate nohighlight">\(p\)</span>-value para tomar decisiones inferenciales. El denominador de <span class="math notranslate nohighlight">\(t_0\)</span> en la Ecuación <a class="reference internal" href="#equation-t0-definition">(2.23)</a> se conoce como el <strong>error estándar estimado de la pendiente</strong>, definido como:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-se-beta1">
-<span class="eqno">(2.24)<a class="headerlink" href="#equation-se-beta1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.25)<a class="headerlink" href="#equation-se-beta1" title="Link to this equation">#</a></span>\[
 \text{se}(\hat{\beta}_1) = \sqrt{\frac{MS_{\text{Res}}}{S_{xx}}}
 \]</div>
 <ul class="simple">
 <li><p>Por consiguiente, el estadístico <span class="math notranslate nohighlight">\(t_0\)</span> también puede expresarse como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-se">
-<span class="eqno">(2.25)<a class="headerlink" href="#equation-t0-se" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.26)<a class="headerlink" href="#equation-t0-se" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\text{se}(\hat{\beta}_1)}
 \]</div>
 <ul>
 <li><p><strong>Un procedimiento análogo puede aplicarse para contrastar hipótesis sobre el intercepto.</strong> Para evaluar</p>
 <div class="math notranslate nohighlight" id="equation-t-hypothesis-intercept">
-<span class="eqno">(2.26)<a class="headerlink" href="#equation-t-hypothesis-intercept" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.27)<a class="headerlink" href="#equation-t-hypothesis-intercept" title="Link to this equation">#</a></span>\[
     H_0: \beta_0 = \beta_{00} \quad \text{vs.} \quad H_1: \beta_0 \ne \beta_{00}
     \]</div>
 <p>se utiliza el estadístico y la Ecuación <a class="reference internal" href="#equation-beta0-variance-simple-lm">(2.8)</a></p>
 <div class="math notranslate nohighlight" id="equation-t0-intercept">
-<span class="eqno">(2.27)<a class="headerlink" href="#equation-t0-intercept" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.28)<a class="headerlink" href="#equation-t0-intercept" title="Link to this equation">#</a></span>\[
     t_0 = \frac{\hat{\beta}_0 - \beta_{00}}{\sqrt{MS_{\text{Res}} \left(\displaystyle{\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}} }\right)}} = \frac{\hat{\beta}_0 - \beta_{00}}{\text{se}(\hat{\beta}_0)}
     \]</div>
 <p>donde</p>
 <div class="math notranslate nohighlight" id="equation-se-beta0">
-<span class="eqno">(2.28)<a class="headerlink" href="#equation-se-beta0" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.29)<a class="headerlink" href="#equation-se-beta0" title="Link to this equation">#</a></span>\[
     \text{se}(\hat{\beta}_0) = \sqrt{MS_{\text{Res}} \left(\displaystyle{\frac{1}{n}} + \displaystyle{\frac{\bar{x}^2}{S_{xx}}}\right)}
     \]</div>
 </li>
@@ -2248,10 +2390,10 @@ t_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\text{se}(\hat{\beta}_1)}
 <section id="prueba-de-significancia-de-la-regresion">
 <span id="prueba-significancia-regresion"></span><h3><span class="section-number">2.3.2. </span>Prueba de Significancia de la Regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Un caso especial de gran relevancia de las hipótesis planteadas en la Ecuación <a class="reference internal" href="#equation-t-hypothesis-test">(2.18)</a> es:</strong></p></li>
+<li><p><strong>Un caso especial de gran relevancia de las hipótesis planteadas en la Ecuación <a class="reference internal" href="#equation-t-hypothesis-test">(2.19)</a> es:</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-significance-test">
-<span class="eqno">(2.29)<a class="headerlink" href="#equation-t-significance-test" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.30)<a class="headerlink" href="#equation-t-significance-test" title="Link to this equation">#</a></span>\[
 H_0: \beta_1 = 0 \quad \text{vs.} \quad H_1: \beta_1 \ne 0
 \]</div>
 <ul class="simple">
@@ -2285,16 +2427,16 @@ H_0: \beta_1 = 0 \quad \text{vs.} \quad H_1: \beta_1 \ne 0
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p><strong>El procedimiento de prueba para <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> puede derivarse desde dos enfoques.</strong> El primer enfoque utiliza directamente el estadístico <span class="math notranslate nohighlight">\(t\)</span> definido en la Ecuación <a class="reference internal" href="#equation-t0-se">(2.25)</a>, considerando <span class="math notranslate nohighlight">\(\beta_{10} = 0\)</span>:</p></li>
+<li><p><strong>El procedimiento de prueba para <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> puede derivarse desde dos enfoques.</strong> El primer enfoque utiliza directamente el estadístico <span class="math notranslate nohighlight">\(t\)</span> definido en la Ecuación <a class="reference internal" href="#equation-t0-se">(2.26)</a>, considerando <span class="math notranslate nohighlight">\(\beta_{10} = 0\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-beta1-zero">
-<span class="eqno">(2.30)<a class="headerlink" href="#equation-t0-beta1-zero" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.31)<a class="headerlink" href="#equation-t0-beta1-zero" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_1}{\text{se}(\hat{\beta}_1)}
 \]</div>
 <ul>
 <li><p><strong>La hipótesis nula <span class="math notranslate nohighlight">\(H_0\)</span> se rechaza si</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-t0-critical-beta1-zero">
-<span class="eqno">(2.31)<a class="headerlink" href="#equation-t0-critical-beta1-zero" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.32)<a class="headerlink" href="#equation-t0-critical-beta1-zero" title="Link to this equation">#</a></span>\[
     |t_0| &gt; t_{\alpha/2,\;n-2}
     \]</div>
 <p>donde <span class="math notranslate nohighlight">\(t_{\alpha/2,\;n-2}\)</span> representa el valor crítico de una distribución <span class="math notranslate nohighlight">\(t\)</span> de Student con <span class="math notranslate nohighlight">\(n-2\)</span> grados de libertad al nivel de significancia <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
@@ -2312,14 +2454,14 @@ t_0 = \frac{\hat{\beta}_1}{\text{se}(\hat{\beta}_1)}
 <li><p>El <strong>error estándar de la pendiente</strong> se calcula como:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-se-beta1-example">
-<span class="eqno">(2.32)<a class="headerlink" href="#equation-se-beta1-example" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.33)<a class="headerlink" href="#equation-se-beta1-example" title="Link to this equation">#</a></span>\[
     \text{se}(\hat{\beta}_1) = \sqrt{\frac{MS_{\text{Res}}}{S_{xx}}} = \sqrt{\frac{9244.59}{1106.56}} = 2.89
     \]</div>
 </li>
 <li><p>Por tanto, el estadístico de prueba es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-example">
-<span class="eqno">(2.33)<a class="headerlink" href="#equation-t0-example" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.34)<a class="headerlink" href="#equation-t0-example" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_1}{\text{se}(\hat{\beta}_1)} = \frac{-37.15}{2.89} = -12.85
 \]</div>
 <ul class="simple">
@@ -2397,7 +2539,7 @@ Residual  1.662549e+05  18.0         NaN           NaN
 <ul>
 <li><p>También puede emplearse un <strong>enfoque basado en el análisis de varianza para evaluar la significancia de la regresión.</strong> Este análisis parte de una <strong>descomposición de la variabilidad total de la variable de respuesta <span class="math notranslate nohighlight">\(y\)</span></strong>. La identidad básica es</p>
 <div class="math notranslate nohighlight" id="equation-anova-identity">
-<span class="eqno">(2.34)<a class="headerlink" href="#equation-anova-identity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.35)<a class="headerlink" href="#equation-anova-identity" title="Link to this equation">#</a></span>\[
     y_i - \bar{y} = (\hat{y}_i - \bar{y}) + (y_i - \hat{y}_i)
     \]</div>
 <ul class="simple">
@@ -2405,28 +2547,28 @@ Residual  1.662549e+05  18.0         NaN           NaN
 <li><p><span class="math notranslate nohighlight">\(y_i - \hat{y}_i\)</span>: Mide el <em>error de predicción</em> o la <strong>variación no explicada por el modelo</strong>.</p></li>
 </ul>
 </li>
-<li><p>Elevando al cuadrado ambos lados de la Ecuación <a class="reference internal" href="#equation-anova-identity">(2.34)</a> y sumando sobre todas las <span class="math notranslate nohighlight">\(n\)</span> observaciones se obtiene</p></li>
+<li><p>Elevando al cuadrado ambos lados de la Ecuación <a class="reference internal" href="#equation-anova-identity">(2.35)</a> y sumando sobre todas las <span class="math notranslate nohighlight">\(n\)</span> observaciones se obtiene</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-anova-expanded">
-<span class="eqno">(2.35)<a class="headerlink" href="#equation-anova-expanded" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.36)<a class="headerlink" href="#equation-anova-expanded" title="Link to this equation">#</a></span>\[
 \sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 + \sum_{i=1}^n (y_i - \hat{y}_i)^2 + 2 \sum_{i=1}^n (\hat{y}_i - \bar{y})(y_i - \hat{y}_i)
 \]</div>
 <ul class="simple">
 <li><p>El tercer término del lado derecho puede reescribirse como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-cross-term-zero">
-<span class="eqno">(2.36)<a class="headerlink" href="#equation-cross-term-zero" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.37)<a class="headerlink" href="#equation-cross-term-zero" title="Link to this equation">#</a></span>\[
 2 \sum_{i=1}^n \hat{y}_i e_i - 2 \bar{y} \sum_{i=1}^n e_i = 0,~\text{donde}~e_i=y_i - \hat{y}_i
 \]</div>
 <ul class="simple">
 <li><p>Esto se debe a que <span class="math notranslate nohighlight">\(\sum e_i = 0\)</span> (ver Propiedad <a class="reference internal" href="#equation-weighted-average-xi-ei">(2.9)</a>) y <span class="math notranslate nohighlight">\(\sum \hat{y}_i e_i = 0\)</span> (ver Propiedad <a class="reference internal" href="#equation-weighted-average-xi-ei">(2.9)</a>). Por tanto, se cumple</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-anova-partition">
-<span class="eqno">(2.37)<a class="headerlink" href="#equation-anova-partition" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.38)<a class="headerlink" href="#equation-anova-partition" title="Link to this equation">#</a></span>\[
 \sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n (\hat{y}_i - \bar{y})^2 + \sum_{i=1}^n (y_i - \hat{y}_i)^2
 \]</div>
 <ul class="simple">
-<li><p>La <strong>Ecuación <a class="reference internal" href="#equation-anova-partition">(2.37)</a> es la identidad fundamental del análisis de varianza para un modelo de regresión.</strong></p>
+<li><p>La <strong>Ecuación <a class="reference internal" href="#equation-anova-partition">(2.38)</a> es la identidad fundamental del análisis de varianza para un modelo de regresión.</strong></p>
 <ul>
 <li><p>El término del lado izquierdo corresponde a la <strong>suma total de cuadrados corregida</strong>, denotada <span class="math notranslate nohighlight">\(SS_T\)</span>.</p></li>
 <li><p>El primer término del lado derecho es la <strong>suma de cuadrados de la regresión</strong> (<span class="math notranslate nohighlight">\(SS_R\)</span>), también llamada suma de cuadrados del modelo.</p></li>
@@ -2436,14 +2578,14 @@ Residual  1.662549e+05  18.0         NaN           NaN
 <li><p>Por tanto, se escribe simbólicamente</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-anova-total">
-<span class="eqno">(2.38)<a class="headerlink" href="#equation-anova-total" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.39)<a class="headerlink" href="#equation-anova-total" title="Link to this equation">#</a></span>\[
 SS_T = SS_R + SS_{Res}
 \]</div>
 <ul class="simple">
-<li><p>Comparando <a class="reference internal" href="#equation-anova-total">(2.38)</a> con la ecuación de residuos (<span class="math notranslate nohighlight">\(SS_{Res} = SS_T - \hat{\beta}_1 SS_{xy}\)</span>), se obtiene que</p></li>
+<li><p>Comparando <a class="reference internal" href="#equation-anova-total">(2.39)</a> con la ecuación de residuos (<span class="math notranslate nohighlight">\(SS_{Res} = SS_T - \hat{\beta}_1 SS_{xy}\)</span>), se obtiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-ssr-from-sxy">
-<span class="eqno">(2.39)<a class="headerlink" href="#equation-ssr-from-sxy" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.40)<a class="headerlink" href="#equation-ssr-from-sxy" title="Link to this equation">#</a></span>\[
 SS_R = \hat{\beta}_1 S_{xy}
 \]</div>
 <ul class="simple">
@@ -2457,7 +2599,7 @@ SS_R = \hat{\beta}_1 S_{xy}
 <li><p>Por lo tanto, se cumple:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-anova-df">
-<span class="eqno">(2.40)<a class="headerlink" href="#equation-anova-df" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.41)<a class="headerlink" href="#equation-anova-df" title="Link to this equation">#</a></span>\[
 df_T = df_R + df_{Res} \quad \Rightarrow \quad n - 1 = 1 + (n - 2)
 \]</div>
 <ul>
@@ -2468,7 +2610,7 @@ df_T = df_R + df_{Res} \quad \Rightarrow \quad n - 1 = 1 + (n - 2)
     \]</div>
 <p>se utiliza e estadístico <span class="math notranslate nohighlight">\(F\)</span> de <em>Fisher</em> definido como</p>
 <div class="math notranslate nohighlight" id="equation-f-statistic">
-<span class="eqno">(2.41)<a class="headerlink" href="#equation-f-statistic" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.42)<a class="headerlink" href="#equation-f-statistic" title="Link to this equation">#</a></span>\[
     F_0 = \frac{MS_R}{MS_{Res}} = \frac{SS_R / 1}{SS_{Res} / (n - 2)}
     \]</div>
 </li>
@@ -2481,7 +2623,7 @@ df_T = df_R + df_{Res} \quad \Rightarrow \quad n - 1 = 1 + (n - 2)
 </li>
 <li><p>Los valores esperados de los cuadrados medios son</p>
 <div class="math notranslate nohighlight" id="equation-anova-expected-ms">
-<span class="eqno">(2.42)<a class="headerlink" href="#equation-anova-expected-ms" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.43)<a class="headerlink" href="#equation-anova-expected-ms" title="Link to this equation">#</a></span>\[
     \mathbb{E}(MS_{Res}) = \sigma^2, \quad \mathbb{E}(MS_R) = \sigma^2 + \beta_1^2 S_{xx}
     \]</div>
 <p>En efecto, usando la Ecuación <a class="reference internal" href="#equation-expected-ssres">(2.14)</a> se tiene que</p>
@@ -2531,7 +2673,7 @@ df_T = df_R + df_{Res} \quad \Rightarrow \quad n - 1 = 1 + (n - 2)
 <li><p><strong>Un valor grande de <span class="math notranslate nohighlight">\(F_0\)</span> sugiere que <span class="math notranslate nohighlight">\(\beta_1 \ne 0\)</span>, lo que indicaría una regresión significativa.</strong> Por lo tanto, el criterio de decisión es</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-anova-reject-criteria">
-<span class="eqno">(2.43)<a class="headerlink" href="#equation-anova-reject-criteria" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.44)<a class="headerlink" href="#equation-anova-reject-criteria" title="Link to this equation">#</a></span>\[
 F_0 &gt; F_{\alpha, 1, n - 2}
 \]</div>
 </section>
@@ -2577,10 +2719,10 @@ F_0 &gt; F_{\alpha, 1, n - 2}
 <ul class="simple">
 <li><p>El modelo ajustado es <span class="math notranslate nohighlight">\(\hat{y} = 2627.82 - 37.15x\)</span>.</p></li>
 <li><p>Se tienen: <span class="math notranslate nohighlight">\(SS_T = 1,\!693,\!737.60\)</span> y <span class="math notranslate nohighlight">\(S_{xy} = -41,\!112.65\)</span>.</p></li>
-<li><p>La suma de cuadrados de la regresión se obtiene aplicando <a class="reference internal" href="#equation-ssr-from-sxy">(2.39)</a></p></li>
+<li><p>La suma de cuadrados de la regresión se obtiene aplicando <a class="reference internal" href="#equation-ssr-from-sxy">(2.40)</a></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-ssr-example">
-<span class="eqno">(2.44)<a class="headerlink" href="#equation-ssr-example" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.45)<a class="headerlink" href="#equation-ssr-example" title="Link to this equation">#</a></span>\[
     SS_R = \hat{\beta}_1 S_{xy} = (-37.15)(-41,\!112.65) = 1,\!527,\!334.95
     \]</div>
 </li>
@@ -2600,14 +2742,14 @@ F_0 &gt; F_{\alpha, 1, n - 2}
 <li><p>En la <a class="reference internal" href="#prueba-significancia-regresion"><span class="std std-numref">Sección 2.3.2</span></a> se estableció que <strong>el estadístico <span class="math notranslate nohighlight">\(t\)</span> puede usarse para evaluar la significancia de la regresión.</strong> En particular, se tiene:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-test-statistic">
-<span class="eqno">(2.45)<a class="headerlink" href="#equation-t-test-statistic" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.46)<a class="headerlink" href="#equation-t-test-statistic" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_1}{\sqrt{MS_{\text{Res}} / S_{xx}}}
 \]</div>
 <ul class="simple">
-<li><p>Elevando ambos lados de la Ecuación <a class="reference internal" href="#equation-t-test-statistic">(2.45)</a> al cuadrado se obtiene</p></li>
+<li><p>Elevando ambos lados de la Ecuación <a class="reference internal" href="#equation-t-test-statistic">(2.46)</a> al cuadrado se obtiene</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-f-from-t">
-<span class="eqno">(2.46)<a class="headerlink" href="#equation-f-from-t" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.47)<a class="headerlink" href="#equation-f-from-t" title="Link to this equation">#</a></span>\[
 t_0^2 = \frac{\hat{\beta}_1^2 S_{xx}}{MS_{\text{Res}}} = \frac{(S_{xy}/S_{xx})^2 S_{xx}}{MS_{\text{Res}}} = \frac{\hat{\beta}_1 S_{xy}}{MS_{\text{Res}}} = \frac{MS_R}{MS_{\text{Res}}} = F_0
 \]</div>
 <ul class="simple">
@@ -2682,14 +2824,14 @@ t_0^2 = \frac{\hat{\beta}_1^2 S_{xx}}{MS_{\text{Res}}} = \frac{(S_{xy}/S_{xx})^2
 <li><p>Por lo tanto, un <strong>intervalo de confianza del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span></strong> está dado por</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-ci-slope">
-<span class="eqno">(2.47)<a class="headerlink" href="#equation-t-ci-slope" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.48)<a class="headerlink" href="#equation-t-ci-slope" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 - t_{\alpha/2, n - 2} \cdot \text{se}(\hat{\beta}_1) \leq \beta_1 \leq \hat{\beta}_1 + t_{\alpha/2, n - 2} \cdot \text{se}(\hat{\beta}_1)
 \]</div>
 <ul class="simple">
 <li><p>Asimismo, un <strong>intervalo de confianza del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la ordenada al origen <span class="math notranslate nohighlight">\(\beta_0\)</span></strong> es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-ci-intercept">
-<span class="eqno">(2.48)<a class="headerlink" href="#equation-t-ci-intercept" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.49)<a class="headerlink" href="#equation-t-ci-intercept" title="Link to this equation">#</a></span>\[
 \hat{\beta}_0 - t_{\alpha/2, n - 2} \cdot \text{se}(\hat{\beta}_0) \leq \beta_0 \leq \hat{\beta}_0 + t_{\alpha/2, n - 2} \cdot \text{se}(\hat{\beta}_0)
 \]</div>
 <ul class="simple">
@@ -2697,21 +2839,21 @@ t_0^2 = \frac{\hat{\beta}_1^2 S_{xx}}{MS_{\text{Res}}} = \frac{(S_{xy}/S_{xx})^2
 <li><p>Bajo el supuesto de errores normales e independientes, el Apéndice C.3 en <span id="id8">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> demuestra que <strong>la distribución muestral de <span class="math notranslate nohighlight">\((n - 2) \cdot \text{MSRes}/\sigma^2\)</span> sigue una distribución <span class="math notranslate nohighlight">\(\chi^2\)</span> con <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad</strong>. Por tanto</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-chi2-interval-raw">
-<span class="eqno">(2.49)<a class="headerlink" href="#equation-chi2-interval-raw" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.50)<a class="headerlink" href="#equation-chi2-interval-raw" title="Link to this equation">#</a></span>\[
 P \left(\chi^2_{1 - \alpha/2, n - 2} \leq \frac{(n - 2) \cdot \text{MSRes}}{\sigma^2} \leq \chi^2_{\alpha/2, n - 2} \right) = 1 - \alpha
 \]</div>
 <ul class="simple">
 <li><p>En consecuencia, un <strong>intervalo de confianza del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> está dado por:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-chi2-ci-sigma2">
-<span class="eqno">(2.50)<a class="headerlink" href="#equation-chi2-ci-sigma2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.51)<a class="headerlink" href="#equation-chi2-ci-sigma2" title="Link to this equation">#</a></span>\[
 \frac{(n - 2) \cdot \text{MSRes}}{\chi^2_{\alpha/2, n - 2}} \leq \sigma^2 \leq \frac{(n - 2) \cdot \text{MSRes}}{\chi^2_{1 - \alpha/2, n - 2}}
 \]</div>
 </section>
 <section id="ejemplo-datos-del-propulsor-de-cohete">
 <h3><span class="section-number">2.4.2. </span>Ejemplo: Datos del Propulsor de Cohete<a class="headerlink" href="#ejemplo-datos-del-propulsor-de-cohete" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Construimos intervalos de confianza del 95% para <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> a partir de los datos del propulsor de cohete. El error estándar de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es <span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_1) = 2.89\)</span> y <span class="math notranslate nohighlight">\(t_{0.025,18} = 2.101\)</span>. Entonces, usando la Ecuación <a class="reference internal" href="#equation-t-ci-slope">(2.47)</a></p></li>
+<li><p>Construimos intervalos de confianza del 95% para <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> a partir de los datos del propulsor de cohete. El error estándar de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> es <span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_1) = 2.89\)</span> y <span class="math notranslate nohighlight">\(t_{0.025,18} = 2.101\)</span>. Entonces, usando la Ecuación <a class="reference internal" href="#equation-t-ci-slope">(2.48)</a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -2731,7 +2873,7 @@ P \left(\chi^2_{1 - \alpha/2, n - 2} \leq \frac{(n - 2) \cdot \text{MSRes}}{\sig
 <li><p>Intervalo del 99%: <span class="math notranslate nohighlight">\(-45.49 \leq \beta_1 \leq -28.81\)</span> (más amplio).</p></li>
 </ul>
 </li>
-<li><p>En general, <strong>a mayor nivel de confianza <span class="math notranslate nohighlight">\((1 - \alpha)\)</span>, mayor es la amplitud del intervalo.</strong> Para encontrar el intervalo del 95% para <span class="math notranslate nohighlight">\(\sigma^2\)</span>, usamos la ecuación <a class="reference internal" href="#equation-chi2-ci-sigma2">(2.50)</a>:</p></li>
+<li><p>En general, <strong>a mayor nivel de confianza <span class="math notranslate nohighlight">\((1 - \alpha)\)</span>, mayor es la amplitud del intervalo.</strong> Para encontrar el intervalo del 95% para <span class="math notranslate nohighlight">\(\sigma^2\)</span>, usamos la ecuación <a class="reference internal" href="#equation-chi2-ci-sigma2">(2.51)</a>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -2870,14 +3012,14 @@ IC 95% para σ^2: (5273.5159029240585, 20199.24489627592)
 <li><p>Un <strong>estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> se obtiene a partir del modelo ajustado</strong> como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-mean-response-point-estimate">
-<span class="eqno">(2.51)<a class="headerlink" href="#equation-mean-response-point-estimate" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(2.52)<a class="headerlink" href="#equation-mean-response-point-estimate" title="Link to this equation">#</a></span>\[ 
     \widehat{\mathbb{E}(y|x_0)}=\hat{\mu}_{y|x_0} = \hat{\beta}_0 + \hat{\beta}_1 x_0
     \]</div>
 </li>
 <li><p>Para construir un <strong>intervalo de confianza del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, se observa primero que <span class="math notranslate nohighlight">\(\hat{\mu}_{y|x_0}\)</span> es una variable aleatoria normalmente distribuida</strong>, ya que es una combinación lineal de las observaciones <span class="math notranslate nohighlight">\(y_i\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{\mu}_{y|x_0}\)</span> es</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-variance-mean-response">
-<span class="eqno">(2.52)<a class="headerlink" href="#equation-variance-mean-response" title="Link to this equation">#</a></span>\[\begin{split} 
+<span class="eqno">(2.53)<a class="headerlink" href="#equation-variance-mean-response" title="Link to this equation">#</a></span>\[\begin{split} 
 \begin{align}
 \mathbb{Var}(\hat{\mu}_{y|x_0})
 &amp;= \mathbb{Var}\!\left(\bar{y} + \hat{\beta}_1(x_0 - \bar{x})\right) \\[6pt]
@@ -2901,7 +3043,7 @@ IC 95% para σ^2: (5273.5159029240585, 20199.24489627592)
 <li><p>En consecuencia, el <strong>intervalo de confianza del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x = x_0\)</span> es</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-confidence-interval-mean-response">
-<span class="eqno">(2.53)<a class="headerlink" href="#equation-confidence-interval-mean-response" title="Link to this equation">#</a></span>\[\begin{split} 
+<span class="eqno">(2.54)<a class="headerlink" href="#equation-confidence-interval-mean-response" title="Link to this equation">#</a></span>\[\begin{split} 
 \begin{align}
 \hat{\mu}_{y|x_0} &amp;- t_{\alpha/2, n-2} 
 \sqrt{MS_{\text{Res}}\left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{xx}} \right)}\\
@@ -2916,17 +3058,17 @@ IC 95% para σ^2: (5273.5159029240585, 20199.24489627592)
 <section id="id10">
 <h3><span class="section-number">2.5.1. </span>Ejemplo: Datos del Propulsor de Cohete<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Se desea obtener un <strong>intervalo de confianza del 95% para <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> usando los datos del propulsor</strong>. A partir de la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.53)</a>, se obtiene</p></li>
+<li><p>Se desea obtener un <strong>intervalo de confianza del 95% para <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> usando los datos del propulsor</strong>. A partir de la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.54)</a>, se obtiene</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rocket-ci-expr">
-<span class="eqno">(2.54)<a class="headerlink" href="#equation-rocket-ci-expr" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(2.55)<a class="headerlink" href="#equation-rocket-ci-expr" title="Link to this equation">#</a></span>\[ 
 \hat{\mu}_{y|x_0} \pm t_{0.025, 18} \cdot \sqrt{9244.59 \left( \frac{1}{20} + \frac{(x_0 - 13.3625)^2}{1106.56} \right)}
 \]</div>
 <ul class="simple">
 <li><p>Por ejemplo, si <span class="math notranslate nohighlight">\(x_0 = \bar{x} = 13.3625\)</span>, entonces <span class="math notranslate nohighlight">\(\hat{\mu}_{y|x_0} = 2131.40\)</span> y el intervalo de confianza se convierte en:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-rocket-ci-value">
-<span class="eqno">(2.55)<a class="headerlink" href="#equation-rocket-ci-value" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(2.56)<a class="headerlink" href="#equation-rocket-ci-value" title="Link to this equation">#</a></span>\[ 
 2086.230 \leq \mathbb{E}(y|13.3625) \leq 2176.571
 \]</div>
 <ul class="simple">
@@ -2990,8 +3132,8 @@ IC 95% para σ^2: (5273.5159029240585, 20199.24489627592)
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Aunque muchos textos advierten <strong>evitar la extrapolación más allá del rango de los datos, la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.53)</a> muestra que el problema es gradual y no abrupto.</strong> Extrapolar implica usar la ecuación de predicción fuera del dominio observado de <span class="math notranslate nohighlight">\(x\)</span>, donde la varianza de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> aumenta conforme <span class="math notranslate nohighlight">\(x_0\)</span> se aleja del centro de los datos.</p></li>
-<li><p>Esto no significa que <strong>la predicción se vuelva inválida de inmediato, pero sí que su precisión se deteriora progresivamente.</strong> La extrapolación moderada es común y está justificada, pero la lejana conlleva mayor riesgo de error del modelo o de la ecuación. La <strong>validez del intervalo de confianza en la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.53)</a> aplica solo para un único intervalo.</strong> Para múltiples intervalos simultáneos se requiere inferencia estadística conjunta, que será tratado en los proximos capítitulos.</p></li>
+<li><p>Aunque muchos textos advierten <strong>evitar la extrapolación más allá del rango de los datos, la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.54)</a> muestra que el problema es gradual y no abrupto.</strong> Extrapolar implica usar la ecuación de predicción fuera del dominio observado de <span class="math notranslate nohighlight">\(x\)</span>, donde la varianza de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> aumenta conforme <span class="math notranslate nohighlight">\(x_0\)</span> se aleja del centro de los datos.</p></li>
+<li><p>Esto no significa que <strong>la predicción se vuelva inválida de inmediato, pero sí que su precisión se deteriora progresivamente.</strong> La extrapolación moderada es común y está justificada, pero la lejana conlleva mayor riesgo de error del modelo o de la ecuación. La <strong>validez del intervalo de confianza en la Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.54)</a> aplica solo para un único intervalo.</strong> Para múltiples intervalos simultáneos se requiere inferencia estadística conjunta, que será tratado en los proximos capítitulos.</p></li>
 </ul>
 </section>
 </section>
@@ -3001,11 +3143,11 @@ IC 95% para σ^2: (5273.5159029240585, 20199.24489627592)
 <li><p>Una aplicación esencial del modelo de regresión es la <strong>predicción de nuevas observaciones <span class="math notranslate nohighlight">\(y\)</span> para un valor específico de la variable regresora <span class="math notranslate nohighlight">\(x\)</span>.</strong> Sea <span class="math notranslate nohighlight">\(x_0\)</span> el valor de interés. Entonces, el estimador puntual de la futura observación <span class="math notranslate nohighlight">\(y_0\)</span> es</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-prediction-point-estimate">
-<span class="eqno">(2.56)<a class="headerlink" href="#equation-prediction-point-estimate" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">(2.57)<a class="headerlink" href="#equation-prediction-point-estimate" title="Link to this equation">#</a></span>\[ 
 \hat{y}_0 = \hat{\beta}_0 + \hat{\beta}_1 x_0 
 \]</div>
 <ul class="simple">
-<li><p>Ahora se desea <strong>construir un intervalo de predicción para la futura observación <span class="math notranslate nohighlight">\(y_0\)</span>.</strong> El intervalo de confianza para la media en <span class="math notranslate nohighlight">\(x = x_0\)</span> (ver Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.53)</a>) no es apropiado aquí, ya que estima el parámetro <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> y no hace una afirmación probabilística sobre observaciones futuras individuales. Para ello, se define la variable aleatoria</p></li>
+<li><p>Ahora se desea <strong>construir un intervalo de predicción para la futura observación <span class="math notranslate nohighlight">\(y_0\)</span>.</strong> El intervalo de confianza para la media en <span class="math notranslate nohighlight">\(x = x_0\)</span> (ver Ecuación <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.54)</a>) no es apropiado aquí, ya que estima el parámetro <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span> y no hace una afirmación probabilística sobre observaciones futuras individuales. Para ello, se define la variable aleatoria</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -3059,14 +3201,14 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 \end{align}
 \end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-prediction-variance">
-<span class="eqno">(2.57)<a class="headerlink" href="#equation-prediction-variance" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.58)<a class="headerlink" href="#equation-prediction-variance" title="Link to this equation">#</a></span>\[
 \mathbb{Var}(\psi) = \mathbb{Var}(y_0 - \hat{y}_0) = \sigma^2 \left[ 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{xx}} \right]
 \]</div>
 <ul class="simple">
 <li><p>Esto se debe a que <span class="math notranslate nohighlight">\(y_0\)</span> y <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> son independientes. El error estándar de <span class="math notranslate nohighlight">\(\psi\)</span> es el estadístico adecuado sobre el cual basar el intervalo de predicción. Así, el <strong>intervalo de predicción del <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para una observación futura en <span class="math notranslate nohighlight">\(x_0\)</span> es</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-prediction-interval-single">
-<span class="eqno">(2.58)<a class="headerlink" href="#equation-prediction-interval-single" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(2.59)<a class="headerlink" href="#equation-prediction-interval-single" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align}
 \hat{y}_0 &amp;- t_{\alpha/2, n-2} 
 \sqrt{ MS_{\text{Res}} \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{xx}} \right) }
@@ -3077,12 +3219,12 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 \end{align}
 \end{split}\]</div>
 <ul class="simple">
-<li><p>Este intervalo es más estrecho cuando <span class="math notranslate nohighlight">\(x_0 = \bar{x}\)</span> y se amplía a medida que <span class="math notranslate nohighlight">\(|x_0 - \bar{x}|\)</span> aumenta. Comparando <a class="reference internal" href="#equation-prediction-interval-single">(2.58)</a> con <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.53)</a>, se observa que el intervalo de predicción es siempre más ancho, ya que incorpora tanto la variabilidad del modelo como la de nuevas observaciones.</p></li>
+<li><p>Este intervalo es más estrecho cuando <span class="math notranslate nohighlight">\(x_0 = \bar{x}\)</span> y se amplía a medida que <span class="math notranslate nohighlight">\(|x_0 - \bar{x}|\)</span> aumenta. Comparando <a class="reference internal" href="#equation-prediction-interval-single">(2.59)</a> con <a class="reference internal" href="#equation-confidence-interval-mean-response">(2.54)</a>, se observa que el intervalo de predicción es siempre más ancho, ya que incorpora tanto la variabilidad del modelo como la de nuevas observaciones.</p></li>
 </ul>
 <section id="id12">
 <h3><span class="section-number">2.6.1. </span>Ejemplo: Datos del Propulsor de Cohete<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Se desea obtener un <strong>intervalo de predicción del 95% para la resistencia al corte de un nuevo motor fabricado con propulsor de 10 semanas de antigüedad.</strong> Usando la Ecuación <a class="reference internal" href="#equation-prediction-interval-single">(2.58)</a>, se obtiene:</p></li>
+<li><p>Se desea obtener un <strong>intervalo de predicción del 95% para la resistencia al corte de un nuevo motor fabricado con propulsor de 10 semanas de antigüedad.</strong> Usando la Ecuación <a class="reference internal" href="#equation-prediction-interval-single">(2.59)</a>, se obtiene:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -3122,7 +3264,7 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
     2048.32 \leq y_0 \leq 2464.32
     \]</div>
 <div class="math notranslate nohighlight" id="equation-prediction-interval-value">
-<span class="eqno">(2.59)<a class="headerlink" href="#equation-prediction-interval-value" title="Link to this equation">#</a></span>\[\]</div>
+<span class="eqno">(2.60)<a class="headerlink" href="#equation-prediction-interval-value" title="Link to this equation">#</a></span>\[\]</div>
 </li>
 <li><p>Esto indica que <strong>un nuevo motor fabricado con propulsor de 10 semanas podría tener una resistencia al corte entre 2048.32 y 2464.32 psi.</strong> La <a class="reference internal" href="#image2-2dot12-fig"><span class="std std-numref">Figura 2.6</span></a> muestra gráficamente el intervalo de predicción del 95% y el intervalo de confianza para la media, ilustrando cómo el primero es más amplio que el segundo.</p></li>
 </ul>
@@ -3134,7 +3276,7 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p><strong>Generalización del Intervalo de Predicción para <span class="math notranslate nohighlight">\(m\)</span> Observaciones Futuras.</strong> Se puede extender la Ecuación <a class="reference internal" href="#equation-prediction-interval-single">(2.58)</a> para <strong>estimar la media de <span class="math notranslate nohighlight">\(m\)</span> futuras observaciones en <span class="math notranslate nohighlight">\(x = x_0\)</span>.</strong> Sea <span class="math notranslate nohighlight">\(\bar{y}_0\)</span> la media de <span class="math notranslate nohighlight">\(m\)</span> futuras observaciones. El estimador puntual es</p></li>
+<li><p><strong>Generalización del Intervalo de Predicción para <span class="math notranslate nohighlight">\(m\)</span> Observaciones Futuras.</strong> Se puede extender la Ecuación <a class="reference internal" href="#equation-prediction-interval-single">(2.59)</a> para <strong>estimar la media de <span class="math notranslate nohighlight">\(m\)</span> futuras observaciones en <span class="math notranslate nohighlight">\(x = x_0\)</span>.</strong> Sea <span class="math notranslate nohighlight">\(\bar{y}_0\)</span> la media de <span class="math notranslate nohighlight">\(m\)</span> futuras observaciones. El estimador puntual es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ 
@@ -3187,7 +3329,7 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 </li>
 <li><p>Por lo tanto, el <strong>coeficiente de determinación</strong> se define como</p>
 <div class="math notranslate nohighlight" id="equation-r-squared-definition">
-<span class="eqno">(2.60)<a class="headerlink" href="#equation-r-squared-definition" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.61)<a class="headerlink" href="#equation-r-squared-definition" title="Link to this equation">#</a></span>\[
     R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SS}_{\text{Res}}}{\text{SST}}
     \]</div>
 <ul class="simple">
@@ -3204,7 +3346,7 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 <li><p>Para el <strong>modelo ajustado a los datos del propulsor de cohete</strong>, se obtiene</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-r-squared-example">
-<span class="eqno">(2.61)<a class="headerlink" href="#equation-r-squared-example" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.62)<a class="headerlink" href="#equation-r-squared-example" title="Link to this equation">#</a></span>\[
 R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 \]</div>
 <ul class="simple">
@@ -3796,7 +3938,7 @@ CONCLUSIONES FINALES
 <li><p>Usando el método delta (ver <a class="reference external" href="https://www2.hawaii.edu/~cbaajwe/Ph.D.Seminar/Hahn1973.pdf">Hahn, 1973</a>), se puede mostrar que <strong>el valor esperado de <span class="math notranslate nohighlight">\(R^2\)</span> en regresión lineal simple es aproximadamente</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-expected-r-squared">
-<span class="eqno">(2.62)<a class="headerlink" href="#equation-expected-r-squared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.63)<a class="headerlink" href="#equation-expected-r-squared" title="Link to this equation">#</a></span>\[
 E(R^2) \approx \frac{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}}}{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}} + \sigma^2}
 = \frac{\beta_1^2 S_{xx}}{\beta_1^2 S_{xx} + \sigma^2}
 \]</div>
@@ -3821,7 +3963,7 @@ E(R^2) \approx \frac{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}}}{\beta_1^2 \dis
 <li><p>La <strong>función de verosimilitud se construye a partir de la distribución conjunta de las observaciones.</strong> Si consideramos que <strong>los datos están fijos y los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> son desconocidos</strong>, la función de verosimilitud está dada por</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-likelihood-function">
-<span class="eqno">(2.63)<a class="headerlink" href="#equation-likelihood-function" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(2.64)<a class="headerlink" href="#equation-likelihood-function" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 L(y_i, x_i, \beta_0, \beta_1, \sigma^2) 
 &amp;= \prod_{i=1}^{n} (2\pi\sigma^2)^{-1/2} 
@@ -3834,7 +3976,7 @@ L(y_i, x_i, \beta_0, \beta_1, \sigma^2)
 <li><p>Los <strong>estimadores de máxima verosimilitud son los valores de los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> que maximizan <span class="math notranslate nohighlight">\(L\)</span>, o equivalente, <span class="math notranslate nohighlight">\(\ln L\)</span></strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-log-likelihood">
-<span class="eqno">(2.64)<a class="headerlink" href="#equation-log-likelihood" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.65)<a class="headerlink" href="#equation-log-likelihood" title="Link to this equation">#</a></span>\[
 \ln L(y_i, x_i, \beta_0, \beta_1, \sigma^2) =
 -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2
 \]</div>
@@ -3842,23 +3984,23 @@ L(y_i, x_i, \beta_0, \beta_1, \sigma^2)
 <li><p>Los <strong>estimadores de máxima verosimilitud <span class="math notranslate nohighlight">\(\tilde{\beta}_0\)</span>, <span class="math notranslate nohighlight">\(\tilde{\beta}_1\)</span>, y <span class="math notranslate nohighlight">\(\tilde{\sigma}^2\)</span></strong> satisfacen las siguientes condiciones</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-mle-beta0">
-<span class="eqno">(2.65)<a class="headerlink" href="#equation-mle-beta0" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.66)<a class="headerlink" href="#equation-mle-beta0" title="Link to this equation">#</a></span>\[
 \left.\frac{\partial \ln L}{\partial \beta_0}\right|_{\tilde{\beta}_{0},\tilde{\beta}_{1},\tilde{\sigma}^{2}} =
 \frac{1}{\tilde{\sigma}^2} \sum_{i=1}^n (y_i - \tilde{\beta}_0 - \tilde{\beta}_1 x_i) = 0
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mle-beta1">
-<span class="eqno">(2.66)<a class="headerlink" href="#equation-mle-beta1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.67)<a class="headerlink" href="#equation-mle-beta1" title="Link to this equation">#</a></span>\[
 \left.\frac{\partial \ln L}{\partial \beta_1}\right|_{\tilde{\beta}_{0},\tilde{\beta}_{1},\tilde{\sigma}^{2}} =
 \frac{1}{\tilde{\sigma}^2} \sum_{i=1}^n (y_i - \tilde{\beta}_0 - \tilde{\beta}_1 x_i)x_i = 0
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mle-sigma2">
-<span class="eqno">(2.67)<a class="headerlink" href="#equation-mle-sigma2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.68)<a class="headerlink" href="#equation-mle-sigma2" title="Link to this equation">#</a></span>\[
 \left.\frac{\partial \ln L}{\partial \sigma^2}\right|_{\tilde{\beta}_{0},\tilde{\beta}_{1},\tilde{\sigma}^{2}} =
 -\frac{n}{2\tilde{\sigma}^2} + \frac{1}{2\tilde{\sigma}^4} \sum_{i=1}^n (y_i - \tilde{\beta}_0 - \tilde{\beta}_1 x_i)^2 = 0
 \]</div>
 <ul class="simple">
 <li><p>Encontremos solución a las <strong>ecuaciones de los estimadores de máxima verosimilitud</strong>.
-De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65)</a>-<a class="reference internal" href="#equation-mle-sigma2">(2.67)</a> se tiene que</p></li>
+De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66)</a>-<a class="reference internal" href="#equation-mle-sigma2">(2.68)</a> se tiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -3892,23 +4034,23 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 \end{align}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mle-beta0-solution">
-<span class="eqno">(2.68)<a class="headerlink" href="#equation-mle-beta0-solution" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.69)<a class="headerlink" href="#equation-mle-beta0-solution" title="Link to this equation">#</a></span>\[
 \tilde{\beta}_0 = \bar{y} - \tilde{\beta}_1 \bar{x}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mle-beta1-solution">
-<span class="eqno">(2.69)<a class="headerlink" href="#equation-mle-beta1-solution" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.70)<a class="headerlink" href="#equation-mle-beta1-solution" title="Link to this equation">#</a></span>\[
 \tilde{\beta}_1 = \frac{\sum_{i=1}^n y_i \,(x_i - \bar{x})}
      {\sum_{i=1}^n (x_i - \bar{x})^2}.
 \]</div>
 <div class="math notranslate nohighlight" id="equation-mle-sigma2-solution">
-<span class="eqno">(2.70)<a class="headerlink" href="#equation-mle-sigma2-solution" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.71)<a class="headerlink" href="#equation-mle-sigma2-solution" title="Link to this equation">#</a></span>\[
 \tilde{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (y_i - \tilde{\beta}_0 - \tilde{\beta}_1 x_i)^2
 \]</div>
 <ul class="simple">
 <li><p>Obsérvese que <strong>los estimadores <span class="math notranslate nohighlight">\(\tilde{\beta}_0\)</span> y <span class="math notranslate nohighlight">\(\tilde{\beta}_1\)</span> coinciden con los de mínimos cuadrados.</strong> El estimador <span class="math notranslate nohighlight">\(\tilde{\sigma}^2\)</span> es sesgado, y se relaciona con el estimador insesgado <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> mediante</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-sigma-bias-relation">
-<span class="eqno">(2.71)<a class="headerlink" href="#equation-sigma-bias-relation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.72)<a class="headerlink" href="#equation-sigma-bias-relation" title="Link to this equation">#</a></span>\[
 \tilde{\sigma}^2 = \left(\frac{n - 1}{n}\right) \hat{\sigma}^2
 \]</div>
 <ul class="simple">
@@ -3965,7 +4107,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 <ul>
 <li><p>Supongamos ahora que <strong><span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span> están distribuidos conjuntamente según una distribución normal bivariada.</strong> Es decir, la <strong>función de densidad conjunta</strong> está dada por</p>
 <div class="math notranslate nohighlight" id="equation-joint-normal-density">
-<span class="eqno">(2.72)<a class="headerlink" href="#equation-joint-normal-density" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(2.73)<a class="headerlink" href="#equation-joint-normal-density" title="Link to this equation">#</a></span>\[\begin{split}
     \begin{align*}
     f(y, x) &amp;= \frac{1}{2\pi \sigma_1 \sigma_2 \sqrt{1 - \rho^2}} \\
     &amp;\exp\left\{-\frac{1}{2(1 - \rho^2)} \left[ \left(\frac{y - \mu_1}{\sigma_1}\right)^2 + \left(\frac{x - \mu_2}{\sigma_2}\right)^2 - 2\rho \left(\frac{y - \mu_1}{\sigma_1}\right)\left(\frac{x - \mu_2}{\sigma_2}\right) \right] \right\}
@@ -3981,7 +4123,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 </li>
 <li><p>La <strong>distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span></strong> está dada por</p>
 <div class="math notranslate nohighlight" id="equation-conditional-density-y-given-x">
-<span class="eqno">(2.73)<a class="headerlink" href="#equation-conditional-density-y-given-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.74)<a class="headerlink" href="#equation-conditional-density-y-given-x" title="Link to this equation">#</a></span>\[
     f(y|x) = \frac{1}{\sqrt{2\pi}\sigma_{1.2}} \exp\left[-\frac{1}{2} \left(\frac{y - \beta_0 - \beta_1 x}{\sigma_{1.2}}\right)^2 \right]
     \]</div>
 <p>donde</p>
@@ -3993,7 +4135,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 </li>
 <li><p>Es decir, <strong>la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> es normal con media condicional</strong></p>
 <div class="math notranslate nohighlight" id="equation-conditional-expectation-y-given-x">
-<span class="eqno">(2.74)<a class="headerlink" href="#equation-conditional-expectation-y-given-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.75)<a class="headerlink" href="#equation-conditional-expectation-y-given-x" title="Link to this equation">#</a></span>\[
     \mathbb{E}(y|x) = \beta_0 + \beta_1 x
     \]</div>
 <p>y varianza condicional constante <span class="math notranslate nohighlight">\(\sigma_{1.2}^2\)</span>.</p>
@@ -4006,11 +4148,11 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 <li><p>Los <strong>estimadores de máxima verosimilitud</strong> de <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> son</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-beta0-mle-corr">
-<span class="eqno">(2.75)<a class="headerlink" href="#equation-beta0-mle-corr" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.76)<a class="headerlink" href="#equation-beta0-mle-corr" title="Link to this equation">#</a></span>\[
 \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-beta1-mle-corr">
-<span class="eqno">(2.76)<a class="headerlink" href="#equation-beta1-mle-corr" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.77)<a class="headerlink" href="#equation-beta1-mle-corr" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 = \frac{\sum_{i=1}^n y_i (x_i - \bar{x})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{S_{xy}}{S_{xx}}
 \]</div>
 <ul class="simple">
@@ -4023,14 +4165,14 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.65
 <li><p>El estimador de <span class="math notranslate nohighlight">\(\rho\)</span> es el <strong>coeficiente de correlación muestral</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-sample-correlation-r">
-<span class="eqno">(2.77)<a class="headerlink" href="#equation-sample-correlation-r" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.78)<a class="headerlink" href="#equation-sample-correlation-r" title="Link to this equation">#</a></span>\[
 r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x})}{\left[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2\right]^{1/2}} = \frac{S_{xy}}{[S_{xx}SS_{T}]^{1/2}}
 \]</div>
 <ul class="simple">
 <li><p>De la ecuación anterior se deduce que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-slope-vs-r">
-<span class="eqno">(2.78)<a class="headerlink" href="#equation-slope-vs-r" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.79)<a class="headerlink" href="#equation-slope-vs-r" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 = r\cdot\left(\frac{SS_{T}}{S_{xx}}\right)^{1/2}
 \]</div>
 <ul class="simple">
@@ -4038,7 +4180,7 @@ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x
 <li><p>Se puede expresar también que:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-r-squared-equals-r-squared">
-<span class="eqno">(2.79)<a class="headerlink" href="#equation-r-squared-equals-r-squared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.80)<a class="headerlink" href="#equation-r-squared-equals-r-squared" title="Link to this equation">#</a></span>\[
 r^2 = \frac{S_{xx} \cdot \hat{\beta}_1^2}{SST} = \frac{SSR}{SST} = R^2
 \]</div>
 <ul class="simple">
@@ -4051,14 +4193,14 @@ r^2 = \frac{S_{xx} \cdot \hat{\beta}_1^2}{SST} = \frac{SSR}{SST} = R^2
 <li><p>Para probar <span class="math notranslate nohighlight">\(H_0: \rho = 0\)</span> contra <span class="math notranslate nohighlight">\(H_1: \rho \ne 0\)</span>, el estadístico de prueba es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-test-correlation-zero">
-<span class="eqno">(2.80)<a class="headerlink" href="#equation-t-test-correlation-zero" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.81)<a class="headerlink" href="#equation-t-test-correlation-zero" title="Link to this equation">#</a></span>\[
 t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
 \]</div>
 <ul class="simple">
-<li><p>Este estadístico sigue una <strong>distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad bajo <span class="math notranslate nohighlight">\(H_0\)</span>.</strong> Rechazamos <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n-2}\)</span>. Esta prueba es equivalente a la de <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> discutida en <a class="reference internal" href="#equation-t-hypothesis-test">(2.18)</a>.</p></li>
+<li><p>Este estadístico sigue una <strong>distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad bajo <span class="math notranslate nohighlight">\(H_0\)</span>.</strong> Rechazamos <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n-2}\)</span>. Esta prueba es equivalente a la de <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> discutida en <a class="reference internal" href="#equation-t-hypothesis-test">(2.19)</a>.</p></li>
 </ul>
 <ul>
-<li><p>Verifiquemos la Ecuación <a class="reference internal" href="#equation-t-test-correlation-zero">(2.80)</a>. En la regresión lineal simple</p>
+<li><p>Verifiquemos la Ecuación <a class="reference internal" href="#equation-t-test-correlation-zero">(2.81)</a>. En la regresión lineal simple</p>
 <div class="math notranslate nohighlight">
 \[
     y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
