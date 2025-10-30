@@ -1232,8 +1232,8 @@ Tabla de valores observados, estimados y residuos
 Dep. Variable:            Resistencia   R-squared:                       0.902
 Model:                            OLS   Adj. R-squared:                  0.896
 Method:                 Least Squares   F-statistic:                     165.4
-Date:                Fri, 24 Oct 2025   Prob (F-statistic):           1.64e-10
-Time:                        13:55:25   Log-Likelihood:                -118.63
+Date:                Wed, 29 Oct 2025   Prob (F-statistic):           1.64e-10
+Time:                        21:36:09   Log-Likelihood:                -118.63
 No. Observations:                  20   AIC:                             241.3
 Df Residuals:                      18   BIC:                             243.3
 Df Model:                           1                                         
@@ -1900,14 +1900,14 @@ SS_{Res} &amp;= \sum_{i=1}^n e_i^2, \quad \text{donde } e_i = y_i - \hat{y}_i.
 <ul class="simple">
 <li><p>Para obtener un <strong>estimador insesgado</strong> de <span class="math notranslate nohighlight">\(\sigma^2\)</span>, dividimos el valor observado de <span class="math notranslate nohighlight">\(SS_{\text{Res}}\)</span> entre <span class="math notranslate nohighlight">\(n-2\)</span>:</p></li>
 </ul>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-2-19">
+<span class="eqno">(2.15)<a class="headerlink" href="#equation-eq-2-19" title="Link to this equation">#</a></span>\[
 \hat{\sigma}^2 = \frac{SS_{\text{Res}}}{\,n-2\,}:=MS_{\text{Res}}.
 \]</div>
 <ul>
 <li><p>Aquí ya no hablamos de esperanza, sino del estimador concreto calculado con los datos que tenemos. El <strong>valor esperado</strong> de <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> cumple:</p>
-<div class="math notranslate nohighlight" id="equation-eq-2-19">
-<span class="eqno">(2.15)<a class="headerlink" href="#equation-eq-2-19" title="Link to this equation">#</a></span>\[
+<div class="math notranslate nohighlight">
+\[
     \mathbb{E}(\hat{\sigma}^2) 
     = \mathbb{E}\left(\frac{SS_{\text{Res}}}{n-2}\right) 
     = \frac{\mathbb{E}(SS_{\text{Res}})}{n-2} 
@@ -2340,7 +2340,7 @@ H_0: \beta_1 = \beta_{10} \quad \text{vs.} \quad H_1: \beta_1 \ne \beta_{10}
 \frac{(n-2)MS_{\text{Res}}}{\sigma^2} \sim \chi^2_{n-2}, \quad \text{y que} \quad \hat{\beta}_1 \ \text{es independiente de} \ MS_{\text{Res}}.
 \]</div>
 <ul class="simple">
-<li><p>Por la definición del estadístico <span class="math notranslate nohighlight">\(t\)</span> en la Sección <a class="reference internal" href="appendix.html#appendix-sec"><span class="std std-ref">Apéndice</span></a>, y además, la estimación de <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> en Ecuación <a class="reference internal" href="#equation-eq-2-19">(2.15)</a>, dada por <span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span>, se tiene</p></li>
+<li><p>Por la definición del estadístico <span class="math notranslate nohighlight">\(t\)</span> en la sección <a class="reference internal" href="appendix.html#appendix-sec"><span class="std std-ref">Apéndice</span></a>, y además, la estimación de la varianza, <span class="math notranslate nohighlight">\(\hat{\sigma}^{2}\)</span> en la Ecuación <a class="reference internal" href="#equation-eq-2-19">(2.15)</a>, dada por <span class="math notranslate nohighlight">\(MS_{\text{Res}}\)</span>, se tiene que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t0-definition">
 <span class="eqno">(2.23)<a class="headerlink" href="#equation-t0-definition" title="Link to this equation">#</a></span>\[
@@ -2353,8 +2353,20 @@ t_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\sqrt{MS_{\text{Res}} / S_{xx}}}
 <span class="eqno">(2.24)<a class="headerlink" href="#equation-t0-critical-value" title="Link to this equation">#</a></span>\[
 |t_0| &gt; t_{\alpha/2, \, n-2}
 \]</div>
-<ul class="simple">
-<li><p>Alternativamente, puede emplearse el enfoque basado en el <span class="math notranslate nohighlight">\(p\)</span>-value para tomar decisiones inferenciales. El denominador de <span class="math notranslate nohighlight">\(t_0\)</span> en la Ecuación <a class="reference internal" href="#equation-t0-definition">(2.23)</a> se conoce como el <strong>error estándar estimado de la pendiente</strong>, definido como:</p></li>
+<ul>
+<li><p>Alternativamente, puede emplearse el enfoque basado en el <span class="math notranslate nohighlight">\(p\)</span>-value para tomar decisiones inferenciales. En este caso, se calcula la <strong>probabilidad de obtener un valor del estadístico de prueba tan extremo como el observado</strong>, bajo la hipótesis nula</p>
+<div class="math notranslate nohighlight">
+\[
+    p\text{-value} = 2P\big(T_{n-2} &gt; |t_0|\big),
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(T_{n-2}\)</span> denota una variable aleatoria con distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n-2\)</span> grados de libertad.</p>
+<p>La <strong>regla de decisión</strong> es:</p>
+<div class="math notranslate nohighlight">
+\[
+    \text{Rechazar } H_0 \quad \text{si} \quad p\text{-value} &lt; \alpha.
+    \]</div>
+</li>
+<li><p>El denominador de <span class="math notranslate nohighlight">\(t_0\)</span> en la Ecuación <a class="reference internal" href="#equation-t0-definition">(2.23)</a> se conoce como el <strong>error estándar estimado de la pendiente</strong>, definido como</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-se-beta1">
 <span class="eqno">(2.25)<a class="headerlink" href="#equation-se-beta1" title="Link to this equation">#</a></span>\[
@@ -2384,7 +2396,7 @@ t_0 = \frac{\hat{\beta}_1 - \beta_{10}}{\text{se}(\hat{\beta}_1)}
     \text{se}(\hat{\beta}_0) = \sqrt{MS_{\text{Res}} \left(\displaystyle{\frac{1}{n}} + \displaystyle{\frac{\bar{x}^2}{S_{xx}}}\right)}
     \]</div>
 </li>
-<li><p><strong>La hipótesis nula <span class="math notranslate nohighlight">\(H_0: \beta_0 = \beta_{00}\)</span> se rechaza si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, \, n-2}\)</span>.</strong> En implementaciones computacionales, como Python mediante <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, estos valores-<span class="math notranslate nohighlight">\(t\)</span>, errores estándar y valores-<span class="math notranslate nohighlight">\(p\)</span> se calculan automáticamente y pueden emplearse directamente para evaluar las hipótesis del modelo.</p></li>
+<li><p><strong>La hipótesis nula <span class="math notranslate nohighlight">\(H_0: \beta_0 = \beta_{00}\)</span> se rechaza si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, \, n-2}\)</span>.</strong> En implementaciones computacionales, como <code class="docutils literal notranslate"><span class="pre">Python</span></code> mediante <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, estos valores-<span class="math notranslate nohighlight">\(t\)</span>, errores estándar y valores-<span class="math notranslate nohighlight">\(p\)</span> se calculan automáticamente y pueden emplearse directamente para evaluar las hipótesis del modelo.</p></li>
 </ul>
 </section>
 <section id="prueba-de-significancia-de-la-regresion">
@@ -2499,8 +2511,8 @@ t_0 = \frac{\hat{\beta}_1}{\text{se}(\hat{\beta}_1)} = \frac{-37.15}{2.89} = -12
 Dep. Variable:            Resistencia   R-squared:                       0.902
 Model:                            OLS   Adj. R-squared:                  0.896
 Method:                 Least Squares   F-statistic:                     165.4
-Date:                Fri, 24 Oct 2025   Prob (F-statistic):           1.64e-10
-Time:                        13:55:25   Log-Likelihood:                -118.63
+Date:                Wed, 29 Oct 2025   Prob (F-statistic):           1.64e-10
+Time:                        21:36:09   Log-Likelihood:                -118.63
 No. Observations:                  20   AIC:                             241.3
 Df Residuals:                      18   BIC:                             243.3
 Df Model:                           1                                         
@@ -2972,8 +2984,8 @@ P \left(\chi^2_{1 - \alpha/2, n - 2} \leq \frac{(n - 2) \cdot \text{MSRes}}{\sig
 Dep. Variable:                      y   R-squared:                       0.902
 Model:                            OLS   Adj. R-squared:                  0.896
 Method:                 Least Squares   F-statistic:                     165.4
-Date:                Fri, 24 Oct 2025   Prob (F-statistic):           1.64e-10
-Time:                        13:55:25   Log-Likelihood:                -118.63
+Date:                Wed, 29 Oct 2025   Prob (F-statistic):           1.64e-10
+Time:                        21:36:09   Log-Likelihood:                -118.63
 No. Observations:                  20   AIC:                             241.3
 Df Residuals:                      18   BIC:                             243.3
 Df Model:                           1                                         
