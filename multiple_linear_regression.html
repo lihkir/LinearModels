@@ -199,7 +199,8 @@
 <li class="toctree-l1"><a class="reference internal" href="variable_selection_model_building.html">8. Selección de variables y construcción de modelos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validation_regression_models.html">9. Validación de modelos de regresión</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">10. Regresión Logística</a></li>
-<li class="toctree-l1"><a class="reference internal" href="biblio.html">11. Bibliografía</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix.html">11. Apéndice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="biblio.html">12. Bibliografía</a></li>
 </ul>
 
     </div>
@@ -365,8 +366,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.10. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.11. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.12. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.13. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
@@ -512,7 +513,7 @@ document.write(`
 <section id="estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion">
 <h3><span class="section-number">3.2.1. </span>Estimación por Mínimos Cuadrados de los Coeficientes de Regresión<a class="headerlink" href="#estimacion-por-minimos-cuadrados-de-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>El método de <strong>mínimos cuadrados puede utilizarse para estimar los coeficientes de regresión en la ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a>.</strong> Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n &gt; k\)</span> observaciones, y que <strong><span class="math notranslate nohighlight">\(y_i\)</span> representa la <span class="math notranslate nohighlight">\(i\)</span>-ésima respuesta observada</strong>, mientras que <strong><span class="math notranslate nohighlight">\(x_{ij}\)</span> denota la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación o nivel del regresor <span class="math notranslate nohighlight">\(x_j\)</span></strong>. Los datos pueden organizarse como se indica en la <a class="reference internal" href="#tbl-datos-regmult"><span class="std std-numref">Tabla 3.1</span></a>.</p></li>
+<li><p>El método de <strong>mínimos cuadrados puede utilizarse para estimar los coeficientes de regresión en la Ecuación <a class="reference internal" href="#equation-multiple-linear-regression">(3.2)</a>.</strong> Supóngase que se cuenta con <span class="math notranslate nohighlight">\(n &gt; k\)</span> observaciones, y que <strong><span class="math notranslate nohighlight">\(y_i\)</span> representa la <span class="math notranslate nohighlight">\(i\)</span>-ésima respuesta observada</strong>, mientras que <strong><span class="math notranslate nohighlight">\(x_{ij}\)</span> denota la <span class="math notranslate nohighlight">\(i\)</span>-ésima observación o nivel del regresor <span class="math notranslate nohighlight">\(x_j\)</span></strong>. Los datos pueden organizarse como se indica en la <a class="reference internal" href="#tbl-datos-regmult"><span class="std std-numref">Tabla 3.1</span></a>.</p></li>
 <li><p>Se asume que el <strong>término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> cumple con las siguientes condiciones</strong></p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon) = 0\)</span></p></li>
@@ -1144,9 +1145,9 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
         });
         }
         </script>
-        </div><div class="output text_html"><div>                            <div id="5bdab71b-09c4-4d20-b6cd-04a8501b7ce6" class="plotly-graph-div" style="height:600px; width:700px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("5bdab71b-09c4-4d20-b6cd-04a8501b7ce6")) {                    Plotly.newPlot(                        "5bdab71b-09c4-4d20-b6cd-04a8501b7ce6",                        [{"marker":{"color":"navy","line":{"color":"black","width":1},"size":6},"mode":"markers","x":[7,3,3,4,6,7,2,7,30,5,16,10,4,6,9,10,6,7,3,17,10,26,9,8,4],"y":[560,220,340,80,150,330,110,210,1460,605,688,215,255,462,448,776,200,132,36,770,140,810,450,635,150],"z":[16.68,11.5,12.03,14.88,13.75,18.11,8.0,17.83,79.24,21.5,40.33,21.0,13.5,19.75,24.0,29.0,15.35,19.0,9.5,35.1,17.9,52.32,18.75,19.83,10.75],"type":"scatter3d"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"scene":{"xaxis":{"title":{"text":"Cases"}},"yaxis":{"title":{"text":"Distance"}},"zaxis":{"title":{"text":"Time"}},"bgcolor":"white"},"title":{"text":"3D Scatter Plot of Delivery Time vs. Cases and Distance"},"width":700,"height":600},                        {"responsive": true}                    ).then(function(){
+        </div><div class="output text_html"><div>                            <div id="78100673-5958-47ff-855a-e95de0708909" class="plotly-graph-div" style="height:600px; width:700px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("78100673-5958-47ff-855a-e95de0708909")) {                    Plotly.newPlot(                        "78100673-5958-47ff-855a-e95de0708909",                        [{"marker":{"color":"navy","line":{"color":"black","width":1},"size":6},"mode":"markers","x":[7,3,3,4,6,7,2,7,30,5,16,10,4,6,9,10,6,7,3,17,10,26,9,8,4],"y":[560,220,340,80,150,330,110,210,1460,605,688,215,255,462,448,776,200,132,36,770,140,810,450,635,150],"z":[16.68,11.5,12.03,14.88,13.75,18.11,8.0,17.83,79.24,21.5,40.33,21.0,13.5,19.75,24.0,29.0,15.35,19.0,9.5,35.1,17.9,52.32,18.75,19.83,10.75],"type":"scatter3d"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"scene":{"xaxis":{"title":{"text":"Cases"}},"yaxis":{"title":{"text":"Distance"}},"zaxis":{"title":{"text":"Time"}},"bgcolor":"white"},"title":{"text":"3D Scatter Plot of Delivery Time vs. Cases and Distance"},"width":700,"height":600},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('5bdab71b-09c4-4d20-b6cd-04a8501b7ce6');
+var gd = document.getElementById('78100673-5958-47ff-855a-e95de0708909');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1303,7 +1304,7 @@ Vector X^T y:
 </ul>
 <div class="math notranslate nohighlight" id="equation-ols-estimator-matrix">
 <span class="eqno">(3.30)<a class="headerlink" href="#equation-ols-estimator-matrix" title="Link to this equation">#</a></span>\[
-\hat{\mathbf{b}} = (X^\top X)^{-1} X^\top y
+\mathbf{\hat{b}} = (X^\top X)^{-1} X^\top y
 \]</div>
 <ul class="simple">
 <li><p>Con la <strong>matriz inversa <span class="math notranslate nohighlight">\((X^\top X)^{-1}\)</span> aproximada a cinco decimales</strong></p></li>
@@ -1321,7 +1322,7 @@ Vector X^T y:
 </ul>
 <div class="math notranslate nohighlight" id="equation-ols-coefficients-delivery">
 <span class="eqno">(3.32)<a class="headerlink" href="#equation-ols-coefficients-delivery" title="Link to this equation">#</a></span>\[\begin{split}
-\hat{\mathbf{b}} = \begin{bmatrix}
+\mathbf{\hat{b}} = \begin{bmatrix}
 2.34123 \\
 1.61591 \\
 0.01438
@@ -1660,13 +1661,16 @@ Coeficientes OLS (b̂):
 <li><p>La matriz <span class="math notranslate nohighlight">\(X\)</span> está compuesta por <span class="math notranslate nohighlight">\(p\)</span> vectores columna de dimensión <span class="math notranslate nohighlight">\(n \times 1\)</span>, como el vector de unos, <span class="math notranslate nohighlight">\(\mathbf{1}\)</span>, y los regresores <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Cada columna define un vector desde el origen. Estos <span class="math notranslate nohighlight">\(p\)</span> vectores generan un subespacio de dimensión <span class="math notranslate nohighlight">\(p\)</span>, llamado <strong>espacio de estimación</strong>.</p></li>
 </ul>
 <figure class="align-center" id="dgeom-interp-leastsquares-fig">
-<img alt="_images/3Dgeom_interp_leastsquares.png" src="_images/3Dgeom_interp_leastsquares.png" />
+<a class="reference internal image-reference" href="_images/3Dgeom_interp_leastsquares.png"><img alt="_images/3Dgeom_interp_leastsquares.png" src="_images/3Dgeom_interp_leastsquares.png" style="width: 440.29999999999995px; height: 315.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Figura 3.4 </span><span class="caption-text">Interpretación geométrica de mínimos cuadrados en <span class="math notranslate nohighlight">\(\mathbb{R}^{3}\)</span>.</span><a class="headerlink" href="#dgeom-interp-leastsquares-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Para <span class="math notranslate nohighlight">\(p = 2\)</span>, este subespacio se muestra en la <a class="reference internal" href="#dgeom-interp-leastsquares-fig"><span class="std std-numref">Figura 3.4</span></a>. Cualquier punto en este subespacio se puede representar como una combinación lineal de los vectores columna de <span class="math notranslate nohighlight">\(X\)</span>, es decir, como <span class="math notranslate nohighlight">\(X \boldsymbol{\beta}\)</span>. Sea el punto <span class="math notranslate nohighlight">\(B\)</span> definido por este vector. La distancia cuadrada entre <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(A\)</span> es</p></li>
+<li><p>Para <span class="math notranslate nohighlight">\(p = 2\)</span>, este subespacio se muestra en la <a class="reference internal" href="#dgeom-interp-leastsquares-fig"><span class="std std-numref">Figura 3.4</span></a>. Cualquier punto en este subespacio se puede representar como una combinación lineal de los vectores columna de <span class="math notranslate nohighlight">\(X\)</span>, es decir, como <span class="math notranslate nohighlight">\(X \boldsymbol{\beta}\)</span>.</p></li>
+<li><p>El espacio columna de <span class="math notranslate nohighlight">\(X\)</span> es el <strong>plano (o línea, si son linealmente dependientes) que pasa por el origen y contiene todas las combinaciones lineales <span class="math notranslate nohighlight">\(b_1\vec{x_1} + b_2\vec{x_2}\)</span></strong>. Aquí <span class="math notranslate nohighlight">\(X^T\)</span> actúa como el <em>«operador de productos punto con cada vector columna de <span class="math notranslate nohighlight">\(X\)</span>»</em></p></li>
+<li><p>Sea el punto <span class="math notranslate nohighlight">\(B\)</span> definido por este vector. La distancia cuadrada entre <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(A\)</span> es</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-squared-distance">
 <span class="eqno">(3.34)<a class="headerlink" href="#equation-squared-distance" title="Link to this equation">#</a></span>\[
@@ -1677,129 +1681,291 @@ S(\mathbf{b}) = (\mathbf{y} - X\mathbf{b})^\top (\mathbf{y} - X\mathbf{b})
 </ul>
 <div class="math notranslate nohighlight" id="equation-projection-hat-y">
 <span class="eqno">(3.35)<a class="headerlink" href="#equation-projection-hat-y" title="Link to this equation">#</a></span>\[
-\hat{\mathbf{y}} = X \hat{\mathbf{b}}
+\hat{\mathbf{y}} = X \mathbf{\hat{b}}
 \]</div>
 <ul>
-<li><p>Como <span class="math notranslate nohighlight">\(\mathbf{y} - \hat{\mathbf{y}} = \mathbf{y} - X \hat{\mathbf{b}}\)</span> es perpendicular al espacio de estimación, se cumple</p>
+<li><p>Como <span class="math notranslate nohighlight">\(\mathbf{y} - \hat{\mathbf{y}} = \mathbf{y} - X \mathbf{\hat{b}}\)</span> es <strong>perpendicular al espacio de estimación</strong>, se cumple</p>
 <div class="math notranslate nohighlight" id="equation-orthogonality-condition">
 <span class="eqno">(3.36)<a class="headerlink" href="#equation-orthogonality-condition" title="Link to this equation">#</a></span>\[
-    X^\top (\mathbf{y} - X \hat{\mathbf{b}}) = 0
+    X^\top (\mathbf{y} - X \mathbf{\hat{b}}) = 0
     \]</div>
 <p>lo cual lleva directamente a las <strong>ecuaciones normales</strong> del método de mínimos cuadrados:</p>
 <div class="math notranslate nohighlight" id="equation-normal-equations-matrix">
 <span class="eqno">(3.37)<a class="headerlink" href="#equation-normal-equations-matrix" title="Link to this equation">#</a></span>\[
-    X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}
+    X^\top X \mathbf{\hat{b}} = X^\top \mathbf{y}
     \]</div>
 </li>
 </ul>
 </section>
 <section id="propiedades-de-los-estimadores-por-minimos-cuadrados">
 <h3><span class="section-number">3.2.4. </span>Propiedades de los Estimadores por Mínimos Cuadrados<a class="headerlink" href="#propiedades-de-los-estimadores-por-minimos-cuadrados" title="Link to this heading">#</a></h3>
-<p>Las propiedades estadísticas del estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> pueden demostrarse fácilmente. Consideremos primero el sesgo, bajo el supuesto de que el modelo es correcto:</p>
+<ul class="simple">
+<li><p>Las <strong>propiedades estadísticas del estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span></strong> pueden demostrarse fácilmente. Consideremos primero el sesgo, bajo el supuesto de que el modelo es correcto</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}(\hat{\mathbf{b}}) = \mathbb{E}\left[(X^\top X)^{-1} X^\top \mathbf{y} \right] = \mathbb{E}\left[(X^\top X)^{-1} X^\top (X \boldsymbol{\beta} + \boldsymbol{\varepsilon}) \right]
+\mathbb{E}(\mathbf{\hat{b}}) = \mathbb{E}\left[(X^\top X)^{-1} X^\top \mathbf{y} \right] = \mathbb{E}\left[(X^\top X)^{-1} X^\top (X \boldsymbol{\beta} + \boldsymbol{\varepsilon}) \right]
 \]</div>
 <div class="math notranslate nohighlight" id="equation-unbiased-estimator">
 <span class="eqno">(3.38)<a class="headerlink" href="#equation-unbiased-estimator" title="Link to this equation">#</a></span>\[
-= (X^\top X)^{-1} X^\top X \boldsymbol{\beta} + (X^\top X)^{-1} X^\top \mathbb{E}(\boldsymbol{\varepsilon}) = \boldsymbol{\beta}
+= \underbrace{(\color{red}{X^\top X})^{-1}\color{red}{X^\top X}}_{\color{red}{I}}\boldsymbol{\beta} + (X^\top X)^{-1} X^\top \cancelto{0}{\mathbb{E}(\boldsymbol{\varepsilon})} = \boldsymbol{\beta}
 \]</div>
-<p>Dado que <span class="math notranslate nohighlight">\(\mathbb{E}(\boldsymbol{\varepsilon}) = \mathbf{0}\)</span> y <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top X = I\)</span>, se concluye que <strong><span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> es un estimador insesgado de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong> si el modelo es válido.</p>
-<p>La propiedad de varianza de <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> se expresa mediante la matriz de covarianzas:</p>
+<ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\(\mathbb{E}(\boldsymbol{\varepsilon}) = \mathbf{0}\)</span> y <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top X = I\)</span>, se concluye que <strong><span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> es un estimador insesgado de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong> si el modelo es válido. La propiedad de varianza de <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> se expresa mediante la matriz de covarianzas:</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-covariance-matrix">
 <span class="eqno">(3.39)<a class="headerlink" href="#equation-covariance-matrix" title="Link to this equation">#</a></span>\[
-\mathrm{Cov}(\hat{\mathbf{b}}) = \mathbb{E}\left[ (\hat{\mathbf{b}} - \mathbb{E}(\hat{\mathbf{b}})) (\hat{\mathbf{b}} - \mathbb{E}(\hat{\mathbf{b}}))^\top \right]
+\mathbb{Cov}(\mathbf{\hat{b}}) = \mathbb{E}\left[ (\mathbf{\hat{b}} - \mathbb{E}(\mathbf{\hat{b}})) (\mathbf{\hat{b}} - \mathbb{E}(\mathbf{\hat{b}}))^\top \right]
 \]</div>
-<p>Esta es una matriz simétrica de dimensión <span class="math notranslate nohighlight">\(p \times p\)</span>, cuya diagonal contiene las varianzas de los coeficientes <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>, y cuyos elementos fuera de la diagonal representan las covarianzas entre <span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</p>
-<p>Aplicando el operador varianza a <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span>, se obtiene:</p>
+<ul class="simple">
+<li><p>Esta es una matriz simétrica de dimensión <span class="math notranslate nohighlight">\(p \times p\)</span>, cuya <strong>diagonal contiene las varianzas</strong> de los <span class="math notranslate nohighlight">\((j)\)</span>-th coeficientes <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>, y cuyos elementos <span class="math notranslate nohighlight">\((ij)\)</span>-th <strong>fuera de la diagonal representan las covarianzas</strong> entre <span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>.</p></li>
+<li><p>Aplicando el operador varianza a <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span>, se obtiene</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-variance-operator">
 <span class="eqno">(3.40)<a class="headerlink" href="#equation-variance-operator" title="Link to this equation">#</a></span>\[
-\mathbb{Var}(\hat{\mathbf{b}}) = \mathrm{Var} \left[ (X^\top X)^{-1} X^\top \mathbf{y} \right]
+\mathbb{Var}(\mathbf{\hat{b}}) = \mathbb{Var}\left[ (X^\top X)^{-1} X^\top \mathbf{y} \right]
 \]</div>
-<p>Dado que <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top\)</span> es una matriz constante, y suponiendo que <span class="math notranslate nohighlight">\(\mathbb{Var}(\mathbf{y}) = \sigma^2 I\)</span>, se concluye:</p>
-<div class="math notranslate nohighlight" id="equation-ols-variance-matrix">
-<span class="eqno">(3.41)<a class="headerlink" href="#equation-ols-variance-matrix" title="Link to this equation">#</a></span>\[
-\mathbb{Var}(\hat{\mathbf{b}}) = (X^\top X)^{-1} X^\top \sigma^2 I \left[(X^\top X)^{-1} X^\top \right]^\top
-= \sigma^2 (X^\top X)^{-1}
-\]</div>
-<p>Por tanto, si denotamos <span class="math notranslate nohighlight">\(C = (X^\top X)^{-1}\)</span>, entonces:</p>
 <ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\((X^\top X)^{-1} X^\top\)</span> es una matriz constante, y suponiendo que <span class="math notranslate nohighlight">\(\mathbb{Var}(\mathbf{y}) = \sigma^2 I\)</span>, se concluye</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-ols-variance-matrix">
+<span class="eqno">(3.41)<a class="headerlink" href="#equation-ols-variance-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+\begin{aligned}
+\mathbb{Var}(\hat{\boldsymbol{\beta}})
+&amp;= \mathbb{Var}\!\left[(X^{\top}X)^{-1}X^{\top}\mathbf{y}\right] \\
+&amp;= (X^{\top}X)^{-1}X^{\top}\mathbb{Var}(\mathbf{y})\left[(X^{\top}X)^{-1}X^{\top}\right]^{\top} \\
+&amp;= \sigma^2 (X^{\top}X)^{-1}X^{\top}X(X^{\top}X)^{-1} \\
+&amp;= \sigma^2 (X^{\top}X)^{-1}
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Por tanto, si denotamos <span class="math notranslate nohighlight">\(C = (X^\top X)^{-1}\)</span>, entonces:</p>
+<ul>
 <li><p>La varianza de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> es <span class="math notranslate nohighlight">\(\sigma^2 C_{jj}\)</span>,</p></li>
 <li><p>La covarianza entre <span class="math notranslate nohighlight">\(\hat{\beta}_i\)</span> y <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> es <span class="math notranslate nohighlight">\(\sigma^2 C_{ij}\)</span>.</p></li>
 </ul>
-<p>El Apéndice C.4 demuestra que <strong>el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> es el mejor estimador lineal insesgado de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>, de acuerdo con el <strong>teorema de Gauss-Markov</strong>.</p>
-<p>Además, si se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> están distribuidos normalmente, entonces —como se verá en la Sección 3.2.6— <strong><span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> también es el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>. En este caso, <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> es también el <strong>estimador insesgado de varianza mínima</strong> para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p>
+</li>
+<li><p>El Apéndice C.4 de <span id="id1">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> demuestra que <strong>el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> es el mejor estimador lineal insesgado de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>, de acuerdo con el <strong>teorema de Gauss-Markov</strong>.</p></li>
+<li><p>Además, si se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> están distribuidos normalmente, entonces, <strong><span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> también es el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span></strong>. En este caso, <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> es también el <strong>estimador insesgado de varianza mínima</strong> para <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>.</p></li>
+</ul>
 </section>
 <section id="estimacion-de-sigma-2">
 <h3><span class="section-number">3.2.5. </span>Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#estimacion-de-sigma-2" title="Link to this heading">#</a></h3>
-<p>Al igual que en el caso de regresión lineal simple, puede construirse un estimador para la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> a partir de la <strong>suma de cuadrados de los residuos</strong>:</p>
+<ul class="simple">
+<li><p>Al igual que en el caso de regresión lineal simple, puede construirse un estimador para la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> a partir de la <strong>suma de cuadrados de los residuos</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-ss">
 <span class="eqno">(3.42)<a class="headerlink" href="#equation-residual-ss" title="Link to this equation">#</a></span>\[
 \text{SS}_{\text{Res}} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} e_i^2 = \mathbf{e}^\top \mathbf{e}
 \]</div>
-<p>Sustituyendo <span class="math notranslate nohighlight">\(\mathbf{e} = \mathbf{y} - X\hat{\mathbf{b}}\)</span>, se obtiene:</p>
+<ul class="simple">
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(\mathbf{e} = \mathbf{y} - X\mathbf{\hat{b}}\)</span>, se obtiene</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-\text{SS}_{\text{Res}} = (\mathbf{y} - X\hat{\mathbf{b}})^\top (\mathbf{y} - X\hat{\mathbf{b}})
-= \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top X^\top \mathbf{y} - \mathbf{y}^\top X \hat{\mathbf{b}} + \hat{\mathbf{b}}^\top X^\top X \hat{\mathbf{b}}
+\text{SS}_{\text{Res}} = (\mathbf{y} - X\mathbf{\hat{b}})^\top (\mathbf{y} - X\mathbf{\hat{b}})
+= \mathbf{y}^\top \mathbf{y} - \mathbf{\hat{b}}^\top X^\top \mathbf{y} - \mathbf{y}^\top X \mathbf{\hat{b}} + \mathbf{\hat{b}}^\top X^\top X \mathbf{\hat{b}}
 \]</div>
-<p>Agrupando términos y usando la simetría escalar:</p>
+<ul class="simple">
+<li><p>Agrupando términos y usando la simetría escalar</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-ss-expanded">
 <span class="eqno">(3.43)<a class="headerlink" href="#equation-residual-ss-expanded" title="Link to this equation">#</a></span>\[
-\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - 2 \hat{\mathbf{b}}^\top X^\top \mathbf{y} + \hat{\mathbf{b}}^\top X^\top X \hat{\mathbf{b}}
+\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - 2 \mathbf{\hat{b}}^\top X^\top \mathbf{y} + \mathbf{\hat{b}}^\top X^\top X \mathbf{\hat{b}}
 \]</div>
-<p>Dado que <span class="math notranslate nohighlight">\(X^\top X \hat{\mathbf{b}} = X^\top \mathbf{y}\)</span>, la expresión se simplifica a:</p>
+<ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\(X^\top X \mathbf{\hat{b}} = X^\top \mathbf{y}\)</span>, la expresión se simplifica a</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-ss-final">
 <span class="eqno">(3.44)<a class="headerlink" href="#equation-residual-ss-final" title="Link to this equation">#</a></span>\[
-\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top X^\top \mathbf{y}
+\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - \mathbf{\hat{b}}^\top X^\top \mathbf{y}
 \]</div>
-<p>El Apéndice C.3 demuestra que la suma de cuadrados de los residuos posee <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, dado que se han estimado <span class="math notranslate nohighlight">\(p\)</span> parámetros en el modelo de regresión. Por tanto, el <strong>cuadrado medio de los residuos</strong> se define como:</p>
+<ul class="simple">
+<li><p>El Apéndice C.3 de <span id="id2">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span> demuestra que la suma de cuadrados de los residuos posee <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, dado que se han estimado <span class="math notranslate nohighlight">\(p\)</span> parámetros en el modelo de regresión. Por tanto, el <strong>cuadrado medio de los residuos</strong> se define como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-residual-ms">
 <span class="eqno">(3.45)<a class="headerlink" href="#equation-residual-ms" title="Link to this equation">#</a></span>\[
 \text{MS}_{\text{Res}} = \frac{\text{SS}_{\text{Res}}}{n - p}
 \]</div>
-<p>Además, el valor esperado de <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span> es <span class="math notranslate nohighlight">\(\sigma^2\)</span>, por lo cual un <strong>estimador insesgado de <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> está dado por:</p>
+<ul>
+<li><p>Además, el valor esperado de <span class="math notranslate nohighlight">\(\text{MS}_{\text{Res}}\)</span> es <span class="math notranslate nohighlight">\(\sigma^2\)</span>, por lo cual un <strong>estimador insesgado de <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> está dado por</p>
 <div class="math notranslate nohighlight" id="equation-sigma-hat-def">
 <span class="eqno">(3.46)<a class="headerlink" href="#equation-sigma-hat-def" title="Link to this equation">#</a></span>\[
-\hat{\sigma}^2 = \text{MS}_{\text{Res}}
-\]</div>
+    \hat{\sigma}^2 = \text{MS}_{\text{Res}}
+    \]</div>
 <p>Este estimador, como se indicó también en el caso de regresión simple, <strong>depende del modelo</strong> asumido.</p>
+</li>
+</ul>
 <section id="ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega">
 <h4><span class="section-number">3.2.5.1. </span>Ejemplo: Estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> en el modelo de tiempo de entrega<a class="headerlink" href="#ejemplo-estimacion-de-sigma-2-en-el-modelo-de-tiempo-de-entrega" title="Link to this heading">#</a></h4>
-<p>Procedemos ahora a estimar la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span> para el modelo de regresión múltiple ajustado a los datos de tiempo de entrega descritos en el Ejemplo 3.1.</p>
-<p>Primero, se tiene:</p>
+<ul>
+<li><p>Procedemos ahora a <strong>estimar la varianza del error <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong> para el modelo de regresión múltiple ajustado a los datos de tiempo de entrega. Primero, se tiene</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{i=1}^{25} y_i^2 = \mathbf{y}^\top \mathbf{y} = 18{,}310.6290
-\]</div>
+    \sum_{i=1}^{25} y_i^2 = \mathbf{y}^\top \mathbf{y} = 18{,}310.6290
+    \]</div>
 <p>y</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\hat{\mathbf{b}}^\top X^\top \mathbf{y} =
-\begin{bmatrix}
-2.34123115 &amp; 1.61590721 &amp; 0.01438483
-\end{bmatrix}
-\begin{bmatrix}
-559.60 \\
-7375.44 \\
-337072.00
-\end{bmatrix}
-= 18{,}076.9030
-\end{split}\]</div>
-<p>Entonces, la suma de cuadrados de los residuos es:</p>
+    \mathbf{\hat{b}}^\top X^\top \mathbf{y} =
+    \begin{bmatrix}
+    2.34123115 &amp; 1.61590721 &amp; 0.01438483
+    \end{bmatrix}
+    \begin{bmatrix}
+    559.60 \\
+    7375.44 \\
+    337072.00
+    \end{bmatrix}
+    = 18{,}076.9030
+    \end{split}\]</div>
+</li>
+<li><p>Entonces, la suma de cuadrados de los residuos es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top X^\top \mathbf{y} = 18{,}310.6290 - 18{,}076.9030 = 233.7260
+\text{SS}_{\text{Res}} = \mathbf{y}^\top \mathbf{y} - \mathbf{\hat{b}}^\top X^\top \mathbf{y} = 18{,}310.6290 - 18{,}076.9030 = 233.7260
 \]</div>
-<p>Dado que <span class="math notranslate nohighlight">\(n = 25\)</span> y <span class="math notranslate nohighlight">\(p = 3\)</span>, se obtiene:</p>
+<ul class="simple">
+<li><p>Dado que <span class="math notranslate nohighlight">\(n = 25\)</span> y <span class="math notranslate nohighlight">\(p = 3\)</span>, se obtiene</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-sigma-hat-numerical">
 <span class="eqno">(3.47)<a class="headerlink" href="#equation-sigma-hat-numerical" title="Link to this equation">#</a></span>\[
 \hat{\sigma}^2 = \frac{\text{SS}_{\text{Res}}}{n - p} = \frac{233.7260}{22} = 10.6239
 \]</div>
-<p>El valor reportado por el software Python en la Tabla 3.4 es de aproximadamente 10.6, consistente con este resultado.</p>
-<blockquote>
-<div><p>Como se explicó en la regresión simple, <strong>la estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> depende del modelo especificado</strong>. Por ejemplo, si en lugar de ajustar un modelo con dos regresores se considera solo uno (como <span class="math notranslate nohighlight">\(x_1\)</span>, número de cajas), el valor obtenido para <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es mayor (17.5), indicando peor ajuste. Ambos valores son técnicamente correctos, pero están condicionados por la especificación del modelo.</p>
-</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos X y y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span>       <span class="c1"># intercepto</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Cases&quot;</span><span class="p">],</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Distance&quot;</span><span class="p">]</span>
+<span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Estimación de coeficientes b_hat = (X&#39;X)^(-1) X&#39;y</span>
+<span class="n">XtX</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span>
+<span class="n">XtY</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">b_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">XtX</span><span class="p">)</span> <span class="o">@</span> <span class="n">XtY</span>
+
+<span class="c1"># Cálculo de y&#39;y y b_hat&#39;X&#39;y</span>
+<span class="n">yTy</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+<span class="n">bXtY</span> <span class="o">=</span> <span class="n">b_hat</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">XtY</span>
+
+<span class="c1"># Suma de cuadrados de residuos</span>
+<span class="n">SS_Res</span> <span class="o">=</span> <span class="n">yTy</span> <span class="o">-</span> <span class="n">bXtY</span>
+
+<span class="c1"># Estimación de sigma^2</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sigma2_hat</span> <span class="o">=</span> <span class="n">SS_Res</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coeficientes estimados b̂: </span><span class="si">{</span><span class="n">b_hat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y&#39;y = </span><span class="si">{</span><span class="n">yTy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b&#39;X&#39;y = </span><span class="si">{</span><span class="n">bXtY</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SS_Res = </span><span class="si">{</span><span class="n">SS_Res</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sigma^2 estimado = </span><span class="si">{</span><span class="n">sigma2_hat</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeficientes estimados b̂: [2.34123 1.61591 0.01438]
+y&#39;y = 18310.6290
+b&#39;X&#39;y = 18076.8973
+SS_Res = 233.7317
+sigma^2 estimado = 10.6242
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Como se explicó en la regresión simple, <strong>la estimación de <span class="math notranslate nohighlight">\(\sigma^2\)</span> depende del modelo especificado</strong>. Por ejemplo, si en lugar de ajustar un modelo con dos regresores se considera solo uno (como <span class="math notranslate nohighlight">\(x_1\)</span>, número de cajas), el valor obtenido para <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es mayor (17.5), indicando peor ajuste. Ambos valores son técnicamente correctos, pero están condicionados por la especificación del modelo.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Modelo múltiple: Cases + Distance</span>
+<span class="n">X_multi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Cases&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Distance&quot;</span><span class="p">]))</span>
+<span class="n">model_multi</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_multi</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+
+<span class="c1"># Modelo simple: solo Cases</span>
+<span class="n">X_simple</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Cases&quot;</span><span class="p">]))</span>
+<span class="n">model_simple</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_simple</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+
+<span class="c1"># Resultados comparativos</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Modelo Múltiple (Cases + Distance) ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_multi</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Varianza residual estimada (σ²) = </span><span class="si">{</span><span class="n">model_multi</span><span class="o">.</span><span class="n">mse_resid</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Modelo Simple (solo Cases) ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_simple</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Varianza residual estimada (σ²) = </span><span class="si">{</span><span class="n">model_simple</span><span class="o">.</span><span class="n">mse_resid</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Modelo Múltiple (Cases + Distance) ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.960
+Model:                            OLS   Adj. R-squared:                  0.956
+Method:                 Least Squares   F-statistic:                     261.2
+Date:                Thu, 30 Oct 2025   Prob (F-statistic):           4.69e-16
+Time:                        23:07:42   Log-Likelihood:                -63.415
+No. Observations:                  25   AIC:                             132.8
+Df Residuals:                      22   BIC:                             136.5
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          2.3412      1.097      2.135      0.044       0.067       4.616
+x1             1.6159      0.171      9.464      0.000       1.262       1.970
+x2             0.0144      0.004      3.981      0.001       0.007       0.022
+==============================================================================
+Omnibus:                        0.421   Durbin-Watson:                   1.170
+Prob(Omnibus):                  0.810   Jarque-Bera (JB):                0.010
+Skew:                           0.032   Prob(JB):                        0.995
+Kurtosis:                       3.073   Cond. No.                         873.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+Varianza residual estimada (σ²) = 10.6242
+
+=== Modelo Simple (solo Cases) ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.930
+Model:                            OLS   Adj. R-squared:                  0.927
+Method:                 Least Squares   F-statistic:                     307.8
+Date:                Thu, 30 Oct 2025   Prob (F-statistic):           8.22e-15
+Time:                        23:07:42   Log-Likelihood:                -70.197
+No. Observations:                  25   AIC:                             144.4
+Df Residuals:                      23   BIC:                             146.8
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.3208      1.371      2.422      0.024       0.484       6.157
+x1             2.1762      0.124     17.546      0.000       1.920       2.433
+==============================================================================
+Omnibus:                        2.383   Durbin-Watson:                   0.946
+Prob(Omnibus):                  0.304   Jarque-Bera (JB):                1.037
+Skew:                           0.388   Prob(JB):                        0.595
+Kurtosis:                       3.627   Cond. No.                         18.2
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+Varianza residual estimada (σ²) = 17.4841
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="inadecuacion-de-los-diagramas-de-dispersion-en-regresion-multiple">
@@ -1868,7 +2034,7 @@ L(y, X, \beta, \sigma^2) = (2\pi)^{-n/2} \sigma^{-n} \exp\left( -\frac{1}{2\sigm
 <p>es mínimo. Por tanto, <strong>el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta\)</span> bajo normalidad es el estimador por mínimos cuadrados</strong>:</p>
 <div class="math notranslate nohighlight" id="equation-mle-beta">
 <span class="eqno">(3.51)<a class="headerlink" href="#equation-mle-beta" title="Link to this equation">#</a></span>\[
-\hat{\beta} = (X'X)^{-1}X'y
+\hat{\beta} = (X^{\top}X)^{-1}X^{\top}y
 \]</div>
 <p>El estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\sigma^2\)</span> es:</p>
 <div class="math notranslate nohighlight" id="equation-mle-sigma">
@@ -2018,11 +2184,11 @@ SST = \mathbf{y}^\top \mathbf{y} - \frac{\left( \sum_{i=1}^{n} y_i \right)^2}{n}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ssr-example3-3">
 <span class="eqno">(3.59)<a class="headerlink" href="#equation-ssr-example3-3" title="Link to this equation">#</a></span>\[
-SSR = \hat{\mathbf{b}}^\top \mathbf{X}^\top \mathbf{y} - \frac{\left( \sum_{i=1}^{n} y_i \right)^2}{n} = 18\,076.9030 - \frac{(559.60)^2}{25} = 5550.8166
+SSR = \mathbf{\hat{b}}^\top \mathbf{X}^\top \mathbf{y} - \frac{\left( \sum_{i=1}^{n} y_i \right)^2}{n} = 18\,076.9030 - \frac{(559.60)^2}{25} = 5550.8166
 \]</div>
 <div class="math notranslate nohighlight" id="equation-ssres-example3-3">
 <span class="eqno">(3.60)<a class="headerlink" href="#equation-ssres-example3-3" title="Link to this equation">#</a></span>\[
-SS_{Res} = SST - SSR = \mathbf{y}^\top \mathbf{y} - \hat{\mathbf{b}}^\top \mathbf{X}^\top \mathbf{y} = 233.7260
+SS_{Res} = SST - SSR = \mathbf{y}^\top \mathbf{y} - \mathbf{\hat{b}}^\top \mathbf{X}^\top \mathbf{y} = 233.7260
 \]</div>
 <p>El análisis de varianza se presenta en la Tabla 3.6. Para contrastar la hipótesis nula:</p>
 <div class="math notranslate nohighlight">
@@ -2120,9 +2286,9 @@ H_0: \beta_j = 0 \quad \text{vs} \quad H_1: \beta_j \ne 0 \tag{3.28}
 \[
 t_0 = \frac{\hat{\beta}_j}{\sqrt{\hat{\sigma}^2 C_{jj}}} = \frac{\hat{\beta}_j}{\text{se}(\hat{\beta}_j)} \tag{3.29}
 \]</div>
-<p>donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal correspondiente a <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en la matriz <span class="math notranslate nohighlight">\((X'X)^{-1}\)</span>. Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n - k - 1}\)</span>. Esta prueba es parcial, ya que el valor de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> depende de los otros regresores incluidos en el modelo.</p>
-<section id="id1">
-<h4><span class="section-number">3.2.12.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal correspondiente a <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en la matriz <span class="math notranslate nohighlight">\((X^{\top}X)^{-1}\)</span>. Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n - k - 1}\)</span>. Esta prueba es parcial, ya que el valor de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> depende de los otros regresores incluidos en el modelo.</p>
+<section id="id3">
+<h4><span class="section-number">3.2.12.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p>Supongamos que deseamos evaluar la contribución del regresor <span class="math notranslate nohighlight">\(x_2\)</span> (distancia), dado que <span class="math notranslate nohighlight">\(x_1\)</span> (casos) ya está en el modelo. Las hipótesis son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2161,12 +2327,12 @@ y = X_1 \beta_1 + \varepsilon \tag{3.32}
 <p>La suma de cuadrados de regresión para el modelo completo es:</p>
 <div class="math notranslate nohighlight">
 \[
-SSR(\beta) = \hat{\beta}' X'y \quad \text{con } p \text{ grados de libertad}
+SSR(\beta) = \hat{\beta}' X^{\top}y \quad \text{con } p \text{ grados de libertad}
 \]</div>
 <p>y el cuadrado medio residual es:</p>
 <div class="math notranslate nohighlight">
 \[
-MS_{Res} = \frac{y'y - \hat{\beta}'X'y}{n - p}
+MS_{Res} = \frac{y'y - \hat{\beta}'X^{\top}y}{n - p}
 \]</div>
 <p>La suma de cuadrados extra debido a <span class="math notranslate nohighlight">\(\beta_2\)</span> es:</p>
 <div class="math notranslate nohighlight">
@@ -2206,8 +2372,8 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \beta_{11} x_1^2 
 </ul>
 <p>Estas pruebas permiten descomponer la suma de cuadrados de regresión en componentes marginales de un grado de libertad. En resumen, la prueba parcial <span class="math notranslate nohighlight">\(F\)</span> es una herramienta flexible y general que permite evaluar la significancia de variables individuales o conjuntos de variables en presencia de otros regresores.</p>
 </section>
-<section id="id2">
-<h4><span class="section-number">3.2.12.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<section id="id4">
+<h4><span class="section-number">3.2.12.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>Consideremos nuevamente los datos de tiempo de entrega de bebidas gaseosas del Ejemplo 3.1. Supongamos que deseamos investigar la contribución de la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) al modelo. Las hipótesis apropiadas son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2226,7 +2392,7 @@ SSR(\beta_2 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2 \mid \beta_0) - SSR(\b
 <p>Del Ejemplo 3.3 sabemos que:</p>
 <div class="math notranslate nohighlight">
 \[
-SSR(\beta_1, \beta_2 \mid \beta_0) = \hat{\beta}' X' y - \frac{ \left( \sum_{i=1}^n y_i \right)^2 }{n} = 5550.8166 \quad (\text{2 grados de libertad})
+SSR(\beta_1, \beta_2 \mid \beta_0) = \hat{\beta}' X^{\top} y - \frac{ \left( \sum_{i=1}^n y_i \right)^2 }{n} = 5550.8166 \quad (\text{2 grados de libertad})
 \]</div>
 <p>El modelo reducido <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \varepsilon\)</span> fue ajustado en el Ejemplo 2.9, obteniéndose:</p>
 <div class="math notranslate nohighlight">
@@ -2270,7 +2436,7 @@ y = X\beta + \varepsilon = X_1 \beta_1 + X_2 \beta_2 + \varepsilon
 \]</div>
 <p>El método de suma de cuadrados extra permite medir el efecto de los regresores en <span class="math notranslate nohighlight">\(X_2\)</span> condicional a los que se encuentran en <span class="math notranslate nohighlight">\(X_1\)</span>, mediante el cálculo de <span class="math notranslate nohighlight">\(SSR(\beta_2 \mid \beta_1)\)</span>. En general, no podemos definir la suma de cuadrados debida a <span class="math notranslate nohighlight">\(\beta_2\)</span>, <span class="math notranslate nohighlight">\(SSR(\beta_2)\)</span>, sin considerar la dependencia de esta cantidad respecto a los regresores en <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <p>Sin embargo, si las columnas de <span class="math notranslate nohighlight">\(X_1\)</span> son ortogonales a las columnas de <span class="math notranslate nohighlight">\(X_2\)</span>, sí es posible determinar una suma de cuadrados debida a <span class="math notranslate nohighlight">\(\beta_2\)</span> que es independiente de los regresores en <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
-<p>Para demostrarlo, escribimos las ecuaciones normales <span class="math notranslate nohighlight">\((X'X)\hat{\beta} = X'y\)</span> para el modelo:</p>
+<p>Para demostrarlo, escribimos las ecuaciones normales <span class="math notranslate nohighlight">\((X^{\top}X)\hat{\beta} = X^{\top}y\)</span> para el modelo:</p>
 <div class="math notranslate nohighlight">
 \[
 y = X_1 \beta_1 + X_2 \beta_2 + \varepsilon
@@ -2306,7 +2472,7 @@ X_1'X_1 \hat{\beta}_1 = X_1'y, \qquad X_2'X_2 \hat{\beta}_2 = X_2'y
 <p>La suma de cuadrados de regresión del modelo completo es:</p>
 <div class="math notranslate nohighlight">
 \[
-SSR(\beta) = \hat{\beta}' X' y = \hat{\beta}_1' X_1' y + \hat{\beta}_2' X_2' y
+SSR(\beta) = \hat{\beta}' X^{\top} y = \hat{\beta}_1' X_1' y + \hat{\beta}_2' X_2' y
 \]</div>
 <p>Usando las soluciones anteriores, también podemos escribir:</p>
 <div class="math notranslate nohighlight">
@@ -2370,12 +2536,12 @@ H_0: T\boldsymbol{\beta} = \mathbf{0}
 <p>con estimador:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\boldsymbol{\beta}} = (X'X)^{-1}X'\mathbf{y}
+\hat{\boldsymbol{\beta}} = (X^{\top}X)^{-1}X^{\top}\mathbf{y}
 \]</div>
 <p>La <strong>suma de cuadrados residual del modelo completo</strong> es:</p>
 <div class="math notranslate nohighlight">
 \[
-SS_{Res}(\text{MC}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\beta}}'X'\mathbf{y}
+SS_{Res}(\text{MC}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\beta}}'X^{\top}\mathbf{y}
 \tag{3.39}
 \]</div>
 <p>con <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad.</p>
@@ -2479,7 +2645,7 @@ F_0 = \frac{SS_H / 2}{MS_{Res}(\text{MC})}
 <p>El estadístico <span class="math notranslate nohighlight">\(F\)</span> también puede escribirse como:</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X'X)^{-1}T' \right]^{-1} T\hat{\boldsymbol{\beta}} / r}{SS_{Res}(\text{MC}) / (n - p)}
+F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} T\hat{\boldsymbol{\beta}} / r}{SS_{Res}(\text{MC}) / (n - p)}
 \tag{3.41}
 \]</div>
 </section>
@@ -2494,7 +2660,7 @@ H_0: T\boldsymbol{\beta} = \mathbf{c}, \quad H_1: T\boldsymbol{\beta} \neq \math
 <p>con el estadístico:</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X'X)^{-1}T' \right]^{-1} (T\hat{\boldsymbol{\beta}} - \mathbf{c}) / r}{SS_{Res}(\text{MC}) / (n - p)}
+F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} (T\hat{\boldsymbol{\beta}} - \mathbf{c}) / r}{SS_{Res}(\text{MC}) / (n - p)}
 \tag{3.43}
 \]</div>
 <p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n - p}\)</span></strong>.</p>
@@ -2577,7 +2743,7 @@ x_{0k}
 <p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{y}_0) = x_0' \boldsymbol{\beta} = \mathbb{E}(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p>
 <div class="math notranslate nohighlight" id="equation-var-y0-hat">
 <span class="eqno">(3.66)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
-\operatorname{Var}(\hat{y}_0) = \sigma^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0
+\mathbb{Var}(\hat{y}_0) = \sigma^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0
 \]</div>
 <p><strong>Por lo tanto, un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x_0\)</span> es:</strong></p>
 <div class="math notranslate nohighlight" id="equation-ci-mean-y">
@@ -2791,7 +2957,7 @@ y_i^* = b_1 z_{i1} + b_2 z_{i2} + \cdots + b_k z_{ik} + \varepsilon_i, \quad i =
 <p>La matriz de diseño con variables estandarizadas es <span class="math notranslate nohighlight">\(Z\)</span>, y el vector de respuestas estandarizadas es <span class="math notranslate nohighlight">\(y^*\)</span>. El estimador de mínimos cuadrados es:</p>
 <div class="math notranslate nohighlight" id="equation-standardized-b">
 <span class="eqno">(3.74)<a class="headerlink" href="#equation-standardized-b" title="Link to this equation">#</a></span>\[
-\hat{\mathbf{b}} = (Z'Z)^{-1} Z'y^*\]</div>
+\mathbf{\hat{b}} = (Z'Z)^{-1} Z'y^*\]</div>
 </section>
 <section id="escalamiento-de-longitud-unitaria">
 <h4><span class="section-number">3.2.20.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
@@ -2811,7 +2977,7 @@ y_i^\circ = b_1 w_{i1} + b_2 w_{i2} + \cdots + b_k w_{ik} + \varepsilon_i, \quad
 <p>El estimador es:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-b">
 <span class="eqno">(3.78)<a class="headerlink" href="#equation-unit-length-b" title="Link to this equation">#</a></span>\[
-\hat{\mathbf{b}} = (W'W)^{-1} W'y^\circ\]</div>
+\mathbf{\hat{b}} = (W'W)^{-1} W'y^\circ\]</div>
 <ul class="simple">
 <li><p>En este caso, la matriz <span class="math notranslate nohighlight">\(W'W\)</span> es una matriz de correlaciones:</p></li>
 </ul>
@@ -2830,7 +2996,7 @@ r_{1k} &amp; r_{2k} &amp; \cdots &amp; 1
 <span class="eqno">(3.80)<a class="headerlink" href="#equation-regressor-response-correlation" title="Link to this equation">#</a></span>\[\begin{split}
 W'y^\circ = \begin{bmatrix} r_{1y} \\ r_{2y} \\ \vdots \\ r_{ky} \end{bmatrix}\end{split}\]</div>
 <p>Donde cada <span class="math notranslate nohighlight">\(r_{ij}\)</span> es la correlación muestral entre <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span>, y <span class="math notranslate nohighlight">\(r_{jy}\)</span> entre <span class="math notranslate nohighlight">\(x_j\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p>
-<p><strong>Ambos métodos producen el mismo vector <span class="math notranslate nohighlight">\(\hat{\mathbf{b}}\)</span> de coeficientes estandarizados.</strong> Esto se debe a que:</p>
+<p><strong>Ambos métodos producen el mismo vector <span class="math notranslate nohighlight">\(\mathbf{\hat{b}}\)</span> de coeficientes estandarizados.</strong> Esto se debe a que:</p>
 <div class="math notranslate nohighlight" id="equation-z-and-w-relation">
 <span class="eqno">(3.81)<a class="headerlink" href="#equation-z-and-w-relation" title="Link to this equation">#</a></span>\[
 Z'Z = (n - 1) W'W\]</div>
@@ -2859,9 +3025,9 @@ Z'Z = (n - 1) W'W\]</div>
 <section id="multicolinealidad">
 <h2><span class="section-number">3.3. </span>Multicolinealidad<a class="headerlink" href="#multicolinealidad" title="Link to this heading">#</a></h2>
 <p><strong>Los modelos de regresión se utilizan en diversas aplicaciones. Un problema significativo que puede afectar su utilidad es la multicolinealidad, es decir, la dependencia casi lineal entre las variables regresoras.</strong> En esta sección se introduce brevemente esta problemática y se indican algunos efectos perjudiciales. Un tratamiento más completo aparece en el Capítulo 9.</p>
-<p><strong>La multicolinealidad implica dependencia lineal aproximada entre los regresores.</strong> Como estos constituyen las columnas de la matriz <span class="math notranslate nohighlight">\(X\)</span>, una dependencia lineal exacta implicaría que <span class="math notranslate nohighlight">\(X'X\)</span> es singular. La existencia de relaciones casi lineales puede dificultar la estimación precisa de los coeficientes de regresión.</p>
+<p><strong>La multicolinealidad implica dependencia lineal aproximada entre los regresores.</strong> Como estos constituyen las columnas de la matriz <span class="math notranslate nohighlight">\(X\)</span>, una dependencia lineal exacta implicaría que <span class="math notranslate nohighlight">\(X^{\top}X\)</span> es singular. La existencia de relaciones casi lineales puede dificultar la estimación precisa de los coeficientes de regresión.</p>
 <ul class="simple">
-<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.71)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.72)</a>, la matriz <span class="math notranslate nohighlight">\(X'X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
+<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.71)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.72)</a>, la matriz <span class="math notranslate nohighlight">\(X^{\top}X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
 </ul>
 <p>Para un conjunto de datos ortogonales:
 $<span class="math notranslate nohighlight">\(
@@ -2884,7 +3050,7 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 <p><strong>Esto demuestra que la multicolinealidad incrementa la varianza de los coeficientes, reduciendo la precisión de su estimación.</strong></p>
 <ul class="simple">
-<li><p>Los elementos diagonales de <span class="math notranslate nohighlight">\((X'X)^{-1}\)</span> (en forma de correlación) se denominan <em>factores de inflación de la varianza</em> (VIF):</p>
+<li><p>Los elementos diagonales de <span class="math notranslate nohighlight">\((X^{\top}X)^{-1}\)</span> (en forma de correlación) se denominan <em>factores de inflación de la varianza</em> (VIF):</p>
 <ul>
 <li><p>Para los datos de tiempo de entrega: <span class="math notranslate nohighlight">\(\text{VIF}_1 = \text{VIF}_2 = 3.11841\)</span></p></li>
 <li><p>Para datos ortogonales: <span class="math notranslate nohighlight">\(\text{VIF}_1 = \text{VIF}_2 = 1\)</span></p></li>
@@ -2935,7 +3101,7 @@ $<span class="math notranslate nohighlight">\(
 <p><strong>La reversión en el signo de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> se debe a que ahora representa el efecto de <span class="math notranslate nohighlight">\(x_1\)</span> condicionado a <span class="math notranslate nohighlight">\(x_2\)</span>.</strong></p>
 <ul class="simple">
 <li><p>La multicolinealidad también puede inducir signos incorrectos al aumentar las varianzas de los coeficientes.</p></li>
-<li><p>Finalmente, <strong>los errores computacionales</strong> (como el redondeo o truncamiento en matrices <span class="math notranslate nohighlight">\(X'X\)</span> mal condicionadas) pueden generar signos erróneos o coeficientes con órdenes de magnitud incorrectos.</p></li>
+<li><p>Finalmente, <strong>los errores computacionales</strong> (como el redondeo o truncamiento en matrices <span class="math notranslate nohighlight">\(X^{\top}X\)</span> mal condicionadas) pueden generar signos erróneos o coeficientes con órdenes de magnitud incorrectos.</p></li>
 </ul>
 <p><strong>Se recomienda verificar la precisión del software (por ejemplo, Python) si se sospechan errores en los signos de los coeficientes.</strong></p>
 </section>
@@ -3022,8 +3188,8 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.10. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.11. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.12. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.13. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
