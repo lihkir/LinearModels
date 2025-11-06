@@ -3244,13 +3244,10 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 \begin{align}
 \mathbb{Var}(\psi) 
   &amp;= \mathbb{Var}(\varepsilon_0) 
-   + \mathbb{Var}\big((\hat{\beta}_0 - \beta_0) + (\hat{\beta}_1 - \beta_1)x_0\big) \\
+   + \mathbb{Var}\big((\hat{\beta}_0 - \beta_0) + (\hat{\beta}_1 - \beta_1)x_0\big),\quad\textit{$y_0$ y $\hat{y}_0$ son independientes}\\
   &amp;= \sigma^2 + \mathbb{Var}(\hat{\beta}_0 + \hat{\beta}_1 x_0).
 \end{align}
 \end{split}\]</div>
-<ul class="simple">
-<li><p>Esto se debe a que <em><span class="math notranslate nohighlight">\(y_0\)</span> y <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> son independientes</em>.</p></li>
-</ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Elemento</p></th>
@@ -3377,6 +3374,53 @@ y_0 &amp;= \beta_0 + \beta_1 x_0 + \varepsilon_0 \\
 &amp;\leq \overline{y}_0 \leq \hat{y}_0 + t_{\alpha/2, n-2} \sqrt{MS_{Res} \left( \frac{1}{m} + \frac{1}{n} + \frac{(x_0 - \overline{x})^2}{S_{xx}} \right)}
 \end{align}
 \end{split}\]</div>
+<ul class="simple">
+<li><p>Cuando se desea predecir la <strong>media de <span class="math notranslate nohighlight">\(m\)</span></strong> observaciones futuras en <span class="math notranslate nohighlight">\(x = x_0\)</span>, el término <span class="math notranslate nohighlight">\(1/m\)</span> aparece en la fórmula porque <strong>promediar reduce la variabilidad</strong> de los errores. Cada nueva observación puede expresarse como</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+y_{0i} = \beta_0 + \beta_1 x_0 + \varepsilon_{0i}, \quad \varepsilon_{0i} \sim (0, \sigma^2)
+\]</div>
+<ul class="simple">
+<li><p>Al promediar las <span class="math notranslate nohighlight">\(m\)</span> observaciones:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\bar{y}_0 = \beta_0 + \beta_1 x_0 + \bar{\varepsilon}_0, \quad \text{donde } \operatorname{Var}(\bar{\varepsilon}_0) = \frac{\sigma^2}{m}
+\]</div>
+<ul class="simple">
+<li><p>Por tanto, la <strong>varianza total de la predicción para la media de observaciones futuras</strong> es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Var}(\bar{y}_0 - \hat{y}_0) = \sigma^2 \left( \frac{1}{m} + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{xx}} \right)\approx MS_{Res}\left( \frac{1}{m} + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{S_{xx}} \right)
+\]</div>
+<ul class="simple">
+<li><p>El término <span class="math notranslate nohighlight">\(1/m\)</span> refleja que el error del promedio es menor que el de una sola observación, por lo que el <strong>intervalo de predicción se estrecha</strong> a medida que aumenta <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Término</p></th>
+<th class="head"><p>Significado</p></th>
+<th class="head"><p>Efecto</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(1/m\)</span></p></td>
+<td><p>Variabilidad del promedio de observaciones futuras</p></td>
+<td><p>Disminuye al aumentar <span class="math notranslate nohighlight">\(m\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1/n\)</span></p></td>
+<td><p>Incertidumbre en el ajuste del modelo</p></td>
+<td><p>Depende del tamaño de la muestra</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\((x_0 - \bar{x})^2/S_{xx}\)</span></p></td>
+<td><p>Incertidumbre por extrapolación</p></td>
+<td><p>Aumenta al alejarse de <span class="math notranslate nohighlight">\(\bar{x}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 </section>
 <section id="coeficiente-de-determinacion">
@@ -3439,36 +3483,20 @@ R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 </ul>
 <section id="precauciones-al-interpretar-r-2">
 <h3><span class="section-number">2.7.1. </span>Precauciones al Interpretar <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#precauciones-al-interpretar-r-2" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>El estadístico <span class="math notranslate nohighlight">\(R^2\)</span> debe interpretarse con cautela, ya que puede inflarse artificialmente al agregar más términos al modelo.</strong></p>
+<p><strong>El estadístico <span class="math notranslate nohighlight">\(R^2\)</span> debe interpretarse con cautela, ya que puede inflarse artificialmente al agregar más términos al modelo.</strong></p>
 <ol class="arabic simple">
 <li><p>Por ejemplo, si no hay repeticiones en los valores de <span class="math notranslate nohighlight">\(x\)</span>, un polinomio de grado <span class="math notranslate nohighlight">\(n - 1\)</span> ajustará perfectamente los <span class="math notranslate nohighlight">\(n\)</span> datos, resultando en <span class="math notranslate nohighlight">\(R^2 = 1\)</span>.</p></li>
-<li><p>Si hay valores repetidos en <span class="math notranslate nohighlight">\(x\)</span>, entonces <span class="math notranslate nohighlight">\(R^2 &lt; 1\)</span>, ya que el modelo no puede explicar el error puro.</p></li>
 </ol>
-</li>
-<li><p><strong>Incluir más variables en el modelo no garantiza una mejora.</strong></p>
-<ol class="arabic simple" start="3">
-<li><p>Aunque <span class="math notranslate nohighlight">\(R^2\)</span> nunca disminuye al agregar una variable regresora, esto no implica que el nuevo modelo sea mejor.</p></li>
-<li><p>Si la suma de cuadrados del error no disminuye lo suficiente, el cuadrado medio del error puede aumentar debido a la pérdida de grados de libertad.</p></li>
-</ol>
-</li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_squared_error</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># =============================================================================</span>
-<span class="c1"># 1. EL ENGAÑO DEL POLINOMIO PERFECTO (SOBREAJUSTE)</span>
-<span class="c1"># =============================================================================</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">r2_score</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. EL ENGAÑO DEL POLINOMIO PERFECTO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. EL ENGAÑO DEL POLINOMIO PERFECTO (SOBREAJUSTE)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
 <span class="c1"># Datos originales</span>
@@ -3479,7 +3507,7 @@ R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_original</span><span class="p">)):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Punto </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: x=</span><span class="si">{</span><span class="n">x_original</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">y_original</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Modelo lineal (grado 1)</span>
+<span class="c1"># Modelo lineal</span>
 <span class="n">modelo_lineal</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_original</span><span class="p">,</span> <span class="n">y_original</span><span class="p">)</span>
 <span class="n">y_pred_lineal</span> <span class="o">=</span> <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_original</span><span class="p">)</span>
@@ -3489,7 +3517,7 @@ R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ecuación: y = </span><span class="si">{</span><span class="n">modelo_lineal</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">modelo_lineal</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² = </span><span class="si">{</span><span class="n">r2_lineal</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># Modelo polinomial (grado 3 - perfecto)</span>
+<span class="c1"># Modelo polinomial (grado 3)</span>
 <span class="n">poly_features</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">x_poly</span> <span class="o">=</span> <span class="n">poly_features</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_original</span><span class="p">)</span>
 
@@ -3498,7 +3526,7 @@ R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 <span class="n">y_pred_polinomio</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_poly</span><span class="p">)</span>
 <span class="n">r2_polinomio</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_original</span><span class="p">,</span> <span class="n">y_pred_polinomio</span><span class="p">)</span>
 
-<span class="c1"># Obtener coeficientes del polinomio</span>
+<span class="c1"># Coeficientes</span>
 <span class="n">coef</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">coef_</span>
 <span class="n">intercept</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">intercept_</span>
 
@@ -3506,74 +3534,85 @@ R^2 = \frac{1,\!527,\!334.95}{1,\!693,\!737.60} = 0.9018
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ecuación: y = </span><span class="si">{</span><span class="n">intercept</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x + </span><span class="si">{</span><span class="n">coef</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x² + </span><span class="si">{</span><span class="n">coef</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x³&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² = </span><span class="si">{</span><span class="n">r2_polinomio</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (¡PERFECTO!)&quot;</span><span class="p">)</span>
 
-<span class="c1"># Verificar que el polinomio pasa exactamente por todos los puntos</span>
+<span class="c1"># Verificación del ajuste exacto</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Verificación de ajuste perfecto:&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_original</span><span class="p">)):</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">poly_features</span><span class="o">.</span><span class="n">transform</span><span class="p">([[</span><span class="n">x_original</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]]]))</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  x=</span><span class="si">{</span><span class="n">x_original</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">: y_real=</span><span class="si">{</span><span class="n">y_original</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">, y_pred=</span><span class="si">{</span><span class="n">y_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># PRUEBA CON NUEVOS DATOS (generalización)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- PRUEBA DE GENERALIZACIÓN ---&quot;</span><span class="p">)</span>
-<span class="n">x_nuevo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y_real_nuevo_estimado</span> <span class="o">=</span> <span class="mf">3.5</span>  <span class="c1"># Valor razonable basado en la tendencia</span>
+<span class="c1"># ==============================</span>
+<span class="c1"># NUEVA PRUEBA: x = 5 y x = 6</span>
+<span class="c1"># ==============================</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- PRUEBA DE GENERALIZACIÓN (FUERA DEL RANGO) ---&quot;</span><span class="p">)</span>
+<span class="n">x_nuevos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_razonables</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>  <span class="c1"># tendencia esperada (lineal)</span>
 
 <span class="c1"># Predicciones</span>
-<span class="n">pred_lineal_nuevo</span> <span class="o">=</span> <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_nuevo</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">pred_polinomio_nuevo</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">poly_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_nuevo</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">pred_lineal_nuevos</span> <span class="o">=</span> <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_nuevos</span><span class="p">)</span>
+<span class="n">pred_polinomio_nuevos</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">poly_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_nuevos</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Para x = 2.5 (punto nuevo):&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Predicción lineal: </span><span class="si">{</span><span class="n">pred_lineal_nuevo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Predicción polinomial: </span><span class="si">{</span><span class="n">pred_polinomio_nuevo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Valor razonable esperado: ~</span><span class="si">{</span><span class="n">y_real_nuevo_estimado</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_nuevos</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x = </span><span class="si">{</span><span class="n">x_val</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Lineal = </span><span class="si">{</span><span class="n">pred_lineal_nuevos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Polinomial = </span><span class="si">{</span><span class="n">pred_polinomio_nuevos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Esperado ≈ </span><span class="si">{</span><span class="n">y_razonables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 
 <span class="c1"># Visualización</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="c1"># Subplot 1: Ajuste a datos originales</span>
+<span class="c1"># Subplot 1: Ajuste en rango original</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">x_plot_poly</span> <span class="o">=</span> <span class="n">poly_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)</span>
 <span class="n">y_plot_polinomio</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_plot_poly</span><span class="p">)</span>
 <span class="n">y_plot_lineal</span> <span class="o">=</span> <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_original</span><span class="p">,</span> <span class="n">y_original</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos originales&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot_lineal</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Lineal (R² = </span><span class="si">{</span><span class="n">r2_lineal</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot_polinomio</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Polinomio Grado 3 (R² = </span><span class="si">{</span><span class="n">r2_polinomio</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_original</span><span class="p">,</span> <span class="n">y_original</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos de entrenamiento&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot_lineal</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Lineal (R²=</span><span class="si">{</span><span class="n">r2_lineal</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot_polinomio</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Polinomio grado 3 (R²=1.000)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ajuste a Datos Originales&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
-<span class="c1"># Subplot 2: Comportamiento fuera del rango</span>
+<span class="c1"># Subplot 2: Generalización fuera del rango</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">x_plot_ext</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x_plot_ext</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">x_plot_ext_poly</span> <span class="o">=</span> <span class="n">poly_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_plot_ext</span><span class="p">)</span>
 <span class="n">y_plot_polinomio_ext</span> <span class="o">=</span> <span class="n">modelo_polinomio</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_plot_ext_poly</span><span class="p">)</span>
 <span class="n">y_plot_lineal_ext</span> <span class="o">=</span> <span class="n">modelo_lineal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_plot_ext</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_original</span><span class="p">,</span> <span class="n">y_original</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos originales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_original</span><span class="p">,</span> <span class="n">y_original</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Entrenamiento&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_nuevos</span><span class="p">,</span> <span class="n">y_razonables</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos de prueba (esperados)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot_ext</span><span class="p">,</span> <span class="n">y_plot_lineal_ext</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lineal (generaliza bien)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot_ext</span><span class="p">,</span> <span class="n">y_plot_polinomio_ext</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Polinomio (sobreajuste)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;x = 2.5 (nuevo)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comportamiento con Nuevos Datos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Generalización fuera del rango de entrenamiento&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
+<span class="c1"># Señalar el sobreajuste</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Comportamiento inestable</span><span class="se">\n</span><span class="s1">(sobreajuste)&#39;</span><span class="p">,</span>
+             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">5.2</span><span class="p">,</span> <span class="n">pred_polinomio_nuevos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkred&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CONCLUSIÓN 1:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El polinomio tiene R² = 1 (perfecto) pero generaliza MAL&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La recta tiene R² = </span><span class="si">{</span><span class="n">r2_lineal</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> pero generaliza MEJOR&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">CONCLUSIÓN:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El modelo polinómico tiene R² = 1 en entrenamiento, pero se comporta de forma inestable fuera del rango.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El modelo lineal tiene menor R², pero mantiene la tendencia y generaliza mejor.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
-1. EL ENGAÑO DEL POLINOMIO PERFECTO
+1. EL ENGAÑO DEL POLINOMIO PERFECTO (SOBREAJUSTE)
 ============================================================
 Datos originales:
   Punto 1: x=1, y=2
@@ -3595,21 +3634,30 @@ Verificación de ajuste perfecto:
   x=3: y_real=3, y_pred=3.00
   x=4: y_real=5, y_pred=5.00
 
---- PRUEBA DE GENERALIZACIÓN ---
-Para x = 2.5 (punto nuevo):
-  Predicción lineal: 3.50
-  Predicción polinomial: 3.50
-  Valor razonable esperado: ~3.5
+--- PRUEBA DE GENERALIZACIÓN (FUERA DEL RANGO) ---
+x = 5:
+  Lineal = 5.50
+  Polinomial = 16.00
+  Esperado ≈ 6
+----------------------------------------
+x = 6:
+  Lineal = 6.30
+  Polinomial = 42.00
+  Esperado ≈ 7
+----------------------------------------
 </pre></div>
 </div>
-<img alt="_images/b3833a7fc64fe8b5491d581ee8fc136fe625631b3c3d3f721ab6c0f66fba693e.png" src="_images/b3833a7fc64fe8b5491d581ee8fc136fe625631b3c3d3f721ab6c0f66fba693e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CONCLUSIÓN 1:
-El polinomio tiene R² = 1 (perfecto) pero generaliza MAL
-La recta tiene R² = 0.640 pero generaliza MEJOR
+<img alt="_images/7f90a9b6fd2f1b1565f04af784f452828c3923fd42ec569a5c4d228205283808.png" src="_images/7f90a9b6fd2f1b1565f04af784f452828c3923fd42ec569a5c4d228205283808.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CONCLUSIÓN:
+El modelo polinómico tiene R² = 1 en entrenamiento, pero se comporta de forma inestable fuera del rango.
+El modelo lineal tiene menor R², pero mantiene la tendencia y generaliza mejor.
 </pre></div>
 </div>
 </div>
 </div>
+<ol class="arabic simple" start="2">
+<li><p>Si hay valores repetidos en <span class="math notranslate nohighlight">\(x\)</span>, entonces <span class="math notranslate nohighlight">\(R^2 &lt; 1\)</span>, ya que el modelo no puede explicar el error puro.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =============================================================================</span>
@@ -3736,6 +3784,10 @@ Por eso incluso el polinomio más complejo tiene R² &lt; 1
 </div>
 </div>
 </div>
+<p><strong>Incluir más variables en el modelo no garantiza una mejora.</strong></p>
+<ol class="arabic simple" start="3">
+<li><p>Aunque <span class="math notranslate nohighlight">\(R^2\)</span> nunca disminuye al agregar una variable regresora, esto no implica que el nuevo modelo sea mejor.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =============================================================================</span>
@@ -3851,6 +3903,30 @@ La pequeña mejora en SS_Res no compensa la pérdida de 1 grado de libertad
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Agregar más parámetros <strong>siempre aumenta <span class="math notranslate nohighlight">\(R^2\)</span></strong>, porque el modelo se ajusta mejor a los datos observados. Sin embargo, esto <strong>reduce los grados de libertad</strong> y puede <strong>empeorar la calidad promedio del ajuste</strong>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+R^2 = 1 - \frac{SS_{Res}}{SST}, \quad MS_{Res} = \frac{SS_{Res}}{n - p}
+\]</div>
+<ul class="simple">
+<li><p>Al aumentar <span class="math notranslate nohighlight">\(p\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(SS_{Res}\)</span> puede disminuir (el modelo ajusta mejor).</p></li>
+<li><p>Pero <span class="math notranslate nohighlight">\((n - p)\)</span> también disminuye → penaliza el exceso de parámetros.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Conclusión:</strong><br />
+Un modelo más complejo puede mostrar un <span class="math notranslate nohighlight">\(R^2\)</span> mayor,<br />
+pero si la reducción en <span class="math notranslate nohighlight">\(SS_{Res}\)</span> no compensa la pérdida de grados de libertad,<br />
+el <strong><span class="math notranslate nohighlight">\(MS_{Res}\)</span> no mejora significativamente</strong>, y el modelo <strong>no es realmente mejor</strong>.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Si la suma de cuadrados del error no disminuye lo suficiente, el cuadrado medio del error puede aumentar debido a la pérdida de grados de libertad.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =============================================================================</span>
