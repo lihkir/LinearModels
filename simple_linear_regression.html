@@ -4332,11 +4332,11 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 f_X(x) = \frac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\frac{1}{2} \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right]
 \]</div>
 <ul>
-<li><p>Dado que <span class="math notranslate nohighlight">\(f(y|x) = \dfrac{f(y,x)}{f_X(x)}\)</span>, dividiendo la densidad conjunta entre la marginal:</p>
+<li><p>Dado que, la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(f(y|x) = \dfrac{f(y,x)}{f_X(x)}\)</span>, dividiendo la densidad conjunta entre la marginal</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{aligned}
-    f(y|x) &amp;= \frac{ \dfrac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{ -\dfrac{Q}{2} \right\} }{ \dfrac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\dfrac{1}{2} \left( \dfrac{x - \mu_2}{\sigma_2} \right)^2 \right] } \\
+    f(y|x) &amp;= \frac{ \dfrac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{ -\dfrac{Q}{2(1 - \rho^2)} \right\} }{ \dfrac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\dfrac{1}{2} \left( \dfrac{x - \mu_2}{\sigma_2} \right)^2 \right] } \\
     &amp;= \frac{1}{\sqrt{2\pi}\sigma_1\sqrt{1-\rho^2}} \exp\left\{ -\frac{1}{2} \left[ \frac{Q}{1-\rho^2} - \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right] \right\}
     \end{aligned}
     \end{split}\]</div>
@@ -4350,20 +4350,24 @@ f_X(x) = \frac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\frac{1}{2} \left( \frac{x - 
 &amp;\frac{u^2 + v^2 - 2\rho uv}{1-\rho^2} - v^2 \\
 &amp;= \frac{u^2 + v^2 - 2\rho uv - (1-\rho^2)v^2}{1-\rho^2} \\
 &amp;= \frac{u^2 - 2\rho uv + \rho^2 v^2}{1-\rho^2} \\
-&amp;= \frac{(u - \rho v)^2}{1-\rho^2}
+&amp;= \frac{(\textcolor{red}{u - \rho v})^2}{1-\rho^2}
 \end{aligned}
 \end{split}\]</div>
-<ul class="simple">
-<li><p>Sustituyendo <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(v\)</span>:</p></li>
-</ul>
+<ul>
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(v\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{aligned}
-u - \rho v &amp;= \frac{y - \mu_1}{\sigma_1} - \rho \frac{x - \mu_2}{\sigma_2} \\
-&amp;= \frac{1}{\sigma_1} \left[ y - \mu_1 - \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \right]
-\end{aligned}
-\end{split}\]</div>
-<ul class="simple">
+    \begin{aligned}
+    \textcolor{red}{u - \rho v} &amp;= \frac{y - \mu_1}{\sigma_1} - \rho \frac{x - \mu_2}{\sigma_2} \\
+    &amp;= \frac{1}{\sigma_1} \left[ y - \mu_1 - \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \right]
+    \end{aligned}
+    \end{split}\]</div>
+<p>Entonces</p>
+<div class="math notranslate nohighlight">
+\[
+    -\frac{1}{2} \left[ \frac{Q}{1-\rho^2} - \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right]=-\frac{1}{2}\left\{\frac{1}{\textcolor{red}{\sigma_1^{2}(1-\rho^{2})}}\left[ y - \left(\textcolor{red}{\mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2)}\right)\right]^{2}\right\}
+    \]</div>
+</li>
 <li><p><strong>Media y varianza condicional</strong>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -4420,7 +4424,7 @@ E[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
 </ul>
 <div class="math notranslate nohighlight" id="equation-sample-correlation-r">
 <span class="eqno">(2.77)<a class="headerlink" href="#equation-sample-correlation-r" title="Link to this equation">#</a></span>\[
-r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x})}{\left[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2\right]^{1/2}} = \frac{S_{xy}}{[S_{xx}SS_{T}]^{1/2}}
+r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x})}{\left[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2\right]^{1/2}} = \textcolor{red}{\frac{S_{xy}}{S_{xx}}}\left(\frac{S_{xx}}{SS_{T}}\right)^{1/2}
 \]</div>
 <ul class="simple">
 <li><p>De la ecuación anterior se deduce que</p></li>
@@ -4430,8 +4434,8 @@ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x
 \hat{\beta}_1 = r\cdot\left(\frac{SS_{T}}{S_{xx}}\right)^{1/2}
 \]</div>
 <ul class="simple">
-<li><p>Por tanto, <strong><span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> y <span class="math notranslate nohighlight">\(r\)</span> están estrechamente relacionados</strong>: <span class="math notranslate nohighlight">\(r\)</span> mide la asociación lineal entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>, mientras que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> cuantifica el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una variación unitaria en <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
-<li><p>Se puede expresar también que:</p></li>
+<li><p>Por tanto, <strong><span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> y <span class="math notranslate nohighlight">\(r\)</span> están estrechamente relacionados</strong>: <em><span class="math notranslate nohighlight">\(r\)</span> mide la asociación lineal entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>, mientras que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> cuantifica el cambio esperado en <span class="math notranslate nohighlight">\(y\)</span> ante una variación unitaria en <span class="math notranslate nohighlight">\(x\)</span></em>.</p></li>
+<li><p>Se puede expresar también que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-r-squared-equals-r-squared">
 <span class="eqno">(2.79)<a class="headerlink" href="#equation-r-squared-equals-r-squared" title="Link to this equation">#</a></span>\[
@@ -4459,7 +4463,7 @@ t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
 \[
     y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
     \]</div>
-<p>definimos las <strong>sumas de cuadrados</strong> como:</p>
+<p>definimos las <strong>sumas de cuadrados</strong> como</p>
 <div class="math notranslate nohighlight">
 \[
     S_{xx} = \sum_{i}(x_i - \bar{x})^2, \quad
@@ -4488,27 +4492,27 @@ r = \frac{S_{xy}}{\sqrt{S_{xx} S_{yy}}}, \qquad -1 \le r \le 1.
 S_{xy} = r \sqrt{S_{xx} S_{yy}}.
 \]</div>
 <ul class="simple">
-<li><p>Sustituyendo en la expresión de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>:</p></li>
+<li><p>Sustituyendo en la expresión de <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}
-= r \frac{\sqrt{S_{xx} S_{yy}}}{S_{xx}}
+\hat{\beta}_1 = \frac{\textcolor{red}{S_{xy}}}{S_{xx}}
+= \textcolor{red}{r}\frac{\textcolor{red}{\sqrt{S_{xx} S_{yy}}}}{S_{xx}}
 = r \frac{\sqrt{S_{yy}}}{\sqrt{S_{xx}}}.
 \]</div>
 <ul>
-<li><p>Si queremos escribirlo en términos de las desviaciones estándar muestrales <span class="math notranslate nohighlight">\(s_x, s_y\)</span>, donde</p>
+<li><p>Si queremos escribirlo <strong>en términos de las desviaciones estándar muestrales <span class="math notranslate nohighlight">\(s_x, s_y\)</span></strong>, donde</p>
 <div class="math notranslate nohighlight">
 \[
     s_x^2 = \frac{S_{xx}}{n-1}, \qquad s_y^2 = \frac{S_{yy}}{n-1},
     \]</div>
-<p>entonces:</p>
+<p>entonces</p>
 <div class="math notranslate nohighlight">
 \[
     \frac{\sqrt{S_{yy}}}{\sqrt{S_{xx}}} = \frac{s_y}{s_x}.
     \]</div>
 </li>
-<li><p>Por tanto, la forma habitual es:</p></li>
+<li><p>Por tanto, la forma habitual es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -4526,14 +4530,14 @@ S_{xy} = r \sqrt{S_{xx} S_{yy}}.
     R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{S_{xy}^2}{S_{xx} S_{yy}} = r^2.
     \]</div>
 </li>
-<li><p>Por lo tanto</p>
+<li><p>Por lo tanto,</p>
 <div class="math notranslate nohighlight">
 \[
     r = \operatorname{sign}(\hat{\beta}_1) \sqrt{R^2},
     \]</div>
 <p>lo que implica que <span class="math notranslate nohighlight">\(\sqrt{R^2} = |r|\)</span> (magnitud) y <span class="math notranslate nohighlight">\(\operatorname{sign}(\hat{\beta}_1)\)</span> determina la dirección.</p>
 </li>
-<li><p>Porcedemos con la derivación del estadístico <span class="math notranslate nohighlight">\(t\)</span> en términos de <span class="math notranslate nohighlight">\(r\)</span>. La prueba de hipótesis para <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> utiliza</p></li>
+<li><p>Procedemos con la derivación del estadístico <span class="math notranslate nohighlight">\(t\)</span> en términos de <span class="math notranslate nohighlight">\(r\)</span>. La prueba de hipótesis para <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> utiliza</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -4545,26 +4549,28 @@ t = \frac{\hat{\beta}_1}{\mathrm{SE}(\hat{\beta}_1)}.
 \[
     \mathrm{SE}(\hat{\beta}_1) = \frac{s_e}{\sqrt{S_{xx}}}, \qquad s_e^2 = \frac{\text{SSE}}{n - 2},
     \]</div>
-<p>donde <strong>SSE</strong> es la suma de cuadrados de los residuos, y <span class="math notranslate nohighlight">\(s_e\)</span> es la raíz cuadrada del estimador de la varianza residual. Los <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad provienen de haber estimado los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
+<p>donde <strong>SSE</strong> es la suma de cuadrados de los residuos, y <span class="math notranslate nohighlight">\(s_e\)</span> es la <strong>raíz cuadrada del estimador de la varianza residual</strong>. Los <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad provienen de haber estimado los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
 </li>
-<li><p>Sustituyendo <span class="math notranslate nohighlight">\(\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(\hat{\beta}_1 = S_{xy}/S_{xx}\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 t = \frac{\hat{\beta}_1}{\mathrm{SE}(\hat{\beta}_1)}
 = \frac{S_{xy} / S_{xx}}{s_e / \sqrt{S_{xx}}}
-= \frac{S_{xy}}{\sqrt{S_{xx}}\, s_e}.
+= \frac{\textcolor{red}{S_{xy}}}{\sqrt{S_{xx}}\, s_e}.
 \]</div>
 <ul class="simple">
-<li><p>Ahora usamos la identidad <span class="math notranslate nohighlight">\(S_{xy} = r \sqrt{S_{xx} S_{yy}}\)</span></p></li>
+<li><p>Ahora usamos la identidad <span class="math notranslate nohighlight">\(\textcolor{red}{S_{xy} = r \sqrt{S_{xx} S_{yy}}}\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-t = \frac{r \sqrt{S_{xx} S_{yy}}}{\sqrt{S_{xx}}\, s_e}
+t = \frac{\textcolor{red}{r \sqrt{S_{xx} S_{yy}}}}{\sqrt{S_{xx}}\, s_e}
 = r \frac{\sqrt{S_{yy}}}{s_e}.
 \]</div>
 <ul>
-<li><p>Expresando <span class="math notranslate nohighlight">\(s_e\)</span> en función de <span class="math notranslate nohighlight">\(R^2\)</span>. Relacionamos SSE con <span class="math notranslate nohighlight">\(S_{yy}\)</span> usando <span class="math notranslate nohighlight">\(R^2\)</span>. Recordando que</p>
+<li><p>Expresando <span class="math notranslate nohighlight">\(s_e\)</span> en función de <span class="math notranslate nohighlight">\(R^2\)</span>. Relacionamos <span class="math notranslate nohighlight">\(SSE\)</span> con <span class="math notranslate nohighlight">\(S_{yy}\)</span> usando <span class="math notranslate nohighlight">\(R^2\)</span>. Recordando que</p>
 <div class="math notranslate nohighlight">
 \[
     R^2 = 1 - \frac{\text{SSE}}{\text{SST}},
@@ -4599,13 +4605,6 @@ t = r \frac{\sqrt{S_{yy}}}{\sqrt{\dfrac{S_{yy}(1 - R^2)}{n - 2}}}
 <div class="math notranslate nohighlight">
 \[
 \boxed{t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}.}
-\]</div>
-<ul class="simple">
-<li><p>Elevando al cuadrado</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-t_0^2 = \frac{r^2 (n - 2)}{1 - r^2}.
 \]</div>
 <ul class="simple">
 <li><p>Esta es una <strong>identidad algebraica exacta</strong> que conecta la <strong>correlación muestral</strong> <span class="math notranslate nohighlight">\(r\)</span> con el <strong>estadístico <span class="math notranslate nohighlight">\(t\)</span></strong> asociado a la pendiente</p></li>
