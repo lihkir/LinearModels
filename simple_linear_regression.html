@@ -4118,21 +4118,44 @@ E(R^2) \approx \frac{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}}}{\beta_1^2 \dis
 </section>
 <section id="estimacion-por-maxima-verosimilitud">
 <h2><span class="section-number">2.8. </span>Estimación por Máxima Verosimilitud<a class="headerlink" href="#estimacion-por-maxima-verosimilitud" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>El método de <strong>mínimos cuadrados permite estimar los parámetros en un modelo de regresión lineal sin necesidad de asumir una distribución específica para los errores <span class="math notranslate nohighlight">\(\varepsilon\)</span>.</strong> Produce estimadores lineales insesgados óptimos para <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>. No obstante, procedimientos como <strong>pruebas de hipótesis e intervalos de confianza requieren asumir que los errores se distribuyen normalmente</strong>. Si se conoce la distribución de los errores, una alternativa es el método de máxima verosimilitud.</p></li>
-<li><p>Supongamos los datos <span class="math notranslate nohighlight">\((y_i, x_i)\)</span> para <span class="math notranslate nohighlight">\(i = 1, 2, \dots, n\)</span>. Si se asume que los <strong>errores del modelo de regresión son NID<span class="math notranslate nohighlight">\((0, \sigma^2)\)</span></strong>, entonces las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son <strong>variables aleatorias independientes con distribución normal</strong>, media <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 x_i\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
-<li><p>La <strong>función de verosimilitud se construye a partir de la distribución conjunta de las observaciones.</strong> Si consideramos que <strong>los datos están fijos y los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> son desconocidos</strong>, la función de verosimilitud está dada por</p></li>
+<ul>
+<li><p>El método de <strong>mínimos cuadrados permite estimar los parámetros en un modelo de regresión lineal sin necesidad de asumir una distribución específica para los errores <span class="math notranslate nohighlight">\(\varepsilon\)</span>.</strong> Produce estimadores lineales insesgados óptimos para <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span>. No obstante, procedimientos como <strong>pruebas de hipótesis e intervalos de confianza requieren asumir que los errores se distribuyen normalmente</strong>. Si se conoce la distribución de los errores, una alternativa es el <strong>método de máxima verosimilitud</strong>.</p></li>
+<li><p>Supóngase que se dispone de los datos <span class="math notranslate nohighlight">\((y_i, x_i)\)</span> para <span class="math notranslate nohighlight">\(i = 1, 2, \dots, n\)</span>. Si se asume que los <strong>errores del modelo de regresión son NID<span class="math notranslate nohighlight">\((0, \sigma^2)\)</span></strong>, entonces las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son <strong>variables aleatorias independientes con distribución normal</strong>, con media <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 x_i\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
+<li><p>La <strong>función de verosimilitud</strong> se define como la <strong>probabilidad de observar un conjunto de datos dado un conjunto de parámetros desconocidos del modelo</strong>. Matemáticamente, si <span class="math notranslate nohighlight">\(Y_1, Y_2, \dots, Y_n\)</span> son observaciones independientes con función de densidad <span class="math notranslate nohighlight">\(f(y_i; \theta)\)</span>, donde <span class="math notranslate nohighlight">\(\theta\)</span> representa el vector de parámetros, la función de verosimilitud se expresa como</p>
+<div class="math notranslate nohighlight">
+\[
+    L(\theta \mid y_1, y_2, \dots, y_n) = \prod_{i=1}^{n} f(y_i; \theta)
+    \]</div>
+<p>Cada término <strong><span class="math notranslate nohighlight">\(f(y_i; \theta)\)</span> mide qué tan probable es observar el valor <span class="math notranslate nohighlight">\(y_i\)</span> dado <span class="math notranslate nohighlight">\(\theta\)</span></strong>. El producto combina todas esas probabilidades. El <strong>mejor valor de <span class="math notranslate nohighlight">\(\theta\)</span> será aquel que haga más probable el conjunto completo de datos observados</strong>.</p>
+</li>
 </ul>
+<figure class="align-default" id="max-likelihood-png">
+<a class="reference internal image-reference" href="_images/max_likelihood.png"><img alt="_images/max_likelihood.png" src="_images/max_likelihood.png" style="width: 600.0px; height: 552.2px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Figura 2.7 </span><span class="caption-text">Las estrellas <span class="math notranslate nohighlight">\(\star\)</span> indican los valores de la verosimilitud <span class="math notranslate nohighlight">\(L(\mu)\)</span> para distintos <span class="math notranslate nohighlight">\(\mu\)</span>, mientras que las curvas muestran las distribuciones normales <span class="math notranslate nohighlight">\(f(y; \mu_i, \sigma^2)\)</span> que representarían los datos bajo cada valor candidato del parámetro.</span><a class="headerlink" href="#max-likelihood-png" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul>
+<li><p>En el caso particular de un <strong>modelo de regresión lineal con errores normales independientes e idénticamente distribuidos</strong> <span class="math notranslate nohighlight">\(\text{NID}(0, \sigma^2)\)</span>, la <strong>función de verosimilitud</strong> toma la forma</p>
+<div class="math notranslate nohighlight">
+\[
+    L(\beta_0, \beta_1, \sigma^2 \mid y_i, x_i)
+    = \prod_{i=1}^{n} (2\pi\sigma^2)^{-1/2}
+    \exp\left\{
+    -\frac{1}{2\sigma^2}
+    \underbrace{(y_i - \beta_0 - \beta_1 x_i)^2}_{(y_i - \mu_i)^2}
+    \right\}
+    \]</div>
+<p>o, de manera equivalente,</p>
 <div class="math notranslate nohighlight" id="equation-likelihood-function">
-<span class="eqno">(2.64)<a class="headerlink" href="#equation-likelihood-function" title="Link to this equation">#</a></span>\[\begin{split}
-\begin{align*}
-L(y_i, x_i, \beta_0, \beta_1, \sigma^2) 
-&amp;= \prod_{i=1}^{n} (2\pi\sigma^2)^{-1/2} 
-    \exp\left[-\frac{1}{2\sigma^2}(y_i - \beta_0 - \beta_1 x_i)^2\right] \\
-&amp;= (2\pi\sigma^2)^{-n/2} 
+<span class="eqno">(2.64)<a class="headerlink" href="#equation-likelihood-function" title="Link to this equation">#</a></span>\[
+    L(\beta_0, \beta_1, \sigma^2 \mid y_i, x_i)
+    = (2\pi\sigma^2)^{-n/2}
     \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i - \beta_0 - \beta_1 x_i)^2\right]
-\end{align*}
-\end{split}\]</div>
+    \]</div>
+</li>
+</ul>
 <ul class="simple">
 <li><p>Los <strong>estimadores de máxima verosimilitud son los valores de los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\sigma^2\)</span> que maximizan <span class="math notranslate nohighlight">\(L\)</span>, o equivalente, <span class="math notranslate nohighlight">\(\ln L\)</span></strong></p></li>
 </ul>
@@ -4176,8 +4199,9 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 \;\xrightarrow{\text{substituir }\tilde{\beta}_0=\bar{y}-\tilde{\beta}_1\bar{x}}\; \\
 \sum_{i=1}^n (y_i - \bar{y} - \tilde{\beta}_1(x_i-\bar{x}))x_i &amp;= 0.\\
 \sum_{i=1}^n (y_i - \bar{y})x_i - \tilde{\beta}_1\sum_{i=1}^n (x_i-\bar{x})x_i &amp;= 0.\\
-\sum_{i=1}^n (y_i - \bar{y})(x_i-\bar{x}) - \tilde{\beta}_1 \sum_{i=1}^n (x_i-\bar{x})^2 &amp;= 0.\\
-\tilde{\beta}_1 &amp;= \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n (x_i-\bar{x})^2} 
+\sum_{i=1}^n (y_i - \bar{y})(x_i-\bar{x}) - \tilde{\beta}_1 \sum_{i=1}^n (x_i-\bar{x})^2 &amp;= 0,\quad\textcolor{red}{\sum_{i=1}^{n} (y_i - \bar{y})x_i
+= \sum_{i=1}^{n} (y_i - \bar{y})(x_i - \bar{x}) + \bar{x}\cancelto{0}{\sum_{i=1}^{n} (y_i - \bar{y})}}\\
+\Rightarrow\tilde{\beta}_1 &amp;= \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n (x_i-\bar{x})^2} 
 = \frac{\sum_{i=1}^n y_i \,(x_i - \bar{x})}{\sum_{i=1}^n (x_i - \bar{x})^2}.
 \end{align}
 \end{split}\]</div>
@@ -4212,7 +4236,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 </ul>
 <div class="math notranslate nohighlight" id="equation-sigma-bias-relation">
 <span class="eqno">(2.72)<a class="headerlink" href="#equation-sigma-bias-relation" title="Link to this equation">#</a></span>\[
-\tilde{\sigma}^2 = \left(\frac{n - 1}{n}\right) \hat{\sigma}^2
+\tilde{\sigma}^2 = \left(\frac{n - 2}{n}\right) \hat{\sigma}^2
 \]</div>
 <ul class="simple">
 <li><p>Este <strong>sesgo es pequeño si <span class="math notranslate nohighlight">\(n\)</span> es moderadamente grande</strong>, por lo que generalmente se utiliza <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span>.</p></li>
@@ -4240,6 +4264,25 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 </section>
 <section id="caso-en-que-el-regresor-x-es-aleatorio">
 <h2><span class="section-number">2.9. </span>Caso en que el regresor <span class="math notranslate nohighlight">\(x\)</span> es aleatorio<a class="headerlink" href="#caso-en-que-el-regresor-x-es-aleatorio" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Decisión vs Realidad</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(H_0\)</span> Verdadera<br>(<span class="math notranslate nohighlight">\(X\)</span> NO explica variación en <span class="math notranslate nohighlight">\(Y\)</span>)</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(H_1\)</span> Verdadera<br>(<span class="math notranslate nohighlight">\(X\)</span> SÍ explica variación en <span class="math notranslate nohighlight">\(Y\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Rechazar <span class="math notranslate nohighlight">\(H_0\)</span></strong></p></td>
+<td><p>Error Tipo I<br>(Falso positivo)</p></td>
+<td><p>Potencia <span class="math notranslate nohighlight">\((1-\beta)\)</span><br>(Detección correcta)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>No rechazar <span class="math notranslate nohighlight">\(H_0\)</span></strong></p></td>
+<td><p>Decisión correcta<br>(No falsa alarma)</p></td>
+<td><p>Error Tipo II<br>(Falso negativo)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul class="simple">
 <li><p>El modelo de regresión lineal presentado en este capítulo <strong>asume que los valores de la variable regresora <span class="math notranslate nohighlight">\(x\)</span> son constantes conocidas.</strong> Esta suposición implica que los <strong>coeficientes de confianza y los errores tipo I (o tipo II) se interpretan en el contexto de muestreo repetido sobre <span class="math notranslate nohighlight">\(y\)</span>, manteniendo constantes los niveles de <span class="math notranslate nohighlight">\(x\)</span></strong>.</p>
 <ul>
@@ -4282,24 +4325,74 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 <li><p><span class="math notranslate nohighlight">\(\sigma_{12} = \mathbb{Cov}(y, x)\)</span>, es la covarianza entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 </ul>
 </li>
-<li><p>La <strong>distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span></strong> está dada por</p>
-<div class="math notranslate nohighlight" id="equation-conditional-density-y-given-x">
-<span class="eqno">(2.74)<a class="headerlink" href="#equation-conditional-density-y-given-x" title="Link to this equation">#</a></span>\[
-    f(y|x) = \frac{1}{\sqrt{2\pi}\sigma_{1.2}} \exp\left[-\frac{1}{2} \left(\frac{y - \beta_0 - \beta_1 x}{\sigma_{1.2}}\right)^2 \right]
+<li><p>La <strong>densidad marginal de <span class="math notranslate nohighlight">\(X\)</span></strong> en una distribución normal bivariada es</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+f_X(x) = \frac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\frac{1}{2} \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right]
+\]</div>
+<ul>
+<li><p>Dado que <span class="math notranslate nohighlight">\(f(y|x) = \dfrac{f(y,x)}{f_X(x)}\)</span>, dividiendo la densidad conjunta entre la marginal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+    f(y|x) &amp;= \frac{ \dfrac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{ -\dfrac{Q}{2} \right\} }{ \dfrac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\dfrac{1}{2} \left( \dfrac{x - \mu_2}{\sigma_2} \right)^2 \right] } \\
+    &amp;= \frac{1}{\sqrt{2\pi}\sigma_1\sqrt{1-\rho^2}} \exp\left\{ -\frac{1}{2} \left[ \frac{Q}{1-\rho^2} - \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right] \right\}
+    \end{aligned}
+    \end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(Q = \left( \dfrac{y - \mu_1}{\sigma_1} \right)^2 + \left( \dfrac{x - \mu_2}{\sigma_2} \right)^2 - 2\rho \left( \dfrac{y - \mu_1}{\sigma_1} \right) \left( \dfrac{x - \mu_2}{\sigma_2} \right)\)</span>.</p>
+</li>
+<li><p>Definiendo <span class="math notranslate nohighlight">\(u = \dfrac{y - \mu_1}{\sigma_1}\)</span>, <span class="math notranslate nohighlight">\(v = \dfrac{x - \mu_2}{\sigma_2}\)</span> y simplificando el exponente:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp;\frac{u^2 + v^2 - 2\rho uv}{1-\rho^2} - v^2 \\
+&amp;= \frac{u^2 + v^2 - 2\rho uv - (1-\rho^2)v^2}{1-\rho^2} \\
+&amp;= \frac{u^2 - 2\rho uv + \rho^2 v^2}{1-\rho^2} \\
+&amp;= \frac{(u - \rho v)^2}{1-\rho^2}
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(u\)</span> y <span class="math notranslate nohighlight">\(v\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+u - \rho v &amp;= \frac{y - \mu_1}{\sigma_1} - \rho \frac{x - \mu_2}{\sigma_2} \\
+&amp;= \frac{1}{\sigma_1} \left[ y - \mu_1 - \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \right]
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Media y varianza condicional</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+E[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
+&amp;= \underbrace{\mu_1 - \rho\frac{\sigma_1}{\sigma_2}\mu_2}_{\beta_0} + \underbrace{\rho\frac{\sigma_1}{\sigma_2}}_{\beta_1}x \\
+\mathrm{Var}(Y|X=x) &amp;= \sigma_1^2(1-\rho^2) = \sigma_{12}^2
+\end{aligned}
+\end{split}\]</div>
+<ul>
+<li><p>Entonces, la <strong>distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span> (<span class="math notranslate nohighlight">\(f(y|x)\)</span>)</strong> está dada por</p>
+<div class="math notranslate nohighlight">
+\[
+    f(y|x) = \frac{1}{\sqrt{2\pi}\,\sigma_{12}} \exp\left[ -\frac{1}{2} \left( \frac{y - \beta_0 - \beta_1 x}{\sigma_{12}} \right)^2 \right]
     \]</div>
 <p>donde</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta_0 = \mu_1 - \mu_2\rho\dfrac{\sigma_1}{\sigma_2}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\beta_1 = \dfrac{\sigma_1}{\sigma_2}\rho\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_{1.2}^2 = \sigma_1^2 (1 - \rho^2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{12}^2 = \sigma_1^2 (1 - \rho^2)\)</span></p></li>
 </ul>
 </li>
 <li><p>Es decir, <strong>la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> es normal con media condicional</strong></p>
 <div class="math notranslate nohighlight" id="equation-conditional-expectation-y-given-x">
-<span class="eqno">(2.75)<a class="headerlink" href="#equation-conditional-expectation-y-given-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.74)<a class="headerlink" href="#equation-conditional-expectation-y-given-x" title="Link to this equation">#</a></span>\[
     \mathbb{E}(y|x) = \beta_0 + \beta_1 x
     \]</div>
-<p>y varianza condicional constante <span class="math notranslate nohighlight">\(\sigma_{1.2}^2\)</span>.</p>
+<p>y varianza condicional constante <span class="math notranslate nohighlight">\(\sigma_{12}^2\)</span>.</p>
 </li>
 <li><p>Existe una <strong>relación directa entre el coeficiente de correlación <span class="math notranslate nohighlight">\(\rho\)</span> y la pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span></strong>: si <span class="math notranslate nohighlight">\(\rho = 0\)</span>, entonces <span class="math notranslate nohighlight">\(\beta_1 = 0\)</span>, lo cual implica que no existe relación lineal entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 </ul>
@@ -4309,11 +4402,11 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 <li><p>Los <strong>estimadores de máxima verosimilitud</strong> de <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> son</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-beta0-mle-corr">
-<span class="eqno">(2.76)<a class="headerlink" href="#equation-beta0-mle-corr" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.75)<a class="headerlink" href="#equation-beta0-mle-corr" title="Link to this equation">#</a></span>\[
 \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
 \]</div>
 <div class="math notranslate nohighlight" id="equation-beta1-mle-corr">
-<span class="eqno">(2.77)<a class="headerlink" href="#equation-beta1-mle-corr" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.76)<a class="headerlink" href="#equation-beta1-mle-corr" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 = \frac{\sum_{i=1}^n y_i (x_i - \bar{x})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{S_{xy}}{S_{xx}}
 \]</div>
 <ul class="simple">
@@ -4326,14 +4419,14 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 <li><p>El estimador de <span class="math notranslate nohighlight">\(\rho\)</span> es el <strong>coeficiente de correlación muestral</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-sample-correlation-r">
-<span class="eqno">(2.78)<a class="headerlink" href="#equation-sample-correlation-r" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.77)<a class="headerlink" href="#equation-sample-correlation-r" title="Link to this equation">#</a></span>\[
 r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x})}{\left[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2\right]^{1/2}} = \frac{S_{xy}}{[S_{xx}SS_{T}]^{1/2}}
 \]</div>
 <ul class="simple">
 <li><p>De la ecuación anterior se deduce que</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-slope-vs-r">
-<span class="eqno">(2.79)<a class="headerlink" href="#equation-slope-vs-r" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.78)<a class="headerlink" href="#equation-slope-vs-r" title="Link to this equation">#</a></span>\[
 \hat{\beta}_1 = r\cdot\left(\frac{SS_{T}}{S_{xx}}\right)^{1/2}
 \]</div>
 <ul class="simple">
@@ -4341,7 +4434,7 @@ r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot SST}} = \frac{\sum_{i=1}^n y_i(x_i - \bar{x
 <li><p>Se puede expresar también que:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-r-squared-equals-r-squared">
-<span class="eqno">(2.80)<a class="headerlink" href="#equation-r-squared-equals-r-squared" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.79)<a class="headerlink" href="#equation-r-squared-equals-r-squared" title="Link to this equation">#</a></span>\[
 r^2 = \frac{S_{xx} \cdot \hat{\beta}_1^2}{SST} = \frac{SSR}{SST} = R^2
 \]</div>
 <ul class="simple">
@@ -4354,14 +4447,14 @@ r^2 = \frac{S_{xx} \cdot \hat{\beta}_1^2}{SST} = \frac{SSR}{SST} = R^2
 <li><p>Para probar <span class="math notranslate nohighlight">\(H_0: \rho = 0\)</span> contra <span class="math notranslate nohighlight">\(H_1: \rho \ne 0\)</span>, el estadístico de prueba es:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-t-test-correlation-zero">
-<span class="eqno">(2.81)<a class="headerlink" href="#equation-t-test-correlation-zero" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.80)<a class="headerlink" href="#equation-t-test-correlation-zero" title="Link to this equation">#</a></span>\[
 t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
 \]</div>
 <ul class="simple">
 <li><p>Este estadístico sigue una <strong>distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - 2\)</span> grados de libertad bajo <span class="math notranslate nohighlight">\(H_0\)</span>.</strong> Rechazamos <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n-2}\)</span>. Esta prueba es equivalente a la de <span class="math notranslate nohighlight">\(H_0: \beta_1 = 0\)</span> discutida en <a class="reference internal" href="#equation-t-hypothesis-test">(2.19)</a>.</p></li>
 </ul>
 <ul>
-<li><p>Verifiquemos la Ecuación <a class="reference internal" href="#equation-t-test-correlation-zero">(2.81)</a>. En la regresión lineal simple</p>
+<li><p>Verifiquemos la Ecuación <a class="reference internal" href="#equation-t-test-correlation-zero">(2.80)</a>. En la regresión lineal simple</p>
 <div class="math notranslate nohighlight">
 \[
     y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
