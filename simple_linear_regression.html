@@ -4100,11 +4100,11 @@ CONCLUSIONES FINALES
 </ul>
 <div class="math notranslate nohighlight" id="equation-expected-r-squared">
 <span class="eqno">(2.63)<a class="headerlink" href="#equation-expected-r-squared" title="Link to this equation">#</a></span>\[
-E(R^2) \approx \frac{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}}}{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}} + \sigma^2}
-= \frac{\beta_1^2 S_{xx}}{\beta_1^2 S_{xx} + \sigma^2}
+\mathbb{E}(R^2) \approx \frac{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}}}{\beta_1^2 \displaystyle{\frac{S_{xx}}{n-1}} + \sigma^2}
+= \frac{\beta_1^2 S_{xx}}{\beta_1^2 S_{xx} + \sigma^2(n-1)}
 \]</div>
 <ul class="simple">
-<li><p>Esto muestra que <strong><span class="math notranslate nohighlight">\(\mathbb{E}(R^2)\)</span> aumenta (o disminuye) a medida que <span class="math notranslate nohighlight">\(S_{xx}\)</span> aumenta (o disminuye).</strong> Un <em>valor alto de <span class="math notranslate nohighlight">\(R^2\)</span> puede deberse simplemente a un rango muy amplio en <span class="math notranslate nohighlight">\(x\)</span></em>. Un valor bajo puede deberse a que el rango de <span class="math notranslate nohighlight">\(x\)</span> es demasiado estrecho para detectar la relación con <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Esto muestra que <strong><span class="math notranslate nohighlight">\(\mathbb{E}(R^2)\)</span> aumenta (o disminuye) a medida que <span class="math notranslate nohighlight">\(S_{xx}\)</span> aumenta (o disminuye).</strong> Un <em>valor alto de <span class="math notranslate nohighlight">\(R^2\)</span> puede deberse simplemente a un rango muy amplio en <span class="math notranslate nohighlight">\(x\)</span></em>. Un <em>valor bajo puede deberse a que el rango de <span class="math notranslate nohighlight">\(x\)</span> es demasiado estrecho para detectar la relación con <span class="math notranslate nohighlight">\(y\)</span></em>. <strong>Cuando <span class="math notranslate nohighlight">\(n\)</span> aumenta (con <span class="math notranslate nohighlight">\(S_{xx}\)</span> fija), <span class="math notranslate nohighlight">\(\mathbb{E}(R^{2})\)</span> disminuye</strong>.</p></li>
 </ul>
 </section>
 <section id="conceptos-erroneos-sobre-r-2">
@@ -4298,7 +4298,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 <ul class="simple">
 <li><p>Supongamos que <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> son variables aleatorias con una distribución conjunta, aunque se desconoce su forma funcional. Se puede demostrar que <strong>los resultados previos de regresión se mantienen válidos si se cumplen las siguientes condiciones</strong></p>
 <ul>
-<li><p>La distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> es normal, con media condicional <span class="math notranslate nohighlight">\(\mathbb{E}(y|x) = \beta_0 + \beta_1 x\)</span> y varianza condicional <span class="math notranslate nohighlight">\(\mathbb{Var}(y|x) = \sigma^2\)</span>.</p></li>
+<li><p>La <strong>distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> (<span class="math notranslate nohighlight">\(f(y|x)\)</span>) es normal</strong>, con media condicional <span class="math notranslate nohighlight">\(\mathbb{E}(y|x) = \beta_0 + \beta_1 x\)</span> y varianza condicional <span class="math notranslate nohighlight">\(\mathbb{Var}(y|x) = \sigma^2\)</span>.</p></li>
 <li><p>Los <strong>valores de <span class="math notranslate nohighlight">\(x\)</span> son variables aleatorias independientes</strong>, cuya <strong>distribución no depende de <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> ni <span class="math notranslate nohighlight">\(\sigma^2\)</span></strong>.</p></li>
 </ul>
 </li>
@@ -4332,7 +4332,7 @@ De las Ecuaciones <a class="reference internal" href="#equation-mle-beta0">(2.66
 f_X(x) = \frac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\frac{1}{2} \left( \frac{x - \mu_2}{\sigma_2} \right)^2 \right]
 \]</div>
 <ul>
-<li><p>Dado que, la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(f(y|x) = \dfrac{f(y,x)}{f_X(x)}\)</span>, dividiendo la densidad conjunta entre la marginal</p>
+<li><p>Dado que, por definición, la distribución condicional de <span class="math notranslate nohighlight">\(y\)</span> dado un valor de <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(f(y|x) = \dfrac{f(y,x)}{f_X(x)}\)</span>, dividiendo la densidad conjunta entre la marginal</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{aligned}
@@ -4373,9 +4373,9 @@ f_X(x) = \frac{1}{\sigma_2\sqrt{2\pi}} \exp\left[ -\frac{1}{2} \left( \frac{x - 
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-E[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
+\mathbb{E}[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
 &amp;= \underbrace{\mu_1 - \rho\frac{\sigma_1}{\sigma_2}\mu_2}_{\beta_0} + \underbrace{\rho\frac{\sigma_1}{\sigma_2}}_{\beta_1}x \\
-\mathrm{Var}(Y|X=x) &amp;= \sigma_1^2(1-\rho^2) = \sigma_{12}^2
+\mathbb{Var}(Y|X=x) &amp;= \sigma_1^2(1-\rho^2) = \sigma_{12}^2
 \end{aligned}
 \end{split}\]</div>
 <ul>
@@ -4396,7 +4396,7 @@ E[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
 <span class="eqno">(2.74)<a class="headerlink" href="#equation-conditional-expectation-y-given-x" title="Link to this equation">#</a></span>\[
     \mathbb{E}(y|x) = \beta_0 + \beta_1 x
     \]</div>
-<p>y varianza condicional constante <span class="math notranslate nohighlight">\(\sigma_{12}^2\)</span>.</p>
+<p>y varianza condicional constante <span class="math notranslate nohighlight">\(\sigma_{12}^2\)</span>. Acabamos de demostrar que <em>si <span class="math notranslate nohighlight">\((X,Y)\)</span> son normales bivariadas, automáticamente la relación condicional tiene exactamente esa forma</em>.</p>
 </li>
 <li><p>Existe una <strong>relación directa entre el coeficiente de correlación <span class="math notranslate nohighlight">\(\rho\)</span> y la pendiente <span class="math notranslate nohighlight">\(\beta_1\)</span></strong>: si <span class="math notranslate nohighlight">\(\rho = 0\)</span>, entonces <span class="math notranslate nohighlight">\(\beta_1 = 0\)</span>, lo cual implica que no existe relación lineal entre <span class="math notranslate nohighlight">\(y\)</span> y <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 </ul>
@@ -4416,6 +4416,73 @@ E[Y|X=x] &amp;= \mu_1 + \rho\frac{\sigma_1}{\sigma_2}(x - \mu_2) \\
 <ul class="simple">
 <li><p>Estos estimadores <strong>coinciden con los obtenidos mediante mínimos cuadrados cuando <span class="math notranslate nohighlight">\(x\)</span> se considera una variable controlada.</strong> Como <span class="math notranslate nohighlight">\(y\)</span> dado <span class="math notranslate nohighlight">\(x\)</span> sigue una distribución normal con media <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 x\)</span> y varianza constante, todos los resultados desarrollados previamente para el modelo con <span class="math notranslate nohighlight">\(x\)</span> fijo siguen siendo válidos.</p></li>
 </ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criterio</strong></p></th>
+<th class="head"><p><strong>Mínimos Cuadrados (OLS)</strong></p></th>
+<th class="head"><p><strong>Máxima Verosimilitud (MLE)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Enfoque</strong></p></td>
+<td><p>Geométrico: minimiza la suma de errores cuadrados</p></td>
+<td><p>Probabilístico: maximiza la probabilidad de observar los datos</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Función objetivo</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(\displaystyle \min_\beta \sum (y_i - \hat{y}_i)^2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\displaystyle \max_\theta L(\theta) = f(y_1, y_2, \dots, y_n \mid \theta)\)</span> o <span class="math notranslate nohighlight">\(\displaystyle \max_\theta \log L(\theta)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Supuestos</strong></p></td>
+<td><p>Errores con media 0, varianza constante, no correlacionados</p></td>
+<td><p>Depende del modelo probabilístico asumido (ej. normal, Poisson, binomial, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Tipo de modelo</strong></p></td>
+<td><p>Principalmente lineal</p></td>
+<td><p>Cualquier modelo estadístico (lineal o no lineal)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interpretación</strong></p></td>
+<td><p>Mejor ajuste en sentido de mínimos errores</p></td>
+<td><p>Parámetros que hacen más probable el conjunto de datos observado</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Método de solución</strong></p></td>
+<td><p>Analítico (fórmula cerrada)</p></td>
+<td><p>Numérico (optimización iterativa)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sensibilidad</strong></p></td>
+<td><p>Sensible a valores atípicos</p></td>
+<td><p>También sensible, pero puede adaptarse según la distribución asumida</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Eficiencia</strong></p></td>
+<td><p>Eficiente solo bajo supuestos clásicos (Gauss–Markov)</p></td>
+<td><p>Asintóticamente eficiente si el modelo es correcto</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Robustez a mala especificación</strong></p></td>
+<td><p>Más robusto si solo interesa el ajuste medio</p></td>
+<td><p>Menos robusto: depende de la distribución asumida</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Interpretación de errores</strong></p></td>
+<td><p>No requiere asumir distribución (aunque se puede asumir normalidad)</p></td>
+<td><p>Requiere especificar distribución de los errores o del proceso</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Uso común</strong></p></td>
+<td><p>Regresiones lineales clásicas</p></td>
+<td><p>Modelos estadísticos y econométricos complejos (GLM, GARCH, ARIMA, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Coincidencia entre métodos</strong></p></td>
+<td><p>Coincide con MLE si los errores son normales e independientes</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Ventajas principales</strong></p></td>
+<td><p>Simple, rápido, fácil de interpretar</p></td>
+<td><p>General, flexible y estadísticamente óptimo a gran escala</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Desventajas principales</strong></p></td>
+<td><p>No aplica fácilmente a modelos no lineales o discretos</p></td>
+<td><p>Requiere más cálculo y correcta especificación del modelo</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="inferencia-sobre-el-coeficiente-de-correlacion-rho">
 <h3><span class="section-number">2.10.2. </span>Inferencia sobre el coeficiente de correlación <span class="math notranslate nohighlight">\(\rho\)</span><a class="headerlink" href="#inferencia-sobre-el-coeficiente-de-correlacion-rho" title="Link to this heading">#</a></h3>
@@ -4607,7 +4674,7 @@ t = r \frac{\sqrt{S_{yy}}}{\sqrt{\dfrac{S_{yy}(1 - R^2)}{n - 2}}}
 \boxed{t_0 = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}.}
 \]</div>
 <ul class="simple">
-<li><p>Esta es una <strong>identidad algebraica exacta</strong> que conecta la <strong>correlación muestral</strong> <span class="math notranslate nohighlight">\(r\)</span> con el <strong>estadístico <span class="math notranslate nohighlight">\(t\)</span></strong> asociado a la pendiente</p></li>
+<li><p>Esta es una identidad algebraica exacta que <strong>conecta la correlación muestral <span class="math notranslate nohighlight">\(r\)</span> con el estadístico <span class="math notranslate nohighlight">\(t\)</span> asociado a la pendiente</strong></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -4648,8 +4715,7 @@ Z \sim \mathcal{N}\left(\operatorname{arctanh}(\rho), \frac{1}{n - 3}\right)
 H_0: \rho = \rho_0 \quad \text{vs} \quad H_1: \rho \neq \rho_0
 \]</div>
 <ul class="simple">
-<li><p>Encontremos el estadístico de prueba. Bajo <span class="math notranslate nohighlight">\(H_0\)</span>, el valor observado <span class="math notranslate nohighlight">\(Z = \operatorname{arctanh}(r)\)</span> tiene media<br />
-<span class="math notranslate nohighlight">\(\operatorname{arctanh}(\rho_0)\)</span> y desviación estándar <span class="math notranslate nohighlight">\(\sqrt{1/(n-3)}\)</span>. Así, el estadístico de prueba es</p></li>
+<li><p>Encontremos el estadístico de prueba. Bajo <span class="math notranslate nohighlight">\(H_0\)</span>, el valor observado <span class="math notranslate nohighlight">\(Z = \operatorname{arctanh}(r)\)</span> tiene media <span class="math notranslate nohighlight">\(\operatorname{arctanh}(\rho_0)\)</span> y desviación estándar <span class="math notranslate nohighlight">\(\sqrt{1/(n-3)}\)</span>. Así, el estadístico de prueba es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -4663,7 +4729,7 @@ Z_0 = \frac{\operatorname{arctanh}(r) - \operatorname{arctanh}(\rho_0)}{\sqrt{1/
     \]</div>
 <p>Por ejemplo, para <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>, se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|Z_0| &gt; 1.96\)</span>.</p>
 </li>
-<li><p>El intervalo de confianza del <span class="math notranslate nohighlight">\(100(1-\alpha)\%\)</span> para <span class="math notranslate nohighlight">\(Z\)</span> es</p></li>
+<li><p>El intervalo de confianza del <span class="math notranslate nohighlight">\(100(1-\alpha)\%\)</span> para <span class="math notranslate nohighlight">\(\operatorname{arctanh}(\rho)\)</span> es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
