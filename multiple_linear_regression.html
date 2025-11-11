@@ -402,6 +402,29 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">3.3. Multicolinealidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-coeficientes-de-regresion-presentan-signos-inesperados">3.4. ¿Por qué los coeficientes de regresión presentan signos inesperados?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-regresion-lineal-multiple-avanzada-sistema-de-bicicletas-compartidas">3.5. Proyecto Integrador: Regresión Lineal Múltiple Avanzada – Sistema de Bicicletas Compartidas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjunto-de-datos-oficial">3.5.1. Conjunto de Datos Oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-del-problema">3.5.2. Contexto del Problema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-como-sensor-urbano">3.5.3. Valor como Sensor Urbano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-del-conjunto-de-datos">3.5.4. Descripción del Conjunto de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">3.5.5. Objetivo General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrega-final">3.5.6. Entrega Final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-tecnicos">3.5.7. Requisitos Técnicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-reproduccion">3.5.8. Instrucciones de Reproducción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-y-contexto-de-movilidad-urbana">3.5.9. Introducción y Contexto de Movilidad Urbana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-y-preprocesamiento-temporal">3.5.10. Ingeniería de Variables y Preprocesamiento Temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-series-temporales">3.5.11. Análisis Exploratorio de Series Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-matricial-de-mco">3.5.12. Implementación Matricial de MCO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-estadistica-en-datos-temporales">3.5.13. Inferencia Estadística en Datos Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-supuestos-del-modelo">3.5.14. Diagnóstico de Supuestos del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-robustos-para-datos-temporales">3.5.15. Métodos Robustos para Datos Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-y-seleccion-del-modelo">3.5.16. Validación y Selección del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacion-monte-carlo">3.5.17. Simulación Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-operativa-y-recomendaciones">3.5.18. Interpretación Operativa y Recomendaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-y-extensiones-futuras">3.5.19. Conclusiones y Extensiones Futuras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5.20. Referencias</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -1145,9 +1168,9 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon
         });
         }
         </script>
-        </div><div class="output text_html"><div>                            <div id="78100673-5958-47ff-855a-e95de0708909" class="plotly-graph-div" style="height:600px; width:700px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("78100673-5958-47ff-855a-e95de0708909")) {                    Plotly.newPlot(                        "78100673-5958-47ff-855a-e95de0708909",                        [{"marker":{"color":"navy","line":{"color":"black","width":1},"size":6},"mode":"markers","x":[7,3,3,4,6,7,2,7,30,5,16,10,4,6,9,10,6,7,3,17,10,26,9,8,4],"y":[560,220,340,80,150,330,110,210,1460,605,688,215,255,462,448,776,200,132,36,770,140,810,450,635,150],"z":[16.68,11.5,12.03,14.88,13.75,18.11,8.0,17.83,79.24,21.5,40.33,21.0,13.5,19.75,24.0,29.0,15.35,19.0,9.5,35.1,17.9,52.32,18.75,19.83,10.75],"type":"scatter3d"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"scene":{"xaxis":{"title":{"text":"Cases"}},"yaxis":{"title":{"text":"Distance"}},"zaxis":{"title":{"text":"Time"}},"bgcolor":"white"},"title":{"text":"3D Scatter Plot of Delivery Time vs. Cases and Distance"},"width":700,"height":600},                        {"responsive": true}                    ).then(function(){
+        </div><div class="output text_html"><div>                            <div id="6f8a7a3c-0d2a-42db-b8df-3011dd80678b" class="plotly-graph-div" style="height:600px; width:700px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("6f8a7a3c-0d2a-42db-b8df-3011dd80678b")) {                    Plotly.newPlot(                        "6f8a7a3c-0d2a-42db-b8df-3011dd80678b",                        [{"marker":{"color":"navy","line":{"color":"black","width":1},"size":6},"mode":"markers","x":[7,3,3,4,6,7,2,7,30,5,16,10,4,6,9,10,6,7,3,17,10,26,9,8,4],"y":[560,220,340,80,150,330,110,210,1460,605,688,215,255,462,448,776,200,132,36,770,140,810,450,635,150],"z":[16.68,11.5,12.03,14.88,13.75,18.11,8.0,17.83,79.24,21.5,40.33,21.0,13.5,19.75,24.0,29.0,15.35,19.0,9.5,35.1,17.9,52.32,18.75,19.83,10.75],"type":"scatter3d"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"scene":{"xaxis":{"title":{"text":"Cases"}},"yaxis":{"title":{"text":"Distance"}},"zaxis":{"title":{"text":"Time"}},"bgcolor":"white"},"title":{"text":"3D Scatter Plot of Delivery Time vs. Cases and Distance"},"width":700,"height":600},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('78100673-5958-47ff-855a-e95de0708909');
+var gd = document.getElementById('6f8a7a3c-0d2a-42db-b8df-3011dd80678b');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1906,62 +1929,16 @@ sigma^2 estimado = 10.6242
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Modelo Múltiple (Cases + Distance) ===
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                      y   R-squared:                       0.960
-Model:                            OLS   Adj. R-squared:                  0.956
-Method:                 Least Squares   F-statistic:                     261.2
-Date:                Thu, 30 Oct 2025   Prob (F-statistic):           4.69e-16
-Time:                        23:07:42   Log-Likelihood:                -63.415
-No. Observations:                  25   AIC:                             132.8
-Df Residuals:                      22   BIC:                             136.5
-Df Model:                           2                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const          2.3412      1.097      2.135      0.044       0.067       4.616
-x1             1.6159      0.171      9.464      0.000       1.262       1.970
-x2             0.0144      0.004      3.981      0.001       0.007       0.022
-==============================================================================
-Omnibus:                        0.421   Durbin-Watson:                   1.170
-Prob(Omnibus):                  0.810   Jarque-Bera (JB):                0.010
-Skew:                           0.032   Prob(JB):                        0.995
-Kurtosis:                       3.073   Cond. No.                         873.
-==============================================================================
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Modelo múltiple: Cases + Distance</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">X_multi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Cases&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Distance&quot;</span><span class="p">]))</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">model_multi</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_multi</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Modelo simple: solo Cases</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">X_simple</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Cases&quot;</span><span class="p">]))</span>
 
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-Varianza residual estimada (σ²) = 10.6242
-
-=== Modelo Simple (solo Cases) ===
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                      y   R-squared:                       0.930
-Model:                            OLS   Adj. R-squared:                  0.927
-Method:                 Least Squares   F-statistic:                     307.8
-Date:                Thu, 30 Oct 2025   Prob (F-statistic):           8.22e-15
-Time:                        23:07:42   Log-Likelihood:                -70.197
-No. Observations:                  25   AIC:                             144.4
-Df Residuals:                      23   BIC:                             146.8
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const          3.3208      1.371      2.422      0.024       0.484       6.157
-x1             2.1762      0.124     17.546      0.000       1.920       2.433
-==============================================================================
-Omnibus:                        2.383   Durbin-Watson:                   0.946
-Prob(Omnibus):                  0.304   Jarque-Bera (JB):                1.037
-Skew:                           0.388   Prob(JB):                        0.595
-Kurtosis:                       3.627   Cond. No.                         18.2
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-Varianza residual estimada (σ²) = 17.4841
+<span class="ne">NameError</span>: name &#39;sm&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -3105,6 +3082,225 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 <p><strong>Se recomienda verificar la precisión del software (por ejemplo, Python) si se sospechan errores en los signos de los coeficientes.</strong></p>
 </section>
+<section id="proyecto-integrador-regresion-lineal-multiple-avanzada-sistema-de-bicicletas-compartidas">
+<h2><span class="section-number">3.5. </span>Proyecto Integrador: Regresión Lineal Múltiple Avanzada – Sistema de Bicicletas Compartidas<a class="headerlink" href="#proyecto-integrador-regresion-lineal-multiple-avanzada-sistema-de-bicicletas-compartidas" title="Link to this heading">#</a></h2>
+<section id="conjunto-de-datos-oficial">
+<h3><span class="section-number">3.5.1. </span>Conjunto de Datos Oficial<a class="headerlink" href="#conjunto-de-datos-oficial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Conjunto de Datos:</strong> Sistema de Bicicletas Compartidas (datos horarios)</p></li>
+<li><p><strong>Fuente:</strong> <a class="reference external" href="https://github.com/lihkir/Data/blob/main/hour.csv">hour.csv en GitHub</a></p></li>
+<li><p><strong>Observaciones:</strong> 17 389 registros horarios (2011–2012)</p></li>
+<li><p><strong>Variables:</strong> 17 características (temporales, meteorológicas y contextuales)</p></li>
+<li><p><strong>Nivel de complejidad:</strong> Alto (estructura temporal y múltiples tipos de usuarios)</p></li>
+</ul>
+</section>
+<section id="contexto-del-problema">
+<h3><span class="section-number">3.5.2. </span>Contexto del Problema<a class="headerlink" href="#contexto-del-problema" title="Link to this heading">#</a></h3>
+<p>Los sistemas de bicicletas compartidas constituyen una herramienta esencial para la movilidad urbana sostenible. Su funcionamiento automatizado permite registrar datos sobre el comportamiento de los usuarios y las condiciones externas, facilitando el análisis y la predicción de la demanda de bicicletas.</p>
+<p>Estos datos pueden aprovecharse para optimizar la distribución de bicicletas, anticipar picos de demanda y mejorar la planificación urbana.</p>
+<p><strong>Indicaciones para el estudiante:</strong> Seleccionar una ciudad de interés y contextualizar el estudio explicando por qué la predicción de la demanda de bicicletas resulta relevante para su planificación y gestión de movilidad sostenible.</p>
+</section>
+<section id="valor-como-sensor-urbano">
+<h3><span class="section-number">3.5.3. </span>Valor como Sensor Urbano<a class="headerlink" href="#valor-como-sensor-urbano" title="Link to this heading">#</a></h3>
+<p>Cada bicicleta compartida puede considerarse un sensor móvil que captura información sobre espacio, tiempo y clima. Esta perspectiva permite interpretar el sistema como una red de observación distribuida que refleja los patrones de movilidad urbana.</p>
+<p><strong>Indicaciones para el estudiante:</strong> Redactar un párrafo que relacione el papel de los sistemas de movilidad con la sostenibilidad ambiental, destacando cómo estos datos pueden orientar políticas públicas orientadas a la reducción de emisiones y la eficiencia energética.</p>
+</section>
+<section id="descripcion-del-conjunto-de-datos">
+<h3><span class="section-number">3.5.4. </span>Descripción del Conjunto de Datos<a class="headerlink" href="#descripcion-del-conjunto-de-datos" title="Link to this heading">#</a></h3>
+<p>El conjunto contiene:</p>
+<ul class="simple">
+<li><p>Conteos horarios y diarios de alquiler: <code class="docutils literal notranslate"><span class="pre">cnt</span></code> (total), <code class="docutils literal notranslate"><span class="pre">casual</span></code>, <code class="docutils literal notranslate"><span class="pre">registered</span></code>.</p></li>
+<li><p>Variables temporales: hora, día, estación, feriado, día laboral.</p></li>
+<li><p>Variables meteorológicas: temperatura, humedad, velocidad del viento.</p></li>
+</ul>
+<p><strong>Indicaciones para el estudiante:</strong> Elaborar una tabla que describa cada variable, su tipo (numérica, categórica o temporal), su rango y su interpretación en el contexto de la movilidad urbana.</p>
+</section>
+<section id="objetivo-general">
+<h3><span class="section-number">3.5.5. </span>Objetivo General<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h3>
+<p>Aplicar métodos de regresión lineal múltiple para predecir la demanda horaria de bicicletas compartidas, considerando la influencia de variables meteorológicas, temporales y contextuales.</p>
+<p><strong>Objetivos específicos sugeridos:</strong></p>
+<ol class="arabic simple">
+<li><p>Analizar la estructura temporal y los factores determinantes de la demanda.</p></li>
+<li><p>Implementar un modelo de Mínimos Cuadrados Ordinarios (MCO) y evaluar sus supuestos.</p></li>
+<li><p>Comparar modelos de regresión (OLS, Ridge, Lasso) según su capacidad predictiva.</p></li>
+</ol>
+<p><strong>Indicaciones para el estudiante:</strong> Reformular los objetivos específicos adaptándolos a los intereses del grupo, agregando metas relacionadas con la mejora de la interpretabilidad y la validación de resultados.</p>
+</section>
+<section id="entrega-final">
+<h3><span class="section-number">3.5.6. </span>Entrega Final<a class="headerlink" href="#entrega-final" title="Link to this heading">#</a></h3>
+<p>El trabajo se publicará como un <strong>Jupyter Book</strong> accesible en GitHub Pages:
+<a class="reference external" href="https://usuario.github.io/bike-sharing-regression/">https://usuario.github.io/bike-sharing-regression/</a></p>
+<p><strong>Requisitos:</strong></p>
+<ul class="simple">
+<li><p>Estructura clara de capítulos con código y explicaciones interpretativas.</p></li>
+<li><p>Visualizaciones correctamente etiquetadas.</p></li>
+<li><p>Código documentado y reproducible.</p></li>
+<li><p>Compilación sin errores mediante <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code>.</p></li>
+</ul>
+<p><strong>Indicaciones para el estudiante:</strong> Incluir una sección titulada “Guía de Reproducción” con pasos detallados para instalar dependencias, descargar los datos y ejecutar el análisis de forma autónoma.</p>
+</section>
+<section id="requisitos-tecnicos">
+<h3><span class="section-number">3.5.7. </span>Requisitos Técnicos<a class="headerlink" href="#requisitos-tecnicos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> con las versiones exactas de las librerías empleadas.</p></li>
+<li><p>Visualizaciones con ejes, títulos y leyendas descriptivas.</p></li>
+<li><p>Validación cruzada temporal (<em>time-series split</em>).</p></li>
+<li><p>Semilla fija para reproducibilidad (<code class="docutils literal notranslate"><span class="pre">np.random.seed(42)</span></code>).</p></li>
+</ul>
+<p><strong>Sugerencia:</strong> Verificar la compilación del libro en un entorno limpio antes de la entrega final para garantizar reproducibilidad.</p>
+</section>
+<section id="instrucciones-de-reproduccion">
+<h3><span class="section-number">3.5.8. </span>Instrucciones de Reproducción<a class="headerlink" href="#instrucciones-de-reproduccion" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Garantizar la replicabilidad del proyecto.</p>
+<p><strong>El estudiante debe:</strong></p>
+<ul class="simple">
+<li><p>Explicar cómo instalar las dependencias y descargar el conjunto de datos.</p></li>
+<li><p>Describir la estructura de carpetas (<code class="docutils literal notranslate"><span class="pre">data/</span></code>, <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code>, <code class="docutils literal notranslate"><span class="pre">figures/</span></code>, <code class="docutils literal notranslate"><span class="pre">models/</span></code>).</p></li>
+<li><p>Indicar el orden de ejecución de los notebooks.</p></li>
+</ul>
+<p><strong>Indicaciones:</strong> Incluir un script o celda en Python que automatice la descarga del dataset y documentar cada paso de configuración del entorno.</p>
+</section>
+<section id="introduccion-y-contexto-de-movilidad-urbana">
+<h3><span class="section-number">3.5.9. </span>Introducción y Contexto de Movilidad Urbana<a class="headerlink" href="#introduccion-y-contexto-de-movilidad-urbana" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Enmarcar el estudio dentro de la problemática de movilidad sostenible y ciudades inteligentes.</p>
+<p><strong>Contenidos esperados:</strong></p>
+<ul class="simple">
+<li><p>Revisión teórica breve sobre movilidad urbana y transporte compartido.</p></li>
+<li><p>Descripción del sistema de bicicletas compartidas como fuente de datos urbanos.</p></li>
+<li><p>Formulación de tres preguntas de investigación.</p></li>
+<li><p>Justificación técnica, social y ambiental del estudio.</p></li>
+</ul>
+<p><strong>Indicaciones:</strong> Incorporar referencias académicas recientes y contextualizar el problema en una ciudad o región específica, destacando los beneficios de la analítica de datos en la planificación urbana.</p>
+</section>
+<section id="ingenieria-de-variables-y-preprocesamiento-temporal">
+<h3><span class="section-number">3.5.10. </span>Ingeniería de Variables y Preprocesamiento Temporal<a class="headerlink" href="#ingenieria-de-variables-y-preprocesamiento-temporal" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Preparar los datos para el modelado, asegurando consistencia y calidad.</p>
+<p><strong>Tareas:</strong></p>
+<ul class="simple">
+<li><p>Identificar y tratar valores faltantes o atípicos.</p></li>
+<li><p>Crear variables derivadas (hora pico, fin de semana, índice climático).</p></li>
+<li><p>Aplicar transformaciones cíclicas a las variables temporales (<code class="docutils literal notranslate"><span class="pre">sin</span></code>, <code class="docutils literal notranslate"><span class="pre">cos</span></code>).</p></li>
+<li><p>Escalar variables continuas y codificar las categóricas.</p></li>
+</ul>
+<p><strong>Entregable:</strong> Tabla comparativa antes y después del preprocesamiento.</p>
+<p><strong>Indicaciones:</strong> Justificar cada transformación y explicar su impacto sobre la interpretabilidad y la estabilidad del modelo.</p>
+</section>
+<section id="analisis-exploratorio-de-series-temporales">
+<h3><span class="section-number">3.5.11. </span>Análisis Exploratorio de Series Temporales<a class="headerlink" href="#analisis-exploratorio-de-series-temporales" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Comprender los patrones temporales y su relación con la demanda.</p>
+<p><strong>Acciones sugeridas:</strong></p>
+<ul class="simple">
+<li><p>Analizar la estacionalidad horaria, diaria y mensual.</p></li>
+<li><p>Comparar los patrones de uso de usuarios <code class="docutils literal notranslate"><span class="pre">casual</span></code> y <code class="docutils literal notranslate"><span class="pre">registered</span></code>.</p></li>
+<li><p>Evaluar la influencia de variables climáticas.</p></li>
+<li><p>Utilizar gráficos de calor, series suavizadas y diagramas de dispersión.</p></li>
+</ul>
+<p><strong>Indicaciones:</strong> Presentar al menos cinco hallazgos significativos respaldados por visualizaciones y discutir su relevancia práctica.</p>
+</section>
+<section id="implementacion-matricial-de-mco">
+<h3><span class="section-number">3.5.12. </span>Implementación Matricial de MCO<a class="headerlink" href="#implementacion-matricial-de-mco" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Comprender la estructura algebraica y el cálculo analítico del modelo.</p>
+<p><strong>Tareas:</strong></p>
+<ul class="simple">
+<li><p>Construir las matrices <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Calcular los coeficientes mediante <span class="math notranslate nohighlight">\(\hat{\beta} = (X'X)^{-1}X'y\)</span>.</p></li>
+<li><p>Verificar resultados con <code class="docutils literal notranslate"><span class="pre">statsmodels.OLS</span></code>.</p></li>
+<li><p>Analizar multicolinealidad mediante el VIF.</p></li>
+</ul>
+<p><strong>Indicaciones:</strong> Interpretar los coeficientes más relevantes y discutir su significado económico o de comportamiento urbano.</p>
+</section>
+<section id="inferencia-estadistica-en-datos-temporales">
+<h3><span class="section-number">3.5.13. </span>Inferencia Estadística en Datos Temporales<a class="headerlink" href="#inferencia-estadistica-en-datos-temporales" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Evaluar la significancia estadística y práctica de los resultados.</p>
+<p><strong>Tareas:</strong></p>
+<ul class="simple">
+<li><p>Calcular errores estándar corregidos por autocorrelación.</p></li>
+<li><p>Analizar valores p y direcciones de efecto.</p></li>
+<li><p>Diferenciar entre significancia estadística y relevancia práctica.</p></li>
+</ul>
+<p><strong>Entregable:</strong> Tabla con coeficientes, errores estándar y conclusiones operativas.</p>
+<p><strong>Indicaciones:</strong> Identificar las variables con mayor influencia sobre la demanda y explicar su interpretación dentro del sistema de bicicletas compartidas.</p>
+</section>
+<section id="diagnostico-de-supuestos-del-modelo">
+<h3><span class="section-number">3.5.14. </span>Diagnóstico de Supuestos del Modelo<a class="headerlink" href="#diagnostico-de-supuestos-del-modelo" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Validar los supuestos clásicos del modelo lineal.</p>
+<p><strong>Evaluaciones:</strong></p>
+<ul class="simple">
+<li><p>Linealidad de las relaciones.</p></li>
+<li><p>Homocedasticidad (Breusch–Pagan).</p></li>
+<li><p>Normalidad de residuos (Shapiro–Wilk).</p></li>
+<li><p>Autocorrelación (Durbin–Watson, Ljung–Box).</p></li>
+<li><p>Multicolinealidad (VIF).</p></li>
+</ul>
+<p><strong>Entregable:</strong> Matriz de diagnóstico con interpretación.</p>
+<p><strong>Indicaciones:</strong> Analizar las consecuencias de cada violación y proponer soluciones (transformaciones, modelos alternativos o métodos robustos).</p>
+</section>
+<section id="metodos-robustos-para-datos-temporales">
+<h3><span class="section-number">3.5.15. </span>Métodos Robustos para Datos Temporales<a class="headerlink" href="#metodos-robustos-para-datos-temporales" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Mejorar la estabilidad de la inferencia ante irregularidades.</p>
+<p><strong>Métodos sugeridos:</strong></p>
+<ol class="arabic simple">
+<li><p>Errores estándar HAC (Newey–West).</p></li>
+<li><p>Estimadores robustos M (Huber, Tukey).</p></li>
+<li><p>Bootstrap temporal (block bootstrap con 2000 réplicas).</p></li>
+</ol>
+<p><strong>Entregable:</strong> Tabla comparativa de robustez de coeficientes.</p>
+<p><strong>Indicaciones:</strong> Explicar cómo los distintos métodos modifican los intervalos de confianza y la interpretación de los parámetros.</p>
+</section>
+<section id="validacion-y-seleccion-del-modelo">
+<h3><span class="section-number">3.5.16. </span>Validación y Selección del Modelo<a class="headerlink" href="#validacion-y-seleccion-del-modelo" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Evaluar el desempeño predictivo y comparativo.</p>
+<p><strong>Pasos:</strong></p>
+<ul class="simple">
+<li><p>División temporal (70 % entrenamiento, 30 % prueba).</p></li>
+<li><p>Entrenamiento de OLS, Ridge, Lasso y Elastic Net.</p></li>
+<li><p>Cálculo de métricas R², RMSE, MAE y MAPE.</p></li>
+<li><p>Selección y justificación del modelo óptimo.</p></li>
+</ul>
+<p><strong>Entregable:</strong> Tabla comparativa y gráfico de predicciones vs valores reales.</p>
+<p><strong>Indicaciones:</strong> Argumentar la elección final del modelo considerando tanto la precisión como la interpretabilidad y la aplicabilidad práctica.</p>
+</section>
+<section id="simulacion-monte-carlo">
+<h3><span class="section-number">3.5.17. </span>Simulación Monte Carlo<a class="headerlink" href="#simulacion-monte-carlo" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Evaluar la estabilidad de los estimadores mediante simulaciones.</p>
+<p><strong>Actividades:</strong></p>
+<ul class="simple">
+<li><p>Generar datos sintéticos con autocorrelación.</p></li>
+<li><p>Evaluar sesgo, varianza y eficiencia.</p></li>
+<li><p>Graficar curvas de aprendizaje y estabilidad.</p></li>
+</ul>
+<p><strong>Entregable:</strong> Informe de simulación con conclusiones.</p>
+<p><strong>Indicaciones:</strong> Discutir cómo el tamaño muestral y la correlación temporal afectan la precisión y la consistencia de las estimaciones.</p>
+</section>
+<section id="interpretacion-operativa-y-recomendaciones">
+<h3><span class="section-number">3.5.18. </span>Interpretación Operativa y Recomendaciones<a class="headerlink" href="#interpretacion-operativa-y-recomendaciones" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Traducir los resultados en acciones prácticas.</p>
+<p><strong>Tareas:</strong></p>
+<ul class="simple">
+<li><p>Calcular elasticidades de la demanda.</p></li>
+<li><p>Proponer estrategias de redistribución y mantenimiento.</p></li>
+<li><p>Simular escenarios meteorológicos y estacionales.</p></li>
+<li><p>Formular recomendaciones para la gestión del sistema.</p></li>
+</ul>
+<p><strong>Entregable:</strong> Tabla de indicadores operativos y plan de acción.</p>
+<p><strong>Indicaciones:</strong> Vincular los resultados con decisiones de política pública o gestión urbana basadas en evidencia.</p>
+</section>
+<section id="conclusiones-y-extensiones-futuras">
+<h3><span class="section-number">3.5.19. </span>Conclusiones y Extensiones Futuras<a class="headerlink" href="#conclusiones-y-extensiones-futuras" title="Link to this heading">#</a></h3>
+<p><strong>Propósito:</strong> Integrar los hallazgos y proponer nuevas líneas de investigación.</p>
+<p><strong>El estudiante debe:</strong></p>
+<ul class="simple">
+<li><p>Responder las preguntas de investigación.</p></li>
+<li><p>Explicar las limitaciones del modelo.</p></li>
+<li><p>Proponer extensiones como ARIMAX, modelos estructurales o aprendizaje profundo.</p></li>
+</ul>
+<p><strong>Indicaciones:</strong> Redactar conclusiones sólidas que conecten la evidencia empírica con la aplicación práctica y sugerir mejoras para trabajos futuros.</p>
+</section>
+<section id="referencias">
+<h3><span class="section-number">3.5.20. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h3>
+<p><strong>Indicaciones:</strong> Incluir todas las referencias académicas en formato BibTeX y citarlas dentro del texto mediante el formato <code class="docutils literal notranslate"><span class="pre">[&#64;clave]</span></code>.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3224,6 +3420,29 @@ $<span class="math notranslate nohighlight">\(
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multicolinealidad">3.3. Multicolinealidad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-los-coeficientes-de-regresion-presentan-signos-inesperados">3.4. ¿Por qué los coeficientes de regresión presentan signos inesperados?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-regresion-lineal-multiple-avanzada-sistema-de-bicicletas-compartidas">3.5. Proyecto Integrador: Regresión Lineal Múltiple Avanzada – Sistema de Bicicletas Compartidas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjunto-de-datos-oficial">3.5.1. Conjunto de Datos Oficial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-del-problema">3.5.2. Contexto del Problema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-como-sensor-urbano">3.5.3. Valor como Sensor Urbano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-del-conjunto-de-datos">3.5.4. Descripción del Conjunto de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">3.5.5. Objetivo General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrega-final">3.5.6. Entrega Final</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-tecnicos">3.5.7. Requisitos Técnicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-reproduccion">3.5.8. Instrucciones de Reproducción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-y-contexto-de-movilidad-urbana">3.5.9. Introducción y Contexto de Movilidad Urbana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-variables-y-preprocesamiento-temporal">3.5.10. Ingeniería de Variables y Preprocesamiento Temporal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-series-temporales">3.5.11. Análisis Exploratorio de Series Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-matricial-de-mco">3.5.12. Implementación Matricial de MCO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inferencia-estadistica-en-datos-temporales">3.5.13. Inferencia Estadística en Datos Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-supuestos-del-modelo">3.5.14. Diagnóstico de Supuestos del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-robustos-para-datos-temporales">3.5.15. Métodos Robustos para Datos Temporales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-y-seleccion-del-modelo">3.5.16. Validación y Selección del Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulacion-monte-carlo">3.5.17. Simulación Monte Carlo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-operativa-y-recomendaciones">3.5.18. Interpretación Operativa y Recomendaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-y-extensiones-futuras">3.5.19. Conclusiones y Extensiones Futuras</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5.20. Referencias</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
