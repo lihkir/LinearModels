@@ -366,8 +366,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.10. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.11. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.12. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.13. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
@@ -2084,7 +2084,7 @@ Varianza residual estimada (σ²) = 17.4841
 y = 8 - 5x_1 + 12x_2
 \]</div>
 <ul class="simple">
-<li><p>La matriz de diagramas de dispersión correspondiente a este conjunto de datos se muestra en la siguiente figura</p></li>
+<li><p>La matriz de diagramas de dispersión correspondiente a este conjunto de datos se muestra en la siguiente figura. Nótese que <strong>Los gráficos de dispersión <span class="math notranslate nohighlight">\(y\)</span> vs cada regressor por separado pueden ser profundamente engañosos cuando hay más de un predictor, incluso si no existe multicolinealidad.</strong></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2202,59 +2202,71 @@ Filas resaltadas (índices): [1, 3, 5, 7]
 </section>
 <section id="estimacion-por-maxima-verosimilitud">
 <h3><span class="section-number">3.2.7. </span>Estimación por Máxima Verosimilitud<a class="headerlink" href="#estimacion-por-maxima-verosimilitud" title="Link to this heading">#</a></h3>
-<p>Al igual que en el caso de la regresión lineal simple, puede demostrarse que los <strong>estimadores de máxima verosimilitud</strong> de los parámetros del modelo en regresión lineal múltiple —cuando los errores del modelo se distribuyen de forma normal e independiente— coinciden con los estimadores por mínimos cuadrados.</p>
-<p>El modelo es:</p>
+<ul>
+<li><p>Al igual que en el caso de la regresión lineal simple, puede demostrarse que los <strong>estimadores de máxima verosimilitud</strong> de los parámetros del modelo en regresión lineal múltiple, <strong>cuando los errores del modelo se distribuyen de forma normal e independiente, coinciden con los estimadores por mínimos cuadrados</strong>. El modelo es</p>
 <div class="math notranslate nohighlight" id="equation-ml-model">
 <span class="eqno">(3.49)<a class="headerlink" href="#equation-ml-model" title="Link to this equation">#</a></span>\[
-y = X\beta + \varepsilon
-\]</div>
-<p>y los errores <span class="math notranslate nohighlight">\(\varepsilon\)</span> se suponen <strong>normalmente distribuidos</strong>, independientes entre sí, con varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>; es decir, <span class="math notranslate nohighlight">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span>. La función de densidad normal de cada error <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> es:</p>
+    y = X\beta + \varepsilon
+    \]</div>
+<p>y los errores <span class="math notranslate nohighlight">\(\varepsilon\)</span> se suponen <strong>normalmente distribuidos</strong>, independientes entre sí, con varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>; es decir, <span class="math notranslate nohighlight">\(\varepsilon \sim \mathcal{N}(0, \sigma^2 I)\)</span>. La función de densidad normal de cada error <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> es</p>
 <div class="math notranslate nohighlight">
 \[
-f(\varepsilon_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\varepsilon_i^2}{2\sigma^2}\right)
-\]</div>
-<p>La función de verosimilitud es la <strong>densidad conjunta</strong> de <span class="math notranslate nohighlight">\(\varepsilon_1, \varepsilon_2, \dots, \varepsilon_n\)</span>, es decir, el producto de sus densidades marginales:</p>
+    f(\varepsilon_i) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{\varepsilon_i^2}{2\sigma^2}\right)
+    \]</div>
+</li>
+<li><p>La función de verosimilitud es la <strong>densidad conjunta</strong> de <span class="math notranslate nohighlight">\(\varepsilon_1, \varepsilon_2, \dots, \varepsilon_n\)</span>, es decir, el producto de sus densidades marginales:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 L(\varepsilon, \beta, \sigma^2) = \prod_{i=1}^{n} f(\varepsilon_i) = \left(2\pi\right)^{-n/2} \sigma^{-n} \exp\left(-\frac{1}{2\sigma^2} \varepsilon' \varepsilon\right)
 \]</div>
-<p>Como <span class="math notranslate nohighlight">\(\varepsilon = y - X\beta\)</span>, la función de verosimilitud puede reescribirse como:</p>
+<ul class="simple">
+<li><p>Como <span class="math notranslate nohighlight">\(\varepsilon = y - X\beta\)</span>, la función de verosimilitud puede reescribirse como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-likelihood-function-multi">
 <span class="eqno">(3.50)<a class="headerlink" href="#equation-likelihood-function-multi" title="Link to this equation">#</a></span>\[
 L(y, X, \beta, \sigma^2) = (2\pi)^{-n/2} \sigma^{-n} \exp\left( -\frac{1}{2\sigma^2}(y - X\beta)'(y - X\beta) \right)
 \]</div>
-<p>Al igual que en la regresión simple, resulta más cómodo trabajar con el logaritmo de la verosimilitud:</p>
+<ul class="simple">
+<li><p>Al igual que en la regresión simple, resulta más cómodo trabajar con el logaritmo de la verosimilitud</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 \ln L(y, X, \beta, \sigma^2) = -\frac{n}{2} \ln(2\pi) - n \ln(\sigma) - \frac{1}{2\sigma^2} (y - X\beta)'(y - X\beta)
 \]</div>
-<p>Para un valor fijo de <span class="math notranslate nohighlight">\(\sigma\)</span>, se observa que el logaritmo de la verosimilitud se maximiza cuando el término cuadrático</p>
+<ul>
+<li><p>Para un <strong>valor fijo de <span class="math notranslate nohighlight">\(\sigma\)</span></strong>, se observa que el logaritmo de la verosimilitud se maximiza cuando el término cuadrático</p>
 <div class="math notranslate nohighlight">
 \[
-(y - X\beta)'(y - X\beta)
-\]</div>
-<p>es mínimo. Por tanto, <strong>el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta\)</span> bajo normalidad es el estimador por mínimos cuadrados</strong>:</p>
+    (y - X\beta)'(y - X\beta)
+    \]</div>
+<p>es mínimo. Por tanto, <strong>el estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\beta\)</span> bajo normalidad es el estimador por mínimos cuadrados</strong></p>
 <div class="math notranslate nohighlight" id="equation-mle-beta">
 <span class="eqno">(3.51)<a class="headerlink" href="#equation-mle-beta" title="Link to this equation">#</a></span>\[
-\hat{\beta} = (X^{\top}X)^{-1}X^{\top}y
-\]</div>
-<p>El estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\sigma^2\)</span> es:</p>
+    \hat{\beta} = (X^{\top}X)^{-1}X^{\top}y
+    \]</div>
+</li>
+<li><p>El estimador de máxima verosimilitud de <span class="math notranslate nohighlight">\(\sigma^2\)</span> es (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>)</p>
 <div class="math notranslate nohighlight" id="equation-mle-sigma">
 <span class="eqno">(3.52)<a class="headerlink" href="#equation-mle-sigma" title="Link to this equation">#</a></span>\[
-\hat{\sigma}^2 = \frac{(y - X\hat{\beta})'(y - X\hat{\beta})}{n}
-\]</div>
-<p>Estas expresiones representan la <strong>generalización a regresión múltiple</strong> de los resultados obtenidos en la Sección 2.11 para el caso simple. Las propiedades estadísticas de los estimadores de máxima verosimilitud también fueron discutidas allí.</p>
+    \hat{\sigma}^2 = \frac{(y - X\hat{\beta})'(y - X\hat{\beta})}{n}
+    \]</div>
+</li>
+<li><p>Estas expresiones representan la <strong>generalización a regresión múltiple</strong> de los resultados obtenidos en la <a class="reference internal" href="simple_linear_regression.html#simple-linear-regression-sec"><span class="std std-numref">Sección 2</span></a> para el caso simple. Las propiedades estadísticas de los estimadores de máxima verosimilitud también fueron discutidas allí.</p></li>
+</ul>
 </section>
 <section id="prueba-de-significancia-de-la-regresion">
 <h3><span class="section-number">3.2.8. </span>Prueba de significancia de la regresión<a class="headerlink" href="#prueba-de-significancia-de-la-regresion" title="Link to this heading">#</a></h3>
-<p>Una vez estimados los parámetros del modelo de regresión, surgen dos preguntas fundamentales:</p>
+<ul class="simple">
+<li><p>Una vez estimados los parámetros del modelo de regresión, surgen dos preguntas fundamentales:</p>
 <ol class="arabic simple">
 <li><p>¿Qué tan adecuado es el modelo en su conjunto?</p></li>
 <li><p>¿Qué variables regresoras específicas son importantes?</p></li>
 </ol>
-<p>Para abordar estas cuestiones, se utilizan procedimientos de prueba de hipótesis que suponen que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son <strong>independientes</strong>, con <strong>media cero</strong> <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i) = 0\)</span> y <strong>varianza constante</strong> <span class="math notranslate nohighlight">\(Var(\varepsilon_i) = \sigma^2\)</span>, y que siguen una distribución normal.</p>
-<p>La prueba de significancia de la regresión busca determinar si existe alguna relación lineal entre la variable de respuesta <span class="math notranslate nohighlight">\(y\)</span> y al menos una de las variables regresoras <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Se trata de una prueba <strong>global</strong> de adecuación del modelo.</p>
-<p>Las hipótesis que se evalúan son:</p>
+</li>
+<li><p>Para abordar estas cuestiones, se utilizan procedimientos de prueba de hipótesis que suponen que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son <strong>independientes</strong>, con <strong>media cero</strong> <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i) = 0\)</span> y <strong>varianza constante</strong> <span class="math notranslate nohighlight">\(\mathbb{Var}(\varepsilon_i) = \sigma^2\)</span>, y que siguen una distribución normal.</p></li>
+<li><p>La prueba de significancia de la regresión busca determinar si existe alguna relación lineal entre la variable de respuesta <span class="math notranslate nohighlight">\(y\)</span> y al menos una de las variables regresoras <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Se trata de una prueba <strong>global</strong> de adecuación del modelo. Las hipótesis que se evalúan son</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 H_0: \beta_1 = \beta_2 = \dots = \beta_k = 0
@@ -2263,71 +2275,78 @@ H_0: \beta_1 = \beta_2 = \dots = \beta_k = 0
 \[
 H_1: \beta_j \ne 0 \text{ para al menos un } j
 \]</div>
-<p>Rechazar la hipótesis nula <span class="math notranslate nohighlight">\(H_0\)</span> indica que al menos una de las variables regresoras contribuye significativamente al modelo.</p>
-<p>La prueba se basa en una generalización del análisis de varianza (ANOVA). La suma total de cuadrados se descompone en dos componentes:</p>
+<ul>
+<li><p>Rechazar la hipótesis nula <span class="math notranslate nohighlight">\(H_0\)</span> indica que <strong>al menos una de las variables regresoras contribuye significativamente al modelo</strong>. La prueba se basa en una generalización del análisis de varianza (ANOVA). La suma total de cuadrados se descompone en dos componentes</p>
 <div class="math notranslate nohighlight">
 \[
-SST = SSR + SS_{Res}
-\]</div>
-<p>Donde:</p>
+    SST = SSR + SS_{Res}
+    \]</div>
+<p>Donde</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(SST\)</span>: Suma total de cuadrados</p></li>
 <li><p><span class="math notranslate nohighlight">\(SSR\)</span>: Suma de cuadrados por regresión</p></li>
 <li><p><span class="math notranslate nohighlight">\(SS_{Res}\)</span>: Suma de cuadrados de los residuos</p></li>
 </ul>
-<p>De acuerdo con el Apéndice C.3, si <span class="math notranslate nohighlight">\(H_0\)</span> es verdadera:</p>
+</li>
+<li><p>De acuerdo con el Apéndice C.3 de <span id="id4">[<a class="reference internal" href="biblio.html#id2" title="D.C. Montgomery, E.A. Peck, and G.G. Vining. Introduction to Linear Regression Analysis. Wiley Series in Probability and Statistics. Wiley, 2013. ISBN 9781118627365. URL: https://books.google.com.co/books?id=lSyiRZh09oEC.">Montgomery <em>et al.</em>, 2013</a>]</span>, si <span class="math notranslate nohighlight">\(H_0\)</span> es verdadera</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\dfrac{SSR}{\sigma^2} \sim \chi^2_k\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\dfrac{SS_{Res}}{\sigma^2} \sim \chi^2_{n-k-1}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(SSR\)</span> y <span class="math notranslate nohighlight">\(SS_{Res}\)</span> son independientes</p></li>
 </ul>
-<p>Por lo tanto, el estadístico de prueba es:</p>
+</li>
+<li><p>Por lo tanto, el estadístico de prueba es</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{MSR}{MS_{Res}} = \frac{SSR / k}{SS_{Res} / (n - k - 1)}
-\]</div>
+    F_0 = \frac{MSR}{MS_{Res}} = \frac{SSR / k}{SS_{Res} / (n - k - 1)}
+    \]</div>
 <p>y sigue una distribución <span class="math notranslate nohighlight">\(F_{k, n-k-1}\)</span> bajo <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
-<p>El valor esperado del cuadrado medio residual es:</p>
+</li>
+<li><p>El valor esperado del cuadrado medio residual es</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}(MS_{Res}) = \sigma^2
-\]</div>
-<p>y el valor esperado del cuadrado medio de regresión es:</p>
+    \mathbb{E}(MS_{Res}) = \sigma^2
+    \]</div>
+<p>y el valor esperado del cuadrado medio de regresión es</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}(MSR) = \sigma^2 + \frac{1}{k} \beta^{*\top} X_c^\top X_c \beta^*
-\]</div>
-<p>donde:</p>
+    \mathbb{E}(MSR) = \sigma^2 + \frac{1}{k} \beta^{*\top} X_c^\top X_c \beta^*
+    \]</div>
+<p>donde</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta^* = (\beta_1, \beta_2, \dots, \beta_k)^\top\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(X_c\)</span> es la matriz <strong>centrada</strong> de regresores, es decir:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-centered-matrix">
 <span class="eqno">(3.53)<a class="headerlink" href="#equation-centered-matrix" title="Link to this equation">#</a></span>\[\begin{split}
-X_c = \begin{bmatrix}
-x_{11} - \bar{x}_1 &amp; x_{12} - \bar{x}_2 &amp; \dots &amp; x_{1k} - \bar{x}_k \\
-x_{21} - \bar{x}_1 &amp; x_{22} - \bar{x}_2 &amp; \dots &amp; x_{2k} - \bar{x}_k \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-x_{n1} - \bar{x}_1 &amp; x_{n2} - \bar{x}_2 &amp; \dots &amp; x_{nk} - \bar{x}_k
-\end{bmatrix}
-\end{split}\]</div>
-<p>Así, si el valor observado de <span class="math notranslate nohighlight">\(F_0\)</span> es grande, es probable que al menos un <span class="math notranslate nohighlight">\(\beta_j \ne 0\)</span>.</p>
-<p>Bajo la alternativa <span class="math notranslate nohighlight">\(H_1\)</span>, <span class="math notranslate nohighlight">\(F_0\)</span> sigue una distribución <span class="math notranslate nohighlight">\(F\)</span> <strong>no central</strong> con <span class="math notranslate nohighlight">\(k\)</span> y <span class="math notranslate nohighlight">\(n-k-1\)</span> grados de libertad y parámetro de no centralidad:</p>
+    X_c = \begin{bmatrix}
+    x_{11} - \bar{x}_1 &amp; x_{12} - \bar{x}_2 &amp; \dots &amp; x_{1k} - \bar{x}_k \\
+    x_{21} - \bar{x}_1 &amp; x_{22} - \bar{x}_2 &amp; \dots &amp; x_{2k} - \bar{x}_k \\
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+    x_{n1} - \bar{x}_1 &amp; x_{n2} - \bar{x}_2 &amp; \dots &amp; x_{nk} - \bar{x}_k
+    \end{bmatrix}
+    \end{split}\]</div>
+</li>
+<li><p>Así, si el valor observado de <span class="math notranslate nohighlight">\(F_0\)</span> es grande, es probable que al menos un <span class="math notranslate nohighlight">\(\beta_j \ne 0\)</span>. Bajo la alternativa <span class="math notranslate nohighlight">\(H_1\)</span>, <span class="math notranslate nohighlight">\(F_0\)</span> sigue una distribución <span class="math notranslate nohighlight">\(F\)</span> <strong>no central</strong> con <span class="math notranslate nohighlight">\(k\)</span> y <span class="math notranslate nohighlight">\(n-k-1\)</span> grados de libertad y parámetro de no centralidad</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 \lambda = \frac{1}{\sigma^2} \beta^{*\top} X_c^\top X_c \beta^*
 \]</div>
-<p>Por lo tanto, para evaluar la hipótesis:</p>
+<ul>
+<li><p>Por lo tanto, para evaluar la hipótesis</p>
 <div class="math notranslate nohighlight">
 \[
-H_0: \beta_1 = \beta_2 = \dots = \beta_k = 0
-\]</div>
+    H_0: \beta_1 = \beta_2 = \dots = \beta_k = 0
+    \]</div>
 <p>se calcula <span class="math notranslate nohighlight">\(F_0\)</span> y se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si</strong>:</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 &gt; F_{\alpha, k, n-k-1}
-\]</div>
-<p>Este procedimiento se resume normalmente en una tabla ANOVA como la siguiente:</p>
+    F_0 &gt; F_{\alpha, k, n-k-1}
+    \]</div>
+</li>
+<li><p>Este procedimiento se resume normalmente en una tabla ANOVA como la siguiente</p></li>
+</ul>
 <p><strong>Tabla: Análisis de varianza para significancia de la regresión en regresión múltiple</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -2356,26 +2375,31 @@ F_0 &gt; F_{\alpha, k, n-k-1}
 </tbody>
 </table>
 </div>
-<p>Una fórmula computacional útil para <span class="math notranslate nohighlight">\(SS_{Res}\)</span> es:</p>
+<ul class="simple">
+<li><p>Una fórmula computacional útil para <span class="math notranslate nohighlight">\(SS_{Res}\)</span> es</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-ssres-formula">
 <span class="eqno">(3.54)<a class="headerlink" href="#equation-ssres-formula" title="Link to this equation">#</a></span>\[
 SS_{Res} = y^\top y - \hat{\beta}^\top X^\top y
 \]</div>
-<p>Usando:</p>
+<ul>
+<li><p>Usando</p>
 <div class="math notranslate nohighlight" id="equation-sst-formula">
 <span class="eqno">(3.55)<a class="headerlink" href="#equation-sst-formula" title="Link to this equation">#</a></span>\[
-SST = y^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
-\]</div>
-<p>entonces se obtiene:</p>
+    SST = y^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
+    \]</div>
+<p>entonces se obtiene</p>
 <div class="math notranslate nohighlight" id="equation-ssr-formula">
 <span class="eqno">(3.56)<a class="headerlink" href="#equation-ssr-formula" title="Link to this equation">#</a></span>\[
-SSR = \hat{\beta}^\top X^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
-\]</div>
-<p>y la relación:</p>
+    SSR = \hat{\beta}^\top X^\top y - \frac{1}{n} \left( \sum_{i=1}^{n} y_i \right)^2
+    \]</div>
+<p>y la relación</p>
 <div class="math notranslate nohighlight" id="equation-ssres-relation">
 <span class="eqno">(3.57)<a class="headerlink" href="#equation-ssres-relation" title="Link to this equation">#</a></span>\[
-SS_{Res} = SST - SSR
-\]</div>
+    SS_{Res} = SST - SSR
+    \]</div>
+</li>
+</ul>
 </section>
 <section id="ejemplo-los-datos-del-tiempo-de-entrega">
 <h3><span class="section-number">3.2.9. </span>Ejemplo: Los datos del tiempo de entrega<a class="headerlink" href="#ejemplo-los-datos-del-tiempo-de-entrega" title="Link to this heading">#</a></h3>
@@ -2489,8 +2513,8 @@ H_0: \beta_j = 0 \quad \text{vs} \quad H_1: \beta_j \ne 0 \tag{3.28}
 t_0 = \frac{\hat{\beta}_j}{\sqrt{\hat{\sigma}^2 C_{jj}}} = \frac{\hat{\beta}_j}{\text{se}(\hat{\beta}_j)} \tag{3.29}
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal correspondiente a <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> en la matriz <span class="math notranslate nohighlight">\((X^{\top}X)^{-1}\)</span>. Se rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(|t_0| &gt; t_{\alpha/2, n - k - 1}\)</span>. Esta prueba es parcial, ya que el valor de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> depende de los otros regresores incluidos en el modelo.</p>
-<section id="id4">
-<h4><span class="section-number">3.2.12.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<section id="id5">
+<h4><span class="section-number">3.2.12.1. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>Supongamos que deseamos evaluar la contribución del regresor <span class="math notranslate nohighlight">\(x_2\)</span> (distancia), dado que <span class="math notranslate nohighlight">\(x_1\)</span> (casos) ya está en el modelo. Las hipótesis son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2574,8 +2598,8 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2 + \beta_{11} x_1^2 
 </ul>
 <p>Estas pruebas permiten descomponer la suma de cuadrados de regresión en componentes marginales de un grado de libertad. En resumen, la prueba parcial <span class="math notranslate nohighlight">\(F\)</span> es una herramienta flexible y general que permite evaluar la significancia de variables individuales o conjuntos de variables en presencia de otros regresores.</p>
 </section>
-<section id="id5">
-<h4><span class="section-number">3.2.12.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<section id="id6">
+<h4><span class="section-number">3.2.12.2. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <p>Consideremos nuevamente los datos de tiempo de entrega de bebidas gaseosas del Ejemplo 3.1. Supongamos que deseamos investigar la contribución de la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) al modelo. Las hipótesis apropiadas son:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -3638,8 +3662,8 @@ $<span class="math notranslate nohighlight">\(
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-3-6-analisis-de-varianza-para-la-prueba-de-significancia-de-la-regresion">3.2.10. Tabla 3.6: Análisis de varianza para la prueba de significancia de la regresión</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-y-r-2-text-ajustado">3.2.11. <span class="math notranslate nohighlight">\(R^2\)</span> y <span class="math notranslate nohighlight">\(R^2_{\text{ajustado}}\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-sobre-coeficientes-de-regresion-individuales-y-subconjuntos-de-coeficientes">3.2.12. Pruebas sobre Coeficientes de Regresión Individuales y Subconjuntos de Coeficientes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12.1. Ejemplo: Datos de Tiempo de Entrega</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.12.2. Ejemplo: Datos de Tiempo de Entrega</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.13. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
