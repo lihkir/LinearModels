@@ -2898,14 +2898,14 @@ H_1&amp;: \beta_2 \neq 0
 <li><p>Para determinar la <strong>contribución de los términos en <span class="math notranslate nohighlight">\(\beta_2\)</span> a la regresión, se ajusta el modelo asumiendo que la hipótesis nula <span class="math notranslate nohighlight">\(H_0: \beta_2 = 0\)</span> es verdadera</strong>. Este modelo reducido es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ y = X_1 \beta_1 + \epsilon \]</div>
+\[y = X_1 \beta_1 + \epsilon\]</div>
 <ul class="simple">
 <li><p>El <strong>estimador de mínimos cuadrados de <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo reducido es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = (X_1'X_1)^{-1} X_1'y\)</span></strong>. La suma de cuadrados de la regresión es</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ SS_R (\beta_1) = \hat{\beta}_1' X_1' y \quad \text{(con $p - r$ grados de libertad)} \]</div>
 <ul class="simple">
-<li><p>Configuraciones de prueba para dos variables regresoras. Modelo completo: <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon\)</span></p></li>
+<li><p>Configuraciones de prueba para dos variables regresoras. Modelo completo: <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon\)</span></p></li>
 </ul>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -2953,12 +2953,12 @@ H_1&amp;: \beta_2 \neq 0
 <li><p>La suma de cuadrados de la regresión debida a <span class="math notranslate nohighlight">\(\beta_2\)</span> dado que <span class="math notranslate nohighlight">\(\beta_1\)</span> ya está en el modelo es</p>
 <div class="math notranslate nohighlight">
 \[ SS_R (\beta_2 | \beta_1) = SS_R (\beta) - SS_R (\beta_1) \]</div>
-<p>con <span class="math notranslate nohighlight">\(p - (p - r) = r\)</span> grados de libertad. Esta suma de cuadrados <strong>se denomina suma de cuadrados extra debida a <span class="math notranslate nohighlight">\(\beta_2\)</span> porque mide el incremento en la suma de cuadrados de la regresión que resulta de añadir los regresores <span class="math notranslate nohighlight">\(x_{k-r+1}, x_{k-r+2}, \ldots, x_k\)</span> a un modelo que ya contiene <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_{k-r}\)</span></strong>.</p>
+<p>con <span class="math notranslate nohighlight">\(p - (p - r) = \textcolor{red}{r}\)</span> grados de libertad. Esta suma de cuadrados <strong>se denomina suma de cuadrados extra debida a <span class="math notranslate nohighlight">\(\beta_2\)</span> porque mide el incremento en la suma de cuadrados de la regresión que resulta de añadir los regresores <span class="math notranslate nohighlight">\(x_{k-r+1}, x_{k-r+2}, \ldots, x_k\)</span> a un modelo que ya contiene <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_{k-r}\)</span></strong>.</p>
 </li>
 <li><p>El estadístico <span class="math notranslate nohighlight">\(SS_R (\beta_2 | \beta_1)\)</span> es independiente de <span class="math notranslate nohighlight">\(MS_{Res}\)</span> y la hipótesis nula <span class="math notranslate nohighlight">\(\beta_2 = 0\)</span> puede contrastarse mediante el estadístico</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ F_0 = \frac{SS_R (\beta_2 | \beta_1)/r}{MS_{Res}} \]</div>
+\[ F_0 = \frac{SS_R (\beta_2 | \beta_1)/\textcolor{red}{r}}{MS_{Res}} \]</div>
 <ul class="simple">
 <li><p>Si <span class="math notranslate nohighlight">\(\beta_2 \neq 0\)</span>, entonces <span class="math notranslate nohighlight">\(F_0\)</span> sigue una distribución <span class="math notranslate nohighlight">\(F\)</span> no central con un parámetro de no centralidad</p></li>
 </ul>
@@ -2966,7 +2966,7 @@ H_1&amp;: \beta_2 \neq 0
 \[ \lambda = \frac{1}{\sigma^2} \beta_2' X_2' [I - X_1 (X_1'X_1)^{-1} X_1'] X_2 \beta_2 \]</div>
 <ul class="simple">
 <li><p>Si el estadístico <span class="math notranslate nohighlight">\(F_0\)</span> supera el valor crítico <span class="math notranslate nohighlight">\(F_{\alpha, r, n-p}\)</span>, se rechaza la hipótesis nula <span class="math notranslate nohighlight">\(H_0\)</span>. Esta conclusión indica que <strong>al menos uno de los parámetros en <span class="math notranslate nohighlight">\(\beta_2\)</span> es distinto de cero y, por lo tanto, al menos uno de los regresores <span class="math notranslate nohighlight">\(x_{k-r+1}, x_{k-r+2}, \ldots, x_k\)</span> en <span class="math notranslate nohighlight">\(X_2\)</span> contribuye significativamente al modelo de regresión</strong>.</p></li>
-<li><p>Esta prueba se denomina <strong>prueba F parcial</strong> puesto que evalúa la contribución de los regresores en <span class="math notranslate nohighlight">\(X_2\)</span> una vez que los regresores en <span class="math notranslate nohighlight">\(X_1\)</span> ya están incluidos en el modelo.</p></li>
+<li><p>Esta prueba se denomina <strong>prueba F parcial</strong> puesto que evalúa la contribución de los regresores en <span class="math notranslate nohighlight">\(X_2\)</span> una vez que los regresores en <span class="math notranslate nohighlight">\(X_1\)</span> ya están incluidos en el modelo (estos es <span class="math notranslate nohighlight">\(y = X_1 \beta_1 + \epsilon\)</span> ya explica cierta variablilidad).</p></li>
 <li><p>Para ilustrar la utilidad de este procedimiento, considere el modelo</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -2993,53 +2993,88 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
 </section>
 <section id="id6">
 <h3><span class="section-number">3.2.13. </span>Ejemplo: Datos de Tiempo de Entrega<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<p>Consideremos nuevamente los datos de tiempo de entrega de bebidas gaseosas del Ejemplo 3.1. Supongamos que deseamos investigar la contribución de la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) al modelo. Las hipótesis apropiadas son:</p>
+<ul class="simple">
+<li><p>Consideremos nuevamente los datos de tiempo de entrega de bebidas gaseosas. Supongamos que deseamos investigar la contribución de la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) al modelo. Las hipótesis apropiadas son</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 H_0: \beta_2 = 0 \quad \text{vs} \quad H_1: \beta_2 \ne 0
 \]</div>
-<p>Para evaluar estas hipótesis, usamos la suma de cuadrados extra debido a <span class="math notranslate nohighlight">\(\beta_2\)</span>:</p>
+<ul>
+<li><p>Para evaluar estas hipótesis, usamos la suma de cuadrados extra debido a <span class="math notranslate nohighlight">\(\beta_2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-SSR(\beta_2 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2, \beta_0) - SSR(\beta_1, \beta_0)
-\]</div>
+    SSR(\beta_2 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2, \beta_0) - SSR(\beta_1, \beta_0)
+    \]</div>
 <p>o equivalentemente,</p>
 <div class="math notranslate nohighlight">
 \[
-SSR(\beta_2 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2 \mid \beta_0) - SSR(\beta_1 \mid \beta_0)
+    SSR(\beta_2 \mid \beta_1, \beta_0) = SSR(\beta_1, \beta_2 \mid \beta_0) - SSR(\beta_1 \mid \beta_0)
+    \]</div>
+</li>
+<li><p>Verifiquemos esta equivalencia, para cualquier modelo se cumple</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+SSR(\text{modelo completo}) = SSR(\text{intercepto}) + SSR(\text{variables} \mid \text{intercepto})
 \]</div>
-<p>Del Ejemplo 3.3 sabemos que:</p>
+<ul class="simple">
+<li><p>Entonces</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+&amp; SSR(\beta_1, \beta_2 \mid \beta_0) - SSR(\beta_1 \mid \beta_0) \\
+&amp;= [SSR(\beta_0, \beta_1, \beta_2) - SSR(\beta_0)] - [SSR(\beta_0, \beta_1) - SSR(\beta_0)] \\
+&amp;= SSR(\beta_0, \beta_1, \beta_2) - SSR(\beta_0, \beta_1) \\
+&amp;= SSR(\beta_2 \mid \beta_1, \beta_0)
+\end{align*}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Del ejemplo anterior sabemos que</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta_1, \beta_2 \mid \beta_0) = \hat{\beta}' X^{\top} y - \frac{ \left( \sum_{i=1}^n y_i \right)^2 }{n} = 5550.8166 \quad (\text{2 grados de libertad})
 \]</div>
-<p>El modelo reducido <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \varepsilon\)</span> fue ajustado en el Ejemplo 2.9, obteniéndose:</p>
+<ul class="simple">
+<li><p>El modelo reducido <span class="math notranslate nohighlight">\(y = \beta_0 + \beta_1 x_1 + \varepsilon\)</span> fue ajustado en el ejemplo anterior, obteniéndose</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 \hat{y} = 3.3208 + 2.1762 x_1
 \]</div>
-<p>La suma de cuadrados de regresión para este modelo es:</p>
+<ul class="simple">
+<li><p>La suma de cuadrados de regresión para este modelo es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta_1 \mid \beta_0) = \hat{\beta}_1 S_{xy} = (2.1762)(2473.3440) = 5382.4077 \quad (\text{1 grado de libertad})
 \]</div>
-<p>Por tanto:</p>
+<ul class="simple">
+<li><p>Por tanto</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta_2 \mid \beta_1, \beta_0) = 5550.8166 - 5382.4077 = 168.4089 \quad (\text{1 grado de libertad})
 \]</div>
-<p>Este valor representa el aumento en la suma de cuadrados de regresión al agregar <span class="math notranslate nohighlight">\(x_2\)</span> a un modelo que ya contiene <span class="math notranslate nohighlight">\(x_1\)</span>.</p>
-<p>Para contrastar <span class="math notranslate nohighlight">\(H_0: \beta_2 = 0\)</span>, formamos el estadístico de prueba:</p>
+<ul class="simple">
+<li><p>Este valor representa el aumento en la suma de cuadrados de regresión al agregar <span class="math notranslate nohighlight">\(x_2\)</span> a un modelo que ya contiene <span class="math notranslate nohighlight">\(x_1\)</span>. Para contrastar <span class="math notranslate nohighlight">\(H_0: \beta_2 = 0\)</span>, formamos el estadístico de prueba</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 F_0 = \frac{SSR(\beta_2 \mid \beta_1, \beta_0)}{MS_{Res}} = \frac{168.4078}{10.6239} = 15.85
 \]</div>
-<p>Nótese que se utiliza <span class="math notranslate nohighlight">\(MS_{Res}\)</span> del modelo completo (con <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>) en el denominador del estadístico. Dado que <span class="math notranslate nohighlight">\(F_{0.05, 1, 22} = 4.30\)</span>, se <strong>rechaza</strong> <span class="math notranslate nohighlight">\(H_0\)</span> y se concluye que la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) contribuye significativamente al modelo. Como esta prueba parcial <span class="math notranslate nohighlight">\(F\)</span> involucra una única variable, es equivalente a la prueba <span class="math notranslate nohighlight">\(t\)</span>. De hecho, recordemos que la prueba <span class="math notranslate nohighlight">\(t\)</span> para <span class="math notranslate nohighlight">\(H_0: \beta_2 = 0\)</span> dio como resultado:</p>
+<ul class="simple">
+<li><p>Nótese que se utiliza <span class="math notranslate nohighlight">\(MS_{Res}\)</span> del modelo completo (con <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>) en el denominador del estadístico. Dado que <span class="math notranslate nohighlight">\(F_{0.05, 1, 22} = 4.30\)</span>, se <strong>rechaza</strong> <span class="math notranslate nohighlight">\(H_0\)</span> y se concluye que la variable <strong>distancia</strong> (<span class="math notranslate nohighlight">\(x_2\)</span>) contribuye significativamente al modelo. Como esta prueba parcial <span class="math notranslate nohighlight">\(F\)</span> involucra una única variable, es equivalente a la prueba <span class="math notranslate nohighlight">\(t\)</span>. De hecho, recordemos que la prueba <span class="math notranslate nohighlight">\(t\)</span> para <span class="math notranslate nohighlight">\(H_0: \beta_2 = 0\)</span> dio como resultado</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 t_0 = 3.98
 \]</div>
-<p>Según la Sección C.1, el cuadrado de una variable <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(v\)</span> grados de libertad sigue una distribución <span class="math notranslate nohighlight">\(F\)</span> con 1 y <span class="math notranslate nohighlight">\(v\)</span> grados de libertad. Así:</p>
+<ul class="simple">
+<li><p>Cómo se verificó en la sección de regresión lineal simple, <strong>el cuadrado de una variable <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(v\)</span> grados de libertad sigue una distribución <span class="math notranslate nohighlight">\(F\)</span> con 1 y <span class="math notranslate nohighlight">\(v\)</span> grados de libertad</strong>. Así</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 t_0^2 = (3.98)^2 = 15.84 \approx F_0
@@ -3047,19 +3082,19 @@ t_0^2 = (3.98)^2 = 15.84 \approx F_0
 </section>
 <section id="caso-especial-de-columnas-ortogonales-en-x">
 <h3><span class="section-number">3.2.14. </span>Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span><a class="headerlink" href="#caso-especial-de-columnas-ortogonales-en-x" title="Link to this heading">#</a></h3>
-<p>Consideremos el modelo:</p>
+<p>Consideremos el modelo</p>
 <div class="math notranslate nohighlight">
 \[
 y = X\beta + \varepsilon = X_1 \beta_1 + X_2 \beta_2 + \varepsilon
 \]</div>
 <p>El método de suma de cuadrados extra permite medir el efecto de los regresores en <span class="math notranslate nohighlight">\(X_2\)</span> condicional a los que se encuentran en <span class="math notranslate nohighlight">\(X_1\)</span>, mediante el cálculo de <span class="math notranslate nohighlight">\(SSR(\beta_2 \mid \beta_1)\)</span>. En general, no podemos definir la suma de cuadrados debida a <span class="math notranslate nohighlight">\(\beta_2\)</span>, <span class="math notranslate nohighlight">\(SSR(\beta_2)\)</span>, sin considerar la dependencia de esta cantidad respecto a los regresores en <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <p>Sin embargo, si las columnas de <span class="math notranslate nohighlight">\(X_1\)</span> son ortogonales a las columnas de <span class="math notranslate nohighlight">\(X_2\)</span>, sí es posible determinar una suma de cuadrados debida a <span class="math notranslate nohighlight">\(\beta_2\)</span> que es independiente de los regresores en <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
-<p>Para demostrarlo, escribimos las ecuaciones normales <span class="math notranslate nohighlight">\((X^{\top}X)\hat{\beta} = X^{\top}y\)</span> para el modelo:</p>
+<p>Para demostrarlo, escribimos las ecuaciones normales <span class="math notranslate nohighlight">\((X^{\top}X)\hat{\beta} = X^{\top}y\)</span> para el modelo</p>
 <div class="math notranslate nohighlight">
 \[
 y = X_1 \beta_1 + X_2 \beta_2 + \varepsilon
 \]</div>
-<p>Las ecuaciones normales son:</p>
+<p>Las ecuaciones normales son</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -3076,23 +3111,23 @@ X_1'y \\
 X_2'y
 \end{bmatrix}
 \end{split}\]</div>
-<p>Si las columnas de <span class="math notranslate nohighlight">\(X_1\)</span> son ortogonales a las de <span class="math notranslate nohighlight">\(X_2\)</span>, entonces <span class="math notranslate nohighlight">\(X_1'X_2 = 0\)</span> y <span class="math notranslate nohighlight">\(X_2'X_1 = 0\)</span>, lo que convierte el sistema en dos ecuaciones separadas:</p>
+<p>Si las columnas de <span class="math notranslate nohighlight">\(X_1\)</span> son ortogonales a las de <span class="math notranslate nohighlight">\(X_2\)</span>, entonces <span class="math notranslate nohighlight">\(X_1'X_2 = 0\)</span> y <span class="math notranslate nohighlight">\(X_2'X_1 = 0\)</span>, lo que convierte el sistema en dos ecuaciones separadas</p>
 <div class="math notranslate nohighlight">
 \[
 X_1'X_1 \hat{\beta}_1 = X_1'y, \qquad X_2'X_2 \hat{\beta}_2 = X_2'y
 \]</div>
-<p>cuya solución es:</p>
+<p>cuya solución es</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta}_1 = (X_1'X_1)^{-1}X_1'y, \qquad \hat{\beta}_2 = (X_2'X_2)^{-1}X_2'y
 \]</div>
 <p>Nótese que los estimadores de mínimos cuadrados para <span class="math notranslate nohighlight">\(\beta_1\)</span> y <span class="math notranslate nohighlight">\(\beta_2\)</span> son independientes entre sí; es decir, <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span> no depende de si <span class="math notranslate nohighlight">\(X_2\)</span> está en el modelo o no, y viceversa.</p>
-<p>La suma de cuadrados de regresión del modelo completo es:</p>
+<p>La suma de cuadrados de regresión del modelo completo es</p>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta) = \hat{\beta}' X^{\top} y = \hat{\beta}_1' X_1' y + \hat{\beta}_2' X_2' y
 \]</div>
-<p>Usando las soluciones anteriores, también podemos escribir:</p>
+<p>Usando las soluciones anteriores, también podemos escribir</p>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta_1) = y' X_1 (X_1'X_1)^{-1} X_1' y
@@ -3101,12 +3136,12 @@ SSR(\beta_1) = y' X_1 (X_1'X_1)^{-1} X_1' y
 \[
 SSR(\beta_2) = y' X_2 (X_2'X_2)^{-1} X_2' y
 \]</div>
-<p>Por tanto, se cumple:</p>
+<p>Por tanto, se cumple</p>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta) = SSR(\beta_1) + SSR(\beta_2)
 \]</div>
-<p>y además:</p>
+<p>y además</p>
 <div class="math notranslate nohighlight">
 \[
 SSR(\beta_1 \mid \beta_2) = SSR(\beta) - SSR(\beta_2) = SSR(\beta_1)
@@ -3115,12 +3150,12 @@ SSR(\beta_1 \mid \beta_2) = SSR(\beta) - SSR(\beta_2) = SSR(\beta_1)
 \[
 SSR(\beta_2 \mid \beta_1) = SSR(\beta) - SSR(\beta_1) = SSR(\beta_2)
 \]</div>
-<p>Esto implica que <span class="math notranslate nohighlight">\(SSR(\beta_1)\)</span> mide la contribución de los regresores en <span class="math notranslate nohighlight">\(X_1\)</span> al modelo sin condición alguna, y lo mismo ocurre con <span class="math notranslate nohighlight">\(SSR(\beta_2)\)</span> respecto a <span class="math notranslate nohighlight">\(X_2\)</span>. Dado que podemos evaluar sin ambigüedad el efecto de cada regresor cuando son ortogonales, los experimentos de recolección de datos se diseñan frecuentemente para garantizar esta propiedad. Como ejemplo de un modelo de regresión con regresores ortogonales, consideremos:</p>
+<p>Esto implica que <span class="math notranslate nohighlight">\(SSR(\beta_1)\)</span> mide la contribución de los regresores en <span class="math notranslate nohighlight">\(X_1\)</span> al modelo sin condición alguna, y lo mismo ocurre con <span class="math notranslate nohighlight">\(SSR(\beta_2)\)</span> respecto a <span class="math notranslate nohighlight">\(X_2\)</span>. <strong>Dado que podemos evaluar sin ambigüedad el efecto de cada regresor cuando son ortogonales, los experimentos de recolección de datos se diseñan frecuentemente para garantizar esta propiedad</strong>. Como ejemplo de un modelo de regresión con regresores ortogonales, consideremos</p>
 <div class="math notranslate nohighlight">
 \[
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
 \]</div>
-<p>donde la matriz <span class="math notranslate nohighlight">\(X\)</span> es:</p>
+<p>donde la matriz <span class="math notranslate nohighlight">\(X\)</span> es</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 X =
@@ -3135,12 +3170,12 @@ X =
 1 &amp; 1  &amp; 1  &amp; 1
 \end{bmatrix}
 \end{split}\]</div>
-<p>Los niveles de los regresores corresponden a un diseño factorial <span class="math notranslate nohighlight">\(2^3\)</span>. Es fácil verificar que las columnas de <span class="math notranslate nohighlight">\(X\)</span> son ortogonales. Por tanto, cada <span class="math notranslate nohighlight">\(SSR(\beta_j)\)</span>, <span class="math notranslate nohighlight">\(j = 1, 2, 3\)</span>, mide la contribución del regresor <span class="math notranslate nohighlight">\(x_j\)</span> al modelo sin importar si los otros regresores están o no presentes.</p>
+<p>Los niveles de los regresores corresponden a un diseño factorial <span class="math notranslate nohighlight">\(2^3\)</span>. Es fácil verificar que las columnas de <span class="math notranslate nohighlight">\(X\)</span> son ortogonales. Por tanto, <strong>cada <span class="math notranslate nohighlight">\(SSR(\beta_j)\)</span>, <span class="math notranslate nohighlight">\(j = 1, 2, 3\)</span>, mide la contribución del regresor <span class="math notranslate nohighlight">\(x_j\)</span> al modelo sin importar si los otros regresores están o no presentes</strong>.</p>
 </section>
 <section id="prueba-de-la-hipotesis-lineal-general">
 <h3><span class="section-number">3.2.15. </span>3.3.4 Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
 <p>Muchas hipótesis sobre los coeficientes de regresión pueden evaluarse mediante un <strong>enfoque unificado</strong>. El <strong>método de suma de cuadrados extra</strong> es un caso particular de este procedimiento general. En este enfoque, la <strong>suma de cuadrados utilizada para probar la hipótesis</strong> se calcula como la <strong>diferencia entre dos sumas de cuadrados residuales</strong>.</p>
-<p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como:</p>
+<p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como</p>
 <div class="math notranslate nohighlight">
 \[
 H_0: T\boldsymbol{\beta} = \mathbf{0}
@@ -3186,8 +3221,7 @@ SS_H = SS_{Res}(\text{MR}) - SS_{Res}(\text{MC})
 <p>con <span class="math notranslate nohighlight">\(r\)</span> grados de libertad. El estadístico de prueba es:</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{SS_H / r}{SS_{Res}(\text{MC}) / (n - p)}
-\tag{3.40}
+F_0 = \frac{SS_H/r}{SS_{Res}(MC)/(n - p)} = \frac{\text{Variabilidad explicada por } H_0 \text{ por grado de libertad}}{\text{Variabilidad no explicada por grado de libertad}}
 \]</div>
 <p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span></strong> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n-p}\)</span>.</p>
 <section id="ejemplo-prueba-de-igualdad-de-coeficientes">
@@ -3202,11 +3236,20 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
 \[
 H_0: \beta_1 = \beta_3
 \]</div>
-<p>lo cual equivale a:</p>
+<p>lo cual equivale a <span class="math notranslate nohighlight">\(T\boldsymbol{\beta}=0\)</span> con</p>
 <div class="math notranslate nohighlight">
 \[
 T = [0 \quad 1 \quad 0 \quad -1]
 \]</div>
+<p>dado que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+T\beta &amp;= [0 \quad 1 \quad 0 \quad -1] \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix} \\
+&amp;= 0\cdot\beta_0 + 1\cdot\beta_1 + 0\cdot\beta_2 + (-1)\cdot\beta_3 \\
+&amp;= \beta_1 - \beta_3
+\end{align*}
+\end{split}\]</div>
 <p>Sustituyendo <span class="math notranslate nohighlight">\(\beta_3 = \beta_1\)</span> se obtiene el modelo reducido:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -3217,12 +3260,14 @@ y = \beta_0 + \beta_1(x_1 + x_3) + \beta_2 x_2 + \varepsilon
 \[
 y = \gamma_0 + \gamma_1 z_1 + \gamma_2 z_2 + \varepsilon
 \]</div>
-<p>El estadístico de prueba es:</p>
+<ul class="simple">
+<li><p>Dado que solo estamos imponiendo <strong>una restricción linealmente independiente</strong>, el estadístico de prueba es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 F_0 = \frac{SS_H / 1}{MS_{Res}(\text{MC})}
 \]</div>
-<p>y también puede calcularse mediante la prueba <span class="math notranslate nohighlight">\(t\)</span> equivalente:</p>
+<p>y también puede calcularse mediante la prueba <span class="math notranslate nohighlight">\(t\)</span> equivalente <span class="math notranslate nohighlight">\(\mathbb{Var}(\hat{\beta}_1 - \hat{\beta}_3) = \sigma^2 (C_{11} + C_{33} - 2C_{13})\)</span> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>) como</p>
 <div class="math notranslate nohighlight">
 \[
 t_0 = \frac{\hat{\beta}_1 - \hat{\beta}_3}{\sqrt{\hat{\sigma}^2(C_{11} + C_{33} - 2C_{13})}}
@@ -3270,16 +3315,14 @@ F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X^{\top}X)^{-1}T' \right]^{-1}
 <section id="extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">
 <h3><span class="section-number">3.2.17. </span>Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span><a class="headerlink" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c" title="Link to this heading">#</a></h3>
 <p>Más generalmente, se puede probar:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-tbeta-c">
+<span class="eqno">(3.62)<a class="headerlink" href="#equation-tbeta-c" title="Link to this equation">#</a></span>\[
 H_0: T\boldsymbol{\beta} = \mathbf{c}, \quad H_1: T\boldsymbol{\beta} \neq \mathbf{c}
-\tag{3.42}
 \]</div>
 <p>con el estadístico:</p>
 <div class="math notranslate nohighlight">
 \[
 F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} (T\hat{\boldsymbol{\beta}} - \mathbf{c}) / r}{SS_{Res}(\text{MC}) / (n - p)}
-\tag{3.43}
 \]</div>
 <p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n - p}\)</span></strong>.</p>
 <section id="ejemplo-adicional">
@@ -3294,7 +3337,7 @@ H_0: \beta_1 - \beta_3 = 2
 \[
 T = [0 \quad 1 \quad 0 \quad -1], \quad \mathbf{c} = [2]
 \]</div>
-<p>Se aplica la ecuación \eqref{3.43} para calcular el estadístico <span class="math notranslate nohighlight">\(F_0\)</span>. Si la hipótesis <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{0}\)</span> (o <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span>) <strong>no se rechaza</strong>, puede ser razonable <strong>estimar <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> bajo la restricción</strong>. En tal caso, el estimador de mínimos cuadrados restringido puede ser útil.</p>
+<p>Se aplica la ecuación <a class="reference internal" href="#equation-tbeta-c">(3.62)</a> para calcular el estadístico <span class="math notranslate nohighlight">\(F_0\)</span>. Si la hipótesis <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{0}\)</span> (o <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span>) <strong>no se rechaza</strong>, puede ser razonable <strong>estimar <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> bajo la restricción</strong>. En tal caso, el estimador de mínimos cuadrados restringido puede ser útil.</p>
 </section>
 </section>
 <section id="intervalos-de-confianza-en-regresion-multiple">
@@ -3306,22 +3349,22 @@ T = [0 \quad 1 \quad 0 \quad -1], \quad \mathbf{c} = [2]
 <p><strong>Dado que el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> es una combinación lineal de las observaciones, entonces <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> sigue una distribución normal multivariada con media <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> y matriz de covarianza <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}'\mathbf{X})^{-1}\)</span>.</strong> Esto implica que cada estimador individual <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> sigue una distribución normal con media <span class="math notranslate nohighlight">\(\beta_j\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2 C_{jj}\)</span>, donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal <span class="math notranslate nohighlight">\(j\)</span>-ésimo de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span>.</p>
 <p><strong>En consecuencia, cada una de las siguientes estadísticas</strong></p>
 <div class="math notranslate nohighlight" id="equation-t-confidence">
-<span class="eqno">(3.62)<a class="headerlink" href="#equation-t-confidence" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.63)<a class="headerlink" href="#equation-t-confidence" title="Link to this equation">#</a></span>\[
 t_0 = \frac{\hat{\beta}_j - \beta_j}{\sqrt{\hat{\sigma}^2 C_{jj}}}, \quad j = 0, 1, \ldots, k
 \]</div>
 <p><strong>sigue una distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, donde <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es el estimador de la varianza del error.</strong></p>
 <p><strong>Con base en el resultado anterior, se puede definir un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para el coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> como</strong></p>
 <div class="math notranslate nohighlight" id="equation-ci-beta-j">
-<span class="eqno">(3.63)<a class="headerlink" href="#equation-ci-beta-j" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.64)<a class="headerlink" href="#equation-ci-beta-j" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
 <p><strong>El valor <span class="math notranslate nohighlight">\(\sqrt{\hat{\sigma}^2 C_{jj}}\)</span> se conoce como el error estándar del coeficiente de regresión <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>:</strong></p>
 <div class="math notranslate nohighlight" id="equation-se-beta">
-<span class="eqno">(3.64)<a class="headerlink" href="#equation-se-beta" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.65)<a class="headerlink" href="#equation-se-beta" title="Link to this equation">#</a></span>\[
 \text{se}(\hat{\beta}_j) = \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
 <p><strong>Ejemplo. Datos de tiempo de entrega</strong></p>
-<p>Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.63)</a>, se tiene:</p>
+<p>Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.64)</a>, se tiene:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(t_{0.025, 22} = 2.074\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_1) = \sqrt{10.6239 \cdot 0.00274378} = 0.17073\)</span></p></li>
@@ -3355,17 +3398,17 @@ x_{0k}
 \end{split}\]</div>
 <p><strong>El valor ajustado en este punto es:</strong></p>
 <div class="math notranslate nohighlight" id="equation-y0-hat">
-<span class="eqno">(3.65)<a class="headerlink" href="#equation-y0-hat" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.66)<a class="headerlink" href="#equation-y0-hat" title="Link to this equation">#</a></span>\[
 \hat{y}_0 = x_0' \hat{\boldsymbol{\beta}}
 \]</div>
 <p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{y}_0) = x_0' \boldsymbol{\beta} = \mathbb{E}(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p>
 <div class="math notranslate nohighlight" id="equation-var-y0-hat">
-<span class="eqno">(3.66)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.67)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
 \mathbb{Var}(\hat{y}_0) = \sigma^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0
 \]</div>
 <p><strong>Por lo tanto, un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x_0\)</span> es:</strong></p>
 <div class="math notranslate nohighlight" id="equation-ci-mean-y">
-<span class="eqno">(3.67)<a class="headerlink" href="#equation-ci-mean-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.68)<a class="headerlink" href="#equation-ci-mean-y" title="Link to this equation">#</a></span>\[
 \hat{y}_0 \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0}
 \]</div>
 <p><strong>Esta expresión es la generalización en regresión múltiple de la ecuación (2.43).</strong></p>
@@ -3380,7 +3423,7 @@ x_0 =
 275
 \end{bmatrix}
 \end{split}\]</div>
-<p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.65)</a>, y utilizando los valores estimados:</p>
+<p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.66)</a>, y utilizando los valores estimados:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \hat{\boldsymbol{\beta}} = 
@@ -3417,7 +3460,7 @@ x_0 =
 \end{bmatrix}
 = 10.6239 \cdot 0.05346 = 0.56794
 \end{split}\]</div>
-<p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.67)</a>:</strong></p>
+<p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.68)</a>:</strong></p>
 <div class="math notranslate nohighlight">
 \[
 19.22 \pm 2.074 \cdot \sqrt{0.56794}
@@ -3457,7 +3500,7 @@ x_0 =
 \]</div>
 <p>lo cual implica que:</p>
 <div class="math notranslate nohighlight" id="equation-joint-confidence-region">
-<span class="eqno">(3.68)<a class="headerlink" href="#equation-joint-confidence-region" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.69)<a class="headerlink" href="#equation-joint-confidence-region" title="Link to this equation">#</a></span>\[
 P\left\{ (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta})' \mathbf{X}'\mathbf{X} (\hat{\boldsymbol{\beta}} - \boldsymbol{\beta}) \leq pMS_{\text{Res}} F_{\alpha, p, n - p} \right\} = 1 - \alpha
 \]</div>
 <p>Por tanto, una <strong>región de confianza del <span class="math notranslate nohighlight">\(100(1-\alpha)\%\)</span> para todos los parámetros</strong> es:</p>
@@ -3485,7 +3528,7 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </ul>
 <p><strong>Existe otro enfoque general para obtener intervalos simultáneos de los parámetros</strong>, basado en la fórmula:</p>
 <div class="math notranslate nohighlight" id="equation-bonferroni-general">
-<span class="eqno">(3.69)<a class="headerlink" href="#equation-bonferroni-general" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.70)<a class="headerlink" href="#equation-bonferroni-general" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm \Delta \cdot se(\hat{\beta}_j), \quad j = 0, 1, \dots, k
 \]</div>
 <p>donde el valor de <span class="math notranslate nohighlight">\(\Delta\)</span> se selecciona para garantizar una probabilidad conjunta deseada.</p>
@@ -3496,7 +3539,7 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 \]</div>
 <p>y por tanto,</p>
 <div class="math notranslate nohighlight" id="equation-bonferroni-ci">
-<span class="eqno">(3.70)<a class="headerlink" href="#equation-bonferroni-ci" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.71)<a class="headerlink" href="#equation-bonferroni-ci" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm t_{\alpha/2p, n-p} \cdot se(\hat{\beta}_j), \quad j = 0, 1, \dots, k
 \]</div>
 </section>
@@ -3558,49 +3601,49 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 <h4><span class="section-number">3.2.21.1. </span>Escalamiento normal estándar<a class="headerlink" href="#escalamiento-normal-estandar" title="Link to this heading">#</a></h4>
 <p>Se define la variable estandarizada <span class="math notranslate nohighlight">\(z_{ij}\)</span> como:</p>
 <div class="math notranslate nohighlight" id="equation-standard-scaling-z">
-<span class="eqno">(3.71)<a class="headerlink" href="#equation-standard-scaling-z" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.72)<a class="headerlink" href="#equation-standard-scaling-z" title="Link to this equation">#</a></span>\[
 z_{ij} = \frac{x_{ij} - \bar{x}_j}{s_j}, \quad i = 1, 2, \ldots, n, \quad j = 1, 2, \ldots, k
 \]</div>
 <p>Y la variable de respuesta estandarizada:</p>
 <div class="math notranslate nohighlight" id="equation-standard-scaling-y">
-<span class="eqno">(3.72)<a class="headerlink" href="#equation-standard-scaling-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.73)<a class="headerlink" href="#equation-standard-scaling-y" title="Link to this equation">#</a></span>\[
 y_i^* = \frac{y_i - \bar{y}}{s_y}, \quad i = 1, 2, \ldots, n
 \]</div>
 <p>Donde <span class="math notranslate nohighlight">\(s_j^2\)</span> y <span class="math notranslate nohighlight">\(s_y^2\)</span> son las varianzas muestrales de los regresores y de la respuesta, respectivamente.</p>
 <p><strong>Todas las variables escaladas tienen media muestral cero y varianza igual a uno.</strong></p>
 <p>Con estas variables, el modelo de regresión se reescribe como:</p>
 <div class="math notranslate nohighlight" id="equation-standardized-model">
-<span class="eqno">(3.73)<a class="headerlink" href="#equation-standardized-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.74)<a class="headerlink" href="#equation-standardized-model" title="Link to this equation">#</a></span>\[
 y_i^* = b_1 z_{i1} + b_2 z_{i2} + \cdots + b_k z_{ik} + \varepsilon_i, \quad i = 1, 2, \ldots, n\]</div>
 <p>La matriz de diseño con variables estandarizadas es <span class="math notranslate nohighlight">\(Z\)</span>, y el vector de respuestas estandarizadas es <span class="math notranslate nohighlight">\(y^*\)</span>. El estimador de mínimos cuadrados es:</p>
 <div class="math notranslate nohighlight" id="equation-standardized-b">
-<span class="eqno">(3.74)<a class="headerlink" href="#equation-standardized-b" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.75)<a class="headerlink" href="#equation-standardized-b" title="Link to this equation">#</a></span>\[
 \boldsymbol{\hat{\beta}} = (Z'Z)^{-1} Z'y^*\]</div>
 </section>
 <section id="escalamiento-de-longitud-unitaria">
 <h4><span class="section-number">3.2.21.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
 <p>Se define la transformación:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-scaling-x">
-<span class="eqno">(3.75)<a class="headerlink" href="#equation-unit-length-scaling-x" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.76)<a class="headerlink" href="#equation-unit-length-scaling-x" title="Link to this equation">#</a></span>\[
 w_{ij} = \frac{x_{ij} - \bar{x}_j}{\sqrt{S_{jj}}}, \quad i = 1, 2, \ldots, n, \quad j = 1, 2, \ldots, k\]</div>
 <p>Y para la respuesta:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-scaling-y">
-<span class="eqno">(3.76)<a class="headerlink" href="#equation-unit-length-scaling-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.77)<a class="headerlink" href="#equation-unit-length-scaling-y" title="Link to this equation">#</a></span>\[
 y_i^\circ = \frac{y_i - \bar{y}}{\sqrt{SST}}, \quad i = 1, 2, \ldots, n\]</div>
 <p>Donde <span class="math notranslate nohighlight">\(S_{jj}\)</span> es la suma de cuadrados corregida del regresor <span class="math notranslate nohighlight">\(x_j\)</span>, y <span class="math notranslate nohighlight">\(SST\)</span> es la suma total de cuadrados de la respuesta.</p>
 <p>El modelo de regresión con estas variables es:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-model">
-<span class="eqno">(3.77)<a class="headerlink" href="#equation-unit-length-model" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.78)<a class="headerlink" href="#equation-unit-length-model" title="Link to this equation">#</a></span>\[
 y_i^\circ = b_1 w_{i1} + b_2 w_{i2} + \cdots + b_k w_{ik} + \varepsilon_i, \quad i = 1, 2, \ldots, n\]</div>
 <p>El estimador es:</p>
 <div class="math notranslate nohighlight" id="equation-unit-length-b">
-<span class="eqno">(3.78)<a class="headerlink" href="#equation-unit-length-b" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.79)<a class="headerlink" href="#equation-unit-length-b" title="Link to this equation">#</a></span>\[
 \boldsymbol{\hat{\beta}} = (W'W)^{-1} W'y^\circ\]</div>
 <ul class="simple">
 <li><p>En este caso, la matriz <span class="math notranslate nohighlight">\(W'W\)</span> es una matriz de correlaciones:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-correlation-matrix">
-<span class="eqno">(3.79)<a class="headerlink" href="#equation-correlation-matrix" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.80)<a class="headerlink" href="#equation-correlation-matrix" title="Link to this equation">#</a></span>\[\begin{split}
 W'W = \begin{bmatrix}
 1 &amp; r_{12} &amp; \cdots &amp; r_{1k} \\
 r_{12} &amp; 1 &amp; \cdots &amp; r_{2k} \\
@@ -3611,23 +3654,23 @@ r_{1k} &amp; r_{2k} &amp; \cdots &amp; 1
 <li><p>Y <span class="math notranslate nohighlight">\(W'y^\circ\)</span> es un vector de correlaciones entre los regresores y la respuesta:</p></li>
 </ul>
 <div class="math notranslate nohighlight" id="equation-regressor-response-correlation">
-<span class="eqno">(3.80)<a class="headerlink" href="#equation-regressor-response-correlation" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(3.81)<a class="headerlink" href="#equation-regressor-response-correlation" title="Link to this equation">#</a></span>\[\begin{split}
 W'y^\circ = \begin{bmatrix} r_{1y} \\ r_{2y} \\ \vdots \\ r_{ky} \end{bmatrix}\end{split}\]</div>
 <p>Donde cada <span class="math notranslate nohighlight">\(r_{ij}\)</span> es la correlación muestral entre <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(x_j\)</span>, y <span class="math notranslate nohighlight">\(r_{jy}\)</span> entre <span class="math notranslate nohighlight">\(x_j\)</span> y <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p><strong>Ambos métodos producen el mismo vector <span class="math notranslate nohighlight">\(\boldsymbol{\hat{\beta}}\)</span> de coeficientes estandarizados.</strong> Esto se debe a que:</p>
 <div class="math notranslate nohighlight" id="equation-z-and-w-relation">
-<span class="eqno">(3.81)<a class="headerlink" href="#equation-z-and-w-relation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.82)<a class="headerlink" href="#equation-z-and-w-relation" title="Link to this equation">#</a></span>\[
 Z'Z = (n - 1) W'W\]</div>
 </section>
 <section id="relacion-con-los-coeficientes-originales">
 <h4><span class="section-number">3.2.21.3. </span>Relación con los coeficientes originales<a class="headerlink" href="#relacion-con-los-coeficientes-originales" title="Link to this heading">#</a></h4>
 <p>Los coeficientes originales pueden recuperarse a partir de los estandarizados mediante:</p>
 <div class="math notranslate nohighlight" id="equation-original-beta">
-<span class="eqno">(3.82)<a class="headerlink" href="#equation-original-beta" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.83)<a class="headerlink" href="#equation-original-beta" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j = \hat{\beta}_j \left( \frac{\sqrt{SST}}{\sqrt{S_{jj}}} \right), \quad j = 1, 2, \ldots, k\]</div>
 <p>Y la ordenada al origen es:</p>
 <div class="math notranslate nohighlight" id="equation-original-intercept">
-<span class="eqno">(3.83)<a class="headerlink" href="#equation-original-intercept" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.84)<a class="headerlink" href="#equation-original-intercept" title="Link to this equation">#</a></span>\[
 \hat{\beta}_0 = \bar{y} - \sum_{j=1}^k \hat{\beta}_j \bar{x}_j\]</div>
 </section>
 <section id="observaciones-finales">
@@ -3645,7 +3688,7 @@ Z'Z = (n - 1) W'W\]</div>
 <p><strong>Los modelos de regresión se utilizan en diversas aplicaciones. Un problema significativo que puede afectar su utilidad es la multicolinealidad, es decir, la dependencia casi lineal entre las variables regresoras.</strong> En esta sección se introduce brevemente esta problemática y se indican algunos efectos perjudiciales. Un tratamiento más completo aparece en el Capítulo 9.</p>
 <p><strong>La multicolinealidad implica dependencia lineal aproximada entre los regresores.</strong> Como estos constituyen las columnas de la matriz <span class="math notranslate nohighlight">\(X\)</span>, una dependencia lineal exacta implicaría que <span class="math notranslate nohighlight">\(X^{\top}X\)</span> es singular. La existencia de relaciones casi lineales puede dificultar la estimación precisa de los coeficientes de regresión.</p>
 <ul class="simple">
-<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.71)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.72)</a>, la matriz <span class="math notranslate nohighlight">\(X^{\top}X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
+<li><p>Si se emplea la escala de longitud unitaria ecuaciones <a class="reference internal" href="#equation-standard-scaling-z">(3.72)</a>, <a class="reference internal" href="#equation-standard-scaling-y">(3.73)</a>, la matriz <span class="math notranslate nohighlight">\(X^{\top}X\)</span> (denotada <span class="math notranslate nohighlight">\(W'W\)</span>) toma la forma de una matriz de correlaciones.</p></li>
 </ul>
 <p>Para un conjunto de datos ortogonales:
 $<span class="math notranslate nohighlight">\(
