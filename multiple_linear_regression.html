@@ -383,12 +383,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.19. Estimación por intervalo de confianza de la respuesta media</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.20. Intervalos de confianza simultáneos para los coeficientes de regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.21. Ejemplo: Datos de Propulsor de Cohetes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohetes">3.2.22. Ejemplo: Datos del Propulsor de Cohetes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.23. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.23.1. Escalamiento normal estándar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.23.2. Escalamiento de longitud unitaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.20. Ejemplo: Datos de tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.21. Intervalos de confianza simultáneos para los coeficientes de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.22. Ejemplo: Datos de Propulsor de Cohetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohetes">3.2.23. Ejemplo: Datos del Propulsor de Cohetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.24. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.24.1. Escalamiento normal estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.24.2. Escalamiento de longitud unitaria</a></li>
 </ul>
 </li>
 </ul>
@@ -3244,114 +3245,133 @@ SS_{R}(\beta_1) = y' X_1 (X_1'X_1)^{-1} X_1'\quad\text{y}\quad SS_{R}(\beta_2) =
 </section>
 <section id="prueba-de-la-hipotesis-lineal-general">
 <h3><span class="section-number">3.2.15. </span>3.3.4 Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
-<p>Muchas hipótesis sobre los coeficientes de regresión pueden evaluarse mediante un <strong>enfoque unificado</strong>. El <strong>método de suma de cuadrados extra</strong> es un caso particular de este procedimiento general. En este enfoque, la <strong>suma de cuadrados utilizada para probar la hipótesis</strong> se calcula como la <strong>diferencia entre dos sumas de cuadrados residuales</strong>.</p>
-<p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como</p>
+<ul>
+<li><p>Muchas hipótesis sobre los coeficientes de regresión pueden evaluarse mediante un <strong>enfoque unificado</strong>. El <strong>método de suma de cuadrados extra</strong> es un caso particular de este procedimiento general. En este enfoque, la <strong>suma de cuadrados utilizada para probar la hipótesis</strong> se calcula como la <strong>diferencia entre dos sumas de cuadrados residuales</strong>.</p></li>
+<li><p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como</p>
 <div class="math notranslate nohighlight">
 \[
-H_0: T\boldsymbol{\beta} = \mathbf{0}
-\]</div>
+    H_0: T\boldsymbol{\beta} = \mathbf{0}
+    \]</div>
 <p>donde <span class="math notranslate nohighlight">\(T\)</span> es una matriz de constantes de dimensión <span class="math notranslate nohighlight">\(m \times p\)</span> tal que solo <span class="math notranslate nohighlight">\(r\)</span> de las <span class="math notranslate nohighlight">\(m\)</span> ecuaciones en <span class="math notranslate nohighlight">\(T\boldsymbol{\beta} = \mathbf{0}\)</span> son <strong>linealmente independientes</strong>.</p>
-<p>El modelo completo es:</p>
+</li>
+<li><p>El modelo completo es</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{y} = X\boldsymbol{\beta} + \boldsymbol{\varepsilon}
-\]</div>
-<p>con estimador:</p>
+    \mathbf{y} = X\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+    \]</div>
+<p>con estimador</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\boldsymbol{\beta}} = (X^{\top}X)^{-1}X^{\top}\mathbf{y}
-\]</div>
-<p>La <strong>suma de cuadrados residual del modelo completo</strong> es:</p>
+    \hat{\boldsymbol{\beta}} = (X^{\top}X)^{-1}X^{\top}\mathbf{y}
+    \]</div>
+</li>
+<li><p>La <strong>suma de cuadrados residual del modelo completo</strong> es</p>
 <div class="math notranslate nohighlight">
 \[
-SS_{Res}(\text{MC}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\beta}}'X^{\top}\mathbf{y}
-\tag{3.39}
-\]</div>
+    SS_{Res}(\text{MC}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\beta}}'X^{\top}\mathbf{y}
+    \tag{3.39}
+    \]</div>
 <p>con <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad.</p>
-<p>Para obtener el <strong>modelo reducido</strong>, se utilizan las <span class="math notranslate nohighlight">\(r\)</span> restricciones en <span class="math notranslate nohighlight">\(T\boldsymbol{\beta} = \mathbf{0}\)</span> para resolver <span class="math notranslate nohighlight">\(r\)</span> coeficientes de regresión en función de los <span class="math notranslate nohighlight">\(p - r\)</span> restantes. Esto lleva a un modelo reducido:</p>
+</li>
+<li><p>Para obtener el <strong>modelo reducido</strong>, se utilizan las <span class="math notranslate nohighlight">\(r\)</span> restricciones en <span class="math notranslate nohighlight">\(T\boldsymbol{\beta} = \mathbf{0}\)</span> para resolver <span class="math notranslate nohighlight">\(r\)</span> coeficientes de regresión en función de los <span class="math notranslate nohighlight">\(p - r\)</span> restantes. Esto lleva a un modelo reducido:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbf{y} = Z\boldsymbol{\gamma} + \boldsymbol{\varepsilon}
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(Z\)</span> es de dimensión <span class="math notranslate nohighlight">\(n \times (p - r)\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\gamma}\)</span> es un vector de parámetros de tamaño <span class="math notranslate nohighlight">\((p - r) \times 1\)</span>. El estimador es:</p>
+    \mathbf{y} = Z\boldsymbol{\gamma} + \boldsymbol{\varepsilon}
+    \]</div>
+<p>donde <span class="math notranslate nohighlight">\(Z\)</span> es de dimensión <span class="math notranslate nohighlight">\(n \times (p - r)\)</span> y <span class="math notranslate nohighlight">\(\boldsymbol{\gamma}\)</span> es un vector de parámetros de tamaño <span class="math notranslate nohighlight">\((p - r) \times 1\)</span>. El estimador es</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\boldsymbol{\gamma}} = (Z'Z)^{-1}Z'\mathbf{y}
-\]</div>
-<p>La <strong>suma de cuadrados residual del modelo reducido</strong> es:</p>
+    \hat{\boldsymbol{\gamma}} = (Z'Z)^{-1}Z'\mathbf{y}
+    \]</div>
+</li>
+<li><p>La <strong>suma de cuadrados residual del modelo reducido</strong> es</p>
 <div class="math notranslate nohighlight">
 \[
-SS_{Res}(\text{MR}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\gamma}}'Z'\mathbf{y}
-\]</div>
-<p>con <span class="math notranslate nohighlight">\(n - p + r\)</span> grados de libertad. Así, la <strong>suma de cuadrados debida a la hipótesis</strong> es:</p>
+    SS_{Res}(\text{MR}) = \mathbf{y}'\mathbf{y} - \hat{\boldsymbol{\gamma}}'Z'\mathbf{y}
+    \]</div>
+<p>con <span class="math notranslate nohighlight">\(n - p + r\)</span> grados de libertad. Así, la <strong>suma de cuadrados debida a la hipótesis</strong> es</p>
 <div class="math notranslate nohighlight">
 \[
-SS_H = SS_{Res}(\text{MR}) - SS_{Res}(\text{MC})
-\]</div>
-<p>con <span class="math notranslate nohighlight">\(r\)</span> grados de libertad. El estadístico de prueba es:</p>
+    SS_H = SS_{Res}(\text{MR}) - SS_{Res}(\text{MC})
+    \]</div>
+<p>con <span class="math notranslate nohighlight">\(r\)</span> grados de libertad. El estadístico de prueba es</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{SS_H/r}{SS_{Res}(MC)/(n - p)} = \frac{\text{Variabilidad explicada por } H_0 \text{ por grado de libertad}}{\text{Variabilidad no explicada por grado de libertad}}
-\]</div>
-<p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span></strong> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n-p}\)</span>.</p>
+    F_0 = \frac{SS_H/r}{SS_{Res}(MC)/(n - p)} = \frac{\text{Variabilidad explicada por } H_0 \text{ por grado de libertad}}{\text{Variabilidad no explicada por grado de libertad}}
+    \]</div>
+</li>
+<li><p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span></strong> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n-p}\)</span>.</p></li>
+</ul>
 <section id="ejemplo-prueba-de-igualdad-de-coeficientes">
 <h4><span class="section-number">3.2.15.1. </span>Ejemplo: Prueba de igualdad de coeficientes<a class="headerlink" href="#ejemplo-prueba-de-igualdad-de-coeficientes" title="Link to this heading">#</a></h4>
-<p>Sea el modelo:</p>
+<ul class="simple">
+<li><p>Sea el modelo</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3 + \varepsilon
 \]</div>
-<p>Queremos probar:</p>
+<ul>
+<li><p>Queremos probar</p>
 <div class="math notranslate nohighlight">
 \[
-H_0: \beta_1 = \beta_3
-\]</div>
+    H_0: \beta_1 = \beta_3
+    \]</div>
 <p>lo cual equivale a <span class="math notranslate nohighlight">\(T\boldsymbol{\beta}=0\)</span> con</p>
 <div class="math notranslate nohighlight">
 \[
-T = [0 \quad 1 \quad 0 \quad -1]
-\]</div>
+    T = [0 \quad 1 \quad 0 \quad -1]
+    \]</div>
 <p>dado que</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align*}
-T\beta &amp;= [0 \quad 1 \quad 0 \quad -1] \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix} \\
-&amp;= 0\cdot\beta_0 + 1\cdot\beta_1 + 0\cdot\beta_2 + (-1)\cdot\beta_3 \\
-&amp;= \beta_1 - \beta_3
-\end{align*}
-\end{split}\]</div>
-<p>Sustituyendo <span class="math notranslate nohighlight">\(\beta_3 = \beta_1\)</span> se obtiene el modelo reducido:</p>
+    \begin{align*}
+    T\beta &amp;= [0 \quad 1 \quad 0 \quad -1] \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix} \\
+    &amp;= 0\cdot\beta_0 + 1\cdot\beta_1 + 0\cdot\beta_2 + (-1)\cdot\beta_3 \\
+    &amp;= \beta_1 - \beta_3
+    \end{align*}
+    \end{split}\]</div>
+</li>
+<li><p>Sustituyendo <span class="math notranslate nohighlight">\(\beta_3 = \beta_1\)</span> se obtiene el modelo reducido</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 y = \beta_0 + \beta_1(x_1 + x_3) + \beta_2 x_2 + \varepsilon
 \]</div>
-<p>Definiendo <span class="math notranslate nohighlight">\(z_1 = x_1 + x_3\)</span> y <span class="math notranslate nohighlight">\(z_2 = x_2\)</span>:</p>
+<ul class="simple">
+<li><p>Definiendo <span class="math notranslate nohighlight">\(z_1 = x_1 + x_3\)</span> y <span class="math notranslate nohighlight">\(z_2 = x_2\)</span>:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 y = \gamma_0 + \gamma_1 z_1 + \gamma_2 z_2 + \varepsilon
 \]</div>
-<ul class="simple">
-<li><p>Dado que solo estamos imponiendo <strong>una restricción linealmente independiente</strong>, el estadístico de prueba es</p></li>
-</ul>
+<ul>
+<li><p>Dado que solo estamos imponiendo <strong>una restricción linealmente independiente</strong>, el estadístico de prueba es</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{SS_H / 1}{MS_{Res}(\text{MC})}
-\]</div>
+    F_0 = \frac{SS_H / 1}{MS_{Res}(\text{MC})}
+    \]</div>
 <p>y también puede calcularse mediante la prueba <span class="math notranslate nohighlight">\(t\)</span> equivalente <span class="math notranslate nohighlight">\(\mathbb{Var}(\hat{\beta}_1 - \hat{\beta}_3) = \sigma^2 (C_{11} + C_{33} - 2C_{13})\)</span> (<code class="docutils literal notranslate"><span class="pre">verifíquelo</span></code>) como</p>
 <div class="math notranslate nohighlight">
 \[
-t_0 = \frac{\hat{\beta}_1 - \hat{\beta}_3}{\sqrt{\hat{\sigma}^2(C_{11} + C_{33} - 2C_{13})}}
-\]</div>
+    t_0 = \frac{\hat{\beta}_1 - \hat{\beta}_3}{\sqrt{\hat{\sigma}^2(C_{11} + C_{33} - 2C_{13})}}
+    \]</div>
 <p>con <span class="math notranslate nohighlight">\(n - 4\)</span> grados de libertad.</p>
+</li>
+</ul>
 </section>
 <section id="ejemplo-prueba-conjunta-de-restricciones">
 <h4><span class="section-number">3.2.15.2. </span>Ejemplo: Prueba conjunta de restricciones<a class="headerlink" href="#ejemplo-prueba-conjunta-de-restricciones" title="Link to this heading">#</a></h4>
-<p>Supongamos que se desea probar:</p>
+<ul class="simple">
+<li><p>Supongamos que se desea probar</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 H_0: \beta_1 = \beta_3, \quad \beta_2 = 0
 \]</div>
-<p>Entonces:</p>
+<ul class="simple">
+<li><p>Entonces</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T =
@@ -3360,13 +3380,16 @@ T =
 0 &amp; 0 &amp; 1 &amp; 0
 \end{bmatrix}
 \end{split}\]</div>
-<p>Esto lleva al modelo reducido:</p>
+<ul>
+<li><p>Esto lleva al modelo reducido</p>
 <div class="math notranslate nohighlight">
 \[
-y = \beta_0 + \beta_1(x_1 + x_3) + \varepsilon = \gamma_0 + \gamma_1 z_1 + \varepsilon
-\]</div>
+    y = \beta_0 + \beta_1(x_1 + x_3) + \varepsilon = \gamma_0 + \gamma_1 z_1 + \varepsilon
+    \]</div>
 <p>con <span class="math notranslate nohighlight">\(z_1 = x_1 + x_3\)</span>.</p>
-<p>El estadístico de prueba es:</p>
+</li>
+<li><p>El estadístico de prueba es</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 F_0 = \frac{SS_H / 2}{MS_{Res}(\text{MC})}
@@ -3375,7 +3398,9 @@ F_0 = \frac{SS_H / 2}{MS_{Res}(\text{MC})}
 </section>
 <section id="forma-matricial-alternativa-del-estadistico">
 <h3><span class="section-number">3.2.16. </span>Forma matricial alternativa del estadístico<a class="headerlink" href="#forma-matricial-alternativa-del-estadistico" title="Link to this heading">#</a></h3>
-<p>El estadístico <span class="math notranslate nohighlight">\(F\)</span> también puede escribirse como:</p>
+<ul class="simple">
+<li><p>El estadístico <span class="math notranslate nohighlight">\(F\)</span> también puede escribirse como:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} T\hat{\boldsymbol{\beta}} / r}{SS_{Res}(\text{MC}) / (n - p)}
@@ -3384,77 +3409,97 @@ F_0 = \frac{\hat{\boldsymbol{\beta}}' T' \left[ T(X^{\top}X)^{-1}T' \right]^{-1}
 </section>
 <section id="extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c">
 <h3><span class="section-number">3.2.17. </span>Extensión: prueba de <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span><a class="headerlink" href="#extension-prueba-de-h-0-t-boldsymbol-beta-mathbf-c" title="Link to this heading">#</a></h3>
-<p>Más generalmente, se puede probar:</p>
+<ul>
+<li><p>Más generalmente, se puede probar</p>
 <div class="math notranslate nohighlight" id="equation-tbeta-c">
 <span class="eqno">(3.64)<a class="headerlink" href="#equation-tbeta-c" title="Link to this equation">#</a></span>\[
-H_0: T\boldsymbol{\beta} = \mathbf{c}, \quad H_1: T\boldsymbol{\beta} \neq \mathbf{c}
-\]</div>
-<p>con el estadístico:</p>
+    H_0: T\boldsymbol{\beta} = \mathbf{c}, \quad H_1: T\boldsymbol{\beta} \neq \mathbf{c}
+    \]</div>
+<p>con el estadístico</p>
 <div class="math notranslate nohighlight">
 \[
-F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} (T\hat{\boldsymbol{\beta}} - \mathbf{c}) / r}{SS_{Res}(\text{MC}) / (n - p)}
-\]</div>
-<p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n - p}\)</span></strong>.</p>
+    F_0 = \frac{(T\hat{\boldsymbol{\beta}} - \mathbf{c})' \left[ T(X^{\top}X)^{-1}T' \right]^{-1} (T\hat{\boldsymbol{\beta}} - \mathbf{c}) / r}{SS_{Res}(\text{MC}) / (n - p)}
+    \]</div>
+</li>
+<li><p>Se <strong>rechaza <span class="math notranslate nohighlight">\(H_0\)</span> si <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, r, n - p}\)</span></strong>.</p></li>
+</ul>
 <section id="ejemplo-adicional">
 <h4><span class="section-number">3.2.17.1. </span>Ejemplo adicional<a class="headerlink" href="#ejemplo-adicional" title="Link to this heading">#</a></h4>
-<p>Para probar:</p>
+<ul>
+<li><p>Para probar</p>
 <div class="math notranslate nohighlight">
 \[
-H_0: \beta_1 - \beta_3 = 2
-\]</div>
+    H_0: \beta_1 - \beta_3 = 2
+    \]</div>
 <p>tenemos:</p>
 <div class="math notranslate nohighlight">
 \[
-T = [0 \quad 1 \quad 0 \quad -1], \quad \mathbf{c} = [2]
-\]</div>
-<p>Se aplica la ecuación <a class="reference internal" href="#equation-tbeta-c">(3.64)</a> para calcular el estadístico <span class="math notranslate nohighlight">\(F_0\)</span>. Si la hipótesis <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{0}\)</span> (o <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span>) <strong>no se rechaza</strong>, puede ser razonable <strong>estimar <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> bajo la restricción</strong>. En tal caso, el estimador de mínimos cuadrados restringido puede ser útil.</p>
+    T = [0 \quad 1 \quad 0 \quad -1], \quad \mathbf{c} = [2]
+    \]</div>
+</li>
+<li><p>Se aplica la ecuación <a class="reference internal" href="#equation-tbeta-c">(3.64)</a> para calcular el estadístico <span class="math notranslate nohighlight">\(F_0\)</span>. Si la hipótesis <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{0}\)</span> (o <span class="math notranslate nohighlight">\(H_0: T\boldsymbol{\beta} = \mathbf{c}\)</span>) <strong>no se rechaza</strong>, puede ser razonable <strong>estimar <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> bajo la restricción</strong>. En tal caso, el estimador de mínimos cuadrados restringido puede ser útil.</p></li>
+</ul>
 </section>
 </section>
 <section id="intervalos-de-confianza-en-regresion-multiple">
 <h3><span class="section-number">3.2.18. </span>Intervalos de confianza en regresión múltiple<a class="headerlink" href="#intervalos-de-confianza-en-regresion-multiple" title="Link to this heading">#</a></h3>
-<p><strong>Los intervalos de confianza para los coeficientes de regresión individuales y para la respuesta media bajo niveles específicos de los regresores desempeñan un papel igualmente importante en regresión múltiple como en el caso de regresión lineal simple.</strong> Esta sección desarrolla los intervalos de confianza uno a uno para estos escenarios y se introduce brevemente el concepto de intervalos de confianza simultáneos para los coeficientes.</p>
+<ul class="simple">
+<li><p><strong>Los intervalos de confianza para los coeficientes de regresión individuales y para la respuesta media bajo niveles específicos de los regresores desempeñan un papel igualmente importante en regresión múltiple como en el caso de regresión lineal simple.</strong> Esta sección desarrolla los intervalos de confianza uno a uno para estos escenarios y se introduce brevemente el concepto de intervalos de confianza simultáneos para los coeficientes.</p></li>
+</ul>
 <section id="intervalos-de-confianza-para-los-coeficientes-de-regresion">
 <h4><span class="section-number">3.2.18.1. </span>Intervalos de confianza para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h4>
-<p><strong>Para construir intervalos de confianza para los coeficientes de regresión <span class="math notranslate nohighlight">\(\beta_j\)</span>, se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son independientes, con distribución normal, media cero y varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong> Por lo tanto, las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son independientes y normales con media <span class="math notranslate nohighlight">\(\beta_0 + \sum_{j=1}^k \beta_j x_{ij}\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
-<p><strong>Dado que el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> es una combinación lineal de las observaciones, entonces <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> sigue una distribución normal multivariada con media <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> y matriz de covarianza <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}'\mathbf{X})^{-1}\)</span>.</strong> Esto implica que cada estimador individual <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> sigue una distribución normal con media <span class="math notranslate nohighlight">\(\beta_j\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2 C_{jj}\)</span>, donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal <span class="math notranslate nohighlight">\(j\)</span>-ésimo de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span>.</p>
-<p><strong>En consecuencia, cada una de las siguientes estadísticas</strong></p>
+<ul>
+<li><p><strong>Para construir intervalos de confianza para los coeficientes de regresión <span class="math notranslate nohighlight">\(\beta_j\)</span>, se asume que los errores <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> son independientes, con distribución normal, media cero y varianza constante <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</strong> Por lo tanto, las observaciones <span class="math notranslate nohighlight">\(y_i\)</span> son independientes y normales con media <span class="math notranslate nohighlight">\(\beta_0 + \sum_{j=1}^k \beta_j x_{ij}\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
+<li><p><strong>Dado que el estimador de mínimos cuadrados <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> es una combinación lineal de las observaciones, entonces <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\beta}}\)</span> sigue una distribución normal multivariada con media <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> y matriz de covarianza <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}'\mathbf{X})^{-1}\)</span>.</strong> Esto implica que cada estimador individual <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> sigue una distribución normal con media <span class="math notranslate nohighlight">\(\beta_j\)</span> y varianza <span class="math notranslate nohighlight">\(\sigma^2 C_{jj}\)</span>, donde <span class="math notranslate nohighlight">\(C_{jj}\)</span> es el elemento diagonal <span class="math notranslate nohighlight">\(j\)</span>-ésimo de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span>.</p></li>
+<li><p><strong>En consecuencia, cada una de las siguientes estadísticas</strong></p>
 <div class="math notranslate nohighlight" id="equation-t-confidence">
 <span class="eqno">(3.65)<a class="headerlink" href="#equation-t-confidence" title="Link to this equation">#</a></span>\[
-t_0 = \frac{\hat{\beta}_j - \beta_j}{\sqrt{\hat{\sigma}^2 C_{jj}}}, \quad j = 0, 1, \ldots, k
-\]</div>
+    t_0 = \frac{\hat{\beta}_j - \beta_j}{\sqrt{\hat{\sigma}^2 C_{jj}}}, \quad j = 0, 1, \ldots, k
+    \]</div>
 <p><strong>sigue una distribución <span class="math notranslate nohighlight">\(t\)</span> con <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad, donde <span class="math notranslate nohighlight">\(\hat{\sigma}^2\)</span> es el estimador de la varianza del error.</strong></p>
-<p><strong>Con base en el resultado anterior, se puede definir un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para el coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> como</strong></p>
+</li>
+<li><p><strong>Con base en el resultado anterior, se puede definir un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para el coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> como</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-ci-beta-j">
 <span class="eqno">(3.66)<a class="headerlink" href="#equation-ci-beta-j" title="Link to this equation">#</a></span>\[
 \hat{\beta}_j \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
-<p><strong>El valor <span class="math notranslate nohighlight">\(\sqrt{\hat{\sigma}^2 C_{jj}}\)</span> se conoce como el error estándar del coeficiente de regresión <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>:</strong></p>
+<ul class="simple">
+<li><p><strong>El valor <span class="math notranslate nohighlight">\(\sqrt{\hat{\sigma}^2 C_{jj}}\)</span> se conoce como el error estándar del coeficiente de regresión <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span>:</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-se-beta">
 <span class="eqno">(3.67)<a class="headerlink" href="#equation-se-beta" title="Link to this equation">#</a></span>\[
 \text{se}(\hat{\beta}_j) = \sqrt{\hat{\sigma}^2 C_{jj}}
 \]</div>
-<p><strong>Ejemplo. Datos de tiempo de entrega</strong></p>
-<p>Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.66)</a>, se tiene:</p>
 <ul class="simple">
+<li><p><strong>Ejemplo. Datos de tiempo de entrega</strong>. Se desea construir un intervalo de confianza del 95% para el parámetro <span class="math notranslate nohighlight">\(\beta_1\)</span> en el modelo del Ejemplo 3.1. El estimador puntual es <span class="math notranslate nohighlight">\(\hat{\beta}_1 = 1.61591\)</span>, el elemento diagonal correspondiente de <span class="math notranslate nohighlight">\((\mathbf{X}'\mathbf{X})^{-1}\)</span> es <span class="math notranslate nohighlight">\(C_{11} = 0.00274378\)</span>, y la estimación de la varianza del error es <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = 10.6239\)</span> (obtenida en el Ejemplo 3.2). Aplicando <a class="reference internal" href="#equation-ci-beta-j">(3.66)</a>, se tiene:</p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(t_{0.025, 22} = 2.074\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_1) = \sqrt{10.6239 \cdot 0.00274378} = 0.17073\)</span></p></li>
 </ul>
-<p>Entonces,</p>
-<ul class="simple">
+</li>
+<li><p>Entonces,</p>
+<ul>
 <li><p>Límite inferior: <span class="math notranslate nohighlight">\(1.61591 - 2.074 \cdot 0.17073 = 1.26181\)</span></p></li>
 <li><p>Límite superior: <span class="math notranslate nohighlight">\(1.61591 + 2.074 \cdot 0.17073 = 1.97001\)</span></p></li>
 </ul>
-<p><strong>Por tanto, el intervalo de confianza del 95% para <span class="math notranslate nohighlight">\(\beta_1\)</span> es:</strong></p>
+</li>
+<li><p><strong>Por tanto, el intervalo de confianza del 95% para <span class="math notranslate nohighlight">\(\beta_1\)</span> es</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 1.26181 \leq \beta_1 \leq 1.97001
 \]</div>
-<p><strong>Este intervalo se puede construir fácilmente en la práctica utilizando Python. El error estándar <span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_j)\)</span> puede calcularse con herramientas como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que proporcionan directamente los errores estándar de los coeficientes estimados.</strong></p>
+<ul class="simple">
+<li><p><strong>Este intervalo se puede construir fácilmente en la práctica utilizando Python. El error estándar <span class="math notranslate nohighlight">\(\text{se}(\hat{\beta}_j)\)</span> puede calcularse con herramientas como <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> o <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, que proporcionan directamente los errores estándar de los coeficientes estimados.</strong></p></li>
+</ul>
 </section>
 </section>
 <section id="estimacion-por-intervalo-de-confianza-de-la-respuesta-media">
 <h3><span class="section-number">3.2.19. </span>Estimación por intervalo de confianza de la respuesta media<a class="headerlink" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media" title="Link to this heading">#</a></h3>
-<p><strong>Es posible construir un intervalo de confianza para la respuesta media en un punto específico del espacio de los regresores, como <span class="math notranslate nohighlight">\(x_{01}, x_{02}, \dots, x_{0k}\)</span>.</strong> Definimos el vector <span class="math notranslate nohighlight">\(x_0\)</span> como:</p>
+<ul class="simple">
+<li><p><strong>Es posible construir un intervalo de confianza para la respuesta media en un punto específico del espacio de los regresores, como <span class="math notranslate nohighlight">\(x_{01}, x_{02}, \dots, x_{0k}\)</span>.</strong> Definimos el vector <span class="math notranslate nohighlight">\(x_0\)</span> como</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x_0 = 
@@ -3466,24 +3511,36 @@ x_{02} \\
 x_{0k}
 \end{bmatrix}
 \end{split}\]</div>
-<p><strong>El valor ajustado en este punto es:</strong></p>
+<ul class="simple">
+<li><p><strong>El valor ajustado en este punto es</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-y0-hat">
 <span class="eqno">(3.68)<a class="headerlink" href="#equation-y0-hat" title="Link to this equation">#</a></span>\[
 \hat{y}_0 = x_0' \hat{\boldsymbol{\beta}}
 \]</div>
-<p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{y}_0) = x_0' \boldsymbol{\beta} = \mathbb{E}(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p>
+<ul class="simple">
+<li><p><strong>Este es un estimador insesgado de <span class="math notranslate nohighlight">\(\mathbb{E}(y|x_0)\)</span>, ya que <span class="math notranslate nohighlight">\(\mathbb{E}(\hat{y}_0) = x_0' \boldsymbol{\beta} = \mathbb{E}(y|x_0)\)</span>. La varianza de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> está dada por:</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-var-y0-hat">
 <span class="eqno">(3.69)<a class="headerlink" href="#equation-var-y0-hat" title="Link to this equation">#</a></span>\[
 \mathbb{Var}(\hat{y}_0) = \sigma^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0
 \]</div>
-<p><strong>Por lo tanto, un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x_0\)</span> es:</strong></p>
+<ul class="simple">
+<li><p><strong>Por lo tanto, un intervalo de confianza de nivel <span class="math notranslate nohighlight">\(100(1 - \alpha)\%\)</span> para la respuesta media en el punto <span class="math notranslate nohighlight">\(x_0\)</span> es:</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-ci-mean-y">
 <span class="eqno">(3.70)<a class="headerlink" href="#equation-ci-mean-y" title="Link to this equation">#</a></span>\[
 \hat{y}_0 \pm t_{\alpha/2, n - p} \sqrt{\hat{\sigma}^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0}
 \]</div>
-<p><strong>Esta expresión es la generalización en regresión múltiple de la ecuación (2.43).</strong></p>
-<p><strong>Ejemplo. Datos de tiempo de entrega</strong></p>
-<p>Una empresa embotelladora desea construir un intervalo de confianza del 95% para el tiempo medio de entrega a un local que solicita <span class="math notranslate nohighlight">\(x_1 = 8\)</span> cajas y se encuentra a una distancia de <span class="math notranslate nohighlight">\(x_2 = 275\)</span> pies. El vector <span class="math notranslate nohighlight">\(x_0\)</span> es:</p>
+<ul class="simple">
+<li><p><strong>Esta expresión es la generalización en regresión múltiple de la ecuación (2.43).</strong></p></li>
+</ul>
+</section>
+<section id="id7">
+<h3><span class="section-number">3.2.20. </span>Ejemplo: Datos de tiempo de entrega<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Una empresa embotelladora desea construir un intervalo de confianza del 95% para el tiempo medio de entrega a un local que solicita <span class="math notranslate nohighlight">\(x_1 = 8\)</span> cajas y se encuentra a una distancia de <span class="math notranslate nohighlight">\(x_2 = 275\)</span> pies. El vector <span class="math notranslate nohighlight">\(x_0\)</span> es:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x_0 = 
@@ -3493,31 +3550,35 @@ x_0 =
 275
 \end{bmatrix}
 \end{split}\]</div>
-<p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.68)</a>, y utilizando los valores estimados:</p>
+<ul>
+<li><p>A partir de la ecuación <a class="reference internal" href="#equation-y0-hat">(3.68)</a>, y utilizando los valores estimados:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\hat{\boldsymbol{\beta}} = 
-\begin{bmatrix}
-2.34123 \\
-1.61591 \\
-0.01438
-\end{bmatrix}
-\end{split}\]</div>
-<p>se tiene:</p>
+    \hat{\boldsymbol{\beta}} = 
+    \begin{bmatrix}
+    2.34123 \\
+    1.61591 \\
+    0.01438
+    \end{bmatrix}
+    \end{split}\]</div>
+<p>se tiene</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\hat{y}_0 = [1 \quad 8 \quad 275] 
-\begin{bmatrix}
-2.34123 \\
-1.61591 \\
-0.01438
-\end{bmatrix}
-= 19.22 \text{ minutos}
-\end{split}\]</div>
-<p><strong>La varianza estimada de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> se calcula como:</strong></p>
+    \hat{y}_0 = [1 \quad 8 \quad 275] 
+    \begin{bmatrix}
+    2.34123 \\
+    1.61591 \\
+    0.01438
+    \end{bmatrix}
+    = 19.22 \text{ minutos}
+    \end{split}\]</div>
+</li>
+<li><p><strong>La varianza estimada de <span class="math notranslate nohighlight">\(\hat{y}_0\)</span> se calcula como</strong></p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\hat{\sigma}^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0 = 10.6239 \cdot [1 \quad 8 \quad 275]
+\begin{align*}
+\hat{\sigma}^2 x_0' (\mathbf{X}'\mathbf{X})^{-1} x_0 &amp;= 10.6239 \cdot [1 \quad 8 \quad 275]
 \begin{bmatrix}
 0.11321518 &amp; -0.00444859 &amp; -0.00008367 \\
 -0.00444859 &amp; 0.00274378 &amp; -0.00004786 \\
@@ -3527,10 +3588,14 @@ x_0 =
 1 \\
 8 \\
 275
-\end{bmatrix}
-= 10.6239 \cdot 0.05346 = 0.56794
+\end{bmatrix}\\
+&amp;= 10.6239 \cdot 0.05346\\[4mm]
+&amp;= 0.56794
+\end{align*}
 \end{split}\]</div>
-<p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.70)</a>:</strong></p>
+<ul class="simple">
+<li><p><strong>Aplicando la fórmula del intervalo de confianza <a class="reference internal" href="#equation-ci-mean-y">(3.70)</a></strong></p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
 19.22 \pm 2.074 \cdot \sqrt{0.56794}
@@ -3540,22 +3605,21 @@ x_0 =
 \[
 17.66 \leq \mathbb{E}(y|x_0) \leq 20.78
 \]</div>
-<p><strong>Esto implica que existe un 95% de confianza de que el verdadero valor medio de tiempo de entrega se encuentre dentro de este intervalo.</strong></p>
-<p><strong>La longitud del intervalo de confianza es una medida útil para evaluar la precisión del modelo de regresión y también puede utilizarse para comparar modelos.</strong></p>
 <ul class="simple">
-<li><p>En el punto <span class="math notranslate nohighlight">\(x_1 = 8\)</span>, <span class="math notranslate nohighlight">\(x_2 = 275\)</span>, el intervalo fue <span class="math notranslate nohighlight">\((17.66, 20.78)\)</span> con longitud <span class="math notranslate nohighlight">\(3.12\)</span> minutos.</p></li>
-<li><p>Para el modelo de regresión simple con <span class="math notranslate nohighlight">\(x_1\)</span> como único predictor, el intervalo de confianza al mismo punto fue <span class="math notranslate nohighlight">\((18.99, 22.97)\)</span> con longitud <span class="math notranslate nohighlight">\(3.98\)</span> minutos.</p></li>
-<li><p>Esto sugiere que <strong>la inclusión de <span class="math notranslate nohighlight">\(x_2\)</span> mejora la precisión del modelo</strong>.</p></li>
-</ul>
-<p>En otro punto, <span class="math notranslate nohighlight">\(x_1 = 16\)</span>, <span class="math notranslate nohighlight">\(x_2 = 688\)</span>:</p>
-<ul class="simple">
+<li><p><strong>Esto implica que existe un 95% de confianza de que el verdadero valor medio de tiempo de entrega se encuentre dentro de este intervalo.</strong></p></li>
+<li><p><strong>La longitud del intervalo de confianza es una medida útil para evaluar la precisión del modelo de regresión y también puede utilizarse para comparar modelos.</strong></p></li>
+<li><p>En el punto <span class="math notranslate nohighlight">\(x_1 = 8\)</span>, <span class="math notranslate nohighlight">\(x_2 = 275\)</span>, el intervalo fue <span class="math notranslate nohighlight">\((17.66, 20.78)\)</span> con longitud <span class="math notranslate nohighlight">\(3.12\)</span> minutos. Para el modelo de regresión simple con <span class="math notranslate nohighlight">\(x_1\)</span> como único predictor, el intervalo de confianza al mismo punto fue <span class="math notranslate nohighlight">\((18.99, 22.97)\)</span> con longitud <span class="math notranslate nohighlight">\(3.98\)</span> minutos. Esto sugiere que <strong>la inclusión de <span class="math notranslate nohighlight">\(x_2\)</span> mejora la precisión del modelo</strong>.</p></li>
+<li><p>En otro punto, <span class="math notranslate nohighlight">\(x_1 = 16\)</span>, <span class="math notranslate nohighlight">\(x_2 = 688\)</span>:</p>
+<ul>
 <li><p>Modelo múltiple: intervalo <span class="math notranslate nohighlight">\((36.11, 40.08)\)</span>, longitud <span class="math notranslate nohighlight">\(3.97\)</span>.</p></li>
 <li><p>Modelo simple: intervalo <span class="math notranslate nohighlight">\((35.60, 40.68)\)</span>, longitud <span class="math notranslate nohighlight">\(5.08\)</span>.</p></li>
 </ul>
-<p><strong>En general, mientras más alejado esté el punto del centroide del espacio de diseño, mayor será la diferencia en las longitudes de los intervalos de confianza entre modelos.</strong></p>
+</li>
+<li><p><strong>En general, mientras más alejado esté el punto del centroide del espacio de diseño, mayor será la diferencia en las longitudes de los intervalos de confianza entre modelos.</strong></p></li>
+</ul>
 </section>
 <section id="intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">
-<h3><span class="section-number">3.2.20. </span>Intervalos de confianza simultáneos para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.21. </span>Intervalos de confianza simultáneos para los coeficientes de regresión<a class="headerlink" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion" title="Link to this heading">#</a></h3>
 <ul>
 <li><p><strong>Hemos discutido procedimientos para construir distintos tipos de intervalos de confianza y de predicción para el modelo de regresión lineal.</strong> Estos intervalos han sido considerados de forma individual, es decir, se interpretan de manera que el coeficiente de confianza <span class="math notranslate nohighlight">\(1 - \alpha\)</span> representa la proporción de afirmaciones correctas al repetir el muestreo y construir el intervalo apropiado para cada muestra.</p></li>
 <li><p>En algunas situaciones, es necesario <strong>construir múltiples intervalos de confianza o predicción utilizando los mismos datos</strong>. En estos casos, el analista desea establecer un nivel de confianza que aplique <strong>simultáneamente</strong> al conjunto completo de estimaciones. Estos conjuntos de intervalos se denominan <strong>intervalos de confianza conjuntos</strong> o <strong>intervalos de predicción conjuntos</strong>.</p></li>
@@ -3719,7 +3783,7 @@ Z'\Sigma^{-1} Z \sim \chi^2_p.
 </ul>
 </section>
 <section id="ejemplo-datos-de-propulsor-de-cohetes">
-<h3><span class="section-number">3.2.21. </span>Ejemplo: Datos de Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-de-propulsor-de-cohetes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.22. </span>Ejemplo: Datos de Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-de-propulsor-de-cohetes" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dado que, la matriz <span class="math notranslate nohighlight">\(X'X\)</span> es</p></li>
 </ul>
@@ -3860,13 +3924,13 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </ul>
 </div>
 <ul class="simple">
-<li><p>El método de Bonferroni proporciona un <strong>enfoque conservador pero simple para construir intervalos de confianza simultáneos en análisis de regresión múltiple</strong>. El método ajusta el nivel de significancia dividiendo <span class="math notranslate nohighlight">\(\alpha\)</span> por el número de parámetros <span class="math notranslate nohighlight">\(p\)</span>, utilizando el valor crítico <span class="math notranslate nohighlight">\(t_{\alpha/2p, n-p}\)</span> en lugar del valor crítico estándar <span class="math notranslate nohighlight">\(t_{\alpha/2, n-p}\)</span> <span id="id7">[<a class="reference internal" href="biblio.html#id27" title="O. J. Dunn. Multiple comparisons among means. Journal of the American Statistical Association, 56(293):52–64, 1961. doi:10.1080/01621459.1961.10482090.">Dunn, 1961</a>]</span>.</p></li>
-<li><p>El método se basa en la desigualdad de <span id="id8">[<a class="reference internal" href="biblio.html#id26" title="C. E. Bonferroni. Teoria statistica delle classi e calcolo delle probabilità. Pubblicazioni del R. Istituto Superiore di Scienze Economiche e Commerciali di Firenze, 1936.">Bonferroni, 1936</a>]</span>, que establece que <strong>la probabilidad de que al menos un evento ocurra es menor o igual a la suma de las probabilidades individuales</strong>. <span id="id9">[<a class="reference internal" href="biblio.html#id28" title="Rupert G. Miller. Simultaneous Statistical Inference. Springer-Verlag, New York, 2nd edition, 1981.">Miller, 1981</a>]</span> proporciona el tratamiento teórico más completo de este y otros métodos de inferencia simultánea.</p></li>
-<li><p>Si bien el método de Bonferroni es ampliamente aplicable y fácil de implementar, <strong>puede ser excesivamente conservador cuando el número de comparaciones es grande, llevando a intervalos más amplios y menor potencia estadística</strong> <span id="id10">[<a class="reference internal" href="biblio.html#id29" title="Thomas V. Perneger. What's wrong with bonferroni adjustments. BMJ, 316(7139):1236–1238, 1998. doi:10.1136/bmj.316.7139.1236.">Perneger, 1998</a>]</span>. Esta característica conservadora garantiza que el nivel de confianza conjunto sea <strong>al menos</strong> <span class="math notranslate nohighlight">\((1-\alpha)100\%\)</span>, pero frecuentemente es mayor.</p></li>
+<li><p>El método de Bonferroni proporciona un <strong>enfoque conservador pero simple para construir intervalos de confianza simultáneos en análisis de regresión múltiple</strong>. El método ajusta el nivel de significancia dividiendo <span class="math notranslate nohighlight">\(\alpha\)</span> por el número de parámetros <span class="math notranslate nohighlight">\(p\)</span>, utilizando el valor crítico <span class="math notranslate nohighlight">\(t_{\alpha/2p, n-p}\)</span> en lugar del valor crítico estándar <span class="math notranslate nohighlight">\(t_{\alpha/2, n-p}\)</span> <span id="id8">[<a class="reference internal" href="biblio.html#id27" title="O. J. Dunn. Multiple comparisons among means. Journal of the American Statistical Association, 56(293):52–64, 1961. doi:10.1080/01621459.1961.10482090.">Dunn, 1961</a>]</span>.</p></li>
+<li><p>El método se basa en la desigualdad de <span id="id9">[<a class="reference internal" href="biblio.html#id26" title="C. E. Bonferroni. Teoria statistica delle classi e calcolo delle probabilità. Pubblicazioni del R. Istituto Superiore di Scienze Economiche e Commerciali di Firenze, 1936.">Bonferroni, 1936</a>]</span>, que establece que <strong>la probabilidad de que al menos un evento ocurra es menor o igual a la suma de las probabilidades individuales</strong>. <span id="id10">[<a class="reference internal" href="biblio.html#id28" title="Rupert G. Miller. Simultaneous Statistical Inference. Springer-Verlag, New York, 2nd edition, 1981.">Miller, 1981</a>]</span> proporciona el tratamiento teórico más completo de este y otros métodos de inferencia simultánea.</p></li>
+<li><p>Si bien el método de Bonferroni es ampliamente aplicable y fácil de implementar, <strong>puede ser excesivamente conservador cuando el número de comparaciones es grande, llevando a intervalos más amplios y menor potencia estadística</strong> <span id="id11">[<a class="reference internal" href="biblio.html#id29" title="Thomas V. Perneger. What's wrong with bonferroni adjustments. BMJ, 316(7139):1236–1238, 1998. doi:10.1136/bmj.316.7139.1236.">Perneger, 1998</a>]</span>. Esta característica conservadora garantiza que el nivel de confianza conjunto sea <strong>al menos</strong> <span class="math notranslate nohighlight">\((1-\alpha)100\%\)</span>, pero frecuentemente es mayor.</p></li>
 </ul>
 </section>
 <section id="ejemplo-datos-del-propulsor-de-cohetes">
-<h3><span class="section-number">3.2.22. </span>Ejemplo: Datos del Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-del-propulsor-de-cohetes" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.23. </span>Ejemplo: Datos del Propulsor de Cohetes<a class="headerlink" href="#ejemplo-datos-del-propulsor-de-cohetes" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>En este ejemplo se construyen <strong>intervalos de confianza conjuntos al 90%</strong> para los parámetros <span class="math notranslate nohighlight">\(\beta_0\)</span> y <span class="math notranslate nohighlight">\(\beta_1\)</span> del modelo</p>
 <div class="math notranslate nohighlight">
@@ -3963,13 +4027,13 @@ n (\hat{\beta}_0 - \beta_0)^2 + 2 \sum_{i=1}^{n} x_i (\hat{\beta}_0 - \beta_0)(\
 </ul>
 </section>
 <section id="coeficientes-de-regresion-estandarizados">
-<h3><span class="section-number">3.2.23. </span>Coeficientes de regresión estandarizados<a class="headerlink" href="#coeficientes-de-regresion-estandarizados" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.24. </span>Coeficientes de regresión estandarizados<a class="headerlink" href="#coeficientes-de-regresion-estandarizados" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Comparar directamente los coeficientes de regresión suele ser difícil debido a que la magnitud de <span class="math notranslate nohighlight">\(\hat{\beta}_j\)</span> refleja las unidades de medida del regresor <span class="math notranslate nohighlight">\(x_j\)</span>.</strong> Por ejemplo, <em>si el modelo de regresión es <span class="math notranslate nohighlight">\(\hat{y} = 5 + x_1 + 1000x_2\)</span>, donde <span class="math notranslate nohighlight">\(y\)</span> está en litros, <span class="math notranslate nohighlight">\(x_1\)</span> en mililitros y <span class="math notranslate nohighlight">\(x_2\)</span> en litros, se observa que, aunque <span class="math notranslate nohighlight">\(\hat{\beta}_2\)</span> es mucho mayor que <span class="math notranslate nohighlight">\(\hat{\beta}_1\)</span>, el efecto de ambos regresores sobre <span class="math notranslate nohighlight">\(\hat{y}\)</span> es el mismo, ya que un cambio de una unidad en litros en cualquiera de las variables genera el mismo cambio en la respuesta</em>.</p></li>
 <li><p>Generalmente, las unidades del coeficiente <span class="math notranslate nohighlight">\(\beta_j\)</span> son las unidades de <span class="math notranslate nohighlight">\(y\)</span> divididas entre las de <span class="math notranslate nohighlight">\(x_j\)</span>. Por ello, <strong>es útil trabajar con variables estandarizadas, tanto regresoras como de respuesta, para obtener coeficientes adimensionales</strong>. Estos coeficientes adimensionales son conocidos como <strong>coeficientes de regresión estandarizados</strong>. Se presentan dos métodos populares de escalamiento</p></li>
 </ul>
 <section id="escalamiento-normal-estandar">
-<h4><span class="section-number">3.2.23.1. </span>Escalamiento normal estándar<a class="headerlink" href="#escalamiento-normal-estandar" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.24.1. </span>Escalamiento normal estándar<a class="headerlink" href="#escalamiento-normal-estandar" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Se define la <strong>variable explicativa estandarizada <span class="math notranslate nohighlight">\(z_{ij}\)</span></strong> como</p></li>
 </ul>
@@ -4007,7 +4071,7 @@ y_i^{\star} = b_1 z_{i1} + b_2 z_{i2} + \cdots + b_k z_{ik} + \varepsilon_i, \qu
 \]</div>
 </section>
 <section id="escalamiento-de-longitud-unitaria">
-<h4><span class="section-number">3.2.23.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">3.2.24.2. </span>Escalamiento de longitud unitaria<a class="headerlink" href="#escalamiento-de-longitud-unitaria" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Se define la transformación</p></li>
 </ul>
@@ -4592,12 +4656,13 @@ W^{\top}W =
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimacion-por-intervalo-de-confianza-de-la-respuesta-media">3.2.19. Estimación por intervalo de confianza de la respuesta media</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.20. Intervalos de confianza simultáneos para los coeficientes de regresión</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.21. Ejemplo: Datos de Propulsor de Cohetes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohetes">3.2.22. Ejemplo: Datos del Propulsor de Cohetes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.23. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.23.1. Escalamiento normal estándar</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.23.2. Escalamiento de longitud unitaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2.20. Ejemplo: Datos de tiempo de entrega</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalos-de-confianza-simultaneos-para-los-coeficientes-de-regresion">3.2.21. Intervalos de confianza simultáneos para los coeficientes de regresión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-de-propulsor-de-cohetes">3.2.22. Ejemplo: Datos de Propulsor de Cohetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-datos-del-propulsor-de-cohetes">3.2.23. Ejemplo: Datos del Propulsor de Cohetes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-de-regresion-estandarizados">3.2.24. Coeficientes de regresión estandarizados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-normal-estandar">3.2.24.1. Escalamiento normal estándar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#escalamiento-de-longitud-unitaria">3.2.24.2. Escalamiento de longitud unitaria</a></li>
 </ul>
 </li>
 </ul>

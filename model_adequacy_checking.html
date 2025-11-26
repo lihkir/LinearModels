@@ -400,40 +400,49 @@ document.write(`
 <h1><span class="section-number">4. </span>Comprobación de Adecuación del Modelo<a class="headerlink" href="#comprobacion-de-adecuacion-del-modelo" title="Link to this heading">#</a></h1>
 <section id="introduccion">
 <h2><span class="section-number">4.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
-<p><strong>Los modelos de regresión se basan en un conjunto de supuestos fundamentales</strong>, que hasta ahora han sido los siguientes:</p>
 <ul class="simple">
-<li><p>La relación entre la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y los regresores es lineal, al menos de forma aproximada.</p></li>
-<li><p>El término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> tiene media cero.</p></li>
-<li><p>La varianza del error <span class="math notranslate nohighlight">\(\varepsilon\)</span> es constante e igual a <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
-<li><p>Los errores son no correlacionados.</p></li>
-<li><p>Los errores se distribuyen normalmente.</p></li>
+<li><p><strong>Los modelos de regresión se basan en un conjunto de supuestos fundamentales</strong>, que hasta ahora han sido los siguientes</p>
+<ol class="arabic simple">
+<li><p><em>La relación entre la variable respuesta <span class="math notranslate nohighlight">\(y\)</span> y los regresores es lineal, al menos de forma aproximada.</em></p></li>
+<li><p><em>El término de error <span class="math notranslate nohighlight">\(\varepsilon\)</span> tiene media cero.</em></p></li>
+<li><p><em>La varianza del error <span class="math notranslate nohighlight">\(\varepsilon\)</span> es constante e igual a <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</em></p></li>
+<li><p><em>Los errores son no correlacionados.</em></p></li>
+<li><p><em>Los errores se distribuyen normalmente.</em></p></li>
+</ol>
+</li>
+<li><p>Los supuestos 4 y 5 implican que los errores son variables aleatorias independientes. <strong>El supuesto 5 es esencial para realizar pruebas de hipótesis e intervalos de confianza.</strong></p></li>
+<li><p>Siempre se debe poner en duda la validez de estos supuestos y realizar análisis para evaluar la adecuación del modelo asumido. <strong>Las violaciones importantes de estos supuestos pueden generar modelos inestables</strong>, en el sentido de que otra muestra puede producir conclusiones completamente diferentes.</p></li>
+<li><p>Estas <strong>desviaciones no pueden detectarse a partir de estadísticas de resumen estándar como <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(F\)</span> o <span class="math notranslate nohighlight">\(R^2\)</span></strong>, ya que son propiedades globales del modelo.</p></li>
+<li><p><strong>Este capítulo introduce métodos para diagnosticar violaciones de los supuestos básicos, principalmente mediante el análisis de los residuos.</strong> El tratamiento de modelos inadecuados y diagnósticos adicionales más sofisticados se abordará en los dos siguientes capítulos.</p></li>
 </ul>
-<p><strong>Los supuestos 4 y 5 implican que los errores son variables aleatorias independientes.</strong> El supuesto 5 es esencial para realizar pruebas de hipótesis e intervalos de confianza.</p>
-<p><strong>Siempre se debe poner en duda la validez de estos supuestos y realizar análisis para evaluar la adecuación del modelo asumido.</strong> Las violaciones importantes de estos supuestos pueden generar modelos inestables, en el sentido de que otra muestra puede producir conclusiones completamente diferentes.</p>
-<p><strong>Estas desviaciones no pueden detectarse a partir de estadísticas de resumen estándar como <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(F\)</span> o <span class="math notranslate nohighlight">\(R^2\)</span>, ya que son propiedades globales del modelo.</strong></p>
-<p><strong>Este capítulo introduce métodos para diagnosticar violaciones de los supuestos básicos, principalmente mediante el análisis de los residuos.</strong> El tratamiento de modelos inadecuados y diagnósticos adicionales más sofisticados se abordará en los Capítulos 5 y 6.</p>
 </section>
 <section id="analisis-de-residuos">
 <h2><span class="section-number">4.2. </span>Análisis de Residuos<a class="headerlink" href="#analisis-de-residuos" title="Link to this heading">#</a></h2>
 <section id="definicion-de-residuos">
 <h3><span class="section-number">4.2.1. </span>Definición de residuos<a class="headerlink" href="#definicion-de-residuos" title="Link to this heading">#</a></h3>
-<p>Los residuos se definen como:</p>
+<ul class="simple">
+<li><p>Los residuos se definen como</p></li>
+</ul>
 <div class="math notranslate nohighlight" id="equation-eq-def-residuo">
 <span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-def-residuo" title="Link to this equation">#</a></span>\[
 e_i = y_i - \hat{y}_i, \quad i = 1, 2, \dots, n
 \]</div>
-<p><strong>El residuo representa la diferencia entre el dato observado y el valor ajustado, es decir, la parte de la variabilidad no explicada por el modelo.</strong></p>
-<p>También se puede considerar al residuo como el valor observado del error del modelo. <strong>Por tanto, cualquier desviación de los supuestos sobre los errores debería manifestarse en los residuos.</strong></p>
-<p>Los residuos presentan varias propiedades importantes:</p>
 <ul class="simple">
-<li><p>Tienen media cero.</p></li>
-<li><p>Su varianza media aproximada se estima como:</p></li>
+<li><p>El <strong>residuo representa la diferencia entre el dato observado y el valor ajustado</strong>, es decir, la parte de la <em>variabilidad no explicada por el modelo.</em> También se puede considerar al residuo como el valor observado del error del modelo. Por tanto, <strong>cualquier desviación de los supuestos sobre los errores debería manifestarse en los residuos.</strong></p></li>
+<li><p>Los residuos presentan varias propiedades importantes</p>
+<ul>
+<li><p><em>Tienen media cero</em></p></li>
+<li><p><em>Su varianza media aproximada se estima como</em></p></li>
+</ul>
+</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
 \text{MS}_{\text{Res}} = \frac{\sum_{i=1}^n e_i^2}{n - p}
 \]</div>
-<p><strong>Los residuos no son independientes, ya que poseen solo <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad. Sin embargo, esta dependencia tiene poco efecto si <span class="math notranslate nohighlight">\(n\)</span> es grande en comparación con <span class="math notranslate nohighlight">\(p\)</span>.</strong></p>
+<ul class="simple">
+<li><p>Los residuos <strong>no son independientes, ya que poseen solo <span class="math notranslate nohighlight">\(n - p\)</span> grados de libertad</strong>. Sin embargo, <strong>esta dependencia tiene poco efecto si <span class="math notranslate nohighlight">\(n\)</span> es grande en comparación con <span class="math notranslate nohighlight">\(p\)</span>.</strong></p></li>
+</ul>
 </section>
 <section id="metodos-de-escalamiento-de-residuos">
 <h3><span class="section-number">4.2.2. </span>Métodos de escalamiento de residuos<a class="headerlink" href="#metodos-de-escalamiento-de-residuos" title="Link to this heading">#</a></h3>
