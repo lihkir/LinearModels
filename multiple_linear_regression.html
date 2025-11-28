@@ -368,7 +368,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12. Ejemplo: Datos de Tiempo de Entrega</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.13. Ejemplo: Datos de Tiempo de Entrega</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.14. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.15. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.15. Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.15.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.15.2. Ejemplo: Prueba conjunta de restricciones</a></li>
 </ul>
@@ -3244,7 +3244,7 @@ SS_{R}(\beta_1) = y' X_1 (X_1'X_1)^{-1} X_1'\quad\text{y}\quad SS_{R}(\beta_2) =
 </div>
 </section>
 <section id="prueba-de-la-hipotesis-lineal-general">
-<h3><span class="section-number">3.2.15. </span>3.3.4 Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.15. </span>Prueba de la Hipótesis Lineal General<a class="headerlink" href="#prueba-de-la-hipotesis-lineal-general" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Muchas hipótesis sobre los coeficientes de regresión pueden evaluarse mediante un <strong>enfoque unificado</strong>. El <strong>método de suma de cuadrados extra</strong> es un caso particular de este procedimiento general. En este enfoque, la <strong>suma de cuadrados utilizada para probar la hipótesis</strong> se calcula como la <strong>diferencia entre dos sumas de cuadrados residuales</strong>.</p></li>
 <li><p>Supóngase que la <strong>hipótesis nula</strong> puede expresarse como</p>
@@ -3732,11 +3732,14 @@ Z'\Sigma^{-1} Z \sim \chi^2_p.
 </li>
 <li><p>Si combinamos dos chi-cuadrado mediante el siguiente cociente <span class="math notranslate nohighlight">\(\rightarrow\)</span> distribución <span class="math notranslate nohighlight">\(F\)</span></p>
 <div class="math notranslate nohighlight">
-\[
+\[\begin{split}
+    \begin{align*}
     \frac{
     \left[\displaystyle{\frac{1}{\sigma^2}}(\hat\beta - \beta)'X'X(\hat\beta - \beta)\right] / p
-    }{\left[\displaystyle{\frac{(n-p)MS_{\text{Res}}}{\sigma^2}}\right]/(n-p)}=\frac{(\hat\beta - \beta)'X'X(\hat\beta - \beta)/p}{MS_{\text{Res}}}
-    \]</div>
+    }{\left[\displaystyle{\frac{(n-p)MS_{\text{Res}}}{\sigma^2}}\right]/(n-p)}&amp;=\frac{(\hat\beta - \beta)'X'X(\hat\beta - \beta)/p}{MS_{\text{Res}}}\\
+    &amp;=\frac{\text{Varianza explicada por los coeficientes}}{\text{Varianza residual del modelo}}
+    \end{align*}
+    \end{split}\]</div>
 <p>sigue una distribución <span class="math notranslate nohighlight">\(F_{p,n-p}.\)</span></p>
 </li>
 <li><p>Por lo tanto</p></li>
@@ -4641,7 +4644,7 @@ W^{\top}W =
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.2.12. Ejemplo: Datos de Tiempo de Entrega</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.13. Ejemplo: Datos de Tiempo de Entrega</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-especial-de-columnas-ortogonales-en-x">3.2.14. Caso especial de columnas ortogonales en <span class="math notranslate nohighlight">\(X\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.15. 3.3.4 Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-la-hipotesis-lineal-general">3.2.15. Prueba de la Hipótesis Lineal General</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-de-igualdad-de-coeficientes">3.2.15.1. Ejemplo: Prueba de igualdad de coeficientes</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-prueba-conjunta-de-restricciones">3.2.15.2. Ejemplo: Prueba conjunta de restricciones</a></li>
 </ul>
